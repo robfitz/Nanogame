@@ -53,9 +53,9 @@ package
                 private var distancePerFrame:Number = 4.5;
                 private var distanceToNextFrame:Number = distancePerFrame;
                 
-                private var decelerationFactor = 10;
+                private var decelerationFactor:Number = 10;
                 
-                private var maxSpeed = 100;
+                private var maxSpeed:Number = 100;
                 
                 private static const FPS:int = 12;
                 
