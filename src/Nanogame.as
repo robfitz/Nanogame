@@ -19,12 +19,12 @@ package {
 		/** Last frame time in milliseconds */
 		private var then:int = 0;
 		
-		/** The isometric would our main character lives in */
+		/** The isometric world our main character lives in */
 		private var world:World;
 		
 		public function Nanogame()
 		{
-			world = new World(this);
+			this.world = new World(this);
 		}
 		
 		public function loopdeloop():void {
