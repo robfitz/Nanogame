@@ -234,22 +234,22 @@ package
 //				                    sprite.includeInLayout = false;
 				                    sprite.y = row * 32;
 				                    //COMMENT IN/OUT
-//				                    scene.addChild(sprite);
+				                    scene.addChild(sprite);
 				                    
 //				                    tile_sprites.push(sprite);
                 				}
                 			}
                 			//COMMENT IN/OUT
-                			var sprite:IsoSprite = new IsoSprite();
-                			var img:Sprite = new Sprite();
-                			var img_bmp:DisplayObject = new Background();
-                			img_bmp.x = -3766/1;
-                			img_bmp.y = -42*2;
-                			img_bmp.scaleX = 2;
-                			img_bmp.scaleY = 2;
-                			img.addChild(img_bmp);
-                			sprite.sprites = [img];
-                			scene.addChild(sprite);
+//                			var sprite:IsoSprite = new IsoSprite();
+//                			var img:Sprite = new Sprite();
+//                			var img_bmp:DisplayObject = new Background();
+//                			img_bmp.x = -3766/1;
+//                			img_bmp.y = -42*2;
+//                			img_bmp.scaleX = 2;
+//                			img_bmp.scaleY = 2;
+//                			img.addChild(img_bmp);
+//                			sprite.sprites = [img];
+//                			scene.addChild(sprite);
                 		}
                 		scene.render();
                 		for (var i:int = 0; i < tile_sprites.length; i ++) {
