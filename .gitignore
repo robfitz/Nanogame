@@ -1,10 +1,11 @@
-*.pyc
 media/uploads/*
+html-template/*
 *.swp
 *.swo
-*~
 .gae*
-__timetracker*
 _generated*
 local_db
 bin-debug
+.actionScriptProperties
+.project
+.settings/*

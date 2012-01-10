@@ -38,6 +38,7 @@ package
         {
                 private var box:IIsoDisplayObject;
                 private var scene:IsoScene;
+				private var foregroundScene:IsoScene;
                 private var g:IsoGrid;
                 private var view:IsoView;
                 
@@ -99,6 +100,7 @@ package
                 	mapLoader.load(new URLRequest("./assets/isometric_grass_and_water.tmx"));
                 	
                     scene = new IsoScene();
+					foregroundScene = new IsoScene();
                     
                     this.addEventListener(Event.ENTER_FRAME, enterFrameHandler);
                     stage.addEventListener(MouseEvent.MOUSE_UP, onMouseUp);
@@ -133,16 +135,18 @@ package
                     sprite.setSize(15, 15, 35);
                     sprite.sprites = [character]
                     box = sprite;
-                    scene.addChild(box);
+                    foregroundScene.addChild(box);
                     
                     view = new IsoView();
                     view.clipContent = false;
                     view.y = 0;
                     view.setSize(stage.stageWidth, stage.stageHeight);
                     view.addScene(scene);
+					view.addScene(foregroundScene);
                     addChild(view);
                     
                     scene.render();
+					foregroundScene.render();
                  
                  	var slider:Slider = new Slider(0, 18, 7, 400, 30, null, [1, 1.5, 2, 2.5, 3, 3.5, 4, 4.5, 5, 5.5, 6, 6.5, 7, 8, 9, 10, 11, 12, 13]);
                  	slider.addEventListener(Event.CHANGE, function(e:Event):void {
@@ -234,22 +238,22 @@ package
 //				                    sprite.includeInLayout = false;
 				                    sprite.y = row * 32;
 				                    //COMMENT IN/OUT
-//				                    scene.addChild(sprite);
+				                    scene.addChild(sprite);
 				                    
 //				                    tile_sprites.push(sprite);
                 				}
                 			}
                 			//COMMENT IN/OUT
-                			var sprite:IsoSprite = new IsoSprite();
-                			var img:Sprite = new Sprite();
-                			var img_bmp:DisplayObject = new Background();
-                			img_bmp.x = -3766/1;
-                			img_bmp.y = -42*2;
-                			img_bmp.scaleX = 2;
-                			img_bmp.scaleY = 2;
-                			img.addChild(img_bmp);
-                			sprite.sprites = [img];
-                			scene.addChild(sprite);
+//                			var sprite:IsoSprite = new IsoSprite();
+//                			var img:Sprite = new Sprite();
+//                			var img_bmp:DisplayObject = new Background();
+//                			img_bmp.x = -3766/1;
+//                			img_bmp.y = -42*2;
+//                			img_bmp.scaleX = 2;
+//                			img_bmp.scaleY = 2;
+//                			img.addChild(img_bmp);
+//                			sprite.sprites = [img];
+//                			scene.addChild(sprite);
                 		}
                 		scene.render();
                 		for (var i:int = 0; i < tile_sprites.length; i ++) {
@@ -381,7 +385,8 @@ package
                         view.centerOnIso(box);
 					}
 					
-					scene.render();
+					//scene.render();
+					foregroundScene.render();
                 }
         }
 }
