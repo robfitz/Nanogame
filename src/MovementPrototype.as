@@ -38,6 +38,7 @@ package
         {
                 private var box:IIsoDisplayObject;
                 private var scene:IsoScene;
+				private var foregroundScene:IsoScene;
                 private var g:IsoGrid;
                 private var view:IsoView;
                 
@@ -99,6 +100,7 @@ package
                 	mapLoader.load(new URLRequest("./assets/isometric_grass_and_water.tmx"));
                 	
                     scene = new IsoScene();
+					foregroundScene = new IsoScene();
                     
                     this.addEventListener(Event.ENTER_FRAME, enterFrameHandler);
                     stage.addEventListener(MouseEvent.MOUSE_UP, onMouseUp);
@@ -133,16 +135,18 @@ package
                     sprite.setSize(15, 15, 35);
                     sprite.sprites = [character]
                     box = sprite;
-                    scene.addChild(box);
+                    foregroundScene.addChild(box);
                     
                     view = new IsoView();
                     view.clipContent = false;
                     view.y = 0;
                     view.setSize(stage.stageWidth, stage.stageHeight);
                     view.addScene(scene);
+					view.addScene(foregroundScene);
                     addChild(view);
                     
                     scene.render();
+					foregroundScene.render();
                  
                  	var slider:Slider = new Slider(0, 18, 7, 400, 30, null, [1, 1.5, 2, 2.5, 3, 3.5, 4, 4.5, 5, 5.5, 6, 6.5, 7, 8, 9, 10, 11, 12, 13]);
                  	slider.addEventListener(Event.CHANGE, function(e:Event):void {
@@ -381,7 +385,8 @@ package
                         view.centerOnIso(box);
 					}
 					
-					scene.render();
+					//scene.render();
+					foregroundScene.render();
                 }
         }
 }
