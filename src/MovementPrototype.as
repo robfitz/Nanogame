@@ -17,7 +17,6 @@ package
         import flash.display.DisplayObject;
         import flash.display.Loader;
         import flash.display.Sprite;
-        import flash.display3D.IndexBuffer3D;
         import flash.events.Event;
         import flash.events.MouseEvent;
         import flash.geom.Matrix;
@@ -27,6 +26,8 @@ package
         import flash.net.URLRequest;
         import flash.text.TextField;
         import flash.utils.getTimer;
+        
+        import nano.Collisions;
         
         import net.pixelpracht.tmx.TmxLayer;
         import net.pixelpracht.tmx.TmxMap;
@@ -63,6 +64,8 @@ package
                 private var maxSpeed:Number = 100;
                 
                 private static const FPS:int = 12;
+                
+                private var collisions:Collisions = new Collisions();
 				
 				
 				// DEBUG STUFF
