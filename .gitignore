@@ -1,0 +1,10 @@
+*.pyc
+media/uploads/*
+*.swp
+*.swo
+*~
+.gae*
+__timetracker*
+_generated*
+local_db
+bin-debug
