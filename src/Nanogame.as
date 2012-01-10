@@ -2,6 +2,8 @@ package {
 	import flash.display.Sprite;
 	import flash.utils.getTimer;
 	
+	import nano.World;
+	
 	/**
 	 * Nanogame.as
 	 * Top level control flow and execution for Nanogame
@@ -13,12 +15,16 @@ package {
 		
 		/** Current frame time in milliseconds since game start */
 		private var now:int = 0;
+		
 		/** Last frame time in milliseconds */
 		private var then:int = 0;
 		
+		/** The isometric would our main character lives in */
+		private var world:World;
+		
 		public function Nanogame()
 		{
-			
+			world = new World(this);
 		}
 		
 		public function loopdeloop():void {
@@ -41,7 +47,7 @@ package {
 		 * Render game object that need to be blitted to the screen
 		 */		
 		public function render():void {
-			
+			this.world.render();
 		}
 	}
 }
