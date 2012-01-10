@@ -105,7 +105,7 @@ package
                 				trace("TODO: movementprototype.as - this will fail for multiple tilesets")
                 				tileset.image = bitmap.bitmapData;
                 				tileSetsToLoad --; 
-                				if (tileSetsToLoad < 0) {
+                				if (tileSetsToLoad <= 0) {
                 					createIsoTiles(map);
                 				}
 //                				addChild(event.target.content);
@@ -114,7 +114,7 @@ package
                 		}
                 		for each (var objectGroup:TmxObjectGroup in map.objectGroups) {
                 			if (objectGroup.properties.hasOwnProperty("nowalk")) {
-		                		for each (var object:TmxObject in objectGroup) {
+		                		for each (var object:TmxObject in objectGroup.objects) {
 	                				collisions.add(object);
 		                		}
 		                	}
@@ -236,7 +236,7 @@ package
                 	
                 	var tile_sprites:Array = [];
                 	for each (var layer:TmxLayer in map.layers) {
-                		
+                		 
                 			var spr:Sprite = new Sprite();
                 			var tilesheetBitmap:Bitmap;
                 			for (var row:int = 0; row < layer.tileGIDs.length; row ++) {
@@ -295,7 +295,7 @@ package
                 		scene.render();
                 		for (var i:int = 0; i < tile_sprites.length; i ++) {
                 			trace("unlaying out tile sprite " + i);
-                			IsoSprite(tile_sprites[i]).includeInLayout = false;
+//                			IsoSprite(tile_sprites[i]).includeInLayout = false;
                 			trace("include?" + tile_sprites[i].includeInLayout);
                 		}
                 }
@@ -407,6 +407,14 @@ package
 						else {
 							//isolib only wants to move by full pixels, so store
 							//up the incremental moves until it's at least 1 in any direction
+							var new_x:int = box.x + int(unmovedX);
+							var new_y:int = box.x + int(unmovedY);
+	 						
+							if (collisions.test(box)) {
+								trace("collision");
+//								return;
+							}
+							
 							box.x += int(unmovedX);
 							box.y += int(unmovedY);
 							
