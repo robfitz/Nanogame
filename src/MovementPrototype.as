@@ -17,6 +17,7 @@ package
         import flash.display.DisplayObject;
         import flash.display.Loader;
         import flash.display.Sprite;
+        import flash.display3D.IndexBuffer3D;
         import flash.events.Event;
         import flash.events.MouseEvent;
         import flash.geom.Matrix;
@@ -24,6 +25,8 @@ package
         import flash.geom.Rectangle;
         import flash.net.URLLoader;
         import flash.net.URLRequest;
+        import flash.text.TextField;
+        import flash.utils.getTimer;
         
         import net.pixelpracht.tmx.TmxLayer;
         import net.pixelpracht.tmx.TmxMap;
@@ -55,11 +58,19 @@ package
                 private var distancePerFrame:Number = 4.5;
                 private var distanceToNextFrame:Number = distancePerFrame;
                 
-                private var decelerationFactor = 10;
+                private var decelerationFactor:Number = 10;
                 
-                private var maxSpeed = 100;
+                private var maxSpeed:Number = 100;
                 
                 private static const FPS:int = 12;
+				
+				
+				// DEBUG STUFF
+				private var fpsCounter:TextField;
+				private var updates:int = 0;
+				private var now:int = 0;
+				private var then:int = 0;
+				// end DEBUG STUFF
                 
                 private static const SPRITE_WIDTH:int = 64;
                 private static const SPRITE_HEIGHT:int = 64;
@@ -116,6 +127,7 @@ package
                     
                     this.addEventListener(Event.ENTER_FRAME, enterFrameHandler);
                     stage.addEventListener(MouseEvent.MOUSE_UP, onMouseUp);
+					now = flash.utils.getTimer();
                     
                     g = new IsoGrid();
                     g.gridlines = new Stroke(0, 0xCCCCCC, 0);
@@ -206,6 +218,15 @@ package
                  	sb = new SliderButton("Deceleration", slider4);
                  	sb.y = 120;
 //                 	addChild(sb);
+					
+					
+					// FPS Counter
+					this.fpsCounter = new TextField();
+					this.fpsCounter.x = 700;
+					this.fpsCounter.y = 5;
+					this.fpsCounter.text = "30";
+					this.addChild(this.fpsCounter);
+					this.updates = 0;
                 }
                 
                 private function createIsoTiles(map:TmxMap):void {
@@ -327,6 +348,17 @@ package
                 
                 private function enterFrameHandler (evt:Event):void
                 {
+					
+					// update fps
+					this.then = this.now;
+					this.now = flash.utils.getTimer();
+					if(this.updates == 10) {
+						var fpsCalc = 1000 / (this.now - this.then);
+						this.fpsCounter.text= "FPS: " + fpsCalc;
+						this.updates = 0;
+					}
+					this.updates ++;
+					
                 	if (isMouseDown) {
                 		followMouse();
                 	}
