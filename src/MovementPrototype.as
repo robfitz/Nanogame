@@ -27,6 +27,8 @@ package
         
         import net.pixelpracht.tmx.TmxLayer;
         import net.pixelpracht.tmx.TmxMap;
+        import net.pixelpracht.tmx.TmxObject;
+        import net.pixelpracht.tmx.TmxObjectGroup;
         import net.pixelpracht.tmx.TmxPropertySet;
         import net.pixelpracht.tmx.TmxTileSet;
         
@@ -89,12 +91,22 @@ package
                 				trace("TODO: movementprototype.as - this will fail for multiple tilesets")
                 				tileset.image = bitmap.bitmapData;
                 				tileSetsToLoad --; 
-                				if (tileSetsToLoad <= 0) {
+                				if (tileSetsToLoad < 0) {
                 					createIsoTiles(map);
                 				}
 //                				addChild(event.target.content);
                 			});
                 			imgLoader.load(new URLRequest(tileset.imageSource));
+                		}
+                		for each (var objectGroup:TmxObjectGroup in map.objectGroups) {
+                			if (objectGroup.properties.hasOwnProperty("nowalk")) {
+		                		for each (var object:TmxObject in objectGroup) {
+	                				collisions.add(object);
+		                		}
+		                	}
+		                	else {
+		                		var i:String = objectGroup.properties["nowalk"];
+		                	}
                 		}
                 	});
                 	mapLoader.load(new URLRequest("./assets/isometric_grass_and_water.tmx"));
@@ -200,6 +212,7 @@ package
                 	
                 	var tile_sprites:Array = [];
                 	for each (var layer:TmxLayer in map.layers) {
+                		
                 			var spr:Sprite = new Sprite();
                 			var tilesheetBitmap:Bitmap;
                 			for (var row:int = 0; row < layer.tileGIDs.length; row ++) {
