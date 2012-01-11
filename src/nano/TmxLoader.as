@@ -117,8 +117,8 @@ package nano
 							var sprite:IsoSprite = new IsoSprite();
 							sprite.setSize(tileset.tileWidth, tileset.tileHeight, 0);
 							sprite.sprites = [bitmap];
-							sprite.x = row * tileset.tileWidth;
-							sprite.y = col * tileset.tileHeight;
+							sprite.x = col * map.height;
+							sprite.y = row * map.width;
 							scene.addChild(sprite);
 						}
 					}

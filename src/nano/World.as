@@ -60,7 +60,7 @@ package nano
 			
 			if(this._renderTiles) {
 				this._background.render();
-				this._foreground.render();
+				//this._foreground.render();
 				this._renderTiles = false;
 			}
 		}
