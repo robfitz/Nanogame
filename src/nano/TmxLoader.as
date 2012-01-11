@@ -7,6 +7,7 @@ package nano
 	import flash.display.BitmapData;
 	import flash.display.Loader;
 	import flash.events.Event;
+	import flash.events.EventDispatcher;
 	import flash.geom.Matrix;
 	import flash.geom.Rectangle;
 	import flash.net.URLLoader;
@@ -21,7 +22,7 @@ package nano
 	 * Parses and loads a tile map into TmxMaps and then builds IsoScenes from that data 
 	 * @author devin
 	 */	
-	public class TmxLoader
+	public class TmxLoader extends EventDispatcher
 	{
 		
 		public static const MAP_PATH:String = "./assets/";
@@ -120,6 +121,9 @@ package nano
 					}
 				}
 			}
+			
+			// All done!
+			this.dispatchEvent(new Event(Event.COMPLETE));
 		}
 		
 		/**

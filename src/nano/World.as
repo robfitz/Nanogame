@@ -28,7 +28,7 @@ package nano
 		public function get objects():IsoScene {
 			return this._objects;
 		}
-		public function set object(val:IsoScene):void {
+		public function set objects(val:IsoScene):void {
 			this._objects = val;
 			this._objects.hostContainer = this._hostContainer;
 			this.invalidateTiles();

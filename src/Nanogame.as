@@ -27,10 +27,16 @@ package {
 		public function Nanogame()
 		{
 			this.world = new World(this);
-			this.startLoop();
 			
 			// load the world!
 			var loader:TmxLoader = new TmxLoader();
+			loader.addEventListener(Event.COMPLETE, function(event:Event):void {
+				var scenes:Object = loader.scenes;
+				world.background = scenes["background"];
+				//world.foreground = scenes["foreground"];
+				//world.objects = scenes["objects"];
+				startLoop();
+			});
 			loader.load("./assets/demo_001_reformat.tmx");
 		}
 		
@@ -69,7 +75,7 @@ package {
 		 * Render game object that need to be blitted to the screen
 		 */		
 		public function render():void {
-			//this.world.render();
-		}
+			this.world.render();
+		} 
 	}
 }
