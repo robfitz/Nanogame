@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<map version="1.0" orientation="isometric" width="30" height="30" tilewidth="64" tileheight="32">
+ <tileset firstgid="1" name="walls_demo_002-(80x200,-minus8-x)" tilewidth="80" tileheight="200">
+  <tileoffset x="-8" y="0"/>
+  <image source="../walls/walls_demo_002-(80x200,-minus8-x).png" width="720" height="200"/>
+ </tileset>
+ <tileset firstgid="10" name="floortiles_002" tilewidth="64" tileheight="32">
+  <image source="../floor/floortiles_002.png" width="128" height="32"/>
+ </tileset>
+ <tileset firstgid="12" name="airlock-160x300minus33x" tilewidth="160" tileheight="300">
+  <tileoffset x="-33" y="0"/>
+  <image source="../objects/airlock-160x300minus33x.png" width="160" height="300"/>
+ </tileset>
+ <tileset firstgid="13" name="aligner-machine 128X142" tilewidth="128" tileheight="142">
+  <image source="../objects/aligner-machine 128X142.png" width="128" height="142"/>
+ </tileset>
+ <tileset firstgid="14" name="evaporator 128x185" tilewidth="128" tileheight="185">
+  <image source="../objects/evaporator 128x185.png" width="128" height="185"/>
+ </tileset>
+ <tileset firstgid="15" name="furnace 128x150" tilewidth="128" tileheight="150">
+  <image source="../objects/furnace 128x150.png" width="128" height="150"/>
+ </tileset>
+ <tileset firstgid="16" name="CABINET 96X129" tilewidth="96" tileheight="129">
+  <image source="../objects/CABINET 96X129.png" width="96" height="129"/>
+ </tileset>
+ <layer name="background" width="30" height="30">
+  <data encoding="base64" compression="zlib">
+   eJztlDkKACAMBD0KQT/t001hJSm808zAkkJwRJI4BwCv8JKoJPRoZ/HcWYvUnZwg765Z6pjX3mDotfpnvHPR+gKvjlU/W87R6r7Ai3eGdOEOgN80S5kSdQ==
+  </data>
+ </layer>
+ <layer name="objects" width="30" height="30">
+  <data encoding="base64" compression="zlib">
+   eJzt1LkNACAAA7EswDMyo9MwAuKR7CbtVUkA9qlrWzJudgC8qPvGY8rtAPjEBL4YATs=
+  </data>
+ </layer>
+ <layer name="foreground" width="30" height="30">
+  <data encoding="base64" compression="zlib">
+   eJzt0zEKACAMBMErjIX46DzdQgvB2gR0B46UW0UCAMkkp0v3RtfmVd32sp7ULeu2bQFND8gcfvwjuu92gWwDeY8HCw==
+  </data>
+ </layer>
+</map>

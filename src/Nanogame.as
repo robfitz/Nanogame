@@ -3,6 +3,7 @@ package {
 	import flash.events.Event;
 	import flash.utils.getTimer;
 	
+	import nano.TmxLoader;
 	import nano.World;
 	
 	/**
@@ -27,6 +28,10 @@ package {
 		{
 			this.world = new World(this);
 			this.startLoop();
+			
+			// load the world!
+			var loader:TmxLoader = new TmxLoader();
+			loader.load("./assets/demo_001_reformat.tmx");
 		}
 		
 		/**
@@ -64,7 +69,7 @@ package {
 		 * Render game object that need to be blitted to the screen
 		 */		
 		public function render():void {
-			this.world.render();
+			//this.world.render();
 		}
 	}
 }
