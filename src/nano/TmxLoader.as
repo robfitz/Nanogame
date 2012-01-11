@@ -108,17 +108,20 @@ package nano
 				
 				for(var row:int = 0; row < layer.tileGIDs.length; row ++) {
 					for(var col:int = 0; col < layer.tileGIDs[row].length; col ++) {
-						var gid:int = layer.tileGIDs[row][col];
-						if(gid > 0) {
+						var gid:uint = layer.tileGIDs[row][col];
+						if(gid != 0) {
 							var tileset:TmxTileSet = this._map.getGidOwner(gid);
 							var bmd:BitmapData = this.getTileBitmap(gid);
 							var bitmap:Bitmap = new Bitmap(bmd);
-							
 							var sprite:IsoSprite = new IsoSprite();
+							
+							bitmap.x = - tileset.tileWidth / 2;
+							bitmap.y = 32 - tileset.tileHeight;
+							
 							sprite.setSize(tileset.tileWidth, tileset.tileHeight, 0);
 							sprite.sprites = [bitmap];
-							sprite.x = col * map.height;
-							sprite.y = row * map.width;
+							sprite.x = col * 32;
+							sprite.y = row * 32;
 							scene.addChild(sprite);
 						}
 					}
@@ -136,7 +139,7 @@ package nano
 		 * @param gid The guid of the tile you want bitmap data for
 		 * @return The bitmap data, or null if no valid bitmap data exists
 		 */		
-		private function getTileBitmap(gid:int):BitmapData {
+		private function getTileBitmap(gid:uint):BitmapData {
 			if(this._bitmapCache.hasOwnProperty(gid)) {
 				return this._bitmapCache[gid];
 			}

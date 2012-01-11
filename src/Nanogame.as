@@ -1,4 +1,7 @@
 package {
+	import as3isolib.display.scene.IsoGrid;
+	import as3isolib.graphics.Stroke;
+	
 	import flash.display.Bitmap;
 	import flash.display.Sprite;
 	import flash.events.Event;
@@ -12,7 +15,7 @@ package {
 	 * Top level control flow and execution for Nanogame
 	 */
 
-	[SWF(width='760', height='570')]
+	[SWF(width='1000', height='800')]
 	public class Nanogame extends Sprite
 	{
 		
@@ -36,12 +39,19 @@ package {
 				world.background = scenes["background"];
 				world.objects = scenes["objects"];
 				world.foreground = scenes["foreground"];
-				
-				//var bmp:Bitmap = new Bitmap(loader._bitmapCache[5].bitmapData); //loader.map.getGidOwner(10).image);
-				//addChild(bmp);
 				startLoop();
+				
+				
+				var g:IsoGrid = new IsoGrid();
+				g.gridlines = new Stroke(1, 0xCCCCCC, 1);
+				g.showOrigin = false;
+				g.cellSize = 32;
+				g.setGridSize(30, 30);
+				
+				world.foreground.addChild(g);
+				
 			});
-			loader.load("./assets/demo_001_reformat.tmx");
+			loader.load("./assets/test_check.tmx");
 		}
 		
 		/**

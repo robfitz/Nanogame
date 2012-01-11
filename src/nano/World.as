@@ -1,8 +1,10 @@
 package nano
 {
+	import as3isolib.display.IsoView;
 	import as3isolib.display.scene.IsoScene;
 	
 	import flash.display.DisplayObjectContainer;
+	import flash.display.Stage;
 
 	/**
 	 * The world in which the game take place. Consists of tile layers (foreground, background)
@@ -14,13 +16,16 @@ package nano
 		private var _hostContainer:DisplayObjectContainer;
 		private var _renderTiles:Boolean = false;
 		
+		public var view:IsoView;
+		
 		private var _background:IsoScene;
 		public function get background():IsoScene {
 			return this._background;
 		}
 		public function set background(val:IsoScene):void {
 			this._background = val;
-			this._background.hostContainer = this._hostContainer;
+			this.view.addScene(this._background);
+			//this._background.hostContainer = this._hostContainer;
 			this.invalidateTiles();
 		}
 		
@@ -30,7 +35,8 @@ package nano
 		}
 		public function set objects(val:IsoScene):void {
 			this._objects = val;
-			this._objects.hostContainer = this._hostContainer;
+			this.view.addScene(this._objects);
+			//this._objects.hostContainer = this._hostContainer;
 		}
 		
 		private var _foreground:IsoScene;
@@ -39,7 +45,8 @@ package nano
 		}
 		public function set foreground(val:IsoScene):void {
 			this._foreground = val;
-			this._foreground.hostContainer = this._hostContainer;
+			this.view.addScene(this._foreground);
+			//this._foreground.hostContainer = this._hostContainer;
 			this.invalidateTiles();
 		}
 		
@@ -50,6 +57,11 @@ package nano
 		public function World(hostContainer:DisplayObjectContainer)
 		{
 			this._hostContainer = hostContainer;
+			var stage:Stage = this._hostContainer.stage;
+			this.view = new IsoView();
+			this.view.setSize(stage.stageWidth, stage.stageHeight);
+			this.view.panBy(0, 200);
+			this._hostContainer.addChild(this.view);
 		}
 		
 		/**
@@ -60,7 +72,7 @@ package nano
 			
 			if(this._renderTiles) {
 				this._background.render();
-				//this._foreground.render();
+				this._foreground.render();
 				this._renderTiles = false;
 			}
 		}

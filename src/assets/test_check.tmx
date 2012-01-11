@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<map version="1.0" orientation="isometric" width="20" height="20" tilewidth="64" tileheight="32">
+ <tileset firstgid="1" name="floortiles_002" tilewidth="64" tileheight="32">
+  <image source="floor/floortiles_002.png" width="128" height="32"/>
+ </tileset>
+ <tileset firstgid="3" name="walls_demo_002-(80x200,-minus8-x)" tilewidth="80" tileheight="200">
+  <image source="walls/walls_demo_002-(80x200,-minus8-x).png" width="720" height="200"/>
+ </tileset>
+ <layer name="background" width="20" height="20">
+  <data encoding="base64" compression="zlib">
+   eJxjZEAFjEg0Exk0OmBCoskxEx0MNvdhcw813YfsTnLdR65ebDQ1zRp136j7Rt03tN0HAHomAi8=
+  </data>
+ </layer>
+ <layer name="objects" width="20" height="20">
+  <data encoding="base64" compression="zlib">
+   eJxjYBgFo2AUjIJRMApIBwAGQAAB
+  </data>
+ </layer>
+ <layer name="foreground" width="20" height="20">
+  <data encoding="base64" compression="zlib">
+   eJxjYBgFo2AUjIJRMApIBwAGQAAB
+  </data>
+ </layer>
+</map>
