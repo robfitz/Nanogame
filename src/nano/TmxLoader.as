@@ -24,7 +24,7 @@ package nano
 	 */	
 	public class TmxLoader extends EventDispatcher
 	{
-		
+		public static const FLAG_FLIPPED_HORZ:int = 0x80000000;
 		public static const MAP_PATH:String = "./assets/";
 		
 		/**
@@ -109,6 +109,11 @@ package nano
 				for(var row:int = 0; row < layer.tileGIDs.length; row ++) {
 					for(var col:int = 0; col < layer.tileGIDs[row].length; col ++) {
 						var gid:uint = layer.tileGIDs[row][col];
+						var isFlippedHorz:Boolean = (gid & FLAG_FLIPPED_HORZ) != 0;
+						
+						//clear flags
+						gid = gid & (~ FLAG_FLIPPED_HORZ);
+							
 						if(gid != 0) {
 							var tileset:TmxTileSet = this._map.getGidOwner(gid);
 							var bmd:BitmapData = this.getTileBitmap(gid);
@@ -117,6 +122,11 @@ package nano
 							
 							bitmap.x = - tileset.tileWidth / 2;
 							bitmap.y = 32 - tileset.tileHeight;
+							
+							if(isFlippedHorz) {
+								bitmap.scaleX = -1;
+								bitmap.x += tileset.tileWidth;
+							}
 							
 							sprite.setSize(tileset.tileWidth, tileset.tileHeight, 0);
 							sprite.sprites = [bitmap];

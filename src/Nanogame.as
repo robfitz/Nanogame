@@ -51,7 +51,7 @@ package {
 				world.foreground.addChild(g);
 				
 			});
-			loader.load("./assets/test_check.tmx");
+			loader.load("./assets/demo_001_reformat.tmx");
 		}
 		
 		/**
