@@ -356,7 +356,7 @@ package
 					this.then = this.now;
 					this.now = flash.utils.getTimer();
 					if(this.updates == 10) {
-						var fpsCalc = 1000 / (this.now - this.then);
+						var fpsCalc:Number = 1000 / (this.now - this.then);
 						this.fpsCounter.text= "FPS: " + fpsCalc;
 						this.updates = 0;
 					}
@@ -383,9 +383,9 @@ package
 						dx /= decelerationFactor;
 						dy /= decelerationFactor;
 						
-						var dist = Math.sqrt( dx * dx + dy * dy );
+						var dist:Number = Math.sqrt( dx * dx + dy * dy );
 						
-						var maxSpeedRatio = dist / (maxSpeed / FPS);
+						var maxSpeedRatio:Number = dist / (maxSpeed / FPS);
 						if (maxSpeedRatio > 1) {
 							dx /= maxSpeedRatio;
 							dy /= maxSpeedRatio;

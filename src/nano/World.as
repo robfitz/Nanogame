@@ -12,33 +12,36 @@ package nano
 	public class World
 	{
 		private var _hostContainer:DisplayObjectContainer;
-		private var _renderTiles = false;
+		private var _renderTiles:Boolean = false;
 		
 		private var _background:IsoScene;
 		public function get background():IsoScene {
 			return this._background;
 		}
-		public function set background(val:IsoScene) {
+		public function set background(val:IsoScene):void {
 			this._background = val;
 			this._background.hostContainer = this._hostContainer;
+			this.invalidateTiles();
 		}
 		
 		private var _objects:IsoScene;
 		public function get objects():IsoScene {
 			return this._objects;
 		}
-		public function set object(val:IsoScene) {
+		public function set object(val:IsoScene):void {
 			this._objects = val;
 			this._objects.hostContainer = this._hostContainer;
+			this.invalidateTiles();
 		}
 		
 		private var _foreground:IsoScene;
 		public function get foreground():IsoScene {
 			return this._foreground;
 		}
-		public function set foreground(val:IsoScene) {
+		public function set foreground(val:IsoScene):void {
 			this._foreground = val;
 			this._foreground.hostContainer = this._hostContainer;
+			this.invalidateTiles();
 		}
 		
 		/**
