@@ -1,5 +1,6 @@
 package {
 	import flash.display.Sprite;
+	import flash.events.Event;
 	import flash.utils.getTimer;
 	
 	import nano.World;
@@ -25,9 +26,25 @@ package {
 		public function Nanogame()
 		{
 			this.world = new World(this);
+			this.startLoop();
 		}
 		
-		public function loopdeloop():void {
+		/**
+		 * Starts the game loop and subsequently the interactive game 
+		 */		
+		public function startLoop():void {
+			this.now = flash.utils.getTimer();
+			this.addEventListener(Event.ENTER_FRAME, this.loopdeloop);
+		}
+		
+		/**
+		 * Stops the game for the time being
+		 */
+		public function stopGame():void {
+			this.removeEventListener(Event.ENTER_FRAME, this.loopdeloop);
+		}
+		
+		public function loopdeloop(event:Event):void {
 			this.then = this.now;
 			this.now = flash.utils.getTimer();
 			var dt:Number = (this.now - this.then) / 1000.0;
