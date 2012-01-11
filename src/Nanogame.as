@@ -1,4 +1,5 @@
 package {
+	import flash.display.Bitmap;
 	import flash.display.Sprite;
 	import flash.events.Event;
 	import flash.utils.getTimer;
@@ -33,8 +34,11 @@ package {
 			loader.addEventListener(Event.COMPLETE, function(event:Event):void {
 				var scenes:Object = loader.scenes;
 				world.background = scenes["background"];
-				//world.foreground = scenes["foreground"];
-				//world.objects = scenes["objects"];
+				world.foreground = scenes["foreground"];
+				world.objects = scenes["objects"];
+				
+				//var bmp:Bitmap = new Bitmap(loader._bitmapCache[5].bitmapData); //loader.map.getGidOwner(10).image);
+				//addChild(bmp);
 				startLoop();
 			});
 			loader.load("./assets/demo_001_reformat.tmx");

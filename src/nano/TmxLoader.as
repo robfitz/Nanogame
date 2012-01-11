@@ -37,9 +37,12 @@ package nano
 			return _isLoaded;
 		}
 		
+		public var _bitmapCache:Object;
 		private var _mapXml:XML;
 		private var _map:TmxMap;
-		private var _bitmapCache:Object;
+		public function get map():TmxMap {
+			return this._map;
+		}
 		
 		/** Global helpers for loading tileset images */
 		private var _tilsetsToProcess:Array;
@@ -102,14 +105,14 @@ package nano
 			var c:Object = new Object();
 			for each(var layer:TmxLayer in this._map.layers) {
 				var scene:IsoScene = new IsoScene();
-				this.scenes[layer.name] = scene;
 				
 				for(var row:int = 0; row < layer.tileGIDs.length; row ++) {
 					for(var col:int = 0; col < layer.tileGIDs[row].length; col ++) {
 						var gid:int = layer.tileGIDs[row][col];
 						if(gid > 0) {
 							var tileset:TmxTileSet = this._map.getGidOwner(gid);
-							var bitmap:Bitmap = this.getTileBitmap(gid);
+							var bmd:BitmapData = this.getTileBitmap(gid);
+							var bitmap:Bitmap = new Bitmap(bmd);
 							
 							var sprite:IsoSprite = new IsoSprite();
 							sprite.setSize(tileset.tileWidth, tileset.tileHeight, 0);
@@ -120,6 +123,8 @@ package nano
 						}
 					}
 				}
+				
+				this.scenes[layer.name] = scene;
 			}
 			
 			// All done!
@@ -131,22 +136,22 @@ package nano
 		 * @param gid The guid of the tile you want bitmap data for
 		 * @return The bitmap data, or null if no valid bitmap data exists
 		 */		
-		private function getTileBitmap(gid:int):Bitmap {
+		private function getTileBitmap(gid:int):BitmapData {
 			if(this._bitmapCache.hasOwnProperty(gid)) {
 				return this._bitmapCache[gid];
 			}
 			
 			var tileset:TmxTileSet = this._map.getGidOwner(gid);
 			var props:TmxPropertySet = tileset.getPropertiesByGid(gid);
-			var rect:Rectangle = tileset.getRect(gid);
+			var rect:Rectangle = tileset.getRect(gid - tileset.firstGID);
+			trace(rect);
 			var mat:Matrix = new Matrix();
 			mat.translate(-rect.left, -rect.top);
 			var bmd:BitmapData = new BitmapData(tileset.tileWidth, tileset.tileHeight, true, 0x00ffffff);
 			bmd.draw(tileset.image, mat);
-			var bitmap:Bitmap = new Bitmap(bmd);
 			
-			this._bitmapCache[gid] = bitmap;
-			return bitmap;
+			this._bitmapCache[gid] = bmd;
+			return bmd;
 		}
 	}
 }

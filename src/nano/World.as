@@ -31,7 +31,6 @@ package nano
 		public function set objects(val:IsoScene):void {
 			this._objects = val;
 			this._objects.hostContainer = this._hostContainer;
-			this.invalidateTiles();
 		}
 		
 		private var _foreground:IsoScene;
