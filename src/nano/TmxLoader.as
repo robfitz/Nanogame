@@ -1,12 +1,20 @@
 package nano
 {
+	import as3isolib.display.IsoSprite;
+	import as3isolib.display.scene.IsoScene;
+	
 	import flash.display.Bitmap;
+	import flash.display.BitmapData;
 	import flash.display.Loader;
 	import flash.events.Event;
+	import flash.geom.Matrix;
+	import flash.geom.Rectangle;
 	import flash.net.URLLoader;
 	import flash.net.URLRequest;
 	
+	import net.pixelpracht.tmx.TmxLayer;
 	import net.pixelpracht.tmx.TmxMap;
+	import net.pixelpracht.tmx.TmxPropertySet;
 	import net.pixelpracht.tmx.TmxTileSet;
 
 	/**
@@ -18,6 +26,11 @@ package nano
 		
 		public static const MAP_PATH:String = "./assets/";
 		
+		/**
+		 * IsoScenes stored by name. Do not access unless <code>isLoaded</code> is true. 
+		 */		
+		public var scenes:Object;
+		
 		private var _isLoaded:Boolean = false;
 		public function get isLoaded():Boolean {
 			return _isLoaded;
@@ -25,13 +38,19 @@ package nano
 		
 		private var _mapXml:XML;
 		private var _map:TmxMap;
-		private var _imageCache:Object;
+		private var _bitmapCache:Object;
+		
+		/** Global helpers for loading tileset images */
+		private var _tilsetsToProcess:Array;
+		private var _nextTilesetIndex:int;
 		
 		/**
 		 * Default contructor 
 		 */		
 		public function TmxLoader()
 		{
+			this._bitmapCache = new Object();
+			this.scenes = new Object();
 		}
 		
 		/**
@@ -51,28 +70,79 @@ package nano
 		}
 		
 		private function loadTileImages():void {
-			var imagesToLoad:int = 0;
-			var finishedCallback = this.createIsoTiles;
-			this._imageCache = new Object();
+			this._nextTilesetIndex = 0;
+			this._tilsetsToProcess = [];
 			
 			for each(var tileset:TmxTileSet in this._map.tileSets) {
-				var setImage:Loader = new Loader();
-				setImage.contentLoaderInfo.addEventListener(Event.COMPLETE, function(event:Event):void {
-					var bmp:Bitmap = event.target.content as Bitmap;
-					tileset.image = bmp.bitmapData;
-					imagesToLoad --;
-					
-					if(imagesToLoad == 0) {
-						finishedCallback();
-					}
-				});
-				imagesToLoad ++;
-				setImage.load(new URLRequest(MAP_PATH + tileset.imageSource));
+				this._tilsetsToProcess.push(tileset);
 			}
+			this.loadNextTilesetImage();
+		}
+		
+		private function loadNextTilesetImage():void {
+			if(this._nextTilesetIndex >= this._tilsetsToProcess.length) {
+				this.createIsoTiles();
+				return;
+			}
+			
+			var tileset:TmxTileSet = this._tilsetsToProcess[this._nextTilesetIndex];
+			var setImage:Loader = new Loader();
+			
+			setImage.contentLoaderInfo.addEventListener(Event.COMPLETE, function(event:Event):void {
+				var bmp:Bitmap = event.target.content as Bitmap;
+				tileset.image = bmp.bitmapData;
+				_nextTilesetIndex ++;
+				loadNextTilesetImage();
+			});
+			setImage.load(new URLRequest(MAP_PATH + tileset.imageSource));
 		}
 		
 		private function createIsoTiles():void {
+			var c:Object = new Object();
+			for each(var layer:TmxLayer in this._map.layers) {
+				var scene:IsoScene = new IsoScene();
+				this.scenes[layer.name] = scene;
+				
+				for(var row:int = 0; row < layer.tileGIDs.length; row ++) {
+					for(var col:int = 0; col < layer.tileGIDs[row].length; col ++) {
+						var gid:int = layer.tileGIDs[row][col];
+						if(gid > 0) {
+							var tileset:TmxTileSet = this._map.getGidOwner(gid);
+							var bitmap:Bitmap = this.getTileBitmap(gid);
+							
+							var sprite:IsoSprite = new IsoSprite();
+							sprite.setSize(tileset.tileWidth, tileset.tileHeight, 0);
+							sprite.sprites = [bitmap];
+							sprite.x = row * tileset.tileWidth;
+							sprite.y = col * tileset.tileHeight;
+							scene.addChild(sprite);
+						}
+					}
+				}
+			}
+		}
+		
+		/**
+		 * Returns the correct bitmap data for drawing a tile 
+		 * @param gid The guid of the tile you want bitmap data for
+		 * @return The bitmap data, or null if no valid bitmap data exists
+		 */		
+		private function getTileBitmap(gid:int):Bitmap {
+			if(this._bitmapCache.hasOwnProperty(gid)) {
+				return this._bitmapCache[gid];
+			}
 			
+			var tileset:TmxTileSet = this._map.getGidOwner(gid);
+			var props:TmxPropertySet = tileset.getPropertiesByGid(gid);
+			var rect:Rectangle = tileset.getRect(gid);
+			var mat:Matrix = new Matrix();
+			mat.translate(-rect.left, -rect.top);
+			var bmd:BitmapData = new BitmapData(tileset.tileWidth, tileset.tileHeight, true, 0x00ffffff);
+			bmd.draw(tileset.image, mat);
+			var bitmap:Bitmap = new Bitmap(bmd);
+			
+			this._bitmapCache[gid] = bitmap;
+			return bitmap;
 		}
 	}
 }
