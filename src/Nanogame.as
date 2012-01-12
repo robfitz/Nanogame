@@ -78,7 +78,7 @@ package {
 		}
 		
 		/**
-		 * Update game updates and ai 
+		 * Update game logic 
 		 * @param dt Time (in seconds) since the last frame
 		 */		
 		public function update(dt:Number):void {
