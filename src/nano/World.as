@@ -5,6 +5,10 @@ package nano
 	
 	import flash.display.DisplayObjectContainer;
 	import flash.display.Stage;
+	import flash.geom.Point;
+	
+	import net.pixelpracht.tmx.TmxObject;
+	import net.pixelpracht.tmx.TmxObjectGroup;
 
 	/**
 	 * The world in which the game take place. Consists of tile layers (foreground, background)
@@ -43,6 +47,7 @@ package nano
 		
 		private var _foreground:IsoScene;
 		public function get foreground():IsoScene {
+			if (!this._foreground) this.foreground = new IsoScene();
 			return this._foreground;
 		}
 		public function set foreground(val:IsoScene):void {
@@ -105,6 +110,21 @@ package nano
 				this.player = new Character(this, 100, 157, 16, 16, 64, img);
 				this.objects.addChild(this.player);
 				
+				for each (var objectGroup:TmxObjectGroup in loader.map.objectGroups) {
+            		for each (var object:TmxObject in objectGroup.objects) {
+            			if (object.custom && object.custom.hasOwnProperty("spawn")) {
+	                 		if (object.custom["spawn"] == "player") {
+	                 			var playerSpawnPoint:Point = new Point();
+	                 			playerSpawnPoint.x = object.x;
+	                 			playerSpawnPoint.y = object.y;
+	                 			
+                 				player.moveTo(playerSpawnPoint.x, playerSpawnPoint.y, 0);
+                 				view.centerOnIso(player);
+	                 		}
+            			}
+            		}
+            	}
+				
 				this._collisions= loader.getCollisionLayerByName('collisions');
 				this._triggers = loader.getCollisionLayerByName('triggers');
 			}
@@ -125,8 +145,13 @@ package nano
 			this._objects.render();
 			
 			if(this._renderTiles) {
-				this._background.render();
-				this._foreground.render();
+				
+//				if (this._background) this._background.render();
+				for (var i:int = 0; i < this.view.scenes.length; i++) {
+					this.view.scenes[i].render();
+				}
+//				if (this._foreground) this._foreground.render();
+				
 				this._renderTiles = false;
 			}
 		}

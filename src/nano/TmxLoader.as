@@ -105,6 +105,9 @@ package nano
 		private function createIsoTiles():void {
 			var c:Object = new Object();
 			for each(var layer:TmxLayer in this._map.layers) {
+				
+				if (!layer.visible) continue;
+				
 				var scene:IsoScene = new IsoScene();
 				
 				for(var row:int = 0; row < layer.tileGIDs.length; row ++) {

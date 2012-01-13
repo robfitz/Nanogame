@@ -15,15 +15,20 @@ package nano
 	
 	public class CollisionLayer
 	{
-		private var rects:Array = [];
+		public var rects:Array = [];
 		private var grid:IsoGrid;
 		
 		private var tiles:TmxLayer;
 		
 		/** Object that successfully hit detected last, if any */
-		private var _lastHit:Object
-		public function get lastHit():Object {
-			return _lastHit;
+		private var _currentlyHit:Object;
+		public function get currentlyHit():Object {
+			return _currentlyHit;
+		}
+		
+		private var _justHit:Object;
+		public function get justHit():Object {
+			return _justHit;
 		}
 		
 		/** 
@@ -32,6 +37,8 @@ package nano
 		 */
 		public function add(collision_rect:TmxObject):void {
 			rects.push({
+				'name': collision_rect.name,
+				'props': collision_rect.custom,
 				'x': collision_rect.x,
 				'y': collision_rect.y,
 				'x2': collision_rect.x + collision_rect.width,
@@ -54,28 +61,60 @@ package nano
 				if (r.x < sprite_x2 && r.x2 > sprite_x &&
     				r.y < sprite_y2 && r.y2 > sprite_y) 
     			{
-					if(! this._lastHit) {
-						this._lastHit = r;
+					// set hit objects
+					if(! this._currentlyHit || this._currentlyHit != r) {
+						this._justHit = r;
+					} else {
+						this._justHit = null;
 					}
+					this._currentlyHit = r;
+					
     				return true;
     			}
 			}
 			
-			if (
+			if (tiles) {
+				if (col_tile(sprite_x, sprite_y) || 
+					col_tile(sprite_x2, sprite_y) ||
+					col_tile(sprite_x, sprite_y2) || 
+					col_tile(sprite_x2, sprite_y2)) 
+				{
+					return true;
+				}
+			
+			}
 			
 			// no tile collision, so we need to clear our last hit
-			this._lastHit = null;
+			this._currentlyHit = null;
+			this._justHit = null;
 			
-			// test against map boundaries
-			if (sprite.x >= grid.gridSize[0] * grid.width - sprite.width ||
-				sprite.x < 0 ||
-				sprite.y >= grid.gridSize[1] * grid.length - sprite.length ||
-				sprite.y < 0) 
-			{
-				return true;
+			if(grid) {
+				// test against map boundaries
+				if (sprite.x >= grid.gridSize[0] * grid.width - sprite.width ||
+					sprite.x < 0 ||
+					sprite.y >= grid.gridSize[1] * grid.length - sprite.length ||
+					sprite.y < 0) 
+				{
+					return true;
+				}
 			}
 			
 			// no collision
+			return false;
+		}
+		
+		public function col_tile(x:int, y:int):Boolean {
+			if (!tiles) return false;
+			
+			var tile_r:int = y / 64;
+			var tile_c:int = x / 64;
+			
+			try {
+				return tiles[tile_r][tile_c] != 0;
+			}
+			catch (e:*) {
+				return false;
+			}
 			return false;
 		}
 		
@@ -87,7 +126,7 @@ package nano
 		 */		
 		public function CollisionLayer(objs:TmxObjectGroup=null, layer:TmxLayer=null)
 		{
-			if (objs) {
+			if(objs) {
 				for each(var obj:TmxObject in objs.objects) {
 					this.add(obj);
 				}
