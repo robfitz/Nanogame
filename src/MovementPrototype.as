@@ -8,14 +8,15 @@ package
         import as3isolib.display.scene.IsoScene;
         import as3isolib.geom.IsoMath;
         import as3isolib.geom.Pt;
+        import as3isolib.graphics.SolidColorFill;
         import as3isolib.graphics.Stroke;
         
         import com.gskinner.motion.GTween;
         
         import flash.display.Bitmap;
         import flash.display.BitmapData;
-        import flash.display.DisplayObject;
         import flash.display.Loader;
+        import flash.display.MovieClip;
         import flash.display.Sprite;
         import flash.events.Event;
         import flash.events.MouseEvent;
@@ -27,6 +28,7 @@ package
         import flash.text.TextField;
         import flash.utils.getTimer;
         
+        import nano.Character;
         import nano.Collisions;
         
         import net.pixelpracht.tmx.TmxLayer;
@@ -36,13 +38,11 @@ package
         import net.pixelpracht.tmx.TmxPropertySet;
         import net.pixelpracht.tmx.TmxTileSet;
         
-        import ui.Slider;
-        import ui.SliderButton;
-        
         [SWF(width='760', height='570')]
 		public class MovementPrototype extends Sprite
         {
-                private var box:IIsoDisplayObject;
+        		private static const DEBUG_DRAW:Boolean = true;
+        	
                 private var scene:IsoScene;
 				private var foregroundScene:IsoScene;
                 private var g:IsoGrid;
@@ -50,23 +50,14 @@ package
                 
                 private var clickTarget:IIsoDisplayObject;
                 
-                private var character:Sprite;
-                private var spriteSheet:DisplayObject;
+                private var character:Character;
                 
                 private var isMouseDown:Boolean = false;
-                private var destination:Point;
                 
-                private var distancePerFrame:Number = 4.5;
-                private var distanceToNextFrame:Number = distancePerFrame;
+                private var playerSpawnPoint:Point = new Point(); 
                 
-                private var decelerationFactor:Number = 10;
+                private var collisions:Collisions;
                 
-                private var maxSpeed:Number = 100;
-                
-                private static const FPS:int = 12;
-                
-                private var collisions:Collisions = new Collisions();
-				
 				
 				// DEBUG STUFF
 				private var fpsCounter:TextField;
@@ -79,7 +70,8 @@ package
                 private static const SPRITE_HEIGHT:int = 64;
                 private static const SPRITE_FRAMES:int = 8;
                 
-                [Embed(source="assets/Link_run.png")]
+//                [Embed(source="assets/Link_run.png")]
+				[Embed(source="assets/avatar.swf")]
 				private var Link:Class;
 				
 				[Embed(source="assets/Wildv2.png")]
@@ -113,15 +105,35 @@ package
                 			imgLoader.load(new URLRequest(tileset.imageSource));
                 		}
                 		for each (var objectGroup:TmxObjectGroup in map.objectGroups) {
-                			if (objectGroup.properties.hasOwnProperty("nowalk")) {
-		                		for each (var object:TmxObject in objectGroup.objects) {
-	                				collisions.add(object);
-		                		}
-		                	}
-		                	else {
-		                		var i:String = objectGroup.properties["nowalk"];
-		                	}
-                		}
+                			
+	                		for each (var object:TmxObject in objectGroup.objects) {
+	                			if ((objectGroup.properties && objectGroup.properties.hasOwnProperty("nowalk")) 
+	                				|| (object.custom && object.custom.hasOwnProperty("nowalk"))) {
+	                				
+	                				Collisions.add(object);
+	                				
+	                				if (DEBUG_DRAW) {
+		                				var collision_hull:IsoBox = new IsoBox();
+					                    collision_hull.setSize(object.width, object.height, 3);
+					                    collision_hull.moveTo(object.x, object.y, 0);
+					                    var f:SolidColorFill = new SolidColorFill(0xffffff, 0.2);
+					                    collision_hull.fills = [f, f, f, f, f, f];
+					                    scene.addChild(collision_hull);
+					                }
+			                 	}
+			                 	else if (object.custom && object.custom.hasOwnProperty("spawn")) {
+			                 		if (object.custom["spawn"] == "player") {
+			                 			playerSpawnPoint.x = object.x;
+			                 			playerSpawnPoint.y = object.y;
+			                 			
+			                 			if (character) {
+			                 				character.moveTo(playerSpawnPoint.x, playerSpawnPoint.y, 0);
+			                 				if (view) view.centerOnIso(character);
+			                 			}
+			                 		}
+	                			}
+	                		}
+	                	}
                 	});
                 	mapLoader.load(new URLRequest("./assets/isometric_grass_and_water.tmx"));
                 	
@@ -140,29 +152,36 @@ package
                     stage.addEventListener(MouseEvent.MOUSE_MOVE, onMouseMove);
                     scene.addChild(g);
                     
+                    Collisions.init(g);
+                    
                     clickTarget = new IsoBox();
                     clickTarget.setSize(3, 3, 10);
                     scene.addChild(clickTarget);
                     
-                    character = new Sprite();
+                    var img:* = new Link();
+                    img.addEventListener(Event.COMPLETE, function(event:Event):void {
+                    	trace("load complete");
+                    	
+                    });
+					var sprite:* = new Character(100, 157, 16, 16, 64, img);
+                                        
+//                    var childs:* = sprite.getChildAt(0);
+                    character = sprite;
+                    foregroundScene.addChild(sprite);
+                    sprite.moveTo(playerSpawnPoint.x, playerSpawnPoint.y, 0);
                     
-                    spriteSheet = new Link();
-                    character.addChild(spriteSheet);
-                    
-                    var mask:Sprite = new Sprite();
-                    mask.graphics.beginFill(0xffffff);
-                    mask.graphics.drawRect(0, 0, 64, 64);
-                    mask.graphics.endFill();
-                    character.addChild(mask);
-                    character.mask = mask;
-                    character.x = -32;
-                    character.y = -54;
-                    
-                    var sprite:IsoSprite = new IsoSprite();
-                    sprite.setSize(15, 15, 35);
-                    sprite.sprites = [character]
-                    box = sprite;
-                    foregroundScene.addChild(box);
+                    if (DEBUG_DRAW) {
+                    	var collision_hull:IsoBox = new IsoBox();
+	                    collision_hull.setSize(sprite.width, sprite.length, 3);
+//	                    collision_hull.moveTo(object.x, object.y, 0);
+	                    var f:SolidColorFill = new SolidColorFill(0xffffff, 0.2);
+	                    collision_hull.fills = [f, f, f, f, f, f];
+	                    foregroundScene.addChild(collision_hull);
+	                    addEventListener(Event.ENTER_FRAME, function(e:*):void {
+	                    	collision_hull.moveTo(sprite.x, sprite.y, sprite.z);
+	                    });
+//	                    sprite.addChild(collision_hull);
+                    }
                     
                     view = new IsoView();
                     view.clipContent = false;
@@ -175,54 +194,8 @@ package
                     scene.render();
 					foregroundScene.render();
                  
-                 	var slider:Slider = new Slider(0, 18, 7, 400, 30, null, [1, 1.5, 2, 2.5, 3, 3.5, 4, 4.5, 5, 5.5, 6, 6.5, 7, 8, 9, 10, 11, 12, 13]);
-                 	slider.addEventListener(Event.CHANGE, function(e:Event):void {
-                 		distancePerFrame = slider.val;
-                 		trace("set distance per frame: " + distancePerFrame);
-                 	});
-                 	var sb:SliderButton = new SliderButton("Animation speed", slider);
-//                 	addChild(sb);
-                 	
-                 	var slider2:Slider = new Slider(0, 9, 4, 400, 30, null, [20, 40, 60, 80, 100, 120, 140, 160, 180, 200]);
-                 	slider2.addEventListener(Event.CHANGE, function(e:Event):void {
-                 		maxSpeed = slider2.val;
-                 		trace("set max speed: " + maxSpeed);
-                 	});
-                 	sb = new SliderButton("Run speed", slider2);
-                 	sb.y = 40;
-//                 	addChild(sb);
-                 	
                  	var gt:GTween = new GTween();
                  	
-                 	var slider3:Slider = new Slider(0, 9, 4, 400, 30, [".2", ".4", ".6", ".8", "1", "1.2", "1.4", "1.6", "1.8", "2"], [.2, .4, .6, .8, 1, 1.2, 1.4, 1.6, 1.8, 2]);
-                 	slider3.addEventListener(Event.CHANGE, function(e:Event):void {
-                 		
-                 		if (gt) gt.end();
-                 		gt.target = view;
-                 		gt.duration = .5;
-                 		gt.setProperties({currentZoom:slider3.val});
-                 		gt.play();
-                 		
-                 		//view.currentZoom = slider3.val;
-                 		trace("set zoom: " + slider3.val);
-                 	});
-                 	sb = new SliderButton("Zoom", slider3);
-//                 	sb.y = 80;
-                 	addChild(sb);
-                 	
-                 	var slider4:Slider = new Slider(0, 9, 6, 400, 30, null, [48, 32, 24, 20, 16, 12, 10, 8, 6, 4]);
-                 	slider4.addEventListener(Event.CHANGE, function(e:Event):void {
-                 		
-                 		decelerationFactor = slider4.val;
-                 		
-                 		//view.currentZoom = slider4.val;
-                 		trace("set decel: " + slider4.val);
-                 	});
-                 	sb = new SliderButton("Deceleration", slider4);
-                 	sb.y = 120;
-//                 	addChild(sb);
-					
-					
 					// FPS Counter
 					this.fpsCounter = new TextField();
 					this.fpsCounter.x = 700;
@@ -313,6 +286,7 @@ package
                 private function gt_completeHandler (evt:Event):void
                 {
                 }
+                
                 private function onMouseMove(event:MouseEvent):void {
                 	
                 }
@@ -322,32 +296,13 @@ package
 						var pt:Pt = new Pt(stage.mouseX - stage.stageWidth / 2 + view.currentX, stage.mouseY - stage.stageHeight / 2 + view.currentY);
 						
 						IsoMath.screenToIso(pt);
-						destination = pt;
+						character.walkTo(pt);
 						
 						clickTarget.x = pt.x;
 						clickTarget.y = pt.y;
-						
-						var dx:Number = (pt.x - box.x);
-						var dy:Number = (pt.y - box.y); 
-						
-						var angle:Number = Math.atan2(dy, dx);
-						
-						//scoot everything forward to make the math slightly easier
-						angle += Math.PI / 8;
-						while (angle < 0) angle += 2 * Math.PI;
-						while (angle >= 2 * Math.PI) angle -= 2 * Math.PI;
-						
-						var row:int = 0;
-						if (angle > 2 * Math.PI || angle < Math.PI / 4) row = 0;
-						else row = int(angle / (Math.PI / 4));
-						
-						spriteSheet.y = -SPRITE_HEIGHT * row;
 					}
                 }
                 
-                
-                private var unmovedX:Number = 0;
-                private var unmovedY:Number = 0;
                 
                 private function enterFrameHandler (evt:Event):void
                 {
@@ -365,83 +320,9 @@ package
                 	if (isMouseDown) {
                 		followMouse();
                 	}
-					if (destination) {
-			        	var pt:Point = destination;
-			        	
-	                	var dx:Number = (pt.x - box.x);
-						var dy:Number = (pt.y - box.y);
-						
-						if (Math.abs(dx) < 2) {
-							dx = 0;
-							box.x = pt.x;
-						} 
-						if (Math.abs(dy) < 2) {
-							dy = 0;
-							box.y = pt.y;
-						}
-						
-						dx /= decelerationFactor;
-						dy /= decelerationFactor;
-						
-						var dist:Number = Math.sqrt( dx * dx + dy * dy );
-						
-						var maxSpeedRatio:Number = dist / (maxSpeed / FPS);
-						if (maxSpeedRatio > 1) {
-							dx /= maxSpeedRatio;
-							dy /= maxSpeedRatio;
-							dist /= maxSpeedRatio;
-						}
-						
-						unmovedX += dx;
-						unmovedY += dy;
-						
-						if (dist == 0) {
-							//close enough, come to rest
-							
-							box.x = pt.x;
-							box.y = pt.y;
-							
-							//standing posture
-							spriteSheet.x = 0;
-						} 
-						else {
-							//isolib only wants to move by full pixels, so store
-							//up the incremental moves until it's at least 1 in any direction
-							var new_x:int = box.x + int(unmovedX);
-							var new_y:int = box.x + int(unmovedY);
-	 						
-							if (collisions.test(box)) {
-								trace("collision");
-//								return;
-							}
-							
-							box.x += int(unmovedX);
-							box.y += int(unmovedY);
-							
-							distanceToNextFrame -= Math.sqrt(int(unmovedX) * int(unmovedX) + int(unmovedY) * int(unmovedY));
-							
-							unmovedX -= int(unmovedX);
-							unmovedY -= int(unmovedY);
-							
-							if (distanceToNextFrame < 0) {
-								distanceToNextFrame += distancePerFrame;
-								spriteSheet.x -= SPRITE_WIDTH;
-								if (spriteSheet.x <= - SPRITE_FRAMES * SPRITE_WIDTH) {
-									spriteSheet.x = 0;
-								} 
-							}  
-						}
-						
-						if (box.x >= g.gridSize[0] * g.width - box.width) box.x = g.gridSize[0] * g.width - box.width;
-						else if (box.x < 0) box.x = 0;
-						
-						if (box.y >= g.gridSize[1] * g.length - box.length) box.y = g.gridSize[1] * g.length - box.length;
-						else if (box.y < 0) box.y = 0;
-						
-                        view.centerOnIso(box);
-					}
 					
-					//scene.render();
+					
+                    view.centerOnIso(character);
 					foregroundScene.render();
                 }
         }

@@ -24,7 +24,7 @@ package nano
 	 */	
 	public class TmxLoader extends EventDispatcher
 	{
-		public static const FLAG_FLIPPED_HORZ:int = 0x80000000;
+		public static const FLAG_FLIPPED_HORZ:int = int(0x80000000);
 		public static const MAP_PATH:String = "./assets/";
 		
 		/**
