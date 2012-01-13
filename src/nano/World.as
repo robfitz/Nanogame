@@ -18,6 +18,8 @@ package nano
 		
 		public var view:IsoView;
 		
+		public var player:Character;
+		
 		private var _background:IsoScene;
 		public function get background():IsoScene {
 			return this._background;
@@ -85,6 +87,12 @@ package nano
 				this.background = scenes["background"];
 				this.objects = scenes["objects"];
 				this.foreground = scenes["foreground"];
+				
+				// create and add in our character at this time
+				// TODO Not the best spot, really
+				var img:* = new Assets.instance.Link;
+				this.player = new Character(this, 100, 157, 16, 16, 64, img);
+				this.objects.addChild(this.player);
 				
 				this._collisions= loader.getCollisionLayerByName('collisions');
 				this._triggers = loader.getCollisionLayerByName('triggers');
