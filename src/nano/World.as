@@ -4,9 +4,11 @@ package nano
 	import as3isolib.display.scene.IsoScene;
 	
 	import flash.display.DisplayObjectContainer;
+	import flash.display.Scene;
 	import flash.display.Stage;
 	import flash.geom.Point;
 	
+	import net.pixelpracht.tmx.TmxLayer;
 	import net.pixelpracht.tmx.TmxObject;
 	import net.pixelpracht.tmx.TmxObjectGroup;
 
@@ -89,19 +91,14 @@ package nano
 			if(loader.isLoaded) {
 				var scenes:Object = loader.scenes;
 				
-				for (var i:int = 0; i < loader.layer_order.length; i ++) {
-					var layer:* = loader.layer_order[i];
-					try {
-						if (layer.name == "objects") {
-							this.objects = scenes["objects"];
-						}
-						else {
-							this.view.addScene(layer);
-						}
+				for (var i:int = 0; i < loader.ordered_scenes.length; i ++) {
+					var scene:IsoScene = loader.ordered_scenes[i];
+				
+					if (scene.name == "objects") {
+						this.objects = scene;
 					}
-					catch (error:*) {
-						var e = error; 
-						trace("wtf");
+					else {
+						this.view.addScene(scene);
 					}
 				}
 				
@@ -155,13 +152,10 @@ package nano
 			
 			if(this._renderTiles) {
 				
-//				if (this._background) this._background.render();
 				for (var i:int = 0; i < this.view.scenes.length; i++) {
-					var x = this.view.scenes[i];
 					this.view.scenes[i].render();
 					
 				}
-//				if (this._foreground) this._foreground.render();
 				
 				this._renderTiles = false;
 			}

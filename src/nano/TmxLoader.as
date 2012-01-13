@@ -32,6 +32,7 @@ package nano
 		 * IsoScenes stored by name. Do not access unless <code>isLoaded</code> is true. 
 		 */		
 		public var scenes:Object;
+		public var ordered_scenes:Array = [];
 		
 		private var _isLoaded:Boolean = false;
 		public function get isLoaded():Boolean {
@@ -137,20 +138,23 @@ package nano
 							sprite.x = col * 32;
 							sprite.y = row * 32;
 							scene.addChild(sprite);
+							
 						}
 					}
 				}
 				
 				trace("***** " + layer.name);
+				scene.id = layer.properties["order"]
+				scene.name = layer.name;
 				this.scenes[layer.name] = scene;
 
 				if (layer.properties["order"] != null) {
-					layer_order.push(layer);		
+					ordered_scenes.push(scene);		
 				}		
 			}
 			
-			layer_order.sort(function(a, b):int {
-				return int(a.properties["order"]) - int(b.properties["order"]);
+			ordered_scenes.sort(function(a:*, b:*):int {
+				return int(a.id) - int(b.id);
 			});
 			
 			
@@ -159,8 +163,6 @@ package nano
 			this._isLoaded = true;
 			this.dispatchEvent(new Event(Event.COMPLETE));
 		}
-		
-		var layer_order:Array = [];
 		
 		
 		
