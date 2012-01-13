@@ -11,6 +11,8 @@ package nano.dialog
 		private var _textfield:TextField;
 		private var format:TextFormat;
 		
+		private var moreButton:Sprite;
+		
 		public function set text(val:String):void {
 			this._textfield.text = val;
 			this._textfield.setTextFormat(this.format);
@@ -33,6 +35,23 @@ package nano.dialog
 			this.addEventListener(MouseEvent.CLICK, function(event:MouseEvent):void {
 				next();
 			});
+			
+			// make our more button
+			moreButton = new Sprite();
+			
+			var moreText:TextField = new TextField();
+			moreText.x = 10;
+			moreText.y = 2;
+			moreText.text = "next...";
+			moreText.setTextFormat(new TextFormat("Lucida Grande", 18, 0x0));
+			moreText.selectable = false;
+			moreButton.addChild(moreText);
+			
+			moreButton.graphics.beginFill(0xD5ECFA);
+			moreButton.graphics.lineStyle(2, 0x333333, 1);
+			moreButton.graphics.drawRoundRect(0, 0, 80, 30, 5, 5);
+			
+			this.addChild(moreButton);
 		}
 		
 		protected function reset():void {
@@ -44,7 +63,8 @@ package nano.dialog
 		 * @return true if there are more lines of text to show
 		 */		
 		public function moreLines():Boolean {
-			return this._textfield.scrollV + 3 < this._textfield.numLines;
+			trace(this._textfield.scrollV + 3, this._textfield.numLines);
+			return this._textfield.scrollV + 3 <= this._textfield.numLines;
 		}
 		
 		/**
@@ -53,6 +73,7 @@ package nano.dialog
 		 */		
 		public function next():Boolean {
 			this._textfield.scrollV += 3;
+			this.render();
 			return this.moreLines();
 		}
 		
@@ -72,6 +93,11 @@ package nano.dialog
 			this._textfield.x = 20;
 			this._textfield.y = 20;
 			this._textfield.width = this.stage.stageWidth - 140;
+			
+			// position more button
+			this.moreButton.x = (this.stage.stageWidth - 100 - 75);
+			this.moreButton.y = 150 - 25;
+			this.moreButton.visible = this.moreLines();
 		}
 	}
 }
