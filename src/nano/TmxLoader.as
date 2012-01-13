@@ -125,7 +125,9 @@ package nano
 							var bitmap:Bitmap = new Bitmap(bmd);
 							var sprite:IsoSprite = new IsoSprite();
 							
-							bitmap.x = - tileset.tileWidth / 2;
+							// TODO THIS IS ASSUMING OBJECTS ARE BUILT WITH THE LOWER LEFT HAND CORNER AS THE ORIGIN
+							// FUUUUUUU
+							bitmap.x = -32; //- tileset.tileWidth / 2;
 							bitmap.y = 32 - tileset.tileHeight;
 							
 							if(isFlippedHorz) {
