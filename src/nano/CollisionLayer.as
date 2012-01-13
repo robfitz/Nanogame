@@ -14,7 +14,7 @@ package nano
 	
 	public class CollisionLayer
 	{
-		private var rects:Array = [];
+		public var rects:Array = [];
 		private var grid:IsoGrid;
 		
 		/** Object that successfully hit detected last, if any */
@@ -34,6 +34,8 @@ package nano
 		 */
 		public function add(collision_rect:TmxObject):void {
 			rects.push({
+				'name': collision_rect.name,
+				'props': collision_rect.custom,
 				'x': collision_rect.x,
 				'y': collision_rect.y,
 				'x2': collision_rect.x + collision_rect.width,
@@ -72,13 +74,15 @@ package nano
 			this._currentlyHit = null;
 			this._justHit = null;
 			
-			// test against map boundaries
-			if (sprite.x >= grid.gridSize[0] * grid.width - sprite.width ||
-				sprite.x < 0 ||
-				sprite.y >= grid.gridSize[1] * grid.length - sprite.length ||
-				sprite.y < 0) 
-			{
-				return true;
+			if(grid) {
+				// test against map boundaries
+				if (sprite.x >= grid.gridSize[0] * grid.width - sprite.width ||
+					sprite.x < 0 ||
+					sprite.y >= grid.gridSize[1] * grid.length - sprite.length ||
+					sprite.y < 0) 
+				{
+					return true;
+				}
 			}
 			
 			// no collision
@@ -93,8 +97,10 @@ package nano
 		 */		
 		public function CollisionLayer(objs:TmxObjectGroup = null)
 		{
-			for each(var obj:TmxObject in objs.objects) {
-				this.add(obj);
+			if(objs) {
+				for each(var obj:TmxObject in objs.objects) {
+					this.add(obj);
+				}
 			}
 		}
 
