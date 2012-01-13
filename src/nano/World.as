@@ -47,7 +47,6 @@ package nano
 		
 		private var _foreground:IsoScene;
 		public function get foreground():IsoScene {
-			if (!this._foreground) this.foreground = new IsoScene();
 			return this._foreground;
 		}
 		public function set foreground(val:IsoScene):void {
@@ -90,13 +89,19 @@ package nano
 			if(loader.isLoaded) {
 				var scenes:Object = loader.scenes;
 				
-				for (var layer_name:String in loader.scenes) {
-					trace("Layer name:" + layer_name);
-					if (layer_name == "objects") {
-						this.objects = scenes["objects"];
+				for (var i:int = 0; i < loader.layer_order.length; i ++) {
+					var layer:* = loader.layer_order[i];
+					try {
+						if (layer.name == "objects") {
+							this.objects = scenes["objects"];
+						}
+						else {
+							this.view.addScene(layer);
+						}
 					}
-					else {
-						this.view.addScene(scenes[layer_name]);
+					catch (error:*) {
+						var e = error; 
+						trace("wtf");
 					}
 				}
 				
@@ -106,8 +111,10 @@ package nano
 				
 				// create and add in our character at this time
 				// TODO Not the best spot, really
-				var img:* = new Assets.instance.Link;
-				this.player = new Character(this, 100, 157, 16, 16, 64, img);
+				var img:* = new Assets.instance.Spiff;
+//				this.player = new Character(this, 100, 157, 16, 16, 64, img);
+				this.player = new Character(this, 96, 96, 16, 16, 56, null, img);
+				
 				this.objects.addChild(this.player);
 				
 				for each (var objectGroup:TmxObjectGroup in loader.map.objectGroups) {
@@ -127,6 +134,8 @@ package nano
 				
 				this._collisions= loader.getCollisionLayerByName('collisions');
 				this._triggers = loader.getCollisionLayerByName('triggers');
+				
+				this.invalidateTiles();
 			}
 		}
 		
@@ -148,7 +157,9 @@ package nano
 				
 //				if (this._background) this._background.render();
 				for (var i:int = 0; i < this.view.scenes.length; i++) {
+					var x = this.view.scenes[i];
 					this.view.scenes[i].render();
+					
 				}
 //				if (this._foreground) this._foreground.render();
 				

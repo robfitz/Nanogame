@@ -141,13 +141,28 @@ package nano
 					}
 				}
 				
+				trace("***** " + layer.name);
 				this.scenes[layer.name] = scene;
+
+				if (layer.properties["order"] != null) {
+					layer_order.push(layer);		
+				}		
 			}
+			
+			layer_order.sort(function(a, b):int {
+				return int(a.properties["order"]) - int(b.properties["order"]);
+			});
+			
+			
 			
 			// All done!
 			this._isLoaded = true;
 			this.dispatchEvent(new Event(Event.COMPLETE));
 		}
+		
+		var layer_order:Array = [];
+		
+		
 		
 		/**
 		 * Returns the correct bitmap data for drawing a tile 

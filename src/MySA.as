@@ -1,13 +1,14 @@
 package {
 	import as3isolib.display.scene.IsoGrid;
+	import as3isolib.geom.IsoMath;
+	import as3isolib.geom.Pt;
 	import as3isolib.graphics.Stroke;
 	
-	import flash.display.Bitmap;
 	import flash.display.Sprite;
 	import flash.events.Event;
+	import flash.events.MouseEvent;
 	import flash.utils.getTimer;
 	
-	import nano.CollisionLayer;
 	import nano.TmxLoader;
 	import nano.World;
 	
@@ -45,12 +46,21 @@ package {
 				g.showOrigin = false;
 				g.cellSize = 32;
 				g.setGridSize(30, 30);
-				world.foreground.addChild(g);
+				if (world.foreground) {
+					world.foreground.addChild(g);
+				}
 				// END DEBUG GRID 
+				
+				stage.addEventListener(MouseEvent.MOUSE_DOWN, grid_mouseHandler);
+                stage.addEventListener(MouseEvent.MOUSE_MOVE, onMouseMove);
+                stage.addEventListener(MouseEvent.MOUSE_UP, onMouseUp);
+                    
 				
 			});
 //			loader.load("./assets/demo_001_reformat.tmx");
 			loader.load("assets/mysa/frontier_outpost_mysa.tmx");
+            
+					
 		}
 		
 		/**
@@ -73,6 +83,9 @@ package {
 			this.now = flash.utils.getTimer();
 			var dt:Number = (this.now - this.then) / 1000.0;
 			this.update(dt);
+			
+			this.move_character();
+			
 			this.render();
 		}
 		
@@ -90,5 +103,43 @@ package {
 		public function render():void {
 			this.world.render();
 		} 
+		 
+        private function grid_mouseHandler (event:MouseEvent):void
+        {
+        	isMouseDown = true;
+        	onMouseMove(event);
+        }
+        
+        private function onMouseUp(event:MouseEvent):void {
+        	isMouseDown = false;
+        }
+        
+        private function onMouseMove(event:MouseEvent):void {
+        	
+        }
+        
+        private var isMouseDown:Boolean = false;
+                
+        private function followMouse():void {
+        	if (isMouseDown) {
+				var pt:Pt = new Pt(stage.mouseX - stage.stageWidth / 2 + world.view.currentX, stage.mouseY - stage.stageHeight / 2 + world.view.currentY);
+				
+				IsoMath.screenToIso(pt);
+				world.player.walkTo(pt);
+				
+//				clickTarget.x = pt.x;
+//				clickTarget.y = pt.y;
+			}
+        }
+                
+                
+        private function move_character():void
+        {
+        	if (isMouseDown) {
+        		followMouse();
+        	}
+			
+            world.view.centerOnIso(world.player);
+        }
 	}
 }

@@ -274,6 +274,10 @@ package
                 		}
                 }
                 
+                private function gt_completeHandler (evt:Event):void
+                {
+                }
+                
                 private function grid_mouseHandler (event:MouseEvent):void
                 {
                 	isMouseDown = true;
@@ -282,10 +286,6 @@ package
                 
                 private function onMouseUp(event:MouseEvent):void {
                 	isMouseDown = false;
-                }
-                
-                private function gt_completeHandler (evt:Event):void
-                {
                 }
                 
                 private function onMouseMove(event:MouseEvent):void {

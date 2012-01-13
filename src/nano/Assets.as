@@ -20,6 +20,9 @@ package nano
 		[Embed(source="assets/avatar.swf")]
 		public var Link:Class;
 		
+		[Embed(source="assets/mysa/spiff.png")]
+		public var Spiff:Class;
+		
 		/**
 		 * Don't call this! 
 		 */		
