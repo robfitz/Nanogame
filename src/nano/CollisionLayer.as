@@ -3,6 +3,7 @@ package nano
 	import as3isolib.core.IIsoDisplayObject;
 	import as3isolib.display.scene.IsoGrid;
 	
+	import net.pixelpracht.tmx.TmxLayer;
 	import net.pixelpracht.tmx.TmxObject;
 	import net.pixelpracht.tmx.TmxObjectGroup;
 	
@@ -16,6 +17,8 @@ package nano
 	{
 		public var rects:Array = [];
 		private var grid:IsoGrid;
+		
+		private var tiles:TmxLayer;
 		
 		/** Object that successfully hit detected last, if any */
 		private var _currentlyHit:Object;
@@ -70,6 +73,17 @@ package nano
     			}
 			}
 			
+			if (tiles) {
+				if (col_tile(sprite_x, sprite_y) || 
+					col_tile(sprite_x2, sprite_y) ||
+					col_tile(sprite_x, sprite_y2) || 
+					col_tile(sprite_x2, sprite_y2)) 
+				{
+					return true;
+				}
+			
+			}
+			
 			// no tile collision, so we need to clear our last hit
 			this._currentlyHit = null;
 			this._justHit = null;
@@ -89,20 +103,35 @@ package nano
 			return false;
 		}
 		
+		public function col_tile(x:int, y:int):Boolean {
+			if (!tiles) return false;
+			
+			var tile_r:int = y / 64;
+			var tile_c:int = x / 64;
+			
+			try {
+				return tiles[tile_r][tile_c] != 0;
+			}
+			catch (e:*) {
+				return false;
+			}
+			return false;
+		}
+		
 		/**
 		 * Default constructor. Can be initialized with a TmxObjectGroup containing
 		 * hulls. Assumes all hulls on that layer represent nowalk zones
 		 * @param objs TmxObjectGroup of hulls
 		 * 
 		 */		
-		public function CollisionLayer(objs:TmxObjectGroup = null)
+		public function CollisionLayer(objs:TmxObjectGroup=null, layer:TmxLayer=null)
 		{
 			if(objs) {
 				for each(var obj:TmxObject in objs.objects) {
 					this.add(obj);
 				}
 			}
+			this.tiles = tiles;
 		}
-
 	}
 }

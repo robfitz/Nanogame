@@ -105,6 +105,9 @@ package nano
 		private function createIsoTiles():void {
 			var c:Object = new Object();
 			for each(var layer:TmxLayer in this._map.layers) {
+				
+				if (!layer.visible) continue;
+				
 				var scene:IsoScene = new IsoScene();
 				
 				for(var row:int = 0; row < layer.tileGIDs.length; row ++) {
@@ -181,7 +184,8 @@ package nano
 			}
 			
 			var collisionGroup:TmxObjectGroup = this._map.getObjectGroup("collisions");
-			return new CollisionLayer(collisionGroup);
+			var collisionTiles:TmxLayer = this._map.getLayer("collisions");
+			return new CollisionLayer(collisionGroup, collisionTiles);
 			
 		}
 	}

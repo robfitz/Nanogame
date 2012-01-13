@@ -41,7 +41,7 @@ package {
 				
 				// DEBUG GRID
 				var g:IsoGrid = new IsoGrid();
-				g.gridlines = new Stroke(1, 0xCCCCCC, 1);
+				g.gridlines = new Stroke(0, 0xCCCCCC, 0);
 				g.showOrigin = false;
 				g.cellSize = 32;
 				g.setGridSize(30, 30);
@@ -50,7 +50,7 @@ package {
 				
 			});
 //			loader.load("./assets/demo_001_reformat.tmx");
-			loader.load("./assets/mysa/frontier_outpost_mysa.tmx");
+			loader.load("assets/mysa/frontier_outpost_mysa.tmx");
 		}
 		
 		/**
