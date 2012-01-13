@@ -111,7 +111,7 @@ package
 	                			if ((objectGroup.properties && objectGroup.properties.hasOwnProperty("nowalk")) 
 	                				|| (object.custom && object.custom.hasOwnProperty("nowalk"))) {
 	                				
-	                				Collisions.add(object);
+//	                				Collisions.add(object);
 	                				
 	                				if (DEBUG_DRAW) {
 		                				var collision_hull:IsoBox = new IsoBox();
@@ -153,7 +153,7 @@ package
                     stage.addEventListener(MouseEvent.MOUSE_MOVE, onMouseMove);
                     scene.addChild(g);
                     
-                    Collisions.init(g);
+//                    Collisions.init(g);
                     
                     clickTarget = new IsoBox();
                     clickTarget.setSize(3, 3, 10);

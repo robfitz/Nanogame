@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<map version="1.0" orientation="isometric" width="64" height="64" tilewidth="64" tileheight="32">
+ <properties>
+  <property name="music" value="unrest_theme.ogg"/>
+  <property name="tileset" value="tileset_grassland.txt"/>
+  <property name="title" value="Frontier Outpost"/>
+ </properties>
+ <tileset firstgid="1" name="collision" tilewidth="64" tileheight="32">
+  <image source="tiled_collision.png" width="960" height="32"/>
+ </tileset>
+ <tileset firstgid="16" name="grassland" tilewidth="64" tileheight="128">
+  <image source="grassland.png" width="1024" height="1024"/>
+ </tileset>
+ <tileset firstgid="144" name="water" tilewidth="64" tileheight="64">
+  <image source="grassland_water.png" width="1024" height="256"/>
+ </tileset>
+ <tileset firstgid="208" name="tall structures" tilewidth="64" tileheight="256">
+  <image source="grassland_structures.png" width="1024" height="512"/>
+ </tileset>
+ <tileset firstgid="240" name="trees" tilewidth="128" tileheight="256">
+  <image source="grassland_trees.png" width="1024" height="512"/>
+ </tileset>
+ <tileset firstgid="256" name="ship_small" tilewidth="222" tileheight="143">
+  <image source="ship_small.png" width="222" height="143"/>
+ </tileset>
+ <layer name="bg 1" width="64" height="64" opacity="0.98">
+  <data encoding="base64" compression="zlib">
+   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
+  </data>
+ </layer>
+ <layer name="bg 2" width="64" height="64">
+  <data encoding="base64" compression="zlib">
+   eJzt2VsKwyAQhWGXINl5l9IdFiGFIoZcdByn//kgL31I5xxNSZqUREREZLZtP4jI2YtW9u3gEDtXe7Zah9XWd+Y89P1Nzv4VtYNRc0fNP0r0/L3zR8/fi55/lMg9Rp7d04q9PX12WTHLE0fPdbN53FuffaflPPW5vTr35vlMtUJ+T/T8Vl7eAzh7ew8gIlNFfRdg9b9YpA6K1qxX5+/NuUpHd+/Jo63xHSVTbnxmdY3/Y4ctZ+9RRajq3xuanNSB8qsDOvL60/c/Ofsveg/U/Lk6yKj5qbkL8r6nX/fKzkXOXpDza++z0fNf9QECPQlL
+  </data>
+ </layer>
+ <layer name="object" width="64" height="64">
+  <data encoding="base64" compression="zlib">
+   eJztW9ty3TQUFZ/DG6WlFGghkAI/0Rmeecul6ZTklJgyDP1SeIVQQtO0Ba+xF2fNru6ST05mumY0tmXJlrb23bJz77Ap3B3LR2O5MZZPMvt8EKj/sMuINgfM/b5cf+0mWmjx0eSWp+6Fu37zxzz+NnXnY1nN5yduoomlAdf/pdR9NZZPO46N9L/X8ZkA1vzG/Owdt57rj562p2N5Mpbb0pf9gENpe9v1x8OxfOnCfFiKO249dh+emOvnYzmYxwCa3Z/bPPT0XWL+CpVNjKWGL1RuOdfTuRy+3dyLnzx137i+vK84CNSTHiV0+GIsu2P5p3IshzKeQeqXXnuLN3IO3iyhwWduogHwuPC9vrXA2n9e+JzeKNUR0N/Qe6emnjKAe3+4SSf+kHjWVdu8CzfJ8p6b6JCiAXQg9Ngz59f5hKWNBfta3sfzqaNadFUJdB5KA4zlt7H87ta6wue7AFj7p556X51C538n8PwaXfWgoO2xW9txvo/2yo5jZz5He9Atts5K12M5v5yPVvbvyvNfyXugb4/m9+fS4EFibBZo6+PnGI+3ws6HfiH1iI6f57n6Ytdco//K1zCA3Hnnrn8I1L3gtx2ph94kHS6lPnf+sFMfu7fpAEDfpeQyBTvvFG333aRj9xPl+8gzavwk+Cygw825fBtpS/tcIje5gM97ZI4812sfEBth7D18ROpX8mau35rC+5X9DqRYvJ6PPf1DyAV4IEc2tY2PJzTeee25r4D+P5HjidQfyzVA2dyfjzl+SQnow1JmU7qg1Ab41hP67LE5sp519KfPTX/cL7F9OQjloHIQiqmGjL4aN/JZll42jiZ6yUEqjl8aKkuq+1OgX9YqC+pjLqHrS2BtQgxnbpLFGn9Y8X8M+16ZT7QEfDoRAD+kxtYiDy3y3xPUfxapucMnKM0bMLZEsbFNCv8Wto8hl+fgmzwKtK9Z+1Dsau1bi08Usg0+lMjenpzXrD3A+T+r6AtcVPZTDG5NI9p78D9tHmlyJn3g9+/Kec3ce9g8X+62FdD7vniMuYXBTbzOOKY2V7gt+s6HkH9J/ijN0Vpw7XPl7eeKd5TIvQ+hPCnloiUGwNoPlX1z0NM2AMwfK+j3lNKA+dpaWJ8sFee1gDogxkuldi9k83qhle9Tz4V+ZP4La1EaB+r3mquGT6+EYj0fQt8MUlhS9/fIHw3zMUc/Iy6o4QHm/Wp9n6Wg8Sf2UgyZ/bZND9SC3zly8vMqP6XfDeE/pfK/m8SbQL3qg5i/2fLddFtoANjvTitzz2JvbtPqD/VCSH+H8kpo/0vg3mCu8d0vJhO1+Q/Vh9sI5YcQfVv2zLT6hDH0zqfZ/XXEtvA/UeLHpPrYPXVsZ32NWh246ViY+wCJX+U859tKSJe0zH8v2SoPobE9knsXiba5sPxSKwOt+s/mqrRu06jNjeT6g8eRe9z7aOfuowVylshfke6l3xQvI/dq5CA0f3yDIJ8+lfPYeDFfXxykPh5ttfLe88gzVy5tS5AfG1xdXoRx8Z+ee5hzbpzEOJ18wjEfSRubs+0Vk6vvWOMLISbgWnDcIT6zPgn4xEcj+x0rNDbGI6RDTl4pFmvX2gLdJ5STx0NebnBrGSddsMY6Hyf1sZx1yhbHbMaBW+8nb80R2z0RwItEH93/yzXW/UY5+XroIcsvFtBDOfaldX+Azy7ST/hrPnKd7VrX8h/m32uPYY+9xGoXXnnuK4251ig1sYju9/Qh11/ifvwe+0O4x//c1NN+99yr3uqHr8yx115y6sSbcuz9f0Zq7QnaZ1/uGHKjdnbT/1G0AGsfsnm5fD+Y66v+l6AE1DMt+XP1L2v3BFwV1PeKwfd9CXxv49frxPuA/Xc0B4OcK98s+f/YUiD/n0Vb+WH/P7tOck8o/383F4vUfhPQQf8vfYcJ/wGQFQ8L
+  </data>
+ </layer>
+ <layer name="collision" width="64" height="64" visible="0">
+  <properties>
+   <property name="hidden" value="true"/>
+   <property name="nowalk" value="true"/>
+  </properties>
+  <data encoding="base64" compression="zlib">
+   eJztmIluw0AIRN04///NVaVSuYhrWMaOmyKtFDlezBvYc9+2bf9vp7QP1ap9Hkar9n+VJsyRWUzS5y/wZ2bVhZV/pH7QumTk3Mr98fnD4Nf/M3OvdZ3wH9W7xaW18sY9kz+KZareM7asMeo0+k5Xh+P7EbsYwj/J7vFLs8Zxdwx47FUNGLnP+FfHBMIfGXPNq9aeVctI/oWjo4HFvzpGUX4dr16v9HNrDsx8euwef1SnVf5KjF6s2foe8SD510xH/6tzhWdVDVCb4o/8IvNFtDdFaqFqXT/RftLyjfBXfU7VwWQ9WT47c2GkL2ssTNr0PoGlAVNDWacnmlUPVQ28/9jjiHk29uK3WKzn03Op54elQYXfYz2TXzS4Iv9dflYNrOpgrQcoB5Pfi2nffq8FXR06/Og+gqWBjom9Dmb81f4r5sVzxl5Ifw+JkalDJ/fdHIpl/av+EB0e6nc390f+JxizGMr/dPwhOhx5V9mr8UfrT/V9pH1ZlJPVu6BK7Vd4WPyVWlid6yfGLnL/9UoaoOwRF5s/06G75nVNx7UTmSsadPhXzYprkgnth2iwmn8rzmrMSF0jfa+ogSjeKgPiM+Pv1kC0zqJmcXW4s/5We4UaYBmLf3IuYFtFg5X90B0sy//Z+6Ep2/NXfmxyDDDWRLax8v/u/HcyRv1facj4F7szf4dX2+QY0OOfrQfjDDalQXQnPGUT34jOBJP80zroezvUf3Yeem69Gsj4pzSw7i1X72KtcxWjBrI45SzpvRPd2Wr/0RxZORev7oUQDfQZutJ/ZS2q8nc1QHSw9LDGd4W9wl+tf4mjy9/RAOFk8E/MAR0NvHe731rll7njbP6Jb2V2Zv1nGkxxZ7mv3P0w+c9oEusU+x35LUPYj/oxapTNb2nwDrn3+FfG/R35t+/fCL/uI/xX85yV/6OJDnfkZ7ZP8hsZHg==
+  </data>
+ </layer>
+ <objectgroup name="event" width="64" height="64" visible="0">
+  <object name="to Mineshaft Longsword" type="teleport" x="608" y="352" width="64" height="32">
+   <properties>
+    <property name="intermap" value="mineshaft_longsword.txt,100,100"/>
+   </properties>
+  </object>
+  <object name="to River Road" type="teleport" x="1376" y="1984" width="128" height="32">
+   <properties>
+    <property name="intermap" value="river_road.txt,32,4"/>
+   </properties>
+  </object>
+  <object name="to Frontier Plains" type="teleport" x="32" y="384" width="32" height="64">
+   <properties>
+    <property name="intermap" value="frontier_plains.txt,248,186"/>
+   </properties>
+  </object>
+ </objectgroup>
+</map>
