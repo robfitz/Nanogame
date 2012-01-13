@@ -5,6 +5,7 @@ package
 	import flash.display.Sprite;
 	
 	import nano.CollisionLayer;
+	import nano.dialog.DialogBox;
 	
 	import net.pixelpracht.tmx.TmxObject;
 	import net.pixelpracht.tmx.TmxObjectGroup;
@@ -68,6 +69,11 @@ package
 			trace("Just hitting?      " + (triggers.justHit != null));
 			trace("Currently hitting? " + (triggers.currentlyHit != null));
 			
+			var dialogbox:DialogBox = new DialogBox();
+			this.addChild(dialogbox);
+			
+			
+			dialogbox.text = "Hello, this is a test";
 		}
 	}
 }
