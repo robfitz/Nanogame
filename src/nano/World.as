@@ -84,9 +84,20 @@ package nano
 		public function initWorldFromLoader(loader:TmxLoader):void {
 			if(loader.isLoaded) {
 				var scenes:Object = loader.scenes;
-				this.background = scenes["background"];
-				this.objects = scenes["objects"];
-				this.foreground = scenes["foreground"];
+				
+				for (var layer_name:String in loader.scenes) {
+					trace("Layer name:" + layer_name);
+					if (layer_name == "objects") {
+						this.objects = scenes["objects"];
+					}
+					else {
+						this.view.addScene(scenes[layer_name]);
+					}
+				}
+				
+//				this.background = scenes["background"];
+//				this.objects = scenes["objects"];
+//				this.foreground = scenes["foreground"];
 				
 				// create and add in our character at this time
 				// TODO Not the best spot, really

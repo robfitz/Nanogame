@@ -3,6 +3,7 @@ package nano
 	import as3isolib.core.IIsoDisplayObject;
 	import as3isolib.display.scene.IsoGrid;
 	
+	import net.pixelpracht.tmx.TmxLayer;
 	import net.pixelpracht.tmx.TmxObject;
 	import net.pixelpracht.tmx.TmxObjectGroup;
 	
@@ -16,6 +17,8 @@ package nano
 	{
 		private var rects:Array = [];
 		private var grid:IsoGrid;
+		
+		private var tiles:TmxLayer;
 		
 		/** Object that successfully hit detected last, if any */
 		private var _lastHit:Object
@@ -58,6 +61,8 @@ package nano
     			}
 			}
 			
+			if (
+			
 			// no tile collision, so we need to clear our last hit
 			this._lastHit = null;
 			
@@ -80,12 +85,14 @@ package nano
 		 * @param objs TmxObjectGroup of hulls
 		 * 
 		 */		
-		public function CollisionLayer(objs:TmxObjectGroup = null)
+		public function CollisionLayer(objs:TmxObjectGroup=null, layer:TmxLayer=null)
 		{
-			for each(var obj:TmxObject in objs.objects) {
-				this.add(obj);
+			if (objs) {
+				for each(var obj:TmxObject in objs.objects) {
+					this.add(obj);
+				}
 			}
+			this.tiles = tiles;
 		}
-
 	}
 }

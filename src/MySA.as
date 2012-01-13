@@ -50,7 +50,7 @@ package {
 				
 			});
 //			loader.load("./assets/demo_001_reformat.tmx");
-			loader.load("./assets/mysa/frontier_outpost_mysa.tmx");
+			loader.load("assets/mysa/frontier_outpost_mysa.tmx");
 		}
 		
 		/**

@@ -181,7 +181,8 @@ package nano
 			}
 			
 			var collisionGroup:TmxObjectGroup = this._map.getObjectGroup("collisions");
-			return new CollisionLayer(collisionGroup);
+			var collisionTiles:TmxLayer = this._map.getLayer("collisions");
+			return new CollisionLayer(collisionGroup, collisionTiles);
 			
 		}
 	}
