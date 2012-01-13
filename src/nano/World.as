@@ -52,6 +52,9 @@ package nano
 		
 		/** Nowalk layer */
 		private var _collisions:CollisionLayer;
+		public function get collisions():CollisionLayer {
+			return this._collisions;
+		}
 		
 		/** Trigger layer */
 		private var _triggers:CollisionLayer;
@@ -86,6 +89,14 @@ package nano
 				this._collisions= loader.getCollisionLayerByName('collisions');
 				this._triggers = loader.getCollisionLayerByName('triggers');
 			}
+		}
+		
+		/**
+		 * Update the world
+		 * @param dt The time passed since last update
+		 */
+		public function update(dt:Number):void {
+			
 		}
 		
 		/**

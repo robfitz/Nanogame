@@ -164,7 +164,7 @@ package
                     	trace("load complete");
                     	
                     });
-					var sprite:* = new Character(100, 157, 16, 16, 64, img);
+					var sprite:* = new Character(null, 100, 157, 16, 16, 64, img);
                                         
 //                    var childs:* = sprite.getChildAt(0);
                     character = sprite;

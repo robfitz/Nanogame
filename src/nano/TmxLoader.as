@@ -142,6 +142,7 @@ package nano
 			}
 			
 			// All done!
+			this._isLoaded = true;
 			this.dispatchEvent(new Event(Event.COMPLETE));
 		}
 		

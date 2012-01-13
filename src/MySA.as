@@ -15,9 +15,9 @@ package {
 	 * Nanogame.as
 	 * Top level control flow and execution for Nanogame
 	 */
-
+	
 	[SWF(width='1000', height='800')]
-	public class Nanogame extends Sprite
+	public class MySA extends Sprite
 	{
 		
 		/** Current frame time in milliseconds since game start */
@@ -29,7 +29,7 @@ package {
 		/** The isometric world our main character lives in */
 		private var world:World;
 		
-		public function Nanogame()
+		public function MySA()
 		{
 			this.world = new World(this);
 			
@@ -80,7 +80,7 @@ package {
 		 * @param dt Time (in seconds) since the last frame
 		 */		
 		public function update(dt:Number):void {
-			
+			this.world.update(dt);
 		}
 		
 		/**

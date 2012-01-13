@@ -10,6 +10,9 @@ package nano
 	
 	public class Character extends IsoSprite
 	{
+		/** The world this character lives in */
+		private var world:World;
+		
 		private var destination:Point;
 		
 		private var distancePerFrame:Number = 4.5;
@@ -37,9 +40,10 @@ package nano
         private var unmovedY:Number = 0;
                 
 
-		public function Character(image_width:int, image_height:int, iso_width:int, iso_length:int, iso_height:int, spriteswf:DisplayObject=null, spritesheet:DisplayObject=null, descriptor:Object=null)
+		public function Character(world:World, image_width:int, image_height:int, iso_width:int, iso_length:int, iso_height:int, spriteswf:DisplayObject=null, spritesheet:DisplayObject=null, descriptor:Object=null)
 		{
 			super(descriptor);
+			this.world = world;
 			this.setSize(iso_width, iso_length, iso_height);
 			
 			this.image_height = image_height;
@@ -133,18 +137,18 @@ package nano
  				this.x += int(unmovedX);
 				this.y += int(unmovedY);
 				
-				if (Collisions.test(this)) {
+				if (this.world.collisions.test(this)) {
 					// can't move to where we want
 					
 					// try sliding along in just the Y direction
 					this.x -= int(unmovedX);
 					
-					if (Collisions.test(this)) {
+					if (this.world.collisions.test(this)) {
 						// if Y doesn't work, try sliding in only X direction
 						this.x += int(unmovedX);
 						this.y -= int(unmovedY);
 						
-						if (Collisions.test(this)) {
+						if (this.world.collisions.test(this)) {
 							this.x -= int(unmovedX);
 							// can't move at all in the direction we'd like. stop moving
 							stand();
