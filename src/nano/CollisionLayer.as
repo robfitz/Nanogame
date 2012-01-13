@@ -18,9 +18,14 @@ package nano
 		private var grid:IsoGrid;
 		
 		/** Object that successfully hit detected last, if any */
-		private var _lastHit:Object
-		public function get lastHit():Object {
-			return _lastHit;
+		private var _currentlyHit:Object;
+		public function get currentlyHit():Object {
+			return _currentlyHit;
+		}
+		
+		private var _justHit:Object;
+		public function get justHit():Object {
+			return _justHit;
 		}
 		
 		/** 
@@ -51,15 +56,21 @@ package nano
 				if (r.x < sprite_x2 && r.x2 > sprite_x &&
     				r.y < sprite_y2 && r.y2 > sprite_y) 
     			{
-					if(! this._lastHit) {
-						this._lastHit = r;
+					// set hit objects
+					if(! this._currentlyHit || this._currentlyHit != r) {
+						this._justHit = r;
+					} else {
+						this._justHit = null;
 					}
+					this._currentlyHit = r;
+					
     				return true;
     			}
 			}
 			
 			// no tile collision, so we need to clear our last hit
-			this._lastHit = null;
+			this._currentlyHit = null;
+			this._justHit = null;
 			
 			// test against map boundaries
 			if (sprite.x >= grid.gridSize[0] * grid.width - sprite.width ||
