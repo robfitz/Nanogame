@@ -4,15 +4,18 @@ package nano
 	import as3isolib.display.scene.IsoGrid;
 	
 	import net.pixelpracht.tmx.TmxObject;
+	import net.pixelpracht.tmx.TmxObjectGroup;
 	
 	public class Collisions
 	{
-		private static var rects:Array = [];
-		private static var grid:IsoGrid;
+		private var rects:Array = [];
+		private var grid:IsoGrid;
 		
-		/** consider a new collision rectangle, usually pulled from
-		 * an object layer with property: "nowalk"=true */
-		public static function add(collision_rect:TmxObject):void {
+		/** 
+		 * Consider a new collision rectangle, usually pulled from
+		 * an object layer with property: "nowalk"=true 
+		 */
+		public function add(collision_rect:TmxObject):void {
 			rects.push({
 				'x': collision_rect.x,
 				'y': collision_rect.y,
@@ -25,7 +28,7 @@ package nano
 		
 		/** returns whether or not a sprite is within the set of 
 		 * collision rectangles */
-		public static function test(sprite:IIsoDisplayObject):Boolean {
+		public function test(sprite:IIsoDisplayObject):Boolean {
 			var sprite_x:int = sprite.x;
 			var sprite_y:int = sprite.y;
 			var sprite_x2:int = sprite.x + sprite.width;
@@ -53,12 +56,17 @@ package nano
 			return false;
 		}
 		
-		public static function init(g:IsoGrid):void {
-			grid = g;
-		}
-		
-		public function Collisions()
+		/**
+		 * Default constructor. Can be initialized with a TmxObjectGroup containing
+		 * hulls. Assumes all hulls on that layer represent nowalk zones
+		 * @param objs TmxObjectGroup of hulls
+		 * 
+		 */		
+		public function Collisions(objs:TmxObjectGroup = null)
 		{
+			for each(var obj:TmxObject in objs.objects) {
+				this.add(obj);
+			}
 		}
 
 	}

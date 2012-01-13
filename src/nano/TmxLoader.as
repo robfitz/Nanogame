@@ -15,6 +15,7 @@ package nano
 	
 	import net.pixelpracht.tmx.TmxLayer;
 	import net.pixelpracht.tmx.TmxMap;
+	import net.pixelpracht.tmx.TmxObjectGroup;
 	import net.pixelpracht.tmx.TmxPropertySet;
 	import net.pixelpracht.tmx.TmxTileSet;
 
@@ -165,6 +166,20 @@ package nano
 			
 			this._bitmapCache[gid] = bmd;
 			return bmd;
+		}
+		
+		/**
+		 * Returns a collision object for the map that has been loaded. 
+		 * Calling this before calling <code>load</code> will fail 
+		 */	
+		public function getCollisions():Collisions {
+			if(!this._map) {
+				return null;
+			}
+			
+			var collisionGroup:TmxObjectGroup = this._map.getObjectGroup("collisions");
+			return new Collisions(collisionGroup);
+			
 		}
 	}
 }
