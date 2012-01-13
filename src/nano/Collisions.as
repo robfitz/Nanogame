@@ -3,13 +3,16 @@ package nano
 	import as3isolib.core.IIsoDisplayObject;
 	
 	import net.pixelpracht.tmx.TmxObject;
+	import net.pixelpracht.tmx.TmxObjectGroup;
 	
 	public class Collisions
 	{
 		private var rects:Array = [];
 		
-		/** consider a new collision rectangle, usually pulled from
-		 * an object layer with property: "nowalk"=true */
+		/** 
+		 * Consider a new collision rectangle, usually pulled from
+		 * an object layer with property: "nowalk"=true 
+		 */
 		public function add(collision_rect:TmxObject):void {
 			rects.push({
 				'x': collision_rect.x,
@@ -38,8 +41,17 @@ package nano
 			return false;
 		}
 		
-		public function Collisions()
+		/**
+		 * Default constructor. Can be initialized with a TmxObjectGroup containing
+		 * hulls. Assumes all hulls on that layer represent nowalk zones
+		 * @param objs TmxObjectGroup of hulls
+		 * 
+		 */		
+		public function Collisions(objs:TmxObjectGroup = null)
 		{
+			for each(var obj:TmxObject in objs.objects) {
+				this.add(obj);
+			}
 		}
 
 	}

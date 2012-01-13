@@ -33,6 +33,11 @@
    eJzt1LkNACAAA7EswDMyo9MwAuKR7CbtVUkA9qlrWzJudgC8qPvGY8rtAPjEBL4YATs=
   </data>
  </layer>
+ <objectgroup name="collisions" width="30" height="30">
+  <object x="190" y="609" width="99" height="158"/>
+  <object x="192" y="261" width="161" height="89"/>
+  <object x="639" y="446" width="162" height="98"/>
+ </objectgroup>
  <layer name="foreground" width="30" height="30">
   <data encoding="base64" compression="zlib">
    eJzt0zEKACAMBMErjIX46DzdQgvB2gR0B46UW0UCAMkkp0v3RtfmVd32sp7ULeu2bQFND8gcfvwjuu92gWwDeY8HCw==
