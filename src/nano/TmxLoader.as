@@ -26,7 +26,7 @@ package nano
 	public class TmxLoader extends EventDispatcher
 	{
 		public static const FLAG_FLIPPED_HORZ:int = int(0x80000000);
-		public static const MAP_PATH:String = "./assets/";
+		public static const MAP_PATH:String = "./assets/mysa/";
 		
 		/**
 		 * IsoScenes stored by name. Do not access unless <code>isLoaded</code> is true. 
