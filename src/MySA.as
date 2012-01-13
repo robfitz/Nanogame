@@ -16,7 +16,7 @@ package {
 	 * Top level control flow and execution for Nanogame
 	 */
 	
-	[SWF(width='1000', height='800')]
+	[SWF(width='760', height='570')]
 	public class MySA extends Sprite
 	{
 		
@@ -49,7 +49,8 @@ package {
 				// END DEBUG GRID
 				
 			});
-			loader.load("./assets/demo_001_reformat.tmx");
+//			loader.load("./assets/demo_001_reformat.tmx");
+			loader.load("./assets/mysa/frontier_outpost_mysa.tmx");
 		}
 		
 		/**
