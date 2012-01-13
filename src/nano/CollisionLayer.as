@@ -5,7 +5,13 @@ package nano
 	import net.pixelpracht.tmx.TmxObject;
 	import net.pixelpracht.tmx.TmxObjectGroup;
 	
-	public class Collisions
+	/**
+	 * Generic layer that alert you when you enter a collision hull. 
+	 * @author devin
+	 * 
+	 */	
+	
+	public class CollisionLayer
 	{
 		private var rects:Array = [];
 		
@@ -47,7 +53,7 @@ package nano
 		 * @param objs TmxObjectGroup of hulls
 		 * 
 		 */		
-		public function Collisions(objs:TmxObjectGroup = null)
+		public function CollisionLayer(objs:TmxObjectGroup = null)
 		{
 			for each(var obj:TmxObject in objs.objects) {
 				this.add(obj);

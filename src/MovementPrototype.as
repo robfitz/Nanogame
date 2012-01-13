@@ -27,7 +27,7 @@ package
         import flash.text.TextField;
         import flash.utils.getTimer;
         
-        import nano.Collisions;
+        import nano.CollisionLayer;
         
         import net.pixelpracht.tmx.TmxLayer;
         import net.pixelpracht.tmx.TmxMap;
@@ -65,7 +65,7 @@ package
                 
                 private static const FPS:int = 12;
                 
-                private var collisions:Collisions = new Collisions();
+                private var collisions:CollisionLayer = new CollisionLayer();
 				
 				
 				// DEBUG STUFF

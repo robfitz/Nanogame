@@ -7,7 +7,7 @@ package {
 	import flash.events.Event;
 	import flash.utils.getTimer;
 	
-	import nano.Collisions;
+	import nano.CollisionLayer;
 	import nano.TmxLoader;
 	import nano.World;
 	
@@ -36,12 +36,7 @@ package {
 			// load the world!
 			var loader:TmxLoader = new TmxLoader();
 			loader.addEventListener(Event.COMPLETE, function(event:Event):void {
-				var scenes:Object = loader.scenes;
-				var collisions:Collisions = loader.getCollisions();
-				world.background = scenes["background"];
-				world.objects = scenes["objects"];
-				world.foreground = scenes["foreground"];
-				startLoop();
+				world.initWorldFromLoader(loader);
 				
 				// DEBUG GRID
 				var g:IsoGrid = new IsoGrid();

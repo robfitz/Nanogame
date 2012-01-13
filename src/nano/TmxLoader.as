@@ -168,17 +168,19 @@ package nano
 			return bmd;
 		}
 		
+		
 		/**
-		 * Returns a collision object for the map that has been loaded. 
-		 * Calling this before calling <code>load</code> will fail 
-		 */	
-		public function getCollisions():Collisions {
+		 * Returns a collision layer initialized from a object layer of that name 
+		 * @param name The name of the object layer to build the collision layer with
+		 * @return The new collision layer
+		 */		
+		public function getCollisionLayerByName(name:String):CollisionLayer {
 			if(!this._map) {
 				return null;
 			}
 			
 			var collisionGroup:TmxObjectGroup = this._map.getObjectGroup("collisions");
-			return new Collisions(collisionGroup);
+			return new CollisionLayer(collisionGroup);
 			
 		}
 	}

@@ -50,6 +50,12 @@ package nano
 			this.invalidateTiles();
 		}
 		
+		/** Nowalk layer */
+		private var _collisions:CollisionLayer;
+		
+		/** Trigger layer */
+		private var _triggers:CollisionLayer;
+		
 		/**
 		 * World contructor 
 		 * @param hostContainer The container that our iso scenes ultimately render on
@@ -62,6 +68,24 @@ package nano
 			this.view.setSize(stage.stageWidth, stage.stageHeight);
 			this.view.panBy(0, 200);
 			this._hostContainer.addChild(this.view);
+		}
+		
+		/**
+		 * Helper function that grabs all the things we need from a TmxLoader
+		 * that has completed it's load
+		 * @param loader TmxLoader that has successfully finished loading
+		 * 
+		 */		
+		public function initWorldFromLoader(loader:TmxLoader):void {
+			if(loader.isLoaded) {
+				var scenes:Object = loader.scenes;
+				this.background = scenes["background"];
+				this.objects = scenes["objects"];
+				this.foreground = scenes["foreground"];
+				
+				this._collisions= loader.getCollisionLayerByName('collisions');
+				this._triggers = loader.getCollisionLayerByName('triggers');
+			}
 		}
 		
 		/**
