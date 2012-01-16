@@ -33,7 +33,9 @@ package nano.dialog
 			this.render();
 			
 			this.addEventListener(MouseEvent.CLICK, function(event:MouseEvent):void {
-				next();
+				if (!next()) {
+					this.visible = false;
+				}
 			});
 			
 			// make our more button
@@ -45,17 +47,21 @@ package nano.dialog
 			moreText.text = "next...";
 			moreText.setTextFormat(new TextFormat("Lucida Grande", 18, 0x0));
 			moreText.selectable = false;
+			
 			moreButton.addChild(moreText);
 			
 			moreButton.graphics.beginFill(0xD5ECFA);
 			moreButton.graphics.lineStyle(2, 0x333333, 1);
 			moreButton.graphics.drawRoundRect(0, 0, 80, 30, 5, 5);
 			
-			this.addChild(moreButton);
+//			this.addChild(moreButton);
 		}
 		
 		protected function reset():void {
-			
+			if (this._textfield.numLines > 3) {
+				moreButton.visible = true;
+			}
+			else moreButton.visible = false;
 		}
 		
 		/**
@@ -64,7 +70,7 @@ package nano.dialog
 		 */		
 		public function moreLines():Boolean {
 			trace(this._textfield.scrollV + 3, this._textfield.numLines);
-			return this._textfield.scrollV + 3 <= this._textfield.numLines;
+			return this._textfield.scrollV + 3 < this._textfield.numLines;
 		}
 		
 		/**

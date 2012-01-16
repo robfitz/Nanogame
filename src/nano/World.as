@@ -1,14 +1,16 @@
 package nano
 {
 	import as3isolib.display.IsoView;
+	import as3isolib.display.primitive.IsoBox;
 	import as3isolib.display.scene.IsoScene;
+	import as3isolib.graphics.SolidColorFill;
 	
 	import flash.display.DisplayObjectContainer;
-	import flash.display.Scene;
 	import flash.display.Stage;
-	import flash.geom.Point;
+	import flash.events.Event;
 	
-	import net.pixelpracht.tmx.TmxLayer;
+	import mysa.Sheep;
+	
 	import net.pixelpracht.tmx.TmxObject;
 	import net.pixelpracht.tmx.TmxObjectGroup;
 
@@ -19,6 +21,8 @@ package nano
 	 */	
 	public class World
 	{
+		public static const DEBUG_DRAW:Boolean = false;
+		
 		private var _hostContainer:DisplayObjectContainer;
 		private var _renderTiles:Boolean = false;
 		
@@ -66,6 +70,9 @@ package nano
 		
 		/** Trigger layer */
 		private var _triggers:CollisionLayer;
+		public function get triggers():CollisionLayer {
+			return this._triggers;
+		}
 		
 		/**
 		 * World contructor 
@@ -112,18 +119,35 @@ package nano
 //				this.player = new Character(this, 100, 157, 16, 16, 64, img);
 				this.player = new Character(this, 96, 96, 16, 16, 56, null, img);
 				
+				if (DEBUG_DRAW) {
+                    	var collision_hull:IsoBox = new IsoBox();
+	                    collision_hull.setSize(player.width, player.length, player.height);
+//	                    collision_hull.moveTo(object.x, object.y, 0);
+	                    var f:SolidColorFill = new SolidColorFill(0xffffff, 0.2);
+	                    collision_hull.fills = [f, f, f, f, f, f];
+	                    objects.addChild(collision_hull);
+	                    img.addEventListener(Event.ENTER_FRAME, function(e:*):void {
+	                    	collision_hull.moveTo(player.x, player.y, player.z);
+	                    });
+//	                    sprite.addChild(collision_hull);
+                    }
+                var p = player;
+				img.addEventListener(Event.ADDED_TO_STAGE, function(e:*):void {
+					p.updateDialogTriggers();
+				});
 				this.objects.addChild(this.player);
 				
 				for each (var objectGroup:TmxObjectGroup in loader.map.objectGroups) {
             		for each (var object:TmxObject in objectGroup.objects) {
             			if (object.custom && object.custom.hasOwnProperty("spawn")) {
 	                 		if (object.custom["spawn"] == "player") {
-	                 			var playerSpawnPoint:Point = new Point();
-	                 			playerSpawnPoint.x = object.x;
-	                 			playerSpawnPoint.y = object.y;
-	                 			
-                 				player.moveTo(playerSpawnPoint.x, playerSpawnPoint.y, 0);
+                 				player.moveTo(object.x, object.y, 0);
                  				view.centerOnIso(player);
+	                 		}
+	                 		else if (object.custom["spawn"] == "sheep") {
+	                 			var sheep:Sheep = new Sheep(this, 64, 64, 16, 16, 16, null, new Assets.instance.SheepImg);
+								objects.addChild(sheep);
+								sheep.moveTo(object.x, object.y, 0);	     	            			
 	                 		}
             			}
             		}
@@ -133,6 +157,8 @@ package nano
 				this._triggers = loader.getCollisionLayerByName('triggers');
 				
 				this.invalidateTiles();
+				
+				
 			}
 		}
 		
@@ -141,7 +167,6 @@ package nano
 		 * @param dt The time passed since last update
 		 */
 		public function update(dt:Number):void {
-			
 		}
 		
 		/**

@@ -31,7 +31,10 @@ package {
 		private var world:World;
 		
 		public function MySA()
-		{
+		{ 
+			this.graphics.beginFill(0);
+			this.graphics.drawRect(0, 0, stage.stageWidth, stage.stageHeight);
+			 
 			this.world = new World(this);
 			
 			// load the world!
@@ -59,8 +62,6 @@ package {
 			});
 //			loader.load("./assets/demo_001_reformat.tmx");
 			loader.load("assets/mysa/frontier_outpost_mysa.tmx");
-            
-					
 		}
 		
 		/**

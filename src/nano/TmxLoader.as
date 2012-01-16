@@ -1,7 +1,9 @@
 package nano
 {
 	import as3isolib.display.IsoSprite;
+	import as3isolib.display.primitive.IsoBox;
 	import as3isolib.display.scene.IsoScene;
+	import as3isolib.graphics.SolidColorFill;
 	
 	import flash.display.Bitmap;
 	import flash.display.BitmapData;
@@ -135,11 +137,18 @@ package nano
 								bitmap.x += tileset.tileWidth;
 							}
 							
-							sprite.setSize(tileset.tileWidth, tileset.tileHeight, 0);
+//							sprite.setSize(tileset.tileWidth, tileset.tileHeight, 100);
+							sprite.setSize(32, 32, 100);
 							sprite.sprites = [bitmap];
-							sprite.x = col * 32;
-							sprite.y = row * 32;
+							sprite.moveTo(col * 32, row * 32, 0);
 							scene.addChild(sprite);
+							
+//							var collision_hull:IsoBox = new IsoBox();
+//		                    collision_hull.setSize(sprite.width, sprite.length, sprite.height);
+//		                    var f:SolidColorFill = new SolidColorFill(0xffffff, 0.2);
+//		                    collision_hull.fills = [f, f, f, f, f, f];
+//		                    scene.addChild(collision_hull);
+//	                    	collision_hull.moveTo(sprite.x, sprite.y, sprite.z);
 							
 						}
 					}
@@ -158,8 +167,6 @@ package nano
 			ordered_scenes.sort(function(a:*, b:*):int {
 				return int(a.id) - int(b.id);
 			});
-			
-			
 			
 			// All done!
 			this._isLoaded = true;
@@ -202,8 +209,8 @@ package nano
 				return null;
 			}
 			
-			var collisionGroup:TmxObjectGroup = this._map.getObjectGroup("collisions");
-			var collisionTiles:TmxLayer = this._map.getLayer("collisions");
+			var collisionGroup:TmxObjectGroup = this._map.getObjectGroup(name);
+			var collisionTiles:TmxLayer = this._map.getLayer(name);
 			return new CollisionLayer(collisionGroup, collisionTiles);
 			
 		}
