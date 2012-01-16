@@ -106,11 +106,13 @@ package nano
 		public function col_tile(x:int, y:int):Boolean {
 			if (!tiles) return false;
 			
-			var tile_r:int = y / 64;
-			var tile_c:int = x / 64;
+			var tile_r:int = y / 32;
+			var tile_c:int = x / 32;
 			
 			try {
-				return tiles[tile_r][tile_c] != 0;
+				var collision:* = tiles.tileGIDs[tile_r][tile_c];
+				return collision != 0;
+				
 			}
 			catch (e:*) {
 				return false;
@@ -131,7 +133,7 @@ package nano
 					this.add(obj);
 				}
 			}
-			this.tiles = tiles;
+			this.tiles = layer;
 		}
 	}
 }

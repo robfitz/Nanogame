@@ -170,7 +170,7 @@ package
                     character = sprite;
                     foregroundScene.addChild(sprite);
                     sprite.moveTo(playerSpawnPoint.x, playerSpawnPoint.y, 0);
-                    
+                     
                     if (DEBUG_DRAW) {
                     	var collision_hull:IsoBox = new IsoBox();
 	                    collision_hull.setSize(sprite.width, sprite.length, 3);

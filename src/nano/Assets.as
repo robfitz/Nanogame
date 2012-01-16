@@ -23,6 +23,9 @@ package nano
 		[Embed(source="assets/mysa/spiff.png")]
 		public var Spiff:Class;
 		
+		[Embed(source="assets/mysa/sheep.png")]
+		public var SheepImg:Class;
+		
 		/**
 		 * Don't call this! 
 		 */		
