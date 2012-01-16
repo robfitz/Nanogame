@@ -145,7 +145,6 @@ package nano
 					}
 				}
 				
-				trace("***** " + layer.name);
 				scene.id = layer.properties["order"]
 				scene.name = layer.name;
 				this.scenes[layer.name] = scene;
@@ -181,7 +180,6 @@ package nano
 			var tileset:TmxTileSet = this._map.getGidOwner(gid);
 			var props:TmxPropertySet = tileset.getPropertiesByGid(gid);
 			var rect:Rectangle = tileset.getRect(gid - tileset.firstGID);
-			trace(rect);
 			var mat:Matrix = new Matrix();
 			mat.translate(-rect.left, -rect.top);
 			var bmd:BitmapData = new BitmapData(tileset.tileWidth, tileset.tileHeight, true, 0x00ffffff);
