@@ -20,11 +20,11 @@ package nano
 		[Embed(source="assets/avatar.swf")]
 		public var Link:Class;
 		
-		[Embed(source="assets/mysa/spiff.png")]
-		public var Spiff:Class;
-		
-		[Embed(source="assets/mysa/sheep.png")]
-		public var SheepImg:Class;
+		/////////////////////////////////////////
+		//            WORLD OBJECTS            //
+		/////////////////////////////////////////
+		[Embed(source="assets/objects/scales_weigh_boat.swf", symbol="asset")]
+		public var scales_weigh_boat:Class;
 		
 		/**
 		 * Don't call this! 

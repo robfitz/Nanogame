@@ -115,8 +115,7 @@ package nano
 				
 				// create and add in our character at this time
 				// TODO Not the best spot, really
-				var img:* = new Assets.instance.Spiff;
-//				this.player = new Character(this, 100, 157, 16, 16, 64, img);
+				var img:* = new Assets.instance.Link;
 				this.player = new Character(this, 96, 96, 16, 16, 56, null, img);
 				
 				if (DEBUG_DRAW) {
@@ -131,27 +130,29 @@ package nano
 	                    });
 //	                    sprite.addChild(collision_hull);
                     }
-                var p = player;
+                var p:Character = player;
 				img.addEventListener(Event.ADDED_TO_STAGE, function(e:*):void {
 					p.updateDialogTriggers();
 				});
-				this.objects.addChild(this.player);
+				if(this.objects) {
+					this.objects.addChild(this.player);
+				}
 				
-				for each (var objectGroup:TmxObjectGroup in loader.map.objectGroups) {
-            		for each (var object:TmxObject in objectGroup.objects) {
-            			if (object.custom && object.custom.hasOwnProperty("spawn")) {
-	                 		if (object.custom["spawn"] == "player") {
-                 				player.moveTo(object.x, object.y, 0);
-                 				view.centerOnIso(player);
-	                 		}
-	                 		else if (object.custom["spawn"] == "sheep") {
-	                 			var sheep:Sheep = new Sheep(this, 64, 64, 16, 16, 16, null, new Assets.instance.SheepImg);
-								objects.addChild(sheep);
-								sheep.moveTo(object.x, object.y, 0);	     	            			
-	                 		}
-            			}
-            		}
-            	}
+//				for each (var objectGroup:TmxObjectGroup in loader.map.objectGroups) {
+//            		for each (var object:TmxObject in objectGroup.objects) {
+//            			if (object.custom && object.custom.hasOwnProperty("spawn")) {
+//	                 		if (object.custom["spawn"] == "player") {
+//                 				player.moveTo(object.x, object.y, 0);
+//                 				view.centerOnIso(player);
+//	                 		}
+//	                 		else if (object.custom["spawn"] == "sheep") {
+//	                 			var sheep:Sheep = new Sheep(this, 64, 64, 16, 16, 16, null, new Assets.instance.SheepImg);
+//								objects.addChild(sheep);
+//								sheep.moveTo(object.x, object.y, 0);	     	            			
+//	                 		}
+//            			}
+//            		}
+//            	}
 				
 				this._collisions= loader.getCollisionLayerByName('collisions');
 				this._triggers = loader.getCollisionLayerByName('triggers');
@@ -173,7 +174,9 @@ package nano
 		 * Render the scene 
 		 */		
 		public function render():void {
-			this._objects.render();
+			if(this._objects) {
+				this._objects.render();
+			}
 			
 			if(this._renderTiles) {
 				

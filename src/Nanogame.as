@@ -1,5 +1,6 @@
 package {
 	import as3isolib.display.scene.IsoGrid;
+	import as3isolib.display.scene.IsoScene;
 	import as3isolib.graphics.Stroke;
 	
 	import flash.display.Bitmap;
@@ -45,7 +46,8 @@ package {
 				g.showOrigin = false;
 				g.cellSize = 32;
 				g.setGridSize(30, 30);
-				world.foreground.addChild(g);
+				//world..addChild(g);
+				//world.view.getSceneByID('3').addChild(g);
 				// END DEBUG GRID
 				
 			});

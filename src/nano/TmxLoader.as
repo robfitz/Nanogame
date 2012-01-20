@@ -8,6 +8,7 @@ package nano
 	import flash.display.Bitmap;
 	import flash.display.BitmapData;
 	import flash.display.Loader;
+	import flash.display.MovieClip;
 	import flash.events.Event;
 	import flash.events.EventDispatcher;
 	import flash.geom.Matrix;
@@ -17,6 +18,7 @@ package nano
 	
 	import net.pixelpracht.tmx.TmxLayer;
 	import net.pixelpracht.tmx.TmxMap;
+	import net.pixelpracht.tmx.TmxObject;
 	import net.pixelpracht.tmx.TmxObjectGroup;
 	import net.pixelpracht.tmx.TmxPropertySet;
 	import net.pixelpracht.tmx.TmxTileSet;
@@ -129,7 +131,7 @@ package nano
 							
 							// TODO THIS IS ASSUMING OBJECTS ARE BUILT WITH THE LOWER LEFT HAND CORNER AS THE ORIGIN
 							// FUUUUUUU
-							bitmap.x = -32; //- tileset.tileWidth / 2;
+							bitmap.x = - tileset.tileWidth / 2;
 							bitmap.y = 32 - tileset.tileHeight;
 							
 							if(isFlippedHorz) {
@@ -166,6 +168,24 @@ package nano
 			ordered_scenes.sort(function(a:*, b:*):int {
 				return int(a.id) - int(b.id);
 			});
+			
+			this.createObjectScene();
+		}
+		
+		/**
+		 * Instantiate all our swfs and place them in a scene
+		 */
+		private function createObjectScene():void {
+			
+			if(this._map.objectGroups.hasOwnProperty('objects')) {
+				var objGroup:TmxObjectGroup = this._map.objectGroups['objects'];
+				
+				for each(var obj:TmxObject in objGroup) {
+					//var asset:MovieClip = new Assets.instance[obj.name];
+					
+				}
+			}
+			
 			
 			// All done!
 			this._isLoaded = true;

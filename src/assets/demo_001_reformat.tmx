@@ -24,13 +24,22 @@
   <image source="objects/CABINET 96X129.png" width="96" height="129"/>
  </tileset>
  <layer name="background" width="30" height="30">
+  <properties>
+   <property name="order" value="1"/>
+  </properties>
   <data encoding="base64" compression="zlib">
    eJztlDkKACAMBD0KQT/t001hJSm808zAkkJwRJI4BwCv8JKoJPRoZ/HcWYvUnZwg765Z6pjX3mDotfpnvHPR+gKvjlU/W87R6r7Ai3eGdOEOgN80S5kSdQ==
   </data>
  </layer>
- <layer name="objects" width="30" height="30">
+ <objectgroup name="objects" width="30" height="30">
+  <object name="scales_weigh_boat" type="asset" x="256" y="448" width="32" height="32"/>
+ </objectgroup>
+ <layer name="foreground" width="30" height="30">
+  <properties>
+   <property name="order" value="3"/>
+  </properties>
   <data encoding="base64" compression="zlib">
-   eJzt1LkNACAAA7EswDMyo9MwAuKR7CbtVUkA9qlrWzJudgC8qPvGY8rtAPjEBL4YATs=
+   eJzt0zEKACAMBMErjIX46DzdQgvB2gR0B46UW0UCAMkkp0v3RtfmVd32sp7ULeu2bQFND8gcfvwjuu92gWwDeY8HCw==
   </data>
  </layer>
  <objectgroup name="collisions" width="30" height="30">
@@ -44,9 +53,4 @@
   <object x="725" y="522"/>
   <object x="725" y="522"/>
  </objectgroup>
- <layer name="foreground" width="30" height="30">
-  <data encoding="base64" compression="zlib">
-   eJzt0zEKACAMBMErjIX46DzdQgvB2gR0B46UW0UCAMkkp0v3RtfmVd32sp7ULeu2bQFND8gcfvwjuu92gWwDeY8HCw==
-  </data>
- </layer>
 </map>
