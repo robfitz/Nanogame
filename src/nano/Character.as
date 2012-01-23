@@ -78,8 +78,9 @@ package nano
 			destination = null;
 		
 			try {
-				(spriteswf as Object).stand();
+				(spriteswf as Object).gotoAndStop("south stand");
 			} catch (error:*) {
+				trace('failed to call stand');
 				// do nothing on failure
 			}
 		}
@@ -260,7 +261,7 @@ package nano
 			
 			try {
 				trace("IMPLEMENT TURNING");
-				//(spriteswf as Dis).getChildAt(0).content.turn(direction);
+				(spriteswf as Object).turn(direction);
 			}
 			catch (e:*) { 
 			}
