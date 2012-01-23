@@ -30,6 +30,7 @@ package nano
 		
 		public var player:Character;
 		
+		// TODO :: REMOVE THIS ONCE MYSA IS DECOUPLED
 		private var _background:IsoScene;
 		public function get background():IsoScene {
 			return this._background;
@@ -48,9 +49,9 @@ package nano
 		public function set objects(val:IsoScene):void {
 			this._objects = val;
 			this.view.addScene(this._objects);
-			//this._objects.hostContainer = this._hostContainer;
 		}
 		
+		// TODO :: REMOVE THIS ONCE MYSA IS DECOUPLED
 		private var _foreground:IsoScene;
 		public function get foreground():IsoScene {
 			return this._foreground;
@@ -96,10 +97,10 @@ package nano
 		 */		
 		public function initWorldFromLoader(loader:TmxLoader):void {
 			if(loader.isLoaded) {
-				var scenes:Object = loader.scenes;
+				var scenes:Object = loader.tileScenes;
 				
-				for (var i:int = 0; i < loader.ordered_scenes.length; i ++) {
-					var scene:IsoScene = loader.ordered_scenes[i];
+				for (var i:int = 0; i < loader.orderedTileScenes.length; i ++) {
+					var scene:IsoScene = loader.orderedTileScenes[i];
 				
 					if (scene.name == "objects") {
 						this.objects = scene;
@@ -109,9 +110,7 @@ package nano
 					}
 				}
 				
-//				this.background = scenes["background"];
-//				this.objects = scenes["objects"];
-//				this.foreground = scenes["foreground"];
+				this.objects = loader.objectScene;
 				
 				// create and add in our character at this time
 				// TODO Not the best spot, really

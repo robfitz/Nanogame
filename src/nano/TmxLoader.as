@@ -16,6 +16,8 @@ package nano
 	import flash.net.URLLoader;
 	import flash.net.URLRequest;
 	
+	import nano.scene.ObjectScene;
+	
 	import net.pixelpracht.tmx.TmxLayer;
 	import net.pixelpracht.tmx.TmxMap;
 	import net.pixelpracht.tmx.TmxObject;
@@ -35,8 +37,18 @@ package nano
 		/**
 		 * IsoScenes stored by name. Do not access unless <code>isLoaded</code> is true. 
 		 */		
-		public var scenes:Object;
-		public var ordered_scenes:Array = [];
+		public var tileScenes:Object;
+		
+		/**
+		 * IsoScenes stored in their correct order, as specificed by the tmxporperty <code>order</code>
+		 */
+		public var orderedTileScenes:Array = [];
+		
+		/**
+		 * The object layer
+		 */
+		public var objectScene:ObjectScene;
+		
 		
 		private var _isLoaded:Boolean = false;
 		public function get isLoaded():Boolean {
@@ -60,7 +72,7 @@ package nano
 		public function TmxLoader()
 		{
 			this._bitmapCache = new Object();
-			this.scenes = new Object();
+			this.tileScenes = new Object();
 		}
 		
 		/**
@@ -129,8 +141,7 @@ package nano
 							var bitmap:Bitmap = new Bitmap(bmd);
 							var sprite:IsoSprite = new IsoSprite();
 							
-							// TODO THIS IS ASSUMING OBJECTS ARE BUILT WITH THE LOWER LEFT HAND CORNER AS THE ORIGIN
-							// FUUUUUUU
+							// TODO :: This assumes tiles are centered perfectly
 							bitmap.x = - tileset.tileWidth / 2;
 							bitmap.y = 32 - tileset.tileHeight;
 							
@@ -139,8 +150,7 @@ package nano
 								bitmap.x += tileset.tileWidth;
 							}
 							
-//							sprite.setSize(tileset.tileWidth, tileset.tileHeight, 100);
-							sprite.setSize(32, 32, 100);
+							sprite.setSize(tileset.tileWidth, tileset.tileHeight, 0);
 							sprite.sprites = [bitmap];
 							sprite.moveTo(col * 32, row * 32, 0);
 							scene.addChild(sprite);
@@ -158,14 +168,14 @@ package nano
 				
 				scene.id = layer.properties["order"]
 				scene.name = layer.name;
-				this.scenes[layer.name] = scene;
+				this.tileScenes[layer.name] = scene;
 
 				if (layer.properties["order"] != null) {
-					ordered_scenes.push(scene);		
+					orderedTileScenes.push(scene);		
 				}		
 			}
 			
-			ordered_scenes.sort(function(a:*, b:*):int {
+			orderedTileScenes.sort(function(a:*, b:*):int {
 				return int(a.id) - int(b.id);
 			});
 			
@@ -177,15 +187,15 @@ package nano
 		 */
 		private function createObjectScene():void {
 			
+			this.objectScene = new ObjectScene();
+			
 			if(this._map.objectGroups.hasOwnProperty('objects')) {
 				var objGroup:TmxObjectGroup = this._map.objectGroups['objects'];
-				
-				for each(var obj:TmxObject in objGroup) {
-					//var asset:MovieClip = new Assets.instance[obj.name];
-					
+				for each(var obj:TmxObject in objGroup.objects) {
+					var asset:MovieClip = new Assets.instance[obj.name];
+					this.objectScene.addTmxObject(obj, asset);
 				}
 			}
-			
 			
 			// All done!
 			this._isLoaded = true;

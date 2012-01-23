@@ -28,24 +28,27 @@
    <property name="order" value="1"/>
   </properties>
   <data encoding="base64" compression="zlib">
-   eJztlDkKACAMBD0KQT/t001hJSm808zAkkJwRJI4BwCv8JKoJPRoZ/HcWYvUnZwg765Z6pjX3mDotfpnvHPR+gKvjlU/W87R6r7Ai3eGdOEOgN80S5kSdQ==
+   eJztlLEKwCAQxa52EPSn/fQ+oZPcYGvLgSQQHAQjopqZHfJ0TLfeXHcFNVvV+MYVtO9WNI7+3U2B3ahzpjundy/o+kTd58h39PS/oEt3hvzBGgAAsAcXTOsSdQ==
   </data>
  </layer>
  <objectgroup name="objects" width="30" height="30">
-  <object name="scales_weigh_boat" type="asset" x="256" y="448" width="32" height="32"/>
+  <properties>
+   <property name="order" value="2"/>
+  </properties>
+  <object name="scales_weigh_boat" type="asset" x="97" y="351" width="32" height="32"/>
  </objectgroup>
  <layer name="foreground" width="30" height="30">
   <properties>
    <property name="order" value="3"/>
   </properties>
   <data encoding="base64" compression="zlib">
-   eJzt0zEKACAMBMErjIX46DzdQgvB2gR0B46UW0UCAMkkp0v3RtfmVd32sp7ULeu2bQFND8gcfvwjuu92gWwDeY8HCw==
+   eJxjYBhagJWBoWHU3lF7aWEvK4RmYEPCwxnwDJC9LFCaCwnTwc4GOliDAUZiPhq1d/jaOwpGwSgYBaNgeAIAII8HCw==
   </data>
  </layer>
  <objectgroup name="collisions" width="30" height="30">
-  <object x="190" y="609" width="99" height="158"/>
-  <object x="192" y="261" width="161" height="89"/>
-  <object x="639" y="446" width="162" height="98"/>
+  <object x="29" y="384" width="99" height="158"/>
+  <object x="31" y="36" width="161" height="89"/>
+  <object x="478" y="221" width="162" height="98"/>
   <object x="346" y="352"/>
   <object x="346" y="350"/>
   <object x="340" y="342"/>
