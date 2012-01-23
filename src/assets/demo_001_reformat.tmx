@@ -36,6 +36,7 @@
    <property name="order" value="2"/>
   </properties>
   <object name="scales_weigh_boat" type="asset" x="97" y="351" width="32" height="32"/>
+  <object name="sputter_coater" x="161" y="95" width="32" height="32"/>
  </objectgroup>
  <layer name="foreground" width="30" height="30">
   <properties>
@@ -49,10 +50,6 @@
   <object x="29" y="384" width="99" height="158"/>
   <object x="31" y="36" width="161" height="89"/>
   <object x="478" y="221" width="162" height="98"/>
-  <object x="346" y="352"/>
-  <object x="346" y="350"/>
-  <object x="340" y="342"/>
-  <object x="340" y="342"/>
   <object x="725" y="522"/>
   <object x="725" y="522"/>
  </objectgroup>
