@@ -20,7 +20,7 @@ package nano
 		/////////////////////////////////////////
 		//             CHARACTERS              //
 		/////////////////////////////////////////
-		[Embed(source="assets/character/avatar_suited.swf")]
+		[Embed(source="assets/character/avatar_suited.swf", symbol="asset")]
 		public var player_suited:Class;
 		
 		/////////////////////////////////////////

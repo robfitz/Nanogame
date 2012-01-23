@@ -5,6 +5,7 @@ package nano
 	import com.gskinner.motion.GTween;
 	
 	import flash.display.DisplayObject;
+	import flash.display.MovieClip;
 	import flash.display.Sprite;
 	import flash.events.Event;
 	import flash.geom.Point;
@@ -26,12 +27,7 @@ package nano
         
         private static const FPS:int = 12;
         
-		private var spriteswf:*;
-		protected var spritesheet:DisplayObject;
-		
-		private var num_spritesheet_frames:int;
-		
-		private var spriteContainer:Sprite = new Sprite();
+		private var spriteswf:DisplayObject;
 		
 		protected var image_height:int;
 		protected var image_width:int;
@@ -47,36 +43,32 @@ package nano
         private var dialogbox:DialogBox;
                 
 
-		public function Character(world:World, image_width:int, image_height:int, iso_width:int, iso_length:int, iso_height:int, spriteswf:DisplayObject=null, spritesheet:DisplayObject=null, descriptor:Object=null)
+		public function Character(world:World, characterSprite:MovieClip, descriptor:Object = null)
 		{
 			super(descriptor);
 			this.world = world;
-			this.setSize(iso_width, iso_length, iso_height);
 			
-			this.image_height = image_height;
-			this.image_width = image_width;
+			//this.image_height = image_height;
+			//this.image_width = image_width;
 			
-			this.spriteswf = spriteswf;
-			this.spritesheet = spritesheet;
-			
-			if (spritesheet) {
-				initSpritesheet(image_width, image_height);
-   			}
-   			else if (spriteswf) {
-   				initSpriteswf();
-   			}
-   			spriteContainer.x = -image_width / 2;
-			spriteContainer.y = - image_height * 3 / 4;
+			this.spriteswf = characterSprite;
+   			this.initSpriteswf();
             
-            this.sprites = [spriteContainer]
+            this.sprites = [this.spriteswf]
+			this.setSize(32, 32, 0);
             
-            carryAnchor = new IsoSprite();
-            carryAnchor.z = 20;
+            //carryAnchor = new IsoSprite();
+            //carryAnchor.z = 20;
             
-            addEventListener(Event.ENTER_FRAME, update);
+            //addEventListener(Event.ENTER_FRAME, update);
 		}
 		
-		protected function update(event:Event):void {
+		/**
+		 * Update loop for the character 
+		 * @param dt Amount of time that has passed in seconds
+		 * 
+		 */		
+		protected function update(dt:Number):void {
 			if (destination) {
 				updatePosition();
 			}
@@ -84,21 +76,11 @@ package nano
 		
 		public function stand():void {
 			destination = null;
-			
-			if (spritesheet) {
-				spritesheet.x = -image_width * current_dir;
-				spritesheet.y = - image_height * 8;
-				
-				if (isCarrying) {
-					//show carrying walk instead of normal walk
-					spritesheet.y -= image_height * 9;
-				}
-			}
-			else {
-				try {
-					spriteswf.stand();
-				}
-				catch (error:*) { }
+		
+			try {
+				(spriteswf as Object).stand();
+			} catch (error:*) {
+				// do nothing on failure
 			}
 		}
 		
@@ -186,15 +168,7 @@ package nano
 				updateDialogTriggers();
 				
 				unmovedX -= int(unmovedX);
-				unmovedY -= int(unmovedY);
-				 
-				if (spritesheet && distanceToNextFrame < 0) {
-					distanceToNextFrame += distancePerFrame;
-					spritesheet.x -= image_width;
-					if (spritesheet.x <= - num_spritesheet_frames * image_width) {
-						spritesheet.x = 0;
-					} 
-				}  
+				unmovedY -= int(unmovedY);				 
 			}
 			dispatchEvent(new Event("moved"));
 		}
@@ -206,7 +180,7 @@ package nano
 				
 				if (!dialogbox) {
 					dialogbox = new DialogBox();
-					this.spriteContainer.stage.addChild(dialogbox);
+					//this.spriteContainer.stage.addChild(dialogbox);
 				}
 				
 				dialogbox.y = -300;
@@ -284,40 +258,16 @@ package nano
 			carryAnchor.x = this.x + this.width / 2 + ax;
 			carryAnchor.y = this.y + this.length / 2 + ay;
 			
-			if (spritesheet) {
-				spritesheet.y = - image_height * direction;
-				if (isCarrying) {
-					//show carrying walk instead of normal walk
-					spritesheet.y -= image_height * 9;
-				}
+			try {
+				trace("IMPLEMENT TURNING");
+				//(spriteswf as Dis).getChildAt(0).content.turn(direction);
 			}
-			else {
-				try {
-					spriteswf.getChildAt(0).content.turn(direction);
-				}
-				catch (e:*) { 
-				}
+			catch (e:*) { 
 			}
 		}
 		
 		private function initSpriteswf():void {
-			spriteContainer.addChild(spriteswf);
-			spriteswf.width = image_width;
-			spriteswf.height = image_height;
 			stand();
 		}
-		
-		private function initSpritesheet(image_width:int, image_height:int):void {
-			spriteContainer.addChild(spritesheet);
-            var mask:Sprite = new Sprite();
-            mask.graphics.beginFill(0xffffff);
-            mask.graphics.drawRect(0, 0, image_width, image_height);
-            mask.graphics.endFill();
-            spriteContainer.addChild(mask);
-            spriteContainer.mask = mask;
-            
-            num_spritesheet_frames = spritesheet.width / image_width;
-  		}
-		
 	}
 }

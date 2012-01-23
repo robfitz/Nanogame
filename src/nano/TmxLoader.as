@@ -12,6 +12,7 @@ package nano
 	import flash.events.Event;
 	import flash.events.EventDispatcher;
 	import flash.geom.Matrix;
+	import flash.geom.Point;
 	import flash.geom.Rectangle;
 	import flash.net.URLLoader;
 	import flash.net.URLRequest;
@@ -48,6 +49,11 @@ package nano
 		 * The object layer
 		 */
 		public var objectScene:ObjectScene;
+		
+		/**
+		 * Spawn point in the object layer
+		 */
+		public var spawnPoint:Point;
 		
 		
 		private var _isLoaded:Boolean = false;
@@ -192,8 +198,17 @@ package nano
 			if(this._map.objectGroups.hasOwnProperty('objects')) {
 				var objGroup:TmxObjectGroup = this._map.objectGroups['objects'];
 				for each(var obj:TmxObject in objGroup.objects) {
-					var asset:MovieClip = new Assets.instance[obj.name];
-					this.objectScene.addTmxObject(obj, asset);
+					if(obj.type == 'asset') {
+						var asset:MovieClip = new Assets.instance[obj.name];
+						this.objectScene.addTmxObject(obj, asset);
+					} else if(obj.type == 'marker') {
+						switch(obj.name) {
+							case 'spawn':
+								this.spawnPoint = new Point(obj.x, obj.y);
+								break;
+						}
+					}
+					
 				}
 			}
 			

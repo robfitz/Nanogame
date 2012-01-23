@@ -11,6 +11,8 @@ package nano
 	
 	import mysa.Sheep;
 	
+	import nano.scene.ObjectScene;
+	
 	import net.pixelpracht.tmx.TmxObject;
 	import net.pixelpracht.tmx.TmxObjectGroup;
 
@@ -75,6 +77,9 @@ package nano
 			return this._triggers;
 		}
 		
+		/** Markers */
+		private var _markers:ObjectScene;
+		
 		/**
 		 * World contructor 
 		 * @param hostContainer The container that our iso scenes ultimately render on
@@ -115,7 +120,7 @@ package nano
 				// create and add in our character at this time
 				// TODO Not the best spot, really
 				var img:* = new Assets.instance.player_suited;
-				this.player = new Character(this, 96, 96, 16, 16, 56, null, img);
+				this.player = new Character(this, new Assets.instance.player_suited);
 				
 				if (DEBUG_DRAW) {
                     	var collision_hull:IsoBox = new IsoBox();
@@ -133,8 +138,12 @@ package nano
 				img.addEventListener(Event.ADDED_TO_STAGE, function(e:*):void {
 					p.updateDialogTriggers();
 				});
-				if(this.objects) {
-					this.objects.addChild(this.player);
+				
+				// add player
+				this.objects.addChild(this.player);
+				
+				if(loader.spawnPoint) {
+					this.player.moveTo(loader.spawnPoint.x, loader.spawnPoint.y, 0);
 				}
 				
 //				for each (var objectGroup:TmxObjectGroup in loader.map.objectGroups) {
@@ -157,8 +166,6 @@ package nano
 				this._triggers = loader.getCollisionLayerByName('triggers');
 				
 				this.invalidateTiles();
-				
-				
 			}
 		}
 		
