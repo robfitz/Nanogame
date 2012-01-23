@@ -114,7 +114,7 @@ package nano
 				
 				// create and add in our character at this time
 				// TODO Not the best spot, really
-				var img:* = new Assets.instance.Link;
+				var img:* = new Assets.instance.player_suited;
 				this.player = new Character(this, 96, 96, 16, 16, 56, null, img);
 				
 				if (DEBUG_DRAW) {

@@ -17,8 +17,11 @@ package nano
 			return _instance;
 		}
 		
-		[Embed(source="assets/avatar.swf")]
-		public var Link:Class;
+		/////////////////////////////////////////
+		//             CHARACTERS              //
+		/////////////////////////////////////////
+		[Embed(source="assets/character/avatar_suited.swf")]
+		public var player_suited:Class;
 		
 		/////////////////////////////////////////
 		//            WORLD OBJECTS            //
