@@ -2,12 +2,18 @@ package nano
 {
 	import as3isolib.display.IsoView;
 	import as3isolib.display.primitive.IsoBox;
+	import as3isolib.display.scene.IsoGrid;
 	import as3isolib.display.scene.IsoScene;
+	import as3isolib.geom.IsoMath;
+	import as3isolib.geom.Pt;
 	import as3isolib.graphics.SolidColorFill;
+	
+	import eDpLib.events.ProxyEvent;
 	
 	import flash.display.DisplayObjectContainer;
 	import flash.display.Stage;
 	import flash.events.Event;
+	import flash.events.MouseEvent;
 	
 	import mysa.Sheep;
 	
@@ -32,6 +38,18 @@ package nano
 		
 		public var player:Character;
 		
+		private var _objects:IsoScene;
+		public function get objects():IsoScene {
+			return this._objects;
+		}
+		public function set objects(val:IsoScene):void {
+			this._objects = val;
+			this.view.addScene(this._objects);
+		}
+		
+		public var grid:IsoGrid;
+		public var gridScene:IsoScene;
+		
 		// TODO :: REMOVE THIS ONCE MYSA IS DECOUPLED
 		private var _background:IsoScene;
 		public function get background():IsoScene {
@@ -42,15 +60,6 @@ package nano
 			this.view.addScene(this._background);
 			//this._background.hostContainer = this._hostContainer;
 			this.invalidateTiles();
-		}
-		
-		private var _objects:IsoScene;
-		public function get objects():IsoScene {
-			return this._objects;
-		}
-		public function set objects(val:IsoScene):void {
-			this._objects = val;
-			this.view.addScene(this._objects);
 		}
 		
 		// TODO :: REMOVE THIS ONCE MYSA IS DECOUPLED
@@ -90,7 +99,7 @@ package nano
 			var stage:Stage = this._hostContainer.stage;
 			this.view = new IsoView();
 			this.view.setSize(stage.stageWidth, stage.stageHeight);
-			this.view.panBy(0, 200);
+			//this.view.panBy(0, 200);
 			this._hostContainer.addChild(this.view);
 		}
 		
@@ -102,8 +111,9 @@ package nano
 		 */		
 		public function initWorldFromLoader(loader:TmxLoader):void {
 			if(loader.isLoaded) {
-				var scenes:Object = loader.tileScenes;
 				
+				// Create and add all our tile scenes
+				var scenes:Object = loader.tileScenes;
 				for (var i:int = 0; i < loader.orderedTileScenes.length; i ++) {
 					var scene:IsoScene = loader.orderedTileScenes[i];
 				
@@ -114,27 +124,26 @@ package nano
 						this.view.addScene(scene);
 					}
 				}
-				
 				this.objects = loader.objectScene;
 				
-				// create and add in our character at this time
-				// TODO Not the best spot, really
+				
+				// Create and add in our character at this time
 				var img:* = new Assets.instance.player_suited;
 				this.player = new Character(this, new Assets.instance.player_suited);
 				
 				if (DEBUG_DRAW) {
-                    	var collision_hull:IsoBox = new IsoBox();
-	                    collision_hull.setSize(player.width, player.length, player.height);
-//	                    collision_hull.moveTo(object.x, object.y, 0);
-	                    var f:SolidColorFill = new SolidColorFill(0xffffff, 0.2);
-	                    collision_hull.fills = [f, f, f, f, f, f];
-	                    objects.addChild(collision_hull);
-	                    img.addEventListener(Event.ENTER_FRAME, function(e:*):void {
-	                    	collision_hull.moveTo(player.x, player.y, player.z);
-	                    });
-//	                    sprite.addChild(collision_hull);
-                    }
-                var p:Character = player;
+                	var collision_hull:IsoBox = new IsoBox();
+                    collision_hull.setSize(player.width, player.length, player.height);
+                    var f:SolidColorFill = new SolidColorFill(0xffffff, 0.2);
+                    collision_hull.fills = [f, f, f, f, f, f];
+                    objects.addChild(collision_hull);
+                    img.addEventListener(Event.ENTER_FRAME, function(e:*):void {
+                    	collision_hull.moveTo(player.x, player.y, player.z);
+                    });
+                }
+				
+                
+				var p:Character = player;
 				img.addEventListener(Event.ADDED_TO_STAGE, function(e:*):void {
 					p.updateDialogTriggers();
 				});
@@ -146,25 +155,20 @@ package nano
 					this.player.moveTo(loader.spawnPoint.x, loader.spawnPoint.y, 0);
 				}
 				
-//				for each (var objectGroup:TmxObjectGroup in loader.map.objectGroups) {
-//            		for each (var object:TmxObject in objectGroup.objects) {
-//            			if (object.custom && object.custom.hasOwnProperty("spawn")) {
-//	                 		if (object.custom["spawn"] == "player") {
-//                 				player.moveTo(object.x, object.y, 0);
-//                 				view.centerOnIso(player);
-//	                 		}
-//	                 		else if (object.custom["spawn"] == "sheep") {
-//	                 			var sheep:Sheep = new Sheep(this, 64, 64, 16, 16, 16, null, new Assets.instance.SheepImg);
-//								objects.addChild(sheep);
-//								sheep.moveTo(object.x, object.y, 0);	     	            			
-//	                 		}
-//            			}
-//            		}
-//            	}
-				
 				this._collisions= loader.getCollisionLayerByName('collisions');
 				this._triggers = loader.getCollisionLayerByName('triggers');
 				
+				// Create and add the grid that the user will click
+				this.grid = new IsoGrid();
+				this.grid.setGridSize(loader.map.width, loader.map.height, 0);
+				this.grid.cellSize = 32;
+				this.gridScene = new IsoScene();
+				this.gridScene.addChild(this.grid);
+				this.view.addScene(this.gridScene);
+				
+				this.grid.addEventListener(MouseEvent.CLICK, this.onGridClick);
+				
+				// Finish up by forcing a complete redraw
 				this.invalidateTiles();
 			}
 		}
@@ -174,6 +178,9 @@ package nano
 		 * @param dt The time passed since last update
 		 */
 		public function update(dt:Number):void {
+			if(this.player) {
+				this.player.update(dt);
+			}
 		}
 		
 		/**
@@ -201,6 +208,33 @@ package nano
 		 */		
 		public function invalidateTiles():void {
 			this._renderTiles = true;
+		}
+		
+		/**
+		 * The user has clicked on the host container 
+		 * @param event The mouse event
+		 * 
+		 */		
+		private function onGridClick(event:ProxyEvent):void {
+			var mEvent:MouseEvent = event.targetEvent as MouseEvent;
+			var pt:Pt = this.stageToWorld(mEvent.stageX, mEvent.stageY);
+			this.player.walkTo(pt);
+		}
+		
+		/**
+		 * Convert a stage coordinates to a position in our world space. 
+		 * @param x X position on the stage 
+		 * @param y Y position on the state
+		 * @return Pt representing position in the world
+		 * 
+		 */		
+		public function stageToWorld(x:Number, y:Number):Pt {
+			trace("-------------------------------------------");
+			trace("      Stage Position:", x, y);
+			var stage:Stage = this._hostContainer.stage;
+			var pt:Pt = new Pt(x - stage.stageWidth / 2 + this.view.currentX, y - stage.stageHeight / 2 + this.view.currentY);
+			trace(" Normalized Position:", pt);
+			return IsoMath.screenToIso(pt); 
 		}
 	}
 }

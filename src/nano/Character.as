@@ -1,6 +1,7 @@
 package nano
 {
 	import as3isolib.display.IsoSprite;
+	import as3isolib.geom.Pt;
 	
 	import com.gskinner.motion.GTween;
 	
@@ -8,16 +9,18 @@ package nano
 	import flash.display.MovieClip;
 	import flash.display.Sprite;
 	import flash.events.Event;
-	import flash.geom.Point;
 	
 	import nano.dialog.DialogBox;
 	
 	public class Character extends IsoSprite
 	{
+		public static var DIRECTIONS:Array = ['east', 'southeast', 'south', 'southwest', 'west', 'northwest', 'north', 'northeast'];
+		
 		/** The world this character lives in */
 		protected var world:World;
 		
-		private var destination:Point;
+		private var destination:Pt;
+		public var current_dir:uint = 0;
 		
 		private var distancePerFrame:Number = 4.5;
         private var distanceToNextFrame:Number = distancePerFrame;
@@ -41,8 +44,24 @@ package nano
         private var unmovedY:Number = 0;
         
         private var dialogbox:DialogBox;
-                
+	
+		/**
+		 * Flags if the player is carrying a object
+		 */
+		private var _isCarrying:Boolean = false;
+		public function set isCarrying(val:Boolean):void {
+			_isCarrying = val;
+			if (!destination) stand();
+		}
+		public function get isCarrying():Boolean { return _isCarrying; }
 
+		/**
+		 * Default constructor for a nanogame character 
+		 * @param world The world the character lives in
+		 * @param characterSprite The flash sprite that is the visual rep of the character
+		 * @param descriptor IsoLib descriptor for this sprite
+		 * 
+		 */		
 		public function Character(world:World, characterSprite:MovieClip, descriptor:Object = null)
 		{
 			super(descriptor);
@@ -59,8 +78,6 @@ package nano
             
             //carryAnchor = new IsoSprite();
             //carryAnchor.z = 20;
-            
-            //addEventListener(Event.ENTER_FRAME, update);
 		}
 		
 		/**
@@ -68,9 +85,9 @@ package nano
 		 * @param dt Amount of time that has passed in seconds
 		 * 
 		 */		
-		protected function update(dt:Number):void {
+		public function update(dt:Number):void {
 			if (destination) {
-				updatePosition();
+				updatePosition(dt);
 			}
 		}
 		
@@ -78,27 +95,17 @@ package nano
 			destination = null;
 		
 			try {
-				(spriteswf as Object).gotoAndStop("south stand");
+				(spriteswf as MovieClip).gotoAndStop(this.animationLabel(this.current_dir, "stand"));
 			} catch (error:*) {
-				trace('failed to call stand');
-				// do nothing on failure
+				trace('FAILED TO CALL GOTOANDSTOP ON SWF in Character.stand()');
 			}
-		}
+		}		
 		
-		public function set isCarrying(val:Boolean):void {
-			_isCarrying = val;
-			if (!destination) stand();
-			
-			
-		}
-		public function get isCarrying():Boolean { return _isCarrying; }
-		private var _isCarrying:Boolean = false;
-		
-		public function walkTo(destination:Point):void {
+		public function walkTo(destination:Pt):void {
 			this.destination = destination;
 		}
 		
-		protected function updatePosition():void {
+		protected function updatePosition(dt:Number):void {
 			updateDirection();
 			
 			var dx:Number = (destination.x - this.x);
@@ -163,13 +170,15 @@ package nano
 						}
 					}
 				}
+				
+				this.world.view.centerOnIso(this);
 				 
 				distanceToNextFrame -= Math.sqrt(dx*dx + dy*dy);
 				
 				updateDialogTriggers();
 				
 				unmovedX -= int(unmovedX);
-				unmovedY -= int(unmovedY);				 
+				unmovedY -= int(unmovedY);
 			}
 			dispatchEvent(new Event("moved"));
 		}
@@ -197,8 +206,6 @@ package nano
 				dialogbox.visible = false;
 				}
 		}
-		
-		public var current_dir:uint = 0;
 		
 		private function updateDirection():void {
 			var temp:* = spriteswf;
@@ -256,15 +263,26 @@ package nano
 					ay = -arm/2;
 					break;
 			}
-			carryAnchor.x = this.x + this.width / 2 + ax;
-			carryAnchor.y = this.y + this.length / 2 + ay;
+			//carryAnchor.x = this.x + this.width / 2 + ax;
+			//carryAnchor.y = this.y + this.length / 2 + ay;
 			
 			try {
-				trace("IMPLEMENT TURNING");
-				(spriteswf as Object).turn(direction);
+				(spriteswf as MovieClip).gotoAndStop(this.animationLabel(this.current_dir, "walk"));
 			}
-			catch (e:*) { 
+			catch (e:*) {
+				trace("ACCESS TO PLAYER SWF FAILED IN Character.updateDirection");
 			}
+		}
+		
+		/**
+		 * Generate the correct turn label to apply to our avatar 
+		 * @param direction The direction int 
+		 * @param action Either "walk" or "stand"
+		 * @return String to call on our asset movieclip 
+		 * 
+		 */		
+		private function animationLabel(direction:int, action:String):String {
+			return DIRECTIONS[direction] + " " + action;
 		}
 		
 		private function initSpriteswf():void {

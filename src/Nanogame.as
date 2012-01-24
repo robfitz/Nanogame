@@ -65,7 +65,7 @@ package {
 		/**
 		 * Stops the game for the time being
 		 */
-		public function stopGame():void {
+		public function stopLoop():void {
 			this.removeEventListener(Event.ENTER_FRAME, this.loopdeloop);
 		}
 		
@@ -82,7 +82,7 @@ package {
 		 * @param dt Time (in seconds) since the last frame
 		 */		
 		public function update(dt:Number):void {
-			
+			this.world.update(dt);
 		}
 		
 		/**
