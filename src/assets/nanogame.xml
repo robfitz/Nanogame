@@ -1,0 +1,14 @@
+<level name="Stechytronics">
+	<objective description="Prepare the PDMS" >
+		<intro>
+			Welcome to the Lab. First things first: we need to make a something flexible for them to be built it
+		</intro>
+		<goal action="click" target="pdms_station" />
+		<fail>
+			That's not the PDMS
+		</fail>
+		<success>
+			Before the PDMS solidifies, we need to remove bubble. We can use the vacuum chamber for that
+		</success>
+	</objective>
+</level>
