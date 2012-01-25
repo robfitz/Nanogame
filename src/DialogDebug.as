@@ -4,6 +4,9 @@ package
 	
 	import flash.display.Sprite;
 	
+	import level.Script;
+	
+	import nano.Assets;
 	import nano.CollisionLayer;
 	import nano.dialog.DialogBox;
 	
@@ -23,6 +26,10 @@ package
 		public function DialogDebug()
 		{
 			super();
+			
+			var gameXml:XML = new XML(new Assets.instance.game_script);
+			
+			var script:Script = new Script(gameXml);
 			
 			var triggers:CollisionLayer = new CollisionLayer();
 			triggers.rects.push({

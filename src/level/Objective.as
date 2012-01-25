@@ -9,9 +9,11 @@ package level
 	{
 		public var introDialog:String;
 		
-		public var completeDialog:String;
+		public var successDialog:String;
 		
 		public var failDialog:String;
+		
+		public var goalTarget:String;
 		
 		/**
 		 * Default contructor 
@@ -19,7 +21,16 @@ package level
 		 */		
 		public function Objective(objectiveXml:XML = null)
 		{
-			
+			if(objectiveXml) {
+				this.initFromXml(objectiveXml);
+			}
+		}
+		
+		public function initFromXml(xml:XML):void {
+			this.goalTarget = xml.goal.@target;
+			this.introDialog = xml.intro;
+			this.successDialog = xml.success;
+			this.failDialog = xml.fail;
 		}
 	}
 }

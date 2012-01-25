@@ -9,6 +9,8 @@ package level
 	public class Script
 	{
 		
+		public var name:String;
+		
 		/** Ordered array of objectives. Each must be competed in order to 
 		 *  finish the script */
 		public var objectives:Array = [];
@@ -21,7 +23,20 @@ package level
 		 */		
 		public function Script(scriptXml:XML = null)
 		{
-			
+			if(scriptXml) {
+				this.initFromXml(scriptXml);
+			}
+		}
+		
+		/**
+		 * Populates this script from an xml description 
+		 * @param xml The script to parse
+		 */		
+		public function initFromXml(xml:XML):void {
+			this.name = xml.@name;
+			for each(var obj:XML in xml.children()) {
+				this.objectives.push(new Objective(obj));
+			}
 		}
 	}
 }

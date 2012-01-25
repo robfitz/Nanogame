@@ -18,6 +18,12 @@ package nano
 		}
 		
 		/////////////////////////////////////////
+		//          THE SCRIPT, LOL            //
+		/////////////////////////////////////////
+		[Embed(source="assets/nanogame.xml", mimeType="application/octet-stream")]
+		public var game_script:Class;
+		
+		/////////////////////////////////////////
 		//             CHARACTERS              //
 		/////////////////////////////////////////
 		[Embed(source="assets/character/avatar_suited.swf", symbol="asset")]
