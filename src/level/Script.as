@@ -11,6 +11,8 @@ package level
 		
 		public var name:String;
 		
+		public var introDialog:String;
+		
 		/** Ordered array of objectives. Each must be competed in order to 
 		 *  finish the script */
 		public var objectives:Array = [];
@@ -34,6 +36,7 @@ package level
 		 */		
 		public function initFromXml(xml:XML):void {
 			this.name = xml.@name;
+			this.introDialog = xml.intro;
 			for each(var obj:XML in xml.children()) {
 				this.objectives.push(new Objective(obj));
 			}

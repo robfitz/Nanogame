@@ -8,6 +8,9 @@ package {
 	import flash.events.Event;
 	import flash.utils.getTimer;
 	
+	import level.Script;
+	
+	import nano.Assets;
 	import nano.CollisionLayer;
 	import nano.TmxLoader;
 	import nano.World;
@@ -37,19 +40,14 @@ package {
 			// load the world!
 			var loader:TmxLoader = new TmxLoader();
 			loader.addEventListener(Event.COMPLETE, function(event:Event):void {
+				// create our world!
 				world.initWorldFromLoader(loader);
+				
+				// create our script
+				world.script = new Script(new XML(new Assets.instance.game_script));
+				world.startScript();
+				
 				startLoop();
-				
-				// DEBUG GRID
-				var g:IsoGrid = new IsoGrid();
-				g.gridlines = new Stroke(1, 0xCCCCCC, 1);
-				g.showOrigin = false;
-				g.cellSize = 32;
-				g.setGridSize(30, 30);
-				//world..addChild(g);
-				//world.view.getSceneByID('3').addChild(g);
-				// END DEBUG GRID
-				
 			});
 			loader.load("./assets/demo_001_reformat.tmx");
 		}

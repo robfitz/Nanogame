@@ -95,18 +95,7 @@ package nano
 		public function initWorldFromLoader(loader:TmxLoader):void {
 			if(loader.isLoaded) {
 				
-				// Create and add all our tile scenes
 				var scenes:Object = loader.tileScenes;
-//				for (var i:int = 0; i < loader.orderedTileScenes.length; i ++) {
-//					var scene:IsoScene = loader.orderedTileScenes[i];
-//				
-//					if (scene.name == "objects") {
-//						this.objects = scene;
-//					}
-//					else {
-//						this.view.addScene(scene);
-//					}
-//				}
 				
 				// Create and add the grid that the user will click
 				this.grid = new IsoGrid();
@@ -115,7 +104,7 @@ package nano
 				this.gridScene = new IsoScene();
 				this.gridScene.addChild(this.grid);
 				
-				// inject scenes in order
+				// Inject scenes in order
 				this.view.addScene(scenes['background']);
 				this.view.addScene(this.gridScene);
 				this.objects = loader.objectScene;
@@ -124,18 +113,6 @@ package nano
 				// Create and add in our character at this time
 				var img:* = new Assets.instance.player_suited;
 				this.player = new Character(this, new Assets.instance.player_suited);
-				
-				if (DEBUG_DRAW) {
-                	var collision_hull:IsoBox = new IsoBox();
-                    collision_hull.setSize(player.width, player.length, player.height);
-                    var f:SolidColorFill = new SolidColorFill(0xffffff, 0.2);
-                    collision_hull.fills = [f, f, f, f, f, f];
-                    objects.addChild(collision_hull);
-                    img.addEventListener(Event.ENTER_FRAME, function(e:*):void {
-                    	collision_hull.moveTo(player.x, player.y, player.z);
-                    });
-                }
-				
                 
 				var p:Character = player;
 				img.addEventListener(Event.ADDED_TO_STAGE, function(e:*):void {
@@ -198,12 +175,17 @@ package nano
 			this._renderTiles = true;
 		}
 		
+		///////////////////////////////////////////////////
+		// WORLD INTERACTION
+		///////////////////////////////////////////////////
+		
 		/**
 		 * User has clicked on a game object, set as movement target 
 		 * @param event GameObjectEvent
 		 */		
 		private function onObjectClick(event:GameObjectEvent):void {
-			trace("you clicked", event.triggerObject.objectName, "of type", event.triggerObject.objectType);
+			var pt:Pt = new Pt(event.triggerObject.x, event.triggerObject.y, 0);
+			this.player.walkTo(pt);
 		}
 		
 		/**
@@ -229,6 +211,30 @@ package nano
 			var stage:Stage = this._hostContainer.stage;
 			var pt:Pt = new Pt(x - stage.stageWidth / 2 + this.view.currentX, y - stage.stageHeight / 2 + this.view.currentY);
 			return IsoMath.screenToIso(pt); 
+		}
+		
+		///////////////////////////////////////////////////
+		// SCRIPT CONTROL
+		///////////////////////////////////////////////////
+		
+		/**
+		 * Kicks of script tracking and shit 
+		 */		
+		public function startScript():void {
+			if(this.script.introDialog) {
+				this.showDialog(this.script.introDialog);
+			}
+		}
+		
+		/**
+		 * Print out dialog into the console
+		 * TODO :: REPLACE THIS WITH IN GAME TEXT MANAGEMENT 
+		 * @param text Text to show 
+		 */		
+		public function showDialog(text:String):void {
+			trace("\n\n============ DIALOG ============");
+			trace(text);
+			trace("========== END DIALOG ==========");
 		}
 	}
 }
