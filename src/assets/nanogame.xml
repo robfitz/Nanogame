@@ -1,14 +1,17 @@
 <level name="Stechytronics">
+	<intro>
+		Welcome to the demo of the script system
+	</intro>
 	<objective description="Prepare the PDMS" >
 		<intro>
-			Welcome to the Lab. First things first: we need to make a something flexible for them to be built it
+			Please click the flashing scales and weigh boat
 		</intro>
-		<goal action="click" target="pdms_station" />
+		<goal action="click" target="scales_weigh_boat" />
 		<fail>
-			That's not the PDMS
+			You missed...
 		</fail>
 		<success>
-			Before the PDMS solidifies, we need to remove bubble. We can use the vacuum chamber for that
+			Well done, you clicked it! I'm so proud.
 		</success>
 	</objective>
 </level>

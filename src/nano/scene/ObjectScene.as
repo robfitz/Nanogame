@@ -1,15 +1,24 @@
 package nano.scene
 {
-	import as3isolib.display.IsoSprite;
 	import as3isolib.display.scene.IsoScene;
 	
+	import eDpLib.events.ProxyEvent;
+	
 	import flash.display.DisplayObject;
+	import flash.display.DisplayObjectContainer;
+	import flash.display.MovieClip;
+	import flash.events.MouseEvent;
 	
 	import net.pixelpracht.tmx.TmxObject;
 	import net.pixelpracht.tmx.TmxPropertySet;
 	
+	
+	[Event(name="game_click", type="nano.scene.GameObjectEvent")]
+	
 	public class ObjectScene extends IsoScene
 	{
+		private var assetToIsoMap:Object = {};
+		
 		public function ObjectScene()
 		{
 			super();
@@ -22,19 +31,24 @@ package nano.scene
 		 * @param asset DisplayObject to build the sprite with
 		 * 
 		 */		
-		public function addTmxObject(tmxObj:TmxObject, asset:DisplayObject):void {
-			var sprite:IsoSprite = new IsoSprite();
-			sprite.data = tmxObj.custom;
-			sprite.sprites = [asset];
+		public function addTmxObject(tmxObj:TmxObject, asset:DisplayObjectContainer):void {
+			var sprite:GameObject = new GameObject();
+			sprite.objectName = tmxObj.name;
+			sprite.objectType = tmxObj.type;
+			sprite.objectData = tmxObj.custom;
+			sprite.asset = asset;
 			sprite.x = tmxObj.x;
 			sprite.y = tmxObj.y;
-			trace(asset.width, asset.height);
 			sprite.setSize(32, 32, 0);
-			
-			asset.x = 0;
-			asset.y = 32;
+			sprite.addEventListener(MouseEvent.CLICK, this.onObjectClick);
 			
 			this.addChild(sprite);
+		}
+		
+		public function onObjectClick(event:ProxyEvent):void {
+			var ev:GameObjectEvent = new GameObjectEvent(GameObjectEvent.CLICK);
+			ev.triggerObject = event.target as GameObject;
+			this.dispatchEvent(ev);
 		}
 	}
 }

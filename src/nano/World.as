@@ -15,8 +15,12 @@ package nano
 	import flash.events.Event;
 	import flash.events.MouseEvent;
 	
+	import level.Script;
+	
 	import mysa.Sheep;
 	
+	import nano.scene.GameObject;
+	import nano.scene.GameObjectEvent;
 	import nano.scene.ObjectScene;
 	
 	import net.pixelpracht.tmx.TmxObject;
@@ -36,19 +40,22 @@ package nano
 		
 		public var view:IsoView;
 		
+		public var grid:IsoGrid;
+		
+		public var gridScene:IsoScene;
+		
 		public var player:Character;
 		
-		private var _objects:IsoScene;
-		public function get objects():IsoScene {
+		public var script:Script;
+		
+		private var _objects:ObjectScene;
+		public function get objects():ObjectScene {
 			return this._objects;
 		}
-		public function set objects(val:IsoScene):void {
+		public function set objects(val:ObjectScene):void {
 			this._objects = val;
 			this.view.addScene(this._objects);
 		}
-		
-		public var grid:IsoGrid;
-		public var gridScene:IsoScene;
 		
 		// TODO :: REMOVE THIS ONCE MYSA IS DECOUPLED
 		private var _background:IsoScene;
@@ -114,18 +121,29 @@ package nano
 				
 				// Create and add all our tile scenes
 				var scenes:Object = loader.tileScenes;
-				for (var i:int = 0; i < loader.orderedTileScenes.length; i ++) {
-					var scene:IsoScene = loader.orderedTileScenes[i];
+//				for (var i:int = 0; i < loader.orderedTileScenes.length; i ++) {
+//					var scene:IsoScene = loader.orderedTileScenes[i];
+//				
+//					if (scene.name == "objects") {
+//						this.objects = scene;
+//					}
+//					else {
+//						this.view.addScene(scene);
+//					}
+//				}
 				
-					if (scene.name == "objects") {
-						this.objects = scene;
-					}
-					else {
-						this.view.addScene(scene);
-					}
-				}
+				// Create and add the grid that the user will click
+				this.grid = new IsoGrid();
+				this.grid.setGridSize(loader.map.width, loader.map.height, 0);
+				this.grid.cellSize = 32;
+				this.gridScene = new IsoScene();
+				this.gridScene.addChild(this.grid);
+				
+				// inject scenes in order
+				this.view.addScene(scenes['background']);
+				this.view.addScene(this.gridScene);
 				this.objects = loader.objectScene;
-				
+				this.view.addScene(scenes['foreground']);
 				
 				// Create and add in our character at this time
 				var img:* = new Assets.instance.player_suited;
@@ -150,22 +168,16 @@ package nano
 				
 				// add player
 				this.objects.addChild(this.player);
-				
 				if(loader.spawnPoint) {
 					this.player.moveTo(loader.spawnPoint.x, loader.spawnPoint.y, 0);
 				}
 				
+				// add collision and trigger information
 				this._collisions= loader.getCollisionLayerByName('collisions');
 				this._triggers = loader.getCollisionLayerByName('triggers');
 				
-				// Create and add the grid that the user will click
-				this.grid = new IsoGrid();
-				this.grid.setGridSize(loader.map.width, loader.map.height, 0);
-				this.grid.cellSize = 32;
-				this.gridScene = new IsoScene();
-				this.gridScene.addChild(this.grid);
-				this.view.addScene(this.gridScene);
-				
+				// Setup our interaction listeners
+				this.objects.addEventListener(GameObjectEvent.CLICK, this.onObjectClick);
 				this.grid.addEventListener(MouseEvent.CLICK, this.onGridClick);
 				
 				// Finish up by forcing a complete redraw
@@ -211,12 +223,21 @@ package nano
 		}
 		
 		/**
+		 * User has clicked on a game object, set as movement target 
+		 * @param event GameObjectEvent
+		 */		
+		private function onObjectClick(event:GameObjectEvent):void {
+			trace("you clicked", event.triggerObject.objectName, "of type", event.triggerObject.objectType);
+		}
+		
+		/**
 		 * The user has clicked on the host container 
 		 * @param event The mouse event
 		 * 
 		 */		
 		private function onGridClick(event:ProxyEvent):void {
 			var mEvent:MouseEvent = event.targetEvent as MouseEvent;
+			trace(mEvent.target.name);
 			var pt:Pt = this.stageToWorld(mEvent.stageX, mEvent.stageY);
 			this.player.walkTo(pt);
 		}
@@ -229,11 +250,8 @@ package nano
 		 * 
 		 */		
 		public function stageToWorld(x:Number, y:Number):Pt {
-			trace("-------------------------------------------");
-			trace("      Stage Position:", x, y);
 			var stage:Stage = this._hostContainer.stage;
 			var pt:Pt = new Pt(x - stage.stageWidth / 2 + this.view.currentX, y - stage.stageHeight / 2 + this.view.currentY);
-			trace(" Normalized Position:", pt);
 			return IsoMath.screenToIso(pt); 
 		}
 	}
