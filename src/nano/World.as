@@ -57,30 +57,6 @@ package nano
 			this.view.addScene(this._objects);
 		}
 		
-		// TODO :: REMOVE THIS ONCE MYSA IS DECOUPLED
-		private var _background:IsoScene;
-		public function get background():IsoScene {
-			return this._background;
-		}
-		public function set background(val:IsoScene):void {
-			this._background = val;
-			this.view.addScene(this._background);
-			//this._background.hostContainer = this._hostContainer;
-			this.invalidateTiles();
-		}
-		
-		// TODO :: REMOVE THIS ONCE MYSA IS DECOUPLED
-		private var _foreground:IsoScene;
-		public function get foreground():IsoScene {
-			return this._foreground;
-		}
-		public function set foreground(val:IsoScene):void {
-			this._foreground = val;
-			this.view.addScene(this._foreground);
-			//this._foreground.hostContainer = this._hostContainer;
-			this.invalidateTiles();
-		}
-		
 		/** Nowalk layer */
 		private var _collisions:CollisionLayer;
 		public function get collisions():CollisionLayer {
