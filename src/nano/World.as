@@ -195,7 +195,6 @@ package nano
 		 */		
 		private function onGridClick(event:ProxyEvent):void {
 			var mEvent:MouseEvent = event.targetEvent as MouseEvent;
-			trace(mEvent.target.name);
 			var pt:Pt = this.stageToWorld(mEvent.stageX, mEvent.stageY);
 			this.player.walkTo(pt);
 		}
@@ -232,7 +231,7 @@ package nano
 		 * @param text Text to show 
 		 */		
 		public function showDialog(text:String):void {
-			trace("\n\n============ DIALOG ============");
+			trace("\n============ DIALOG ============");
 			trace(text);
 			trace("========== END DIALOG ==========");
 		}

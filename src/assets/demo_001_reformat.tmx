@@ -35,7 +35,7 @@
   <properties>
    <property name="order" value="2"/>
   </properties>
-  <object name="scales_weigh_boat" type="asset" x="97" y="351" width="32" height="32"/>
+  <object name="scales_weigh_boat" type="asset" x="136" y="219" width="32" height="32"/>
   <object name="spawn" type="marker" x="224" y="512" width="32" height="32"/>
  </objectgroup>
  <layer name="foreground" width="30" height="30">
