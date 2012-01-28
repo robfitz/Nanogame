@@ -160,14 +160,6 @@ package nano
 							sprite.sprites = [bitmap];
 							sprite.moveTo(col * 32, row * 32, 0);
 							scene.addChild(sprite);
-							
-//							var collision_hull:IsoBox = new IsoBox();
-//		                    collision_hull.setSize(sprite.width, sprite.length, sprite.height);
-//		                    var f:SolidColorFill = new SolidColorFill(0xffffff, 0.2);
-//		                    collision_hull.fills = [f, f, f, f, f, f];
-//		                    scene.addChild(collision_hull);
-//	                    	collision_hull.moveTo(sprite.x, sprite.y, sprite.z);
-							
 						}
 					}
 				}
@@ -198,10 +190,10 @@ package nano
 			if(this._map.objectGroups.hasOwnProperty('objects')) {
 				var objGroup:TmxObjectGroup = this._map.objectGroups['objects'];
 				for each(var obj:TmxObject in objGroup.objects) {
-					if(obj.type == 'asset') {
+					if(obj.type == 'objective') {
 						var asset:MovieClip = new Assets.instance[obj.name];
 						this.objectScene.addTmxObject(obj, asset);
-					} else if(obj.type == 'marker') {
+					} else if(obj.type == 'trigger') {
 						switch(obj.name) {
 							case 'spawn':
 								this.spawnPoint = new Point(obj.x, obj.y);
@@ -241,21 +233,12 @@ package nano
 			return bmd;
 		}
 		
-		
 		/**
-		 * Returns a collision layer initialized from a object layer of that name 
-		 * @param name The name of the object layer to build the collision layer with
-		 * @return The new collision layer
+		 * Builds a collision layer from the object layer information.  
+		 * Objects maked with "hull:true" will be used to build the collision map
 		 */		
-		public function getCollisionLayerByName(name:String):CollisionLayer {
-			if(!this._map) {
-				return null;
-			}
-			
-			var collisionGroup:TmxObjectGroup = this._map.getObjectGroup(name);
-			var collisionTiles:TmxLayer = this._map.getLayer(name);
-			return new CollisionLayer(collisionGroup, collisionTiles);
-			
-		}
+		public function getCollisionLayer():CollisionLayer {
+			return new CollisionLayer(this._map.getObjectGroup("objects"));
+		}		
 	}
 }

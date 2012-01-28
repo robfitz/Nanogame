@@ -155,12 +155,12 @@ package nano
 					// try sliding along in just the Y direction
 					this.x -= int(unmovedX);
 					
-					if (this.world.collisions.test(this)) {
+					if (this.world.collisions.test(this, false)) {
 						// if Y doesn't work, try sliding in only X direction
 						this.x += int(unmovedX);
 						this.y -= int(unmovedY);
 						
-						if (this.world.collisions.test(this)) {
+						if (this.world.collisions.test(this, false)) {
 							this.x -= int(unmovedX);
 							// can't move at all in the direction we'd like. stop moving
 							unmovedX = 0;
@@ -184,27 +184,28 @@ package nano
 		}
 		
 		public function updateDialogTriggers():void {
-			this.world.triggers.test(this);
-			if (this.world.triggers.justHit) {
-				var hit_rect:* = this.world.triggers.justHit;
-				
-				if (!dialogbox) {
-					dialogbox = new DialogBox();
-					//this.spriteContainer.stage.addChild(dialogbox);
-				}
-				
-				dialogbox.y = -300;
-				dialogbox.x = 50;
-				
-				dialogbox.text = hit_rect.props["text"];
-				dialogbox.render();
-				dialogbox.visible = true;
-				
-				var gt:GTween = new GTween(dialogbox, 0.4, {"y": 10});
-			}
-			else if (dialogbox && !this.world.triggers.currentlyHit) {
-				dialogbox.visible = false;
-				}
+			
+//			this.world.triggers.test(this);
+//			if (this.world.triggers.justHit) {
+//				var hit_rect:* = this.world.triggers.justHit;
+//				
+//				if (!dialogbox) {
+//					dialogbox = new DialogBox();
+//					//this.spriteContainer.stage.addChild(dialogbox);
+//				}
+//				
+//				dialogbox.y = -300;
+//				dialogbox.x = 50;
+//				
+//				dialogbox.text = hit_rect.props["text"];
+//				dialogbox.render();
+//				dialogbox.visible = true;
+//				
+//				var gt:GTween = new GTween(dialogbox, 0.4, {"y": 10});
+//			}
+//			else if (dialogbox && !this.world.triggers.currentlyHit) {
+//				dialogbox.visible = false;
+//				}
 		}
 		
 		private function updateDirection():void {

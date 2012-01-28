@@ -35,16 +35,6 @@
   <properties>
    <property name="order" value="2"/>
   </properties>
- </objectgroup>
- <layer name="foreground" width="30" height="30">
-  <properties>
-   <property name="order" value="3"/>
-  </properties>
-  <data encoding="base64" compression="zlib">
-   eJxjYBhagJWBoWHU3lF7aWEvK4RmYEPCwxnwDJC9LFCaCwnTwc4GOliDAUZiPhq1d/jaOwpGwSgYBaNgeAIAII8HCw==
-  </data>
- </layer>
- <objectgroup name="collisions" width="30" height="30">
   <object x="725" y="522"/>
   <object x="725" y="522"/>
   <object name="sputter_coater" type="objective" x="30" y="383" width="99" height="159">
@@ -63,6 +53,14 @@
    </properties>
   </object>
   <object x="559" y="316"/>
-  <object name="spawn" type="spawn" x="223" y="479" width="31" height="31"/>
+  <object name="spawn" type="trigger" x="223" y="479" width="31" height="31"/>
  </objectgroup>
+ <layer name="foreground" width="30" height="30">
+  <properties>
+   <property name="order" value="3"/>
+  </properties>
+  <data encoding="base64" compression="zlib">
+   eJxjYBhagJWBoWHU3lF7aWEvK4RmYEPCwxnwDJC9LFCaCwnTwc4GOliDAUZiPhq1d/jaOwpGwSgYBaNgeAIAII8HCw==
+  </data>
+ </layer>
 </map>

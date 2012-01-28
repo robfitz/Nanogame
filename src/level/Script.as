@@ -17,7 +17,13 @@ package level
 		 *  finish the script */
 		public var objectives:Array = [];
 		
-		public var currentObjective:int = 0;
+		/**
+		 * Pointer to the current objective 
+		 */		
+		private var _currentObjective:int = 0;
+		public function get currentObjective():Objective {
+			return this.objectives[this._currentObjective] as Objective;
+		}
 		
 		/**
 		 * Default contructor. 
@@ -38,7 +44,10 @@ package level
 			this.name = xml.@name;
 			this.introDialog = xml.intro;
 			for each(var obj:XML in xml.children()) {
-				this.objectives.push(new Objective(obj));
+				trace(obj.name());
+				if(obj.name() == 'objective') {
+					this.objectives.push(new Objective(obj));
+				}
 			}
 		}
 	}

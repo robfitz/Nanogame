@@ -18,8 +18,6 @@ package nano
 		public var rects:Array = [];
 		private var grid:IsoGrid;
 		
-		private var tiles:TmxLayer;
-		
 		/** Object that successfully hit detected last, if any */
 		private var _currentlyHit:Object;
 		public function get currentlyHit():Object {
@@ -38,6 +36,7 @@ package nano
 		public function add(collision_rect:TmxObject):void {
 			rects.push({
 				'name': collision_rect.name,
+				'hull': (collision_rect.custom && collision_rect.custom['hull'] == 'true'),
 				'props': collision_rect.custom,
 				'x': collision_rect.x,
 				'y': collision_rect.y,
@@ -47,10 +46,14 @@ package nano
 				'height': collision_rect.height
 			});
 		}
-		
-		/** returns whether or not a sprite is within the set of 
-		 * collision rectangles */
-		public function test(sprite:IIsoDisplayObject):Boolean {
+
+		/**
+		 * Tests a sprite against the collision map 
+		 * @param sprite The sprite to test
+		 * @param updateState When true, justHit and currentlyHitting will be updated. 
+		 * @return True if a collision has occured
+		 */		
+		public function test(sprite:IIsoDisplayObject, updateState:Boolean = true):Boolean {
 			var sprite_x:int = sprite.x;
 			var sprite_y:int = sprite.y;
 			var sprite_x2:int = sprite.x + sprite.width;
@@ -58,35 +61,32 @@ package nano
 			
 			// test against collision rectangles
 			for each (var r:* in rects) {
+				if(! r['hull']) {
+					continue;
+				}
+				
 				if (r.x < sprite_x2 && r.x2 > sprite_x &&
     				r.y < sprite_y2 && r.y2 > sprite_y) 
     			{
 					// set hit objects
-					if(! this._currentlyHit || this._currentlyHit != r) {
-						this._justHit = r;
-					} else {
-						this._justHit = null;
+					if(updateState) {
+						if(! this._currentlyHit || this._currentlyHit != r) {
+							this._justHit = r;
+						} else {
+							this._justHit = null;
+						}
+						this._currentlyHit = r;
 					}
-					this._currentlyHit = r;
 					
     				return true;
     			}
 			}
-			
-			if (tiles) {
-				if (col_tile(sprite_x, sprite_y) || 
-					col_tile(sprite_x2, sprite_y) ||
-					col_tile(sprite_x, sprite_y2) || 
-					col_tile(sprite_x2, sprite_y2)) 
-				{
-					return true;
-				}
-			
-			}
-			
+						
 			// no tile collision, so we need to clear our last hit
-			this._currentlyHit = null;
-			this._justHit = null;
+			if(updateState) {
+				this._currentlyHit = null;
+				this._justHit = null;
+			}
 			
 			if(grid) {
 				// test against map boundaries
@@ -102,24 +102,7 @@ package nano
 			// no collision
 			return false;
 		}
-		
-		public function col_tile(x:int, y:int):Boolean {
-			if (!tiles) return false;
-			
-			var tile_r:int = y / 32;
-			var tile_c:int = x / 32;
-			
-			try {
-				var collision:* = tiles.tileGIDs[tile_r][tile_c];
-				return collision != 0;
 				
-			}
-			catch (e:*) {
-				return false;
-			}
-			return false;
-		}
-		
 		/**
 		 * Default constructor. Can be initialized with a TmxObjectGroup containing
 		 * hulls. Assumes all hulls on that layer represent nowalk zones
@@ -133,7 +116,6 @@ package nano
 					this.add(obj);
 				}
 			}
-			this.tiles = layer;
 		}
 	}
 }

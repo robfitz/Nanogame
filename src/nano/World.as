@@ -57,16 +57,10 @@ package nano
 			this.view.addScene(this._objects);
 		}
 		
-		/** Nowalk layer */
+		/** Collision Layer */
 		private var _collisions:CollisionLayer;
 		public function get collisions():CollisionLayer {
 			return this._collisions;
-		}
-		
-		/** Trigger layer */
-		private var _triggers:CollisionLayer;
-		public function get triggers():CollisionLayer {
-			return this._triggers;
 		}
 		
 		/** Markers */
@@ -126,8 +120,7 @@ package nano
 				}
 				
 				// add collision and trigger information
-				this._collisions= loader.getCollisionLayerByName('collisions');
-				this._triggers = loader.getCollisionLayerByName('triggers');
+				this._collisions= loader.getCollisionLayer();
 				
 				// Setup our interaction listeners
 				this.objects.addEventListener(GameObjectEvent.CLICK, this.onObjectClick);
@@ -145,6 +138,13 @@ package nano
 		public function update(dt:Number):void {
 			if(this.player) {
 				this.player.update(dt);
+			}
+			
+			// Check to see if we've approached our current objective
+			if(this._collisions.justHit) {
+				if(this._collisions.justHit.name == this.script.currentObjective.goalTarget) {
+					trace("Did it!");
+				}
 			}
 		}
 		
