@@ -1,4 +1,4 @@
-package nano.dialog
+package nano.ui
 {
 	import flash.display.Graphics;
 	import flash.display.Sprite;

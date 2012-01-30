@@ -10,7 +10,7 @@ package nano
 	import flash.display.Sprite;
 	import flash.events.Event;
 	
-	import nano.dialog.DialogBox;
+	import nano.ui.DialogBox;
 	
 	public class Character extends IsoSprite
 	{

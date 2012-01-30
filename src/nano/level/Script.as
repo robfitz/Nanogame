@@ -1,4 +1,4 @@
-package level
+package nano.level
 {
 	import flash.net.SecureSocket;
 	
@@ -64,7 +64,6 @@ package level
 		 * Starts the current a level anew
 		 */		
 		public function startLevel():void {
-			this.showDialog(this.introDialog);
 			this.world.isUpdating = true;
 		}
 		
@@ -88,7 +87,9 @@ package level
 		 */		
 		protected function completeObjective():void {
 			// Need an outro ?
-			
+			if(this.currentObjective.outro) {
+				this.showDialog(this.currentObjective.outro);
+			}
 			
 			// Advance the objective
 			this._currentObjective ++;
@@ -110,11 +111,14 @@ package level
 		 * Shows a section of dialog text 
 		 * @param text The text to display to the player
 		 */		
-		public function showDialog(text:String):void {
+		public function showDialog(dialog:Dialog):void {
+			// pause our world
+			this.world.isUpdating = false;
+			
+			
 			trace("++++++++++++++++++++ DIALOG ++++++++++++++++++++")
-			trace(text);
+			trace(dialog);
 			trace("++++++++++++++++++++++++++++++++++++++++++++++++\n");
 		}
-			
 	}
 }

@@ -8,7 +8,7 @@ package {
 	import flash.events.Event;
 	import flash.utils.getTimer;
 	
-	import level.Script;
+	import nano.level.Script;
 	
 	import nano.Assets;
 	import nano.CollisionLayer;

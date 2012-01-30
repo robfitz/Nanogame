@@ -4,11 +4,11 @@ package
 	
 	import flash.display.Sprite;
 	
-	import level.Script;
+	import nano.level.Script;
 	
 	import nano.Assets;
 	import nano.CollisionLayer;
-	import nano.dialog.DialogBox;
+	import nano.ui.DialogBox;
 	
 	import net.pixelpracht.tmx.TmxObject;
 	import net.pixelpracht.tmx.TmxObjectGroup;

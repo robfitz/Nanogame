@@ -1,4 +1,4 @@
-package level
+package nano.level
 {
 	/**
 	 * Describes a single objective that the player can accomplish.  
