@@ -43,7 +43,7 @@
     <property name="trigger" value="sputter_coater"/>
    </properties>
   </object>
-  <object name="scales_weigh_boat" type="objective" x="35" y="67" width="157" height="61">
+  <object name="scales_weigh_boat" type="objective" x="112" y="91" width="82" height="37">
    <properties>
     <property name="hull" value="true"/>
     <property name="trigger" value="scales_weigh_boat"/>

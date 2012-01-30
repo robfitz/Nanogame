@@ -33,13 +33,13 @@ package nano.scene
 		 */		
 		public function addTmxObject(tmxObj:TmxObject, asset:DisplayObjectContainer):void {
 			var sprite:GameObject = new GameObject();
+			sprite.setSize(tmxObj.width, tmxObj.height, 100);
 			sprite.objectName = tmxObj.name;
 			sprite.objectType = tmxObj.type;
 			sprite.objectData = tmxObj.custom;
 			sprite.asset = asset;
 			sprite.x = tmxObj.x;
 			sprite.y = tmxObj.y;
-			sprite.setSize(32, 32, 0);
 			sprite.addEventListener(MouseEvent.CLICK, this.onObjectClick);
 			
 			this.addChild(sprite);

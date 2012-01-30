@@ -1,6 +1,8 @@
 package nano.scene
 {
 	import as3isolib.display.IsoSprite;
+	import as3isolib.geom.IsoMath;
+	import as3isolib.geom.Pt;
 	
 	import flash.display.DisplayObjectContainer;
 	import flash.events.MouseEvent;
@@ -27,8 +29,9 @@ package nano.scene
 			}
 			this._asset = val;
 			this._asset.mouseChildren = false;
-			this._asset.x = 0;
-			this._asset.y = 32;
+			var d:Pt = IsoMath.isoToScreen(new Pt(this.width, this.length, 0));
+			this._asset.x = d.x;
+			this._asset.y = d.y;
 			this._asset.addEventListener(MouseEvent.CLICK, this.onAssetClick);
 			this.sprites = [this._asset];
 			
