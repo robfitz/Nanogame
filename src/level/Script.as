@@ -78,11 +78,32 @@ package level
 				var trigger:String = this.world.collisions.justHit.trigger;
 				trace("Just touched:", trigger);
 				if(trigger == this.currentObjective.goalTarget) {
-					//this.showDialog(this.currentObjective.successDialog);
-					this._currentObjective ++;
-					//this.showDialog(this.currentObjective.introDialog);
+					this.completeObjective();
 				}
 			}
+		}
+		
+		/**
+		 * Called when the script has determined the current goal has been completed 
+		 */		
+		protected function completeObjective():void {
+			// Need an outro ?
+			
+			
+			// Advance the objective
+			this._currentObjective ++;
+			if(this._currentObjective >= this.objectives.length) {
+				// totally complete
+				this.scriptFinished();
+			}
+		}
+		
+		/**
+		 * This level has been compelted! 
+		 * 
+		 */		
+		protected function scriptFinished():void {
+			trace("LEVEL COMPELTE! WELL DONE!");
 		}
 		
 		/**

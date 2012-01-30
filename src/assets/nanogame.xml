@@ -14,7 +14,7 @@
 		</line>
 	</dialog>
 	
-	<objective>
+	<objective descrition="Weigh out and cure the PDMS">
 		<goal target="weigh_scales" reward="curing_pdms" />
 		<dialog type="outro">
 			<line>
