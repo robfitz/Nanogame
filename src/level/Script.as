@@ -61,14 +61,36 @@ package level
 		}
 		
 		/**
+		 * Starts the current a level anew
+		 */		
+		public function startLevel():void {
+			this.showDialog(this.introDialog);
+			this.world.isUpdating = true;
+		}
+		
+		/**
 		 * Update the game, check to see if things have progressed 
 		 * @param dt Seconds that have passed since the last update
 		 * 
 		 */		
 		public function update(dt:Number):void {
 			if(this.world.collisions.justHit) {
-				trace(this.world.collisions.justHit.trigger);
+				var trigger:String = this.world.collisions.justHit.trigger;
+				trace(trigger, this.currentObjective.goalTarget);
+				if(trigger == this.currentObjective.goalTarget) {
+					this.showDialog(this.currentObjective.successDialog);
+				}
 			}
+		}
+		
+		/**
+		 * Shows a section of dialog text 
+		 * @param text The text to display to the player
+		 */		
+		public function showDialog(text:String):void {
+			trace("++++++++++++++++++++ DIALOG ++++++++++++++++++++")
+			trace(text);
+			trace("++++++++++++++++++++++++++++++++++++++++++++++++\n");
 		}
 			
 	}

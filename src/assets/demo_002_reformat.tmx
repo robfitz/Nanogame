@@ -46,11 +46,13 @@
   <object name="scales_weigh_boat" type="objective" x="35" y="67" width="157" height="61">
    <properties>
     <property name="hull" value="true"/>
+    <property name="trigger" value="scales_weigh_boat"/>
    </properties>
   </object>
   <object name="door1" type="trigger" x="388" y="172" width="163" height="163">
    <properties>
     <property name="hull" value="false"/>
+    <property name="trigger" value="door1"/>
    </properties>
   </object>
   <object x="559" y="316"/>

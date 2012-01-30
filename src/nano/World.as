@@ -31,6 +31,8 @@ package nano
 	{
 		public static const DEBUG_DRAW:Boolean = false;
 		
+		public var isUpdating:Boolean = true;
+		
 		private var _hostContainer:DisplayObjectContainer;
 		private var _renderTiles:Boolean = false;
 		
@@ -131,8 +133,10 @@ package nano
 		 * @param dt The time passed since last update
 		 */
 		public function update(dt:Number):void {
-			if(this.player) {
-				this.player.update(dt);
+			if(this.isUpdating) {
+				if(this.player) {
+					this.player.update(dt);
+				}
 			}
 		}
 		
