@@ -11,8 +11,9 @@ package nano
 	
 	/**
 	 * Generic layer that alert you when you enter a collision hull. 
+	 * Collision rectangles can have to special properties, hull (a no walk zone)
+	 * and trigger (triggers some key when entered)
 	 * @author devin
-	 * 
 	 */	
 	
 	public class CollisionLayer
@@ -54,7 +55,7 @@ package nano
 		 * Tests a sprite against the collision map 
 		 * @param sprite The sprite to test
 		 * @param updateState When true, justHit and currentlyHitting will be updated. 
-		 * @return True if a collision has occured
+		 * @return True if a NoWalk collision has occured
 		 */		
 		public function test(sprite:IIsoDisplayObject, updateState:Boolean = true):Boolean {
 			var sprite_x:int = sprite.x;
@@ -64,9 +65,6 @@ package nano
 			
 			// test against collision rectangles
 			for each (var r:* in rects) {
-				if(! r['hull']) {
-					continue;
-				}
 				
 				if (r.x < sprite_x2 && r.x2 > sprite_x &&
     				r.y < sprite_y2 && r.y2 > sprite_y) 
@@ -80,8 +78,8 @@ package nano
 						}
 						this._currentlyHit = r;
 					}
-					
-    				return true;
+    				
+					return r.hull;
     			}
 			}
 						
@@ -102,7 +100,7 @@ package nano
 				}
 			}
 			
-			// no collision
+			// no collision at all
 			return false;
 		}
 				
@@ -113,16 +111,13 @@ package nano
 		 * @param limitProp Limits the items held in this group to 
 		 * 		  just one object type, usually <code>hull</code> or <code>trigger</code>
 		 */		
-		public function CollisionLayer(objs:TmxObjectGroup=null, limitProp:String = null)
+		public function CollisionLayer(objs:TmxObjectGroup=null)
 		{
 			if(objs) {
 				for each(var obj:TmxObject in objs.objects) {
-					if(! limitProp || (obj.custom && obj.custom[limitProp])) {
-						this.add(obj);
-					}
+					this.add(obj);
 				}
 			}
 		}
-		
 	}
 }

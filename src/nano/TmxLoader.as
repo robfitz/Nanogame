@@ -236,10 +236,9 @@ package nano
 		/**
 		 * Builds a collision layer from the object layer information.  
 		 * Objects maked with "hull:true" will be used to build the collision map
-		 * @param Optional. Custom prop to limit the object used to build the scene
 		 */		
-		public function getCollisionLayer(limitProp:String = null):CollisionLayer {
-			return new CollisionLayer(this._map.getObjectGroup("objects"), limitProp);
+		public function getCollisionLayer():CollisionLayer {
+			return new CollisionLayer(this._map.getObjectGroup("objects"));
 		}		
 	}
 }

@@ -66,8 +66,8 @@ package level
 		 * 
 		 */		
 		public function update(dt:Number):void {
-			if(this.world.triggers.justHit) {
-				trace(this.world.triggers.justHit.trigger);
+			if(this.world.collisions.justHit) {
+				trace(this.world.collisions.justHit.trigger);
 			}
 		}
 			

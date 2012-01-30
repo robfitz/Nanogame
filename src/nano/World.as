@@ -57,12 +57,6 @@ package nano
 			return this._collisions;
 		}
 		
-		/** Trigger Layer */
-		private var _triggers:CollisionLayer;
-		public function get triggers():CollisionLayer {
-			return this._triggers;
-		}
-		
 		/**
 		 * World contructor 
 		 * @param hostContainer The container that our iso scenes ultimately render on
@@ -117,8 +111,8 @@ package nano
 				}
 				
 				// add collision and trigger information
-				this._collisions= loader.getCollisionLayer("hull");
-				this._triggers = loader.getCollisionLayer("trigger");
+				this._collisions= loader.getCollisionLayer();
+			
 				
 				// Setup our interaction listeners
 				this.objects.addEventListener(GameObjectEvent.CLICK, this.onObjectClick);
@@ -138,7 +132,6 @@ package nano
 		 */
 		public function update(dt:Number):void {
 			if(this.player) {
-				this._triggers.test(this.player);
 				this.player.update(dt);
 			}
 		}
