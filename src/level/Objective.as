@@ -7,13 +7,13 @@ package level
 	 */	
 	public class Objective
 	{
-		public var introDialog:String;
+		public var intro:Dialog;
 		
-		public var successDialog:String;
-		
-		public var failDialog:String;
+		public var outro:Dialog;
 		
 		public var goalTarget:String;
+		
+		public var goalReward:String;
 		
 		/**
 		 * Default contructor 
@@ -28,9 +28,19 @@ package level
 		
 		public function initFromXml(xml:XML):void {
 			this.goalTarget = xml.goal.@target;
-			this.introDialog = xml.intro;
-			this.successDialog = xml.success;
-			this.failDialog = xml.fail;
+			this.goalReward = xml.goal.@reward;
+			
+			for each(var dialog:XML in xml.children()) {
+				if(dialog.name() == "dialog") {
+					
+					if(dialog.@type == "outro") {
+						this.outro = new Dialog(dialog);
+					}
+					if(dialog.@type == "intro") {
+						this.intro = new Dialog(dialog);
+					}	
+				}
+			}
 		}
 	}
 }

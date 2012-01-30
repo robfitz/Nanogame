@@ -1,5 +1,5 @@
 <level name="Stretchable Electronics Virtual Experiment">
-	<dialog for="intro">
+	<dialog type="intro">
 		<line>
 			Lets start by making a stretchable electronic circuit. 
 		</line>
@@ -16,7 +16,7 @@
 	
 	<objective>
 		<goal target="weigh_scales" reward="curing_pdms" />
-		<dialog for="outro">
+		<dialog type="outro">
 			<line>
 				Well done!
 			</line>
@@ -30,7 +30,7 @@
 	</objective>
 		
 	<objective description="Vacuum the PDMS">
-		<dialog for="intro">
+		<dialog type="intro">
 			<line>
 				The PDMS is now beginning to transform from a liquid into a rubbery substance. 
 			</line>
@@ -42,7 +42,7 @@
 			</line>
 		</dialog>
 		<goal target="vacuum_chamber" reward="air_free_pdms"/>
-		<dialog for="outro">
+		<dialog type="outro">
 			<line cutscene="pdms_vacuum">
 				That’s it. The vacuum removes the air bubbles.
 			</line>

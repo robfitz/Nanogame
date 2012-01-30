@@ -78,9 +78,9 @@ package level
 				var trigger:String = this.world.collisions.justHit.trigger;
 				trace("Just touched:", trigger);
 				if(trigger == this.currentObjective.goalTarget) {
-					this.showDialog(this.currentObjective.successDialog);
+					//this.showDialog(this.currentObjective.successDialog);
 					this._currentObjective ++;
-					this.showDialog(this.currentObjective.introDialog);
+					//this.showDialog(this.currentObjective.introDialog);
 				}
 			}
 		}
