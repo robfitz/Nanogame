@@ -1,29 +1,54 @@
-<level name="Stechytronics">
-	<intro>
-		Welcome to the demo of the script system. Nice!
-	</intro>
-	<objective description="Weight some things" >
-		<intro>
-			Please click the flashing scales and weigh boat
-		</intro>
-		<goal action="click" target="scales_weigh_boat" />
-		<fail>
-			You missed...
-		</fail>
-		<success>
-			Well done, you clicked it! I'm so proud.
-		</success>
+<level name="Stretchable Electronics Virtual Experiment">
+	<dialog for="intro">
+		<line>
+			Lets start by making a stretchable electronic circuit. 
+		</line>
+		<line>
+			Creating a circuit that can be stretched or flexed would allow us to put electronic systems into the fabric of clothes or even inside the human body. 
+		</line>
+		<line>
+			The secret is start with a versatile stretchy substance you can build your circuit on. A chemical called PDMS is ideal.
+		</line>
+		<line>
+			Find the weighing scales and weigh out XXg of PDMS
+		</line>
+	</dialog>
+	
+	<objective>
+		<goal target="weigh_scales" reward="curing_pdms" />
+		<dialog for="outro">
+			<line>
+				Well done!
+			</line>
+			<line cutscene="pdms_pour">
+				PDMS stands for Polydimethylsiloxane. It’s a clear, non-reactive, non-toxic, silicon-based substance. Liquid PDMS is used in shampoos to make your hair look shiny. Solid PDMS is used to make contact lenses. 
+			</line>
+			<line>
+				You control its consistency by adding XX??, a curing agent/cross linker?? Let’s add XXml.
+			</line>
+		</dialog>
 	</objective>
-	<objective description="sputter coat a thing" >
-		<intro>
-			Now go to the sputter coater and due some stuff
-		</intro>
-		<goal action="click" target="sputter_coater" />
-		<fail>
-			You missed...
-		</fail>
-		<success>
-			Ok, you did that step as well. Good job!
-		</success>
+		
+	<objective description="Vacuum the PDMS">
+		<dialog for="intro">
+			<line>
+				The PDMS is now beginning to transform from a liquid into a rubbery substance. 
+			</line>
+			<line>
+				Before it solidifies we need to remove any air bubbles and shape it into a thin layer. Better hurry up!
+			</line>
+			<line>
+				Find the vacuum chamber
+			</line>
+		</dialog>
+		<goal target="vacuum_chamber" reward="air_free_pdms"/>
+		<dialog for="outro">
+			<line cutscene="pdms_vacuum">
+				That’s it. The vacuum removes the air bubbles.
+			</line>
+			<line>
+				Now we need to spin the PDMS into a thin layer. The spin coater is the tool for that.
+			</line>
+		</dialog>
 	</objective>
 </level>
