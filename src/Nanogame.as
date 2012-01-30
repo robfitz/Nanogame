@@ -8,12 +8,12 @@ package {
 	import flash.events.Event;
 	import flash.utils.getTimer;
 	
-	import nano.level.Script;
-	
 	import nano.Assets;
 	import nano.CollisionLayer;
 	import nano.TmxLoader;
 	import nano.World;
+	import nano.level.Script;
+	import nano.ui.DialogBox;
 	
 	/**
 	 * Nanogame.as
@@ -46,9 +46,13 @@ package {
 				// create our world!
 				world.initWorldFromLoader(loader);
 				
-				// create our script
+				// create our script and dialog system
 				script = new Script(new XML(new Assets.instance.game_script));
 				script.world = world;
+				
+				var dialogUi:DialogBox = new DialogBox();
+				addChild(dialogUi);
+				script.dialogUi = dialogUi;
 				
 				startLoop();
 			});

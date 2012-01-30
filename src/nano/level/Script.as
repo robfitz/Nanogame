@@ -1,8 +1,10 @@
 package nano.level
 {
+	import flash.events.Event;
 	import flash.net.SecureSocket;
 	
 	import nano.World;
+	import nano.ui.DialogBox;
 
 	/**
 	 * Describes a series of objective that a player myst complete to 
@@ -17,6 +19,23 @@ package nano.level
 		
 		public var introDialog:String;
 		
+		private var _dialogUi:DialogBox;
+		public function get dialogUi():DialogBox
+		{
+			return _dialogUi;
+		}
+		
+		public function set dialogUi(value:DialogBox):void
+		{
+			if(_dialogUi) {
+				_dialogUi.removeEventListener(Event.COMPLETE, this.onDialogComplete);
+			}
+			_dialogUi = value;
+			if(_dialogUi) {
+				_dialogUi.addEventListener(Event.COMPLETE, this.onDialogComplete);
+			}
+		}
+		
 		/**
 		 * The world the player moves around in.  
 		 */		
@@ -30,6 +49,7 @@ package nano.level
 		 * Pointer to the current objective 
 		 */		
 		private var _currentObjective:int = 0;
+
 		public function get currentObjective():Objective {
 			return this.objectives[this._currentObjective] as Objective;
 		}
@@ -75,7 +95,6 @@ package nano.level
 		public function update(dt:Number):void {
 			if(this.world.collisions.justHit) {
 				var trigger:String = this.world.collisions.justHit.trigger;
-				trace("Just touched:", trigger);
 				if(trigger == this.currentObjective.goalTarget) {
 					this.completeObjective();
 				}
@@ -114,11 +133,11 @@ package nano.level
 		public function showDialog(dialog:Dialog):void {
 			// pause our world
 			this.world.isUpdating = false;
-			
-			
-			trace("++++++++++++++++++++ DIALOG ++++++++++++++++++++")
-			trace(dialog);
-			trace("++++++++++++++++++++++++++++++++++++++++++++++++\n");
+			this.dialogUi.display(dialog);
+		}
+		
+		private function onDialogComplete(event:Event):void {
+			this.world.isUpdating = true;
 		}
 	}
 }

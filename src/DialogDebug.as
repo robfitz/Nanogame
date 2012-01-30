@@ -78,15 +78,6 @@ package
 			
 			var dialogbox:DialogBox = new DialogBox();
 			this.addChild(dialogbox);
-			
-			
-			dialogbox.text = "Welcome to Earth!\n\n\n\
-You were flying in the area to learn how the local people live and work - but your rocket booster exploded and you’ve crashed! Now you are stuck here and need to survive. \
-You need to take care of yourself and fix your spaceship so you can return home! \
-Be sure to eat and come back to the spaceship when you are done for the day to record what you’ve learned and take a long nap.";
-			dialogbox.render();
-			dialogbox.y = 100;
-			dialogbox.x = 50;
 		}
 	}
 }

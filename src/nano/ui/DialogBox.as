@@ -2,9 +2,12 @@ package nano.ui
 {
 	import flash.display.Graphics;
 	import flash.display.Sprite;
+	import flash.events.Event;
 	import flash.events.MouseEvent;
 	import flash.text.TextField;
 	import flash.text.TextFormat;
+	
+	import nano.level.Dialog;
 	
 	public class DialogBox extends Sprite
 	{
@@ -13,11 +16,8 @@ package nano.ui
 		
 		private var moreButton:Sprite;
 		
-		public function set text(val:String):void {
-			this._textfield.text = val;
-			this._textfield.setTextFormat(this.format);
-			this.reset();
-		}
+		private var currentDialog:Dialog;
+		private var currentLine:int = 0;
 		
 		public function DialogBox()
 		{
@@ -33,54 +33,42 @@ package nano.ui
 			this.render();
 			
 			this.addEventListener(MouseEvent.CLICK, function(event:MouseEvent):void {
-				if (!next()) {
-					this.visible = false;
-				}
+				next();
 			});
-			
-			// make our more button
-			moreButton = new Sprite();
-			
-			var moreText:TextField = new TextField();
-			moreText.x = 10;
-			moreText.y = 2;
-			moreText.text = "next...";
-			moreText.setTextFormat(new TextFormat("Lucida Grande", 18, 0x0));
-			moreText.selectable = false;
-			
-			moreButton.addChild(moreText);
-			
-			moreButton.graphics.beginFill(0xD5ECFA);
-			moreButton.graphics.lineStyle(2, 0x333333, 1);
-			moreButton.graphics.drawRoundRect(0, 0, 80, 30, 5, 5);
-			
-//			this.addChild(moreButton);
-		}
-		
-		protected function reset():void {
-			if (this._textfield.numLines > 3) {
-				moreButton.visible = true;
-			}
-			else moreButton.visible = false;
 		}
 		
 		/**
-		 * Are there lines hidden offscreen?
-		 * @return true if there are more lines of text to show
+		 * Shows the dialog given to it 
 		 */		
-		public function moreLines():Boolean {
-			trace(this._textfield.scrollV + 3, this._textfield.numLines);
-			return this._textfield.scrollV + 3 < this._textfield.numLines;
+		public function display(dialog:Dialog):void {
+			this.visible = true;
+			this.currentDialog = dialog;
+			this.currentLine = 0;
+			next();
 		}
+		
 		
 		/**
 		 * Shows the next line of text
 		 * @return True if there are still more lines to show
 		 */		
-		public function next():Boolean {
-			this._textfield.scrollV += 3;
-			this.render();
-			return this.moreLines();
+		public function next():void {
+			if(this.currentLine < this.currentDialog.lines.length) {
+				var line:Object = this.currentDialog.lines[this.currentLine];
+				
+				this._textfield.text = line.text;
+				this._textfield.setTextFormat(this.format);
+				
+				if(line.cutscene) {
+					trace("TODO:: Show cutscene for line");
+				}
+				
+				this.currentLine ++;
+			} else {
+				// signal that the dialog is done
+				this.dispatchEvent(new Event(Event.COMPLETE));
+				this.visible = false;
+			}
 		}
 		
 		public function render():void {
@@ -103,7 +91,6 @@ package nano.ui
 			// position more button
 			this.moreButton.x = (this.stage.stageWidth - 100 - 75);
 			this.moreButton.y = 150 - 25;
-			this.moreButton.visible = this.moreLines();
 		}
 	}
 }
