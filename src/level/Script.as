@@ -1,8 +1,12 @@
 package level
 {
+	import flash.net.SecureSocket;
+	
+	import nano.World;
+
 	/**
 	 * Describes a series of objective that a player myst complete to 
-	 * finish the level.  
+	 * finish the level. This is the narrative logic of the game.
 	 * @author devin
 	 * 
 	 */	
@@ -12,6 +16,11 @@ package level
 		public var name:String;
 		
 		public var introDialog:String;
+		
+		/**
+		 * The world the player moves around in.  
+		 */		
+		public var world:World
 		
 		/** Ordered array of objectives. Each must be competed in order to 
 		 *  finish the script */
@@ -50,5 +59,17 @@ package level
 				}
 			}
 		}
+		
+		/**
+		 * Update the game, check to see if things have progressed 
+		 * @param dt Seconds that have passed since the last update
+		 * 
+		 */		
+		public function update(dt:Number):void {
+			if(this.world.triggers.justHit) {
+				trace(this.world.triggers.justHit.trigger);
+			}
+		}
+			
 	}
 }

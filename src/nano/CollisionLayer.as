@@ -7,6 +7,8 @@ package nano
 	import net.pixelpracht.tmx.TmxObject;
 	import net.pixelpracht.tmx.TmxObjectGroup;
 	
+	import org.osmf.net.StreamingURLResource;
+	
 	/**
 	 * Generic layer that alert you when you enter a collision hull. 
 	 * @author devin
@@ -37,6 +39,7 @@ package nano
 			rects.push({
 				'name': collision_rect.name,
 				'hull': (collision_rect.custom && collision_rect.custom['hull'] == 'true'),
+				'trigger': collision_rect.custom ? collision_rect.custom['trigger'] : false,
 				'props': collision_rect.custom,
 				'x': collision_rect.x,
 				'y': collision_rect.y,
@@ -107,15 +110,19 @@ package nano
 		 * Default constructor. Can be initialized with a TmxObjectGroup containing
 		 * hulls. Assumes all hulls on that layer represent nowalk zones
 		 * @param objs TmxObjectGroup of hulls
-		 * 
+		 * @param limitProp Limits the items held in this group to 
+		 * 		  just one object type, usually <code>hull</code> or <code>trigger</code>
 		 */		
-		public function CollisionLayer(objs:TmxObjectGroup=null, layer:TmxLayer=null)
+		public function CollisionLayer(objs:TmxObjectGroup=null, limitProp:String = null)
 		{
 			if(objs) {
 				for each(var obj:TmxObject in objs.objects) {
-					this.add(obj);
+					if(! limitProp || (obj.custom && obj.custom[limitProp])) {
+						this.add(obj);
+					}
 				}
 			}
 		}
+		
 	}
 }

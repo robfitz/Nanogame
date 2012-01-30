@@ -30,6 +30,9 @@ package {
 		/** Last frame time in milliseconds */
 		private var then:int = 0;
 		
+		/** Controlling script for the current world */
+		private var script:Script;
+		
 		/** The isometric world our main character lives in */
 		private var world:World;
 		
@@ -44,8 +47,8 @@ package {
 				world.initWorldFromLoader(loader);
 				
 				// create our script
-				world.script = new Script(new XML(new Assets.instance.game_script));
-				world.startScript();
+				script = new Script(new XML(new Assets.instance.game_script));
+				script.world = world;
 				
 				startLoop();
 			});
@@ -80,7 +83,10 @@ package {
 		 * @param dt Time (in seconds) since the last frame
 		 */		
 		public function update(dt:Number):void {
+			// We always update the world first, since the script will look at the current state
+			// to decide if something significant happened
 			this.world.update(dt);
+			this.script.update(dt);
 		}
 		
 		/**

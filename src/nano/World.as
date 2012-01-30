@@ -15,10 +15,6 @@ package nano
 	import flash.events.Event;
 	import flash.events.MouseEvent;
 	
-	import level.Script;
-	
-	import mysa.Sheep;
-	
 	import nano.scene.GameObject;
 	import nano.scene.GameObjectEvent;
 	import nano.scene.ObjectScene;
@@ -46,8 +42,6 @@ package nano
 		
 		public var player:Character;
 		
-		public var script:Script;
-		
 		private var _objects:ObjectScene;
 		public function get objects():ObjectScene {
 			return this._objects;
@@ -57,14 +51,17 @@ package nano
 			this.view.addScene(this._objects);
 		}
 		
-		/** Collision Layer */
+		/** NoWalk Layer */
 		private var _collisions:CollisionLayer;
 		public function get collisions():CollisionLayer {
 			return this._collisions;
 		}
 		
-		/** Markers */
-		private var _markers:ObjectScene;
+		/** Trigger Layer */
+		private var _triggers:CollisionLayer;
+		public function get triggers():CollisionLayer {
+			return this._triggers;
+		}
 		
 		/**
 		 * World contructor 
@@ -120,7 +117,8 @@ package nano
 				}
 				
 				// add collision and trigger information
-				this._collisions= loader.getCollisionLayer();
+				this._collisions= loader.getCollisionLayer("hull");
+				this._triggers = loader.getCollisionLayer("trigger");
 				
 				// Setup our interaction listeners
 				this.objects.addEventListener(GameObjectEvent.CLICK, this.onObjectClick);
@@ -132,19 +130,16 @@ package nano
 		}
 		
 		/**
-		 * Update the world
+		 * Update the world. Some notes on flow: 
+		 * The player updates the state of the collisions layer. 
+		 * The world updates the state of the triggers layer after the sprite has moved
+		 * 
 		 * @param dt The time passed since last update
 		 */
 		public function update(dt:Number):void {
 			if(this.player) {
+				this._triggers.test(this.player);
 				this.player.update(dt);
-			}
-			
-			// Check to see if we've approached our current objective
-			if(this._collisions.justHit) {
-				if(this._collisions.justHit.name == this.script.currentObjective.goalTarget) {
-					trace("Did it!");
-				}
 			}
 		}
 		
@@ -152,18 +147,20 @@ package nano
 		 * Render the scene 
 		 */		
 		public function render():void {
-			if(this._objects) {
-				this._objects.render();
-			}
 			
 			if(this._renderTiles) {
-				
+				// render everything this frame
 				for (var i:int = 0; i < this.view.scenes.length; i++) {
 					this.view.scenes[i].render();
 					
 				}
 				
 				this._renderTiles = false;
+			} else {
+				// just objects this frame
+				if(this._objects) {
+					this._objects.render();
+				}
 			}
 		}
 		
@@ -210,30 +207,6 @@ package nano
 			var stage:Stage = this._hostContainer.stage;
 			var pt:Pt = new Pt(x - stage.stageWidth / 2 + this.view.currentX, y - stage.stageHeight / 2 + this.view.currentY);
 			return IsoMath.screenToIso(pt); 
-		}
-		
-		///////////////////////////////////////////////////
-		// SCRIPT CONTROL
-		///////////////////////////////////////////////////
-		
-		/**
-		 * Kicks of script tracking and shit 
-		 */		
-		public function startScript():void {
-			if(this.script.introDialog) {
-				this.showDialog(this.script.introDialog);
-			}
-		}
-		
-		/**
-		 * Print out dialog into the console
-		 * TODO :: REPLACE THIS WITH IN GAME TEXT MANAGEMENT 
-		 * @param text Text to show 
-		 */		
-		public function showDialog(text:String):void {
-			trace("\n============ DIALOG ============");
-			trace(text);
-			trace("========== END DIALOG ==========");
 		}
 	}
 }

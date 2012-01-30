@@ -40,6 +40,7 @@
   <object name="sputter_coater" type="objective" x="30" y="383" width="99" height="159">
    <properties>
     <property name="hull" value="true"/>
+    <property name="trigger" value="sputter_coater"/>
    </properties>
   </object>
   <object name="scales_weigh_boat" type="objective" x="35" y="67" width="157" height="61">
@@ -54,6 +55,11 @@
   </object>
   <object x="559" y="316"/>
   <object name="spawn" type="trigger" x="223" y="479" width="31" height="31"/>
+  <object x="31" y="191" width="100" height="100">
+   <properties>
+    <property name="hull" value="true"/>
+   </properties>
+  </object>
  </objectgroup>
  <layer name="foreground" width="30" height="30">
   <properties>
