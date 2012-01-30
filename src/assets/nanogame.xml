@@ -2,7 +2,7 @@
 	<intro>
 		Welcome to the demo of the script system. Nice!
 	</intro>
-	<objective description="Prepare the PDMS" >
+	<objective description="Weight some things" >
 		<intro>
 			Please click the flashing scales and weigh boat
 		</intro>
@@ -12,6 +12,18 @@
 		</fail>
 		<success>
 			Well done, you clicked it! I'm so proud.
+		</success>
+	</objective>
+	<objective description="sputter coat a thing" >
+		<intro>
+			Now go to the sputter coater and due some stuff
+		</intro>
+		<goal action="click" target="sputter_coater" />
+		<fail>
+			You missed...
+		</fail>
+		<success>
+			Ok, you did that step as well. Good job!
 		</success>
 	</objective>
 </level>
