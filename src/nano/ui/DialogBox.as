@@ -76,21 +76,27 @@ package nano.ui
 				return;
 			}
 			
-			// draw box;
+			var width:int = this.stage.stageWidth;
+			var height:int = this.stage.stageHeight * .4;
+			var top:int = this.stage.stageHeight - height;
+			
 			var g:Graphics = this.graphics;
 			g.clear();
-			g.beginFill(0xD5ECFA);
-			g.lineStyle(5, 0xffffff, 1);
-			g.drawRoundRect(0, 0, this.stage.stageWidth - 100, 150, 20, 20);
+			
+			// draw background
+			g.beginFill(0xffffff);
+			g.lineStyle(2, 0xdce4e4);
+			g.drawRect(0, top, width, height);
+			
+			// borders
+			
+			// dividers
 			
 			// position text field
-			this._textfield.x = 20;
-			this._textfield.y = 20;
-			this._textfield.width = this.stage.stageWidth - 140;
-			
-			// position more button
-			this.moreButton.x = (this.stage.stageWidth - 100 - 75);
-			this.moreButton.y = 150 - 25;
+			this._textfield.x = 240;
+			this._textfield.y = top + 20;
+			this._textfield.width = width - 240 - 20;
+			this._textfield.height = height - 40;
 		}
 	}
 }

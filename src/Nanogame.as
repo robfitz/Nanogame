@@ -20,7 +20,7 @@ package {
 	 * Top level control flow and execution for Nanogame
 	 */
 
-	[SWF(width='1000', height='800')]
+	[SWF(width='760', height='570')]
 	public class Nanogame extends Sprite
 	{
 		
@@ -56,9 +56,11 @@ package {
 				script.world = world;
 				
 				var dialogUi:DialogBox = new DialogBox();
+				dialogUi.visible = false;
 				
 				gameUi.addChild(dialogUi);
 				script.dialogUi = dialogUi;
+				script.dialogUi.render();
 				
 				startLoop();
 			});
