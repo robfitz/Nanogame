@@ -196,9 +196,11 @@ package nano
 		 * @param event GameObjectEvent
 		 */		
 		private function onObjectClick(event:GameObjectEvent):void {
-			this.currentTarget = event.triggerObject;
-			var pt:Pt = new Pt(event.triggerObject.x, event.triggerObject.y, 0);
-			this.player.walkTo(pt);
+			if(this.isUpdating) {
+				this.currentTarget = event.triggerObject;
+				var pt:Pt = new Pt(event.triggerObject.x, event.triggerObject.y, 0);
+				this.player.walkTo(pt);
+			}
 		}
 		
 		/**
@@ -223,11 +225,9 @@ package nano
 		 * 
 		 */		
 		public function stageToWorld(x:Number, y:Number):Pt {
-			if(this.isUpdating) {
-				var stage:Stage = this._hostContainer.stage;
-				var pt:Pt = new Pt(x - stage.stageWidth / 2 + this.view.currentX, y - stage.stageHeight / 2 + this.view.currentY);
-				return IsoMath.screenToIso(pt);
-			}
+			var stage:Stage = this._hostContainer.stage;
+			var pt:Pt = new Pt(x - stage.stageWidth / 2 + this.view.currentX, y - stage.stageHeight / 2 + this.view.currentY);
+			return IsoMath.screenToIso(pt);
 		}
 	}
 }
