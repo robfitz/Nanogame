@@ -170,8 +170,6 @@ package nano
 						}
 					}
 				}
-				
-				this.world.view.centerOnIso(this);
 				 
 				distanceToNextFrame -= Math.sqrt(dx*dx + dy*dy);
 				

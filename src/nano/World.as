@@ -154,6 +154,7 @@ package nano
 			if(this.isUpdating) {
 				if(this.player) {
 					this.player.update(dt);
+					this.view.centerOnIso(this.player);
 				}
 			}
 		}
