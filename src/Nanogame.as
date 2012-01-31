@@ -36,9 +36,14 @@ package {
 		/** The isometric world our main character lives in */
 		private var world:World;
 		
+		/** Holds all the UI that rests on top of the world */
+		private var gameUi:Sprite;
+		
 		public function Nanogame()
 		{
 			this.world = new World(this);
+			this.gameUi = new Sprite();
+			this.addChild(this.gameUi);
 			
 			// load the world!
 			var loader:TmxLoader = new TmxLoader();
@@ -51,7 +56,8 @@ package {
 				script.world = world;
 				
 				var dialogUi:DialogBox = new DialogBox();
-				addChild(dialogUi);
+				
+				gameUi.addChild(dialogUi);
 				script.dialogUi = dialogUi;
 				
 				startLoop();

@@ -95,7 +95,10 @@ package nano.level
 		public function update(dt:Number):void {
 			if(this.world.collisions.justHit) {
 				var trigger:String = this.world.collisions.justHit.trigger;
-				if(trigger == this.currentObjective.goalTarget) {
+				
+				if(trigger == this.currentObjective.goalTarget
+					&& this.world.currentTarget
+					&& trigger == this.world.currentTarget.objectName) {
 					this.completeObjective();
 				}
 			}

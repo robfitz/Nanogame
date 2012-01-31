@@ -44,6 +44,9 @@ package nano
 		
 		public var player:Character;
 		
+		/** The thing the player is currently walking to, if any */
+		public var currentTarget:GameObject;
+		
 		private var _objects:ObjectScene;
 		public function get objects():ObjectScene {
 			return this._objects;
@@ -178,6 +181,7 @@ package nano
 		 * @param event GameObjectEvent
 		 */		
 		private function onObjectClick(event:GameObjectEvent):void {
+			this.currentTarget = event.triggerObject;
 			var pt:Pt = new Pt(event.triggerObject.x, event.triggerObject.y, 0);
 			this.player.walkTo(pt);
 		}
@@ -188,6 +192,7 @@ package nano
 		 * 
 		 */		
 		private function onGridClick(event:ProxyEvent):void {
+			this.currentTarget = null;
 			var mEvent:MouseEvent = event.targetEvent as MouseEvent;
 			var pt:Pt = this.stageToWorld(mEvent.stageX, mEvent.stageY);
 			this.player.walkTo(pt);
