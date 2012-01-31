@@ -135,12 +135,12 @@ package nano.level
 		 */		
 		public function showDialog(dialog:Dialog):void {
 			// pause our world
-			this.world.isUpdating = false;
+			this.world.pause();
 			this.dialogUi.display(dialog);
 		}
 		
 		private function onDialogComplete(event:Event):void {
-			this.world.isUpdating = true;
+			this.world.start();
 		}
 	}
 }

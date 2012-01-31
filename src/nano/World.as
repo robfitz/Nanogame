@@ -129,6 +129,21 @@ package nano
 		}
 		
 		/**
+		 * Pauses the world, and makes all the assets go to a nutral state 
+		 */		
+		public function pause():void {
+			this.isUpdating = false;
+			this.player.stand();
+		}
+		
+		/**
+		 * Activates world updating 
+		 */		
+		public function start():void {
+			this.isUpdating = true;	
+		}
+		
+		/**
 		 * Update the world. Some notes on flow: 
 		 * The player updates the state of the collisions layer. 
 		 * The world updates the state of the triggers layer after the sprite has moved
@@ -192,10 +207,12 @@ package nano
 		 * 
 		 */		
 		private function onGridClick(event:ProxyEvent):void {
-			this.currentTarget = null;
-			var mEvent:MouseEvent = event.targetEvent as MouseEvent;
-			var pt:Pt = this.stageToWorld(mEvent.stageX, mEvent.stageY);
-			this.player.walkTo(pt);
+			if(this.isUpdating) {
+				this.currentTarget = null;
+				var mEvent:MouseEvent = event.targetEvent as MouseEvent;
+				var pt:Pt = this.stageToWorld(mEvent.stageX, mEvent.stageY);
+				this.player.walkTo(pt);
+			}
 		}
 		
 		/**
@@ -206,9 +223,11 @@ package nano
 		 * 
 		 */		
 		public function stageToWorld(x:Number, y:Number):Pt {
-			var stage:Stage = this._hostContainer.stage;
-			var pt:Pt = new Pt(x - stage.stageWidth / 2 + this.view.currentX, y - stage.stageHeight / 2 + this.view.currentY);
-			return IsoMath.screenToIso(pt); 
+			if(this.isUpdating) {
+				var stage:Stage = this._hostContainer.stage;
+				var pt:Pt = new Pt(x - stage.stageWidth / 2 + this.view.currentX, y - stage.stageHeight / 2 + this.view.currentY);
+				return IsoMath.screenToIso(pt);
+			}
 		}
 	}
 }
