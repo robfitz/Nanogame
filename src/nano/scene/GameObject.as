@@ -5,6 +5,7 @@ package nano.scene
 	import as3isolib.geom.Pt;
 	
 	import flash.display.DisplayObjectContainer;
+	import flash.display.MovieClip;
 	import flash.events.MouseEvent;
 	
 	/**
@@ -15,17 +16,23 @@ package nano.scene
 	
 	public class GameObject extends IsoSprite
 	{
+		
+		public static const STATE_STATIC:String = "static";
+		public static const STATE_HOVER:String = "hover";
+		public static const STATE_ONCLICK:String = "onclick";
+		public static const STATE_RESET:String = "reset";
+		
 		public var objectName:String;
 		public var objectType:String;
 		public var objectData:Object; 
 		
-		private var _asset:DisplayObjectContainer;
-		public function get asset():DisplayObjectContainer {
+		private var _asset:MovieClip;
+		public function get asset():MovieClip {
 			return this._asset;
 		}
-		public function set asset(val:DisplayObjectContainer):void {
+		public function set asset(val:MovieClip):void {
 			if(this._asset) {
-				(this.sprites[0] as DisplayObjectContainer).removeEventListener(MouseEvent.CLICK, this.onAssetClick);
+				this._asset.removeEventListener(MouseEvent.CLICK, this.onAssetClick);
 			}
 			this._asset = val;
 			this._asset.mouseChildren = false;
@@ -34,7 +41,7 @@ package nano.scene
 			this._asset.y = d.y;
 			this._asset.addEventListener(MouseEvent.CLICK, this.onAssetClick);
 			this.sprites = [this._asset];
-			
+			this._asset.gotoAndStop(STATE_STATIC);
 		}
 		
 		public function GameObject(descriptor:Object=null)

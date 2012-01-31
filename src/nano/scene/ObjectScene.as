@@ -37,7 +37,7 @@ package nano.scene
 			sprite.objectName = tmxObj.name;
 			sprite.objectType = tmxObj.type;
 			sprite.objectData = tmxObj.custom;
-			sprite.asset = asset;
+			sprite.asset = asset as MovieClip;
 			sprite.x = tmxObj.x;
 			sprite.y = tmxObj.y;
 			sprite.addEventListener(MouseEvent.CLICK, this.onObjectClick);
