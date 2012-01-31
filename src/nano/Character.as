@@ -151,22 +151,22 @@ package nano
 				
 				if (this.world.collisions.test(this)) {
 					// can't move to where we want
-					
 					// try sliding along in just the Y direction
 					this.x -= int(unmovedX);
 					
-					if (this.world.collisions.test(this, false)) {
+					if (this.world.collisions.test(this, false) || int(unmovedY) == 0) {
 						// if Y doesn't work, try sliding in only X direction
 						this.x += int(unmovedX);
 						this.y -= int(unmovedY);
 						
-						if (this.world.collisions.test(this, false)) {
+						if (this.world.collisions.test(this, false) || int(unmovedX) == 0) {
 							this.x -= int(unmovedX);
 							// can't move at all in the direction we'd like. stop moving
 							unmovedX = 0;
 							unmovedY = 0;
 							destination.x = this.x;
 							destination.y - this.y;
+							this.stand();
 						}
 					}
 				}
