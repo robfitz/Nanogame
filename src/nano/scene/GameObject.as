@@ -54,5 +54,20 @@ package nano.scene
 		private function onAssetClick(event:MouseEvent):void {
 			this.dispatchEvent(new MouseEvent(MouseEvent.CLICK));
 		}
+		
+		/**
+		 * Plays the activate (or onclick) animation 
+		 */		
+		public function activate():void {
+			this.asset.gotoAndStop(STATE_ONCLICK);
+		}
+		
+		/**
+		 * Go back to being static 
+		 * 
+		 */		
+		public function static():void {
+			this.asset.gotoAndStop(STATE_STATIC);
+		}
 	}
 }

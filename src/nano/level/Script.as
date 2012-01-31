@@ -99,6 +99,8 @@ package nano.level
 				if(trigger == this.currentObjective.goalTarget
 					&& this.world.currentTarget
 					&& trigger == this.world.currentTarget.objectName) {
+					
+					this.world.currentTarget.activate();
 					this.completeObjective();
 				}
 			}
@@ -140,6 +142,8 @@ package nano.level
 		}
 		
 		private function onDialogComplete(event:Event):void {
+			this.world.currentTarget.static();
+			this.world.currentTarget = null;
 			this.world.start();
 		}
 	}
