@@ -98,7 +98,8 @@ package nano
 				this.view.addScene(scenes['background']);
 				this.view.addScene(this.gridScene);
 				this.objects = loader.objectScene;
-				this.view.addScene(scenes['foreground']);
+				trace("foreground is turned off");
+				//this.view.addScene(scenes['foreground']);
 				
 				// Create and add in our character at this time
 				var img:* = new Assets.instance.player_suited;

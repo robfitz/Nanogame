@@ -4,8 +4,10 @@ package {
 	import as3isolib.graphics.Stroke;
 	
 	import flash.display.Bitmap;
+	import flash.display.MovieClip;
 	import flash.display.Sprite;
 	import flash.events.Event;
+	import flash.events.MouseEvent;
 	import flash.utils.getTimer;
 	
 	import nano.Assets;
@@ -46,38 +48,18 @@ package {
 		/** The isometric world our main character lives in */
 		private var world:World;
 		
+		/** The main menu */
+		private var mainMenu:Sprite;
+		
 		/** Holds all the UI that rests on top of the world */
 		private var gameUi:Sprite;
 		
 		public function Nanogame()
 		{
 			
-			this.setGameState(GAMESTATE_LOADING);
-			
-			this.world = new World(this);
 			this.gameUi = new Sprite();
 			this.addChild(this.gameUi);
-			
-			// load the world!
-			var loader:TmxLoader = new TmxLoader();
-			loader.addEventListener(Event.COMPLETE, function(event:Event):void {
-				// create our world!
-				world.initWorldFromLoader(loader);
-				
-				// create our script and dialog system
-				script = new Script(new XML(new Assets.instance.game_script));
-				script.world = world;
-				
-				var dialogUi:DialogBox = new DialogBox();
-				dialogUi.visible = false;
-				
-				gameUi.addChild(dialogUi);
-				script.dialogUi = dialogUi;
-				script.dialogUi.render();
-				
-				startLoop();
-			});
-			loader.load("./assets/cleanroom.tmx");
+			this.setGameState(GAMESTATE_LOADING);
 		}
 		
 		/**
@@ -124,6 +106,61 @@ package {
 		public function setGameState(newState:String):void {
 			var oldState:String = this.state;
 			this._state = newState;
+			
+			switch(this.state) {
+				case GAMESTATE_LOADING:
+					this.setGameState(GAMESTATE_MENU);
+					break;
+				
+				case GAMESTATE_MENU:
+					if(! this.mainMenu) {
+						
+						// hookup the main menu
+						this.mainMenu = new Assets.instance.main_menu();
+						this.mainMenu['level1'].addEventListener(MouseEvent.CLICK, onLevelClick);
+					}
+					this.gameUi.addChild(this.mainMenu);
+					this.gameUi.visible = true;
+					break;
+				
+				case GAMESTATE_INGAME:
+					this.gameUi.removeChild(this.mainMenu);
+					this.initLevel();
+			}
+		}
+		
+		/**
+		 * Loads and preps a level for play 
+		 * TODO :: Load different levels
+		 */		
+		private function initLevel():void {
+			this.world = new World(this);
+			
+			// load the world!
+			var loader:TmxLoader = new TmxLoader();
+			loader.addEventListener(Event.COMPLETE, function(event:Event):void {
+				// create our world!
+				world.initWorldFromLoader(loader);
+				
+				// create our script and dialog system
+				script = new Script(new XML(new Assets.instance.game_script));
+				script.world = world;
+				
+				var dialogUi:DialogBox = new DialogBox();
+				dialogUi.visible = false;
+				
+				gameUi.addChild(dialogUi);
+				script.dialogUi = dialogUi;
+				script.dialogUi.render();
+				
+				startLoop();
+			});
+			loader.load("./assets/cleanroom.tmx");
+		}
+				
+		private function onLevelClick(event:Event):void {
+			trace("yeah");
+			this.setGameState(GAMESTATE_INGAME);
 		}
 	}
 }

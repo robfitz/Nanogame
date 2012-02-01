@@ -24,6 +24,12 @@ package nano
 		public var game_script:Class;
 		
 		/////////////////////////////////////////
+		//               MENUS                 //
+		/////////////////////////////////////////
+		[Embed(source="assets/menu.swf", symbol="main_menu")]
+		public var main_menu:Class;
+		
+		/////////////////////////////////////////
 		//             CHARACTERS              //
 		/////////////////////////////////////////
 		[Embed(source="assets/character/avatar_suited.swf", symbol="asset")]
