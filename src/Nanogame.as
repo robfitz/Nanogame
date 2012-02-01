@@ -77,7 +77,7 @@ package {
 				
 				startLoop();
 			});
-			loader.load("./assets/demo_002_reformat.tmx");
+			loader.load("./assets/cleanroom.tmx");
 		}
 		
 		/**

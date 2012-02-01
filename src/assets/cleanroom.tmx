@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<map version="1.0" orientation="isometric" width="30" height="30" tilewidth="64" tileheight="32">
+ <tileset firstgid="1" name="floortiles_002" tilewidth="64" tileheight="32">
+  <image source="floor/floortiles_002.png" width="128" height="32"/>
+ </tileset>
+ <tileset firstgid="3" name="walls_correct-measurements_002" tilewidth="80" tileheight="200">
+  <image source="walls/walls_correct-measurements_002.png" width="800" height="200"/>
+ </tileset>
+ <layer name="background" width="30" height="30">
+  <properties>
+   <property name="order" value="1"/>
+  </properties>
+  <data encoding="base64" compression="zlib">
+   eJztzcEJACAMBMGgpG9LNzUkgp9ZOO45EX/btWxuYJ5V31235HK5XC6Xy+U+dSXNuv5FDac=
+  </data>
+ </layer>
+ <objectgroup name="objects" width="30" height="30">
+  <properties>
+   <property name="order" value="2"/>
+  </properties>
+  <object name="spawn" type="trigger" x="255" y="381" width="34" height="37">
+   <properties>
+    <property name="trigger" value="spawn"/>
+   </properties>
+  </object>
+  <object name="evaporator" type="objective" x="62" y="76" width="83" height="36">
+   <properties>
+    <property name="hull" value="true"/>
+    <property name="trigger" value="evaporator"/>
+   </properties>
+  </object>
+  <object name="photolithography" type="objective" x="71" y="269" width="82" height="68">
+   <properties>
+    <property name="hull" value="true"/>
+    <property name="trigger" value="photolithography"/>
+   </properties>
+  </object>
+  <object name="printer" type="objective" x="74" y="350" width="70" height="105">
+   <properties>
+    <property name="hull" value="true"/>
+    <property name="trigger" value="printer"/>
+   </properties>
+  </object>
+  <object name="scales" type="objective" x="365" y="75" width="83" height="38">
+   <properties>
+    <property name="hull" value="true"/>
+    <property name="trigger" value="scales"/>
+   </properties>
+  </object>
+  <object name="spin_coater" type="objective" x="254" y="70" width="90" height="44">
+   <properties>
+    <property name="hull" value="true"/>
+    <property name="trigger" value="spin_coater"/>
+   </properties>
+  </object>
+  <object name="vacuumcontainer" type="objective" x="80" y="610" width="46" height="108">
+   <properties>
+    <property name="hull" value="true"/>
+    <property name="trigger" value="vacuumcontainer"/>
+   </properties>
+  </object>
+ </objectgroup>
+ <layer name="foreground" width="30" height="30">
+  <properties>
+   <property name="order" value="3"/>
+  </properties>
+  <data encoding="base64" compression="zlib">
+   eJztzTEKACAMBMFr9dU+XawNiKSdhatCmEQ/jWRxuVwul8vlcsv/a6/72eygklptojkLIg==
+  </data>
+ </layer>
+</map>

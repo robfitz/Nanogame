@@ -7,20 +7,7 @@
  <tileset firstgid="10" name="floortiles_002" tilewidth="64" tileheight="32">
   <image source="floor/floortiles_002.png" width="128" height="32"/>
  </tileset>
- <tileset firstgid="12" name="airlock-160x300minus33x" tilewidth="160" tileheight="300">
-  <tileoffset x="-33" y="0"/>
-  <image source="objects/airlock-160x300minus33x.png" width="160" height="300"/>
- </tileset>
- <tileset firstgid="13" name="aligner-machine 128X142" tilewidth="128" tileheight="142">
-  <image source="objects/aligner-machine 128X142.png" width="128" height="142"/>
- </tileset>
- <tileset firstgid="14" name="evaporator 128x185" tilewidth="128" tileheight="185">
-  <image source="objects/evaporator 128x185.png" width="128" height="185"/>
- </tileset>
- <tileset firstgid="15" name="furnace 128x150" tilewidth="128" tileheight="150">
-  <image source="objects/furnace 128x150.png" width="128" height="150"/>
- </tileset>
- <tileset firstgid="16" name="CABINET 96X129" tilewidth="96" tileheight="129">
+ <tileset firstgid="12" name="CABINET 96X129" tilewidth="96" tileheight="129">
   <image source="objects/CABINET 96X129.png" width="96" height="129"/>
  </tileset>
  <layer name="background" width="30" height="30">
@@ -28,7 +15,7 @@
    <property name="order" value="1"/>
   </properties>
   <data encoding="base64" compression="zlib">
-   eJztljEKwCAMRVM7CO2lPXojOEibQRNisPwPjwwOTyRRiYgO5hRIDWmtYgk7y81VgyW873JxfePtTYHeqHOGdwypL+CVE9XPvXd2ji3p76vV/Qzvf701uVXt/Fr3pp3jXb2z7z68e3nRz188/rrw+nkfEA8eCg==
+   eJztwQEBAAAAgiD/r25IQAEAAPBoDhAAAQ==
   </data>
  </layer>
  <objectgroup name="objects" width="30" height="30">
@@ -37,33 +24,13 @@
   </properties>
   <object x="725" y="522"/>
   <object x="725" y="522"/>
-  <object name="vacuum_chamber" type="objective" x="93" y="286" width="68" height="38">
-   <properties>
-    <property name="hull" value="true"/>
-    <property name="trigger" value="vacuum_chamber"/>
-   </properties>
-  </object>
-  <object name="scales_weigh_boat" type="objective" x="129" y="160" width="82" height="37">
-   <properties>
-    <property name="hull" value="true"/>
-    <property name="trigger" value="scales_weigh_boat"/>
-   </properties>
-  </object>
-  <object name="door1" type="trigger" x="388" y="172" width="163" height="163">
-   <properties>
-    <property name="hull" value="false"/>
-    <property name="trigger" value="door1"/>
-   </properties>
-  </object>
-  <object x="559" y="316"/>
-  <object name="spawn" type="trigger" x="223" y="479" width="31" height="31"/>
  </objectgroup>
  <layer name="foreground" width="30" height="30">
   <properties>
    <property name="order" value="3"/>
   </properties>
   <data encoding="base64" compression="zlib">
-   eJxjYBhagJWBoWHU3lF7aWEvK4RmYEPCwxnwDJC9LFCaCwnTwc4GOliDAUZiPhq1d/jaOwpGwSgYBaNgeAIAII8HCw==
+   eJztwQEBAAAAgiD/r25IQAEAAPBoDhAAAQ==
   </data>
  </layer>
 </map>

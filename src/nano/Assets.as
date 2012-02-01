@@ -32,11 +32,23 @@ package nano
 		/////////////////////////////////////////
 		//            WORLD OBJECTS            //
 		/////////////////////////////////////////
-		[Embed(source="assets/objects/scales_weigh_boat.swf", symbol="asset")]
-		public var scales_weigh_boat:Class;
+		[Embed(source="assets/objects/evaporator.swf", symbol="asset")]
+		public var evaporator:Class;
 		
-		[Embed(source="assets/objects/sputter_coater.swf", symbol="asset")]
-		public var vacuum_chamber:Class;
+		[Embed(source="assets/objects/photolithography.swf", symbol="asset")]
+		public var photolithography:Class;
+		
+		[Embed(source="assets/objects/printer.swf", symbol="asset")]
+		public var printer:Class;
+		
+		[Embed(source="assets/objects/scales.swf", symbol="asset")]
+		public var scales:Class;
+		
+		[Embed(source="assets/objects/spin_coater.swf", symbol="asset")]
+		public var spin_coater:Class;
+		
+		[Embed(source="assets/objects/vacuumcontainer.swf", symbol="asset")]
+		public var vacuumcontainer:Class;
 		
 		/**
 		 * Don't call this! 

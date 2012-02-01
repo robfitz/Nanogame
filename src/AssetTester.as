@@ -23,12 +23,6 @@ package
 //				addChild(loader.content);
 //				loader.content.stop();
 //			});
-			
-			var asset:MovieClip = new Assets.instance.scales_weigh_boat();
-			asset.x = 100;
-			asset.y = 100;
-			asset.stop();
-			this.addChild(asset);
 		}
 	}
 }

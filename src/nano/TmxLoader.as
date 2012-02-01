@@ -132,6 +132,7 @@ package nano
 				if (!layer.visible) continue;
 				
 				var scene:IsoScene = new IsoScene();
+				var isosprite:IsoSprite = new IsoSprite;
 				
 				for(var row:int = 0; row < layer.tileGIDs.length; row ++) {
 					for(var col:int = 0; col < layer.tileGIDs[row].length; col ++) {
