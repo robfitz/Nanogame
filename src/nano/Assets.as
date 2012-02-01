@@ -36,7 +36,7 @@ package nano
 		public var scales_weigh_boat:Class;
 		
 		[Embed(source="assets/objects/sputter_coater.swf", symbol="asset")]
-		public var sputter_coater:Class;
+		public var vacuum_chamber:Class;
 		
 		/**
 		 * Don't call this! 

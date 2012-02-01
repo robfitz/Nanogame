@@ -73,7 +73,6 @@ package nano.level
 			this.name = xml.@name;
 			this.introDialog = xml.intro;
 			for each(var obj:XML in xml.children()) {
-				trace(obj.name());
 				if(obj.name() == 'objective') {
 					this.objectives.push(new Objective(obj));
 				}
@@ -95,7 +94,6 @@ package nano.level
 		public function update(dt:Number):void {
 			if(this.world.collisions.justHit) {
 				var trigger:String = this.world.collisions.justHit.trigger;
-				
 				if(trigger == this.currentObjective.goalTarget
 					&& this.world.currentTarget
 					&& trigger == this.world.currentTarget.objectName) {

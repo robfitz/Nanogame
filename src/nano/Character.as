@@ -88,6 +88,8 @@ package nano
 		public function update(dt:Number):void {
 			if (destination) {
 				updatePosition(dt);
+			} else {
+				this.world.collisions.test(this);
 			}
 		}
 		
@@ -173,37 +175,10 @@ package nano
 				 
 				distanceToNextFrame -= Math.sqrt(dx*dx + dy*dy);
 				
-				updateDialogTriggers();
-				
 				unmovedX -= int(unmovedX);
 				unmovedY -= int(unmovedY);
 			}
 			dispatchEvent(new Event("moved"));
-		}
-		
-		public function updateDialogTriggers():void {
-			
-//			this.world.triggers.test(this);
-//			if (this.world.triggers.justHit) {
-//				var hit_rect:* = this.world.triggers.justHit;
-//				
-//				if (!dialogbox) {
-//					dialogbox = new DialogBox();
-//					//this.spriteContainer.stage.addChild(dialogbox);
-//				}
-//				
-//				dialogbox.y = -300;
-//				dialogbox.x = 50;
-//				
-//				dialogbox.text = hit_rect.props["text"];
-//				dialogbox.render();
-//				dialogbox.visible = true;
-//				
-//				var gt:GTween = new GTween(dialogbox, 0.4, {"y": 10});
-//			}
-//			else if (dialogbox && !this.world.triggers.currentlyHit) {
-//				dialogbox.visible = false;
-//				}
 		}
 		
 		private function updateDirection():void {

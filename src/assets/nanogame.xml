@@ -1,21 +1,22 @@
-<level name="Stretchable Electronics Virtual Experiment">
-	<dialog type="intro">
-		<line>
-			Lets start by making a stretchable electronic circuit. 
-		</line>
-		<line>
-			Creating a circuit that can be stretched or flexed would allow us to put electronic systems into the fabric of clothes or even inside the human body. 
-		</line>
-		<line>
-			The secret is start with a versatile stretchy substance you can build your circuit on. A chemical called PDMS is ideal.
-		</line>
-		<line>
-			Find the weighing scales and weigh out XXg of PDMS
-		</line>
-	</dialog>
-	
+<level name="Stretchable Electronics Virtual Experiment">	
 	<objective descrition="Weigh out and cure the PDMS">
+		<dialog type="intro">
+			<line>
+				Lets start by making a stretchable electronic circuit. 
+			</line>
+			<line>
+				Creating a circuit that can be stretched or flexed would allow us to put electronic systems into the fabric of clothes or even inside the human body. 
+			</line>
+			<line>
+				The secret is start with a versatile stretchy substance you can build your circuit on. A chemical called PDMS is ideal.
+			</line>
+			<line>
+				Find the weighing scales and weigh out XXg of PDMS
+			</line>
+		</dialog>
+
 		<goal target="scales_weigh_boat" reward="curing_pdms" />
+
 		<dialog type="outro">
 			<line>
 				Well done!
@@ -41,7 +42,9 @@
 				Find the vacuum chamber
 			</line>
 		</dialog>
+
 		<goal target="vacuum_chamber" reward="air_free_pdms"/>
+
 		<dialog type="outro">
 			<line cutscene="pdms_vacuum">
 				That’s it. The vacuum removes the air bubbles.

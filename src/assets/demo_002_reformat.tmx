@@ -28,7 +28,7 @@
    <property name="order" value="1"/>
   </properties>
   <data encoding="base64" compression="zlib">
-   eJztlLEKwCAQxa52EPSn/fQ+oZPcYGvLgSQQHAQjopqZHfJ0TLfeXHcFNVvV+MYVtO9WNI7+3U2B3ahzpjundy/o+kTd58h39PS/oEt3hvzBGgAAsAcXTOsSdQ==
+   eJztljEKwCAMRVM7CO2lPXojOEibQRNisPwPjwwOTyRRiYgO5hRIDWmtYgk7y81VgyW873JxfePtTYHeqHOGdwypL+CVE9XPvXd2ji3p76vV/Qzvf701uVXt/Fr3pp3jXb2z7z68e3nRz188/rrw+nkfEA8eCg==
   </data>
  </layer>
  <objectgroup name="objects" width="30" height="30">
@@ -37,10 +37,10 @@
   </properties>
   <object x="725" y="522"/>
   <object x="725" y="522"/>
-  <object name="sputter_coater" type="objective" x="93" y="286" width="68" height="38">
+  <object name="vacuum_chamber" type="objective" x="93" y="286" width="68" height="38">
    <properties>
     <property name="hull" value="true"/>
-    <property name="trigger" value="sputter_coater"/>
+    <property name="trigger" value="vacuum_chamber"/>
    </properties>
   </object>
   <object name="scales_weigh_boat" type="objective" x="129" y="160" width="82" height="37">

@@ -105,9 +105,6 @@ package nano
 				this.player = new Character(this, new Assets.instance.player_suited);
                 
 				var p:Character = player;
-				img.addEventListener(Event.ADDED_TO_STAGE, function(e:*):void {
-					p.updateDialogTriggers();
-				});
 				
 				// add player
 				this.objects.addChild(this.player);
@@ -151,11 +148,9 @@ package nano
 		 * @param dt The time passed since last update
 		 */
 		public function update(dt:Number):void {
-			if(this.isUpdating) {
-				if(this.player) {
-					this.player.update(dt);
-					this.view.centerOnIso(this.player);
-				}
+			if(this.player) {
+				this.player.update(dt);
+				this.view.centerOnIso(this.player);
 			}
 		}
 		
