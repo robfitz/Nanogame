@@ -24,6 +24,16 @@ package {
 	public class Nanogame extends Sprite
 	{
 		
+		// Master states of the game
+		public const GAMESTATE_LOADING:String = "gamestate loading";
+		public const GAMESTATE_MENU:String = "gamestate menu";
+		public const GAMESTATE_INGAME:String = "gamestate ingame";
+		
+		private var _state:String;
+		public function get state():String {
+			return _state;
+		}
+		
 		/** Current frame time in milliseconds since game start */
 		private var now:int = 0;
 		
@@ -41,6 +51,9 @@ package {
 		
 		public function Nanogame()
 		{
+			
+			this.setGameState(GAMESTATE_LOADING);
+			
 			this.world = new World(this);
 			this.gameUi = new Sprite();
 			this.addChild(this.gameUi);
@@ -106,6 +119,11 @@ package {
 		 */		
 		public function render():void {
 			this.world.render();
-		} 
+		}
+		
+		public function setGameState(newState:String):void {
+			var oldState:String = this.state;
+			this._state = newState;
+		}
 	}
 }
