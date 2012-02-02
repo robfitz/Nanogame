@@ -23,40 +23,22 @@
     <property name="trigger" value="spawn"/>
    </properties>
   </object>
-  <object name="evaporator" type="objective" x="62" y="76" width="83" height="36">
+  <object name="stretch_scales" type="objective" x="365" y="75" width="83" height="38">
    <properties>
     <property name="hull" value="true"/>
-    <property name="trigger" value="evaporator"/>
+    <property name="trigger" value="stretch_scales"/>
    </properties>
   </object>
-  <object name="photolithography" type="objective" x="71" y="269" width="82" height="68">
+  <object name="stretch_spincoater" type="objective" x="254" y="70" width="90" height="44">
    <properties>
     <property name="hull" value="true"/>
-    <property name="trigger" value="photolithography"/>
+    <property name="trigger" value="stretch_spincoater"/>
    </properties>
   </object>
-  <object name="printer" type="objective" x="74" y="350" width="70" height="105">
+  <object name="stretch_vacuum" type="objective" x="71" y="301" width="42" height="88">
    <properties>
     <property name="hull" value="true"/>
-    <property name="trigger" value="printer"/>
-   </properties>
-  </object>
-  <object name="scales" type="objective" x="365" y="75" width="83" height="38">
-   <properties>
-    <property name="hull" value="true"/>
-    <property name="trigger" value="scales"/>
-   </properties>
-  </object>
-  <object name="spin_coater" type="objective" x="254" y="70" width="90" height="44">
-   <properties>
-    <property name="hull" value="true"/>
-    <property name="trigger" value="spin_coater"/>
-   </properties>
-  </object>
-  <object name="vacuumcontainer" type="objective" x="80" y="610" width="46" height="108">
-   <properties>
-    <property name="hull" value="true"/>
-    <property name="trigger" value="vacuumcontainer"/>
+    <property name="trigger" value="stretch_vacuum"/>
    </properties>
   </object>
  </objectgroup>

@@ -135,6 +135,7 @@ package {
 		 */		
 		private function initLevel():void {
 			this.world = new World(this);
+			this.addChildAt(this.world.view, 0);
 			
 			// load the world!
 			var loader:TmxLoader = new TmxLoader();

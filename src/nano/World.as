@@ -73,7 +73,6 @@ package nano
 			this.view = new IsoView();
 			this.view.setSize(stage.stageWidth, stage.stageHeight);
 			//this.view.panBy(0, 200);
-			this._hostContainer.addChild(this.view);
 		}
 		
 		/**

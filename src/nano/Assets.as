@@ -38,23 +38,14 @@ package nano
 		/////////////////////////////////////////
 		//            WORLD OBJECTS            //
 		/////////////////////////////////////////
-		[Embed(source="assets/objects/evaporator.swf", symbol="asset")]
-		public var evaporator:Class;
+		[Embed(source="assets/objects/stretch_scales.swf", symbol="asset")]
+		public var stretch_scales:Class;
 		
-		[Embed(source="assets/objects/photolithography.swf", symbol="asset")]
-		public var photolithography:Class;
+		[Embed(source="assets/objects/stretch_vacuum.swf", symbol="asset")]
+		public var stretch_vacuum:Class;
 		
-		[Embed(source="assets/objects/printer.swf", symbol="asset")]
-		public var printer:Class;
-		
-		[Embed(source="assets/objects/scales.swf", symbol="asset")]
-		public var scales:Class;
-		
-		[Embed(source="assets/objects/spin_coater.swf", symbol="asset")]
-		public var spin_coater:Class;
-		
-		[Embed(source="assets/objects/vacuumcontainer.swf", symbol="asset")]
-		public var vacuumcontainer:Class;
+		[Embed(source="assets/objects/stretch_spincoater.swf", symbol="asset")]
+		public var stretch_spincoater:Class;
 		
 		/**
 		 * Don't call this! 
