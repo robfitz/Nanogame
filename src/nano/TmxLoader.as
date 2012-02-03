@@ -85,14 +85,8 @@ package nano
 		 * Load and build a TmxMap from a asset URI
 		 * @param xmlUrl Location of the tiled tmx xml. 
 		 */		
-		public function load(xmlUrl:String):void {
-			var xmlLoader:URLLoader = new URLLoader();
-			xmlLoader.addEventListener(Event.COMPLETE, this.onXmlLoaded);
-			xmlLoader.load(new URLRequest(xmlUrl));
-		}
-		
-		private function onXmlLoaded(event:Event):void {
-			this._mapXml = new XML((event.target as URLLoader).data); 
+		public function load(xml:XML):void {
+			this._mapXml = xml;
 			this._map = new TmxMap(this._mapXml);
 			this.loadTileImages();
 		}

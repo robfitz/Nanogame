@@ -156,7 +156,7 @@ package {
 				
 				startLoop();
 			});
-			loader.load("./assets/cleanroom.tmx");
+			loader.load(new XML(new Assets.instance.level_cleanroom()));
 		}
 				
 		private function onLevelClick(event:Event):void {

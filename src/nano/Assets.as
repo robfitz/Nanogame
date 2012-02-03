@@ -23,6 +23,9 @@ package nano
 		[Embed(source="assets/nanogame.xml", mimeType="application/octet-stream")]
 		public var game_script:Class;
 		
+		[Embed(source="assets/cleanroom.tmx", mimeType="application/octet-stream")]
+		public var level_cleanroom:Class;
+		
 		/////////////////////////////////////////
 		//               MENUS                 //
 		/////////////////////////////////////////
@@ -46,6 +49,12 @@ package nano
 		
 		[Embed(source="assets/objects/stretch_spincoater.swf", symbol="asset")]
 		public var stretch_spincoater:Class;
+		
+		[Embed(source="assets/objects/stretch_printer.swf", symbol="asset")]
+		public var stretch_printer:Class;
+		
+		[Embed(source="assets/objects/stretch_photolithography.swf", symbol="asset")]
+		public var stretch_photolithography	:Class;
 		
 		/**
 		 * Don't call this! 

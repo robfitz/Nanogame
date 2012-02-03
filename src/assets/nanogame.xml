@@ -27,11 +27,6 @@
 			<line>
 				You control its consistency by adding XX??, a curing agent/cross linker?? Let’s add XXml.
 			</line>
-		</dialog>
-	</objective>
-		
-	<objective description="Vacuum the PDMS">
-		<dialog type="intro">
 			<line>
 				The PDMS is now beginning to transform from a liquid into a rubbery substance. 
 			</line>
@@ -42,7 +37,10 @@
 				Find the vacuum chamber
 			</line>
 		</dialog>
-
+	</objective>
+		
+	<objective description="Vacuum the PDMS">
+		
 		<goal target="stretch_vacuum" reward="air_free_pdms"/>
 
 		<dialog type="outro">
@@ -126,4 +124,5 @@
 			</line>
 		</dialog>
 	</objective>
+
 </level>
