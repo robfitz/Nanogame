@@ -41,7 +41,7 @@ package nano
 		/////////////////////////////////////////
 		//            WORLD OBJECTS            //
 		/////////////////////////////////////////
-		[Embed(source="assets/objects/stretch_scales.swf", symbol="asset")]
+		[Embed(source="assets/objects/stretch_scales.swf", mimeType="application/octet-stream")]
 		public var stretch_scales:Class;
 		
 		[Embed(source="assets/objects/stretch_vacuum.swf", symbol="asset")]
