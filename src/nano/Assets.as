@@ -54,7 +54,24 @@ package nano
 		public var stretch_printer:Class;
 		
 		[Embed(source="assets/objects/stretch_photolithography.swf", symbol="asset")]
-		public var stretch_photolithography	:Class;
+		public var stretch_photolithography:Class;
+		
+		/////////////////////////////////////////
+		//                TILES                //
+		/////////////////////////////////////////
+		[Embed(source="assets/walls/walls_correct-measurements_002.png")]
+		public var image_walls:Class;
+		
+		[Embed(source="assets/floor/floortiles_002.png")]
+		public var image_floors:Class;
+		
+		/**
+		 * Used this map to lookup the correct named asset
+		 */
+		public var image_map:Object = {
+			"walls/walls_correct-measurements_002.png" : image_walls,
+			"floor/floortiles_002.png" : image_floors
+		};
 		
 		/**
 		 * Don't call this! 

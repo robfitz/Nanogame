@@ -108,15 +108,12 @@ package nano
 			}
 			
 			var tileset:TmxTileSet = this._tilsetsToProcess[this._nextTilesetIndex];
-			var setImage:Loader = new Loader();
 			
-			setImage.contentLoaderInfo.addEventListener(Event.COMPLETE, function(event:Event):void {
-				var bmp:Bitmap = event.target.content as Bitmap;
-				tileset.image = bmp.bitmapData;
-				_nextTilesetIndex ++;
-				loadNextTilesetImage();
-			});
-			setImage.load(new URLRequest(MAP_PATH + tileset.imageSource));
+			// NOTE: This assumes all needed tile images are in <code>Assets.instance.image_map</code>
+			var image:Bitmap = new Assets.instance.image_map[tileset.imageSource]();
+			tileset.image = image.bitmapData;
+			_nextTilesetIndex ++;
+			loadNextTilesetImage();
 		}
 		
 		private function createIsoTiles():void {
