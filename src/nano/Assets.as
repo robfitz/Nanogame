@@ -57,6 +57,15 @@ package nano
 		public var stretch_photolithography:Class;
 		
 		/////////////////////////////////////////
+		//              CUTSCENES              //
+		/////////////////////////////////////////
+		[Embed(source="assets/cutscene/professor.swf", mimeType="application/octet-stream")]
+		public var professor:Class;
+		
+		[Embed(source="assets/cutscene/stretch_weighstation.swf", mimeType="application/octet-stream")]
+		public var stretch_weighstation:Class;
+		
+		/////////////////////////////////////////
 		//                TILES                //
 		/////////////////////////////////////////
 		[Embed(source="assets/walls/walls_correct-measurements_002.png")]

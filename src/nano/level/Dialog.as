@@ -23,7 +23,7 @@ package nano.level
 		{
 			if(dialogXml) {
 				for each(var line:XML in dialogXml.children()) {
-					this.addLine(line, line.@cutscene);
+					this.addLine(line, line.@cutscene, line.@cue);
 				}
 			}
 		}
@@ -32,9 +32,10 @@ package nano.level
 		 * Adds a line onto this dialog 
 		 * @param text Text for this dialog
 		 * @param cutscene Optional. Cutscene key
+		 * @param cue Optional. Name of cue point (frame name) of the cutscene to play
 		 */		
-		public function addLine(text:String, cutscene:String):void {
-			this.lines.push({text: text, cutscene: cutscene});
+		public function addLine(text:String, cutscene:String, cue:String):void {
+			this.lines.push({text: text, cutscene: cutscene, cue: cue});
 		}
 	}
 }

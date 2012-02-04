@@ -7,6 +7,7 @@ package nano.ui
 	import flash.text.TextField;
 	import flash.text.TextFormat;
 	
+	import nano.Assets;
 	import nano.level.Dialog;
 	
 	public class DialogBox extends Sprite
@@ -19,9 +20,15 @@ package nano.ui
 		private var currentDialog:Dialog;
 		private var currentLine:int = 0;
 		
+		// our cutscenes
+		private var cutsceneMask:Sprite;
+		private var cutscene:Cutscene;
+		
 		public function DialogBox()
 		{
 			super();
+			
+			this.cutsceneMask = new Sprite();
 			
 			this.format = new TextFormat("Lucida Grande", 24, 0x000000);
 			
@@ -60,7 +67,22 @@ package nano.ui
 				this._textfield.setTextFormat(this.format);
 				
 				if(line.cutscene) {
-					trace("TODO:: Show cutscene for line");
+					
+					if(! this.cutscene || this.cutscene.cutsceneName != line.cutscene) {
+						// Remove old cutscene and create the new one
+						if(this.cutscene && this.contains(this.cutscene)) {
+							this.removeChild(this.cutscene);
+						}
+						
+						this.cutscene = new Cutscene(line.cutscene);
+						this.addChild(this.cutscene);
+						this.cutscene.cue(line.cue);
+						this.render();
+					} else {
+						// Cutscene is the right cutscene, cue up the right part
+						this.cutscene.cue(line.cue);
+					}
+					
 				}
 				
 				this.currentLine ++;
@@ -97,6 +119,10 @@ package nano.ui
 			this._textfield.y = top + 20;
 			this._textfield.width = width - 240 - 20;
 			this._textfield.height = height - 40;
+			
+			if(this.cutscene) {
+				this.cutscene.y = top;
+			}
 		}
 	}
 }
