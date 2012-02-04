@@ -18,6 +18,9 @@ package nano.ui
 		public var cutsceneName:String;
 		public var asset:MovieClip;
 		
+		/** Frame that needs to be cued once a valid asset is loaded */
+		private var toCue:String;
+		
 		/**
 		 * Create a new cutscene 
 		 * @param assetClass Defaults to the professor
@@ -40,6 +43,8 @@ package nano.ui
 				addChild(asset);
 			}, false, 0, true);
 			
+			this.addEventListener(Event.ADDED, onChildAdded);
+			
 			var masker:Sprite = new Sprite();
 			masker.graphics.beginFill(0xff0000);
 			masker.graphics.drawRect(0, 0, 220, 220);
@@ -52,7 +57,18 @@ package nano.ui
 		 * @param frameName The frame to cue up
 		 */		
 		public function cue(frameName:String):void {
-			
+			if(this.asset) {
+				this.toCue = null;
+				this.asset.gotoAndPlay(frameName)
+			} else {
+				this.toCue = frameName;
+			}
+		}
+		
+		private function onChildAdded(event:Event):void {
+			if(this.toCue) {
+				this.cue(this.toCue);
+			}
 		}
 	}
 }
