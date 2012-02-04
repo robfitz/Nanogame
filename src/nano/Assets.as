@@ -53,6 +53,9 @@ package nano
 		[Embed(source="assets/objects/stretch_printer.swf", mimeType="application/octet-stream")]
 		public var stretch_printer:Class;
 		
+		[Embed(source="assets/objects/stretch_evaporater.swf", mimeType="application/octet-stream")]
+		public var stretch_evaporater:Class;
+		
 		[Embed(source="assets/objects/stretch_photolithography.swf", mimeType="application/octet-stream")]
 		public var stretch_photolithography:Class;
 		
@@ -67,6 +70,15 @@ package nano
 		
 		[Embed(source="assets/cutscene/cutscene_vacuum.swf", mimeType="application/octet-stream")]
 		public var cutscene_vacuum:Class;
+		
+		[Embed(source="assets/cutscene/cutscene_spincoater.swf", mimeType="application/octet-stream")]
+		public var cutscene_spincoater:Class;
+		
+		[Embed(source="assets/cutscene/cutscene_maskcutter.swf", mimeType="application/octet-stream")]
+		public var cutscene_maskcutter:Class;
+		
+		[Embed(source="assets/cutscene/cutscene_evaporator.swf", mimeType="application/octet-stream")]
+		public var cutscene_evaporator:Class;
 		
 		/////////////////////////////////////////
 		//                TILES                //
