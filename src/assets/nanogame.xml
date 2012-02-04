@@ -1,7 +1,7 @@
 <level name="Stretchable Electronics Virtual Experiment">	
 	<objective descrition="Weigh out and cure the PDMS">
 		<dialog type="intro">
-			<line>
+			<line cutscene="professor" cue="talk">
 				Lets start by making a stretchable electronic circuit. 
 			</line>
 			<line>
@@ -21,16 +21,16 @@
 			<line>
 				Well done!
 			</line>
-			<line cutscene="pdms_pour">
+			<line cutscene="pdms_pour" cue="one">
 				PDMS stands for Polydimethylsiloxane. It’s a clear, non-reactive, non-toxic, silicon-based substance. Liquid PDMS is used in shampoos to make your hair look shiny. Solid PDMS is used to make contact lenses. 
 			</line>
-			<line>
+			<line cutscene="pdms_pour" cue="two">
 				You control its consistency by adding XX??, a curing agent/cross linker?? Let’s add XXml.
 			</line>
-			<line>
+			<line cutscene="pdms_pour" cue="three">
 				The PDMS is now beginning to transform from a liquid into a rubbery substance. 
 			</line>
-			<line>
+			<line cutscene="professor" cue="talk">
 				Before it solidifies we need to remove any air bubbles and shape it into a thin layer. Better hurry up!
 			</line>
 			<line>
