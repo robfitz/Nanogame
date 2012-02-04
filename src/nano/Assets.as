@@ -65,6 +65,9 @@ package nano
 		[Embed(source="assets/cutscene/stretch_weighstation.swf", mimeType="application/octet-stream")]
 		public var stretch_weighstation:Class;
 		
+		[Embed(source="assets/cutscene/cutscene_vacuum.swf", mimeType="application/octet-stream")]
+		public var cutscene_vacuum:Class;
+		
 		/////////////////////////////////////////
 		//                TILES                //
 		/////////////////////////////////////////

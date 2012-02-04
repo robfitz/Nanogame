@@ -44,10 +44,10 @@
 		<goal target="stretch_vacuum" reward="air_free_pdms"/>
 
 		<dialog type="outro">
-			<line cutscene="pdms_vacuum">
+			<line cutscene="cutscene_vacuum" cue="one">
 				That’s it. The vacuum removes the air bubbles.
 			</line>
-			<line>
+			<line cutscene="professor" cue="talk">
 				Now we need to spin the PDMS into a thin layer. The spin coater is the tool for that.
 			</line>
 		</dialog>
