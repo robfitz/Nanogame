@@ -183,8 +183,7 @@ package nano
 				var objGroup:TmxObjectGroup = this._map.objectGroups['objects'];
 				for each(var obj:TmxObject in objGroup.objects) {
 					if(obj.type == 'objective') {
-						var asset:MovieClip = new Assets.instance[obj.name];
-						this.objectScene.addTmxObject(obj, asset);
+						this.objectScene.addTmxObject(obj, Assets.instance[obj.name]);
 					} else if(obj.type == 'trigger') {
 						switch(obj.name) {
 							case 'spawn':

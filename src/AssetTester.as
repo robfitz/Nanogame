@@ -23,7 +23,7 @@ package
 		{
 			super();
 			
-			var asset_stream:* = new Assets.instance.stretch_scales();
+			var asset_stream:* = new Assets.instance.stretch_spincoater();
 			var loader:Loader = new Loader();
 			loader.contentLoaderInfo.addEventListener(Event.INIT, onLoaderComplete);
 			loader.loadBytes(asset_stream);

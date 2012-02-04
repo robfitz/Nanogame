@@ -18,14 +18,9 @@ package nano
 	public class AssetLoader extends EventDispatcher
 	{
 		
-		private var _asset:MovieClipAsset;
+		private var _asset:MovieClip;
 		public function get asset():MovieClip {
 			return _asset;
-		}
-		
-		private var _content:MovieClip;
-		public function get content():MovieClip {
-			return _content;
 		}
 		
 		/**
@@ -35,17 +30,14 @@ package nano
 		public function AssetLoader(assetClass:Class)
 		{
 			super();
-			
-			this._asset = new assetClass();
-			var loader:Loader = this._asset.getChildAt(0) as Loader;
-			var info:LoaderInfo = loader.contentLoaderInfo;
-			info.addEventListener(Event.COMPLETE, this.onLoadComplete);
+			var stream:* = new assetClass();
+			var loader:Loader = new Loader();
+			loader.contentLoaderInfo.addEventListener(Event.INIT, onAssetInit);
+			loader.loadBytes(stream);
 		}
 		
-		private function onLoadComplete(event:Event):void {
-			var info:LoaderInfo = event.target as LoaderInfo;
-			info.removeEventListener(Event.COMPLETE, this.onLoadComplete);
-			this._content = info.loader.content as MovieClip;
+		private function onAssetInit(event:Event):void {
+			this._asset = (event.target.content as MovieClip)['asset'];
 			this.dispatchEvent(new Event(Event.COMPLETE));
 		}
 	}

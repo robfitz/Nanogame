@@ -44,16 +44,16 @@ package nano
 		[Embed(source="assets/objects/stretch_scales.swf", mimeType="application/octet-stream")]
 		public var stretch_scales:Class;
 		
-		[Embed(source="assets/objects/stretch_vacuum.swf", symbol="asset")]
+		[Embed(source="assets/objects/stretch_vacuum.swf", mimeType="application/octet-stream")]
 		public var stretch_vacuum:Class;
 		
-		[Embed(source="assets/objects/stretch_spincoater.swf", symbol="asset")]
+		[Embed(source="assets/objects/stretch_spincoater.swf", mimeType="application/octet-stream")]
 		public var stretch_spincoater:Class;
 		
-		[Embed(source="assets/objects/stretch_printer.swf", symbol="asset")]
+		[Embed(source="assets/objects/stretch_printer.swf", mimeType="application/octet-stream")]
 		public var stretch_printer:Class;
 		
-		[Embed(source="assets/objects/stretch_photolithography.swf", symbol="asset")]
+		[Embed(source="assets/objects/stretch_photolithography.swf", mimeType="application/octet-stream")]
 		public var stretch_photolithography:Class;
 		
 		/////////////////////////////////////////
