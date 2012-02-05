@@ -40,10 +40,28 @@ package nano.scene
 			this._asset.x = d.x;
 			this._asset.y = d.y;
 			this._asset.addEventListener(MouseEvent.CLICK, this.onAssetClick);
+			this._asset.addEventListener(MouseEvent.MOUSE_OVER, this.onAssetMouseOver);
+			this._asset.addEventListener(MouseEvent.MOUSE_OUT, this.onAssetMouseOut);
+			
 			this.sprites = [this._asset];
 			this._asset.gotoAndStop(STATE_STATIC);
 		}
 		
+		private var _state:String = STATE_STATIC;
+		private function get state():String {
+			return _state;
+		}
+		private function set state(val:String):void {
+			var oldState:String = this._state;
+			_state = val;
+			this._asset.gotoAndStop(_state);
+		}
+		
+		/**
+		 * Default contructor 
+		 * @param descriptor optional iso descriptor
+		 * 
+		 */			
 		public function GameObject(descriptor:Object=null)
 		{
 			super(descriptor);
@@ -55,16 +73,28 @@ package nano.scene
 			this.dispatchEvent(new MouseEvent(MouseEvent.CLICK));
 		}
 		
+		private function onAssetMouseOver(event:MouseEvent):void {
+			if(this.state == STATE_STATIC) {
+				this.state = STATE_HOVER;
+			}
+		}
+		
+		private function onAssetMouseOut(event:MouseEvent):void {
+			if(this.state == STATE_HOVER) {
+				this.state = STATE_STATIC;
+			}
+		}
+		
 		public function activate():void {
-			this.asset.gotoAndStop(STATE_ONCLICK);
+			this.state = STATE_ONCLICK;
 		}
 		
 		public function reset():void {
-			this.asset.gotoAndStop(STATE_RESET);
+			this.state = STATE_RESET;
 		}
 		
 		public function static():void {
-			this.asset.gotoAndStop(STATE_STATIC);
+			this.state = STATE_STATIC;
 		}
 	}
 }
