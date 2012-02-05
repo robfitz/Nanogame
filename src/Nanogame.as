@@ -155,6 +155,7 @@ package {
 				script.dialogUi.render();
 				
 				startLoop();
+				script.startLevel();
 			});
 			loader.load(new XML(new Assets.instance.level_cleanroom()));
 		}

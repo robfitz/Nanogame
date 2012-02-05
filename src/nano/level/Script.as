@@ -49,7 +49,6 @@ package nano.level
 		 * Pointer to the current objective 
 		 */		
 		private var _currentObjective:int = 0;
-
 		public function get currentObjective():Objective {
 			return this.objectives[this._currentObjective] as Objective;
 		}
@@ -71,7 +70,6 @@ package nano.level
 		 */		
 		public function initFromXml(xml:XML):void {
 			this.name = xml.@name;
-			this.introDialog = xml.intro;
 			for each(var obj:XML in xml.children()) {
 				if(obj.name() == 'objective') {
 					this.objectives.push(new Objective(obj));
@@ -84,6 +82,10 @@ package nano.level
 		 */		
 		public function startLevel():void {
 			this.world.isUpdating = true;
+			
+			if(this.currentObjective.intro) {
+				this.showDialog(this.currentObjective.intro);
+			}
 		}
 		
 		/**
@@ -140,8 +142,10 @@ package nano.level
 		}
 		
 		private function onDialogComplete(event:Event):void {
-			this.world.currentTarget.static();
-			this.world.currentTarget = null;
+			if(this.world.currentTarget) {
+				this.world.currentTarget.static();
+				this.world.currentTarget = null;
+			}
 			this.world.start();
 		}
 	}
