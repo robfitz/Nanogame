@@ -20,21 +20,23 @@ package nano.ui
 		private var currentDialog:Dialog;
 		private var currentLine:int = 0;
 		
+		private var nextButton:Button;
+		
 		// our cutscenes
-		private var cutsceneMask:Sprite;
 		private var cutscene:Cutscene;
 		
 		public function DialogBox()
 		{
 			super();
 			
-			this.cutsceneMask = new Sprite();
-			
 			this.format = new TextFormat("Lucida Grande", 24, 0x000000);
 			
 			this._textfield = new TextField();
 			this._textfield.wordWrap = true;
 			this._textfield.selectable = false;
+			
+			this.nextButton = new Button("Next..");
+			this.addChild(this.nextButton);
 			
 			this.addChild(this._textfield);
 			this.render();
@@ -101,6 +103,9 @@ package nano.ui
 			var width:int = this.stage.stageWidth;
 			var height:int = this.stage.stageHeight * .4;
 			var top:int = this.stage.stageHeight - height;
+			
+			this.nextButton.x = width - this.nextButton.buttonWidth - 20;
+			this.nextButton.y = top - this.nextButton.buttonHeight / 2;
 			
 			var g:Graphics = this.graphics;
 			g.clear();
