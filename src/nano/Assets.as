@@ -23,8 +23,8 @@ package nano
 		[Embed(source="assets/nanogame.xml", mimeType="application/octet-stream")]
 		public var game_script:Class;
 		
-		[Embed(source="assets/cleanroom.tmx", mimeType="application/octet-stream")]
-		public var level_cleanroom:Class;
+		[Embed(source="assets/nanogame_map.tmx", mimeType="application/octet-stream")]
+		public var main_level:Class;
 		
 		/////////////////////////////////////////
 		//               MENUS                 //
@@ -41,6 +41,9 @@ package nano
 		/////////////////////////////////////////
 		//            WORLD OBJECTS            //
 		/////////////////////////////////////////
+		[Embed(source="assets/objects/closet.swf", mimeType="application/octet-stream")]
+		public var closet:Class;
+		
 		[Embed(source="assets/objects/stretch_scales.swf", mimeType="application/octet-stream")]
 		public var stretch_scales:Class;
 		

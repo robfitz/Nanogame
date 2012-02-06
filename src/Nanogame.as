@@ -113,8 +113,14 @@ package {
 					break;
 				
 				case GAMESTATE_MENU:
+					this.stopLoop();
+					
+					if(this.world) {
+						this.removeChild(this.world.view);
+						this.world = null;
+					}
+					
 					if(! this.mainMenu) {
-						
 						// hookup the main menu
 						this.mainMenu = new Assets.instance.main_menu();
 						this.mainMenu['level1'].addEventListener(MouseEvent.CLICK, onLevelClick);
@@ -145,6 +151,7 @@ package {
 				
 				// create our script and dialog system
 				script = new Script(new XML(new Assets.instance.game_script));
+				script.addEventListener(Event.COMPLETE, onScriptComplete);
 				script.world = world;
 				
 				var dialogUi:DialogBox = new DialogBox();
@@ -154,15 +161,23 @@ package {
 				script.dialogUi = dialogUi;
 				script.dialogUi.render();
 				
+				
 				startLoop();
 				script.startLevel();
 			});
-			loader.load(new XML(new Assets.instance.level_cleanroom()));
+			loader.load(new XML(new Assets.instance.main_level()));
 		}
 				
 		private function onLevelClick(event:Event):void {
 			trace("yeah");
 			this.setGameState(GAMESTATE_INGAME);
+		}
+		
+		private function onScriptComplete(event:Event):void {
+			(event.target as Script).removeEventListener(Event.COMPLETE, onScriptComplete);
+			this.script.world = null;
+			this.script = null;
+			this.setGameState(GAMESTATE_MENU);
 		}
 	}
 }

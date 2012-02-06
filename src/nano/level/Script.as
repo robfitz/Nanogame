@@ -1,6 +1,7 @@
 package nano.level
 {
 	import flash.events.Event;
+	import flash.events.EventDispatcher;
 	import flash.net.SecureSocket;
 	
 	import nano.World;
@@ -12,7 +13,7 @@ package nano.level
 	 * @author devin
 	 * 
 	 */	
-	public class Script
+	public class Script extends EventDispatcher
 	{
 		
 		public var name:String;
@@ -117,10 +118,6 @@ package nano.level
 			
 			// Advance the objective
 			this._currentObjective ++;
-			if(this._currentObjective >= this.objectives.length) {
-				// totally complete
-				this.scriptFinished();
-			}
 		}
 		
 		/**
@@ -128,7 +125,7 @@ package nano.level
 		 * 
 		 */		
 		protected function scriptFinished():void {
-			trace("LEVEL COMPELTE! WELL DONE!");
+			this.dispatchEvent(new Event(Event.COMPLETE));
 		}
 		
 		/**
@@ -146,7 +143,13 @@ package nano.level
 				this.world.currentTarget.static();
 				this.world.currentTarget = null;
 			}
-			this.world.start();
+			
+			if(this._currentObjective >= this.objectives.length) {
+				// totally complete
+				this.scriptFinished();
+			} else {
+				this.world.start();
+			}
 		}
 	}
 }
