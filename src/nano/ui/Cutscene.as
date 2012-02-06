@@ -44,10 +44,12 @@ package nano.ui
 			}, false, 0, true);
 			
 			this.addEventListener(Event.ADDED, onChildAdded);
-			
+
 			var masker:Sprite = new Sprite();
 			masker.graphics.beginFill(0xff0000);
-			masker.graphics.drawRect(0, 0, 220, 220);
+			
+			// set by laruence
+			masker.graphics.drawRect(0, 0, 221, 22);
 			this.addChild(masker);
 			this.mask = masker;
 		}
