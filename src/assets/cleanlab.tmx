@@ -15,7 +15,7 @@
   <properties>
    <property name="order" value="2"/>
   </properties>
-  <object name="spawn" type="trigger" x="308" y="393" width="34" height="37">
+  <object name="spawn" type="trigger" x="320" y="746" width="34" height="37">
    <properties>
     <property name="trigger" value="spawn"/>
    </properties>
@@ -32,7 +32,6 @@
     <property name="trigger" value="stretch_photolithography"/>
    </properties>
   </object>
-  <object name="WORLD_OFFICE" type="trigger" x="204" y="504" width="84" height="73"/>
   <object name="stretch_vacuum" type="objective" x="95" y="175" width="42" height="88">
    <properties>
     <property name="hull" value="true"/>
@@ -57,6 +56,7 @@
     <property name="trigger" value="stretch_scales"/>
    </properties>
   </object>
+  <object name="WORLD_OFFICE" type="trigger" x="290" y="799" width="92" height="33"/>
  </objectgroup>
  <layer name="foreground" width="22" height="36" visible="0">
   <properties>
