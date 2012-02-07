@@ -60,7 +60,7 @@ package nano.ui
 		public function cue(frameName:String):void {
 			if(this.asset) {
 				this.toCue = null;
-				this.asset.gotoAndPlay(frameName)
+				this.asset.cutscene.gotoAndPlay(frameName)
 			} else {
 				this.toCue = frameName;
 			}

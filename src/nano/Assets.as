@@ -92,18 +92,18 @@ package nano
 		/////////////////////////////////////////
 		//                TILES                //
 		/////////////////////////////////////////
-		[Embed(source="assets/walls/walls_correct-measurements_002.png")]
+		[Embed(source="assets/walls/walls_003.png")]
 		public var image_walls:Class;
 		
-		[Embed(source="assets/floor/floortiles_002.png")]
+		[Embed(source="assets/floor/floors_002.png")]
 		public var image_floors:Class;
 		
 		/**
 		 * Used this map to lookup the correct named asset
 		 */
 		public var image_map:Object = {
-			"walls/walls_correct-measurements_002.png" : image_walls,
-			"floor/floortiles_002.png" : image_floors
+			"walls/walls_003.png" : image_walls,
+			"floor/floors_002.png" : image_floors
 		};
 		
 		/**

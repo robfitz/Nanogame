@@ -4,13 +4,13 @@
 			<line cutscene="professor" cue="talk">
 				Lets start by making a stretchable electronic circuit. 
 			</line>
-			<line>
+			<line cutscene="professor" cue="talk">
 				Creating a circuit that can be stretched or flexed would allow us to put electronic systems into the fabric of clothes or even inside the human body. 
 			</line>
-			<line>
+			<line cutscene="professor" cue="talk">
 				The secret is start with a versatile stretchy substance you can build your circuit on. A chemical called PDMS is ideal.
 			</line>
-			<line>
+			<line cutscene="professor" cue="talk">
 				Find the weighing scales and weigh out XXg of PDMS
 			</line>
 		</dialog>
@@ -33,7 +33,7 @@
 			<line cutscene="professor" cue="talk">
 				Before it solidifies we need to remove any air bubbles and shape it into a thin layer. Better hurry up!
 			</line>
-			<line>
+			<line cutscene="professor" cue="talk">
 		        Find the vacuum chamber
 		    </line>
 		</dialog>		

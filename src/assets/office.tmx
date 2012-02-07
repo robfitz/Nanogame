@@ -1,39 +1,39 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <map version="1.0" orientation="isometric" width="20" height="20" tilewidth="64" tileheight="32">
- <tileset firstgid="1" name="floortiles_002" tilewidth="64" tileheight="32">
-  <image source="floor/floortiles_002.png" width="128" height="32"/>
+ <tileset firstgid="1" name="floors_002" tilewidth="64" tileheight="32">
+  <image source="floor/floors_002.png" width="192" height="32"/>
  </tileset>
- <tileset firstgid="3" name="walls_correct-measurements_002" tilewidth="80" tileheight="200">
-  <image source="walls/walls_correct-measurements_002.png" width="800" height="200"/>
+ <tileset firstgid="4" name="walls_003" tilewidth="80" tileheight="200">
+  <image source="walls/walls_003.png" width="800" height="200"/>
  </tileset>
  <layer name="background" width="20" height="20">
   <properties>
    <property name="order" value="1"/>
   </properties>
   <data encoding="base64" compression="zlib">
-   eJxjYBgFtADMQMyKB5NoVgMjkMaHSQGso+aNmjeA5iEDaphBS/NGAX4AAFQ7BSA=
+   eJxjYCAesAMxBxbMBcWkAKBZDcxAGh8mBXCMmofTPB4gZkTCXFgwDwGzYOaB7GVEMw8XHmrm4QrnUfMGj3lcVDaPFEBt84YDAAAsEQl8
   </data>
  </layer>
  <objectgroup name="objects" width="20" height="20">
-  <object name="professor_ingame" type="objective" x="247" y="187" width="98" height="67">
+  <object name="professor_ingame" type="objective" x="415" y="67" width="95" height="55">
    <properties>
     <property name="hull" value="true"/>
     <property name="trigger" value="professor_ingame"/>
    </properties>
   </object>
-  <object name="spawn" type="trigger" x="287" y="383" width="33" height="33">
+  <object name="spawn" type="trigger" x="446" y="191" width="33" height="33">
    <properties>
     <property name="trigger" value="spawn"/>
    </properties>
   </object>
-  <object name="WORLD_CLEANLAB" type="trigger" x="263" y="449" width="84" height="73"/>
+  <object name="WORLD_CLEANLAB" type="trigger" x="65" y="191" width="92" height="33"/>
  </objectgroup>
  <layer name="foreground" width="20" height="20">
   <properties>
    <property name="order" value="3"/>
   </properties>
   <data encoding="base64" compression="zlib">
-   eJxjYBgFQx1wMjA0jJo3at5wMW8UDB0AAI2dBNI=
+   eJxjYBicgIuBoWHUvFHzCJgBx9yDwD2j5tHHPC4iMbXdx4HEpjS9DRcAAJOdCC0=
   </data>
  </layer>
 </map>
