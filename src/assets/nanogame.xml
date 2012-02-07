@@ -1,4 +1,4 @@
-<level name="Stretchable Electronics Virtual Experiment">	
+<level name="Stretchable Electronics Virtual Experiment" startin="WORLD_OFFICE">	
     <objective descrition="Weigh out and cure the PDMS">
         <dialog type="intro">
 			<line cutscene="professor" cue="talk">

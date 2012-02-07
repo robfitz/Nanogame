@@ -23,13 +23,23 @@ package nano
 	import net.pixelpracht.tmx.TmxObjectGroup;
 
 	/**
-	 * The world in which the game take place. Consists of tile layers (foreground, background)
+	 * The world in which the game take place. Multiple maps with tile layers (foreground, background)
 	 * and collision and player layers.   
 	 * @author devin
 	 */	
 	public class World
 	{
 		public static const DEBUG_DRAW:Boolean = false;
+		
+		/** Our maps. Hardcoded cause I don't care right now */
+		public static const WORLD_OFFICE:String = "WORLD_OFFICE";
+		public static const WORLD_CLEANLAB:String = "WORLD_CLEANLAB";
+		public static const WORLD_WETLAB:String = "WORLD_WETLAB";
+		
+		/** Map map map map */
+		private var maps:Object;
+		
+		private var _currentMap:String;
 		
 		public var isUpdating:Boolean = true;
 		
@@ -72,7 +82,42 @@ package nano
 			var stage:Stage = this._hostContainer.stage;
 			this.view = new IsoView();
 			this.view.setSize(stage.stageWidth, stage.stageHeight);
-			//this.view.panBy(0, 200);
+			
+			// init in all our map data
+			var officeData:TmxLoader = new TmxLoader();
+			officeData.load(new XML(new Assets.instance.office()));
+			
+			var cleanlabData:TmxLoader = new TmxLoader();
+			cleanlabData.load(new XML(new Assets.instance.cleanlab()));
+			
+			this.maps = {
+				WORLD_OFFICE: officeData,
+				WORLD_CLEANLAB: cleanlabData
+			};
+		}
+		
+		/**
+		 * Moves the player to a specific map 
+		 * @param mapName Name of the map. MUST BE ONE OF THE VALID CONSTANTS
+		 */		
+		public function goto(mapName:String):void {
+			if(this._currentMap == mapName) {
+				return;
+			}
+			
+			// reset the current map
+			if(this.objects) {
+				this.objects.removeEventListener(GameObjectEvent.CLICK, this.onObjectClick);
+			}
+			if(this.grid) {
+				this.grid.removeEventListener(MouseEvent.CLICK, this.onGridClick);
+			}
+			for each(var scene:IsoScene in this.view.scenes) {
+				scene.removeAllChildren();
+			}
+			this.view.removeAllScenes();
+			
+			this.initWorldFromLoader(this.maps[mapName]);
 		}
 		
 		/**
@@ -151,6 +196,11 @@ package nano
 			if(this.player) {
 				this.player.update(dt);
 				this.view.centerOnIso(this.player);
+				
+				// world transitions
+				if(this._collisions.justHit && this.maps.hasOwnProperty(this._collisions.justHit.name)) {
+					this.goto(this._collisions.justHit.name);
+				}
 			}
 		}
 		

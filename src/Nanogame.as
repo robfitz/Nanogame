@@ -57,7 +57,7 @@ package {
 		
 		public function Nanogame()
 		{
-			
+			this.world = new World(this);
 			this.gameUi = new Sprite();
 			this.addChild(this.gameUi);
 			this.setGameState(GAMESTATE_LOADING);
@@ -120,7 +120,7 @@ package {
 				case GAMESTATE_MENU:
 					this.stopLoop();
 					
-					if(this.world) {
+					if(this.world && this.contains(this.world.view)) {
 						this.removeChild(this.world.view);
 						this.world = null;
 					}
@@ -155,36 +155,27 @@ package {
 		 * TODO :: Load different levels
 		 */		
 		private function initLevel():void {
-			this.world = new World(this);
+			// create out world
 			this.addChildAt(this.world.view, 0);
 			
-			// load the world!
-			var loader:TmxLoader = new TmxLoader();
-			loader.addEventListener(Event.COMPLETE, function(event:Event):void {
-				// create our world!
-				world.initWorldFromLoader(loader);
-				
-				// create our script and dialog system
-				script = new Script(new XML(new Assets.instance.game_script));
-				script.addEventListener(Event.COMPLETE, onScriptComplete);
-				script.world = world;
-				
-				var dialogUi:DialogBox = new DialogBox();
-				dialogUi.visible = false;
-				
-				gameUi.addChild(dialogUi);
-				script.dialogUi = dialogUi;
-				script.dialogUi.render();
-				
-				
-				startLoop();
-				script.startLevel();
-			});
-			loader.load(new XML(new Assets.instance.office()));
+			// load the current script
+			this.script = new Script(new XML(new Assets.instance.game_script));
+			this.script.addEventListener(Event.COMPLETE, onScriptComplete);
+			this.script.world = world;
+			
+			// our UI
+			var dialogUi:DialogBox = new DialogBox();
+			dialogUi.visible = false;
+			this.gameUi.addChild(dialogUi);
+			this.script.dialogUi = dialogUi;
+			this.script.dialogUi.render();
+			
+			// kick off the game
+			startLoop();
+			script.startLevel();
 		}
 				
 		private function onLevelClick(event:Event):void {
-			trace("yeah");
 			this.setGameState(GAMESTATE_INGAME);
 		}
 		

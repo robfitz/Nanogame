@@ -18,7 +18,7 @@ package nano.level
 		
 		public var name:String;
 		
-		public var introDialog:String;
+		public var startMap:String;
 		
 		private var _dialogUi:DialogBox;
 		public function get dialogUi():DialogBox
@@ -71,6 +71,7 @@ package nano.level
 		 */		
 		public function initFromXml(xml:XML):void {
 			this.name = xml.@name;
+			this.startMap = xml.@startin;
 			for each(var obj:XML in xml.children()) {
 				if(obj.name() == 'objective') {
 					this.objectives.push(new Objective(obj));
@@ -82,6 +83,7 @@ package nano.level
 		 * Starts the current a level anew
 		 */		
 		public function startLevel():void {
+			this.world.goto(this.startMap);
 			this.world.isUpdating = true;
 			
 			if(this.currentObjective.intro) {

@@ -26,6 +26,7 @@
     <property name="trigger" value="spawn"/>
    </properties>
   </object>
+  <object name="WORLD_CLEANLAB" type="trigger" x="263" y="449" width="84" height="73"/>
  </objectgroup>
  <layer name="foreground" width="20" height="20">
   <properties>

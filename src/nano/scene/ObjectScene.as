@@ -48,7 +48,7 @@ package nano.scene
 			var loader:AssetLoader = new AssetLoader(assetClass);
 			loader.addEventListener(Event.COMPLETE, function(event:Event):void {
 				sprite.asset = (event.target as AssetLoader).asset;
-			}, false, 0, true);
+			});
 			
 			this.addChild(sprite);
 		}
