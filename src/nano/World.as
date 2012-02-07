@@ -106,14 +106,17 @@ package nano
 			}
 			
 			// reset the current map
+			if(this.player) {
+				this.player.stand();
+			}
 			if(this.objects) {
 				this.objects.removeEventListener(GameObjectEvent.CLICK, this.onObjectClick);
+				this.objects.removeChild(this.player);
 			}
 			if(this.grid) {
 				this.grid.removeEventListener(MouseEvent.CLICK, this.onGridClick);
-			}
-			for each(var scene:IsoScene in this.view.scenes) {
-				scene.removeAllChildren();
+				this.grid = null;
+				this.gridScene = null;
 			}
 			this.view.removeAllScenes();
 			
@@ -126,47 +129,44 @@ package nano
 		 * @param loader TmxLoader that has successfully finished loading
 		 */
 		public function initWorldFromLoader(loader:TmxLoader):void {
-			if(loader.isLoaded) {
-				
-				var scenes:Object = loader.tileScenes;
-				
-				// Create and add the grid that the user will click
-				this.grid = new IsoGrid();
-				this.grid.setGridSize(loader.map.width, loader.map.height, 0);
-				this.grid.cellSize = 32;
-				this.gridScene = new IsoScene();
-				this.gridScene.addChild(this.grid);
-				
-				// Inject scenes in order
-				this.view.addScene(scenes['background']);
-				this.view.addScene(this.gridScene);
-				this.objects = loader.objectScene;
-				trace("foreground is turned off");
-				//this.view.addScene(scenes['foreground']);
-				
-				// Create and add in our character at this time
+			var scenes:Object = loader.tileScenes;
+			
+			// Create and add the grid that the user will click
+			this.grid = new IsoGrid();
+			this.grid.setGridSize(loader.map.width, loader.map.height, 0);
+			this.grid.cellSize = 32;
+			this.gridScene = new IsoScene();
+			this.gridScene.addChild(this.grid);
+			
+			// Inject scenes in order
+			this.view.addScene(scenes['background']);
+			this.view.addScene(this.gridScene);
+			this.objects = loader.objectScene;
+			trace("foreground is turned off");
+			//this.view.addScene(scenes['foreground']);
+			
+			// Create and add in our character at this time
+			if(! this.player) {
 				var img:* = new Assets.instance.player_suited;
 				this.player = new Character(this, new Assets.instance.player_suited);
-                
-				var p:Character = player;
-				
-				// add player
-				this.objects.addChild(this.player);
-				if(loader.spawnPoint) {
-					this.player.moveTo(loader.spawnPoint.x, loader.spawnPoint.y, 0);
-				}
-				
-				// add collision and trigger information
-				this._collisions= loader.getCollisionLayer();
-			
-				
-				// Setup our interaction listeners
-				this.objects.addEventListener(GameObjectEvent.CLICK, this.onObjectClick);
-				this.grid.addEventListener(MouseEvent.CLICK, this.onGridClick);
-				
-				// Finish up by forcing a complete redraw
-				this.invalidateTiles();
 			}
+			
+			// add player
+			this.objects.addChild(this.player);
+			
+			if(loader.spawnPoint) {
+				this.player.moveTo(loader.spawnPoint.x, loader.spawnPoint.y, 0);
+			}
+			
+			// add collision and trigger information
+			this._collisions = loader.getCollisionLayer();
+			
+			// Setup our interaction listeners
+			this.objects.addEventListener(GameObjectEvent.CLICK, this.onObjectClick);
+			this.grid.addEventListener(MouseEvent.CLICK, this.onGridClick);
+			
+			// Finish up by forcing a complete redraw
+			this.invalidateTiles();
 		}
 		
 		/**
