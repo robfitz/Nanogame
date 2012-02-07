@@ -21,13 +21,13 @@
 			<line cutscene="professor" cue="talk">
 				Well done!
 			</line>
-			<line cutscene="stretch_weighstation" cue="one">
+			<line cutscene="cutscene_weighstation" cue="one">
 				PDMS stands for Polydimethylsiloxane. It’s a clear, non-reactive, non-toxic, silicon-based substance. Liquid PDMS is used in shampoos to make your hair look shiny. Solid PDMS is used to make contact lenses. 
 			</line>
-			<line cutscene="stretch_weighstation" cue="two">
+			<line cutscene="cutscene_weighstation" cue="two">
 				You control its consistency by adding XX??, a curing agent/cross linker?? Let’s add XXml.
 			</line>
-			<line cutscene="stretch_weighstation" cue="three">
+			<line cutscene="cutscene_weighstation" cue="three">
 				The PDMS is now beginning to transform from a liquid into a rubbery substance. 
 			</line>
 			<line cutscene="professor" cue="talk">

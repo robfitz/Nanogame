@@ -39,9 +39,12 @@ package nano.scene
 			var d:Pt = IsoMath.isoToScreen(new Pt(this.width, this.length, 0));
 			this._asset.x = d.x;
 			this._asset.y = d.y;
-			this._asset.addEventListener(MouseEvent.CLICK, this.onAssetClick);
-			this._asset.addEventListener(MouseEvent.MOUSE_OVER, this.onAssetMouseOver);
-			this._asset.addEventListener(MouseEvent.MOUSE_OUT, this.onAssetMouseOut);
+			
+			if(! this.objectData['static']) {
+				this._asset.addEventListener(MouseEvent.CLICK, this.onAssetClick);
+				this._asset.addEventListener(MouseEvent.MOUSE_OVER, this.onAssetMouseOver);
+				this._asset.addEventListener(MouseEvent.MOUSE_OUT, this.onAssetMouseOut);
+			}
 			
 			this.sprites = [this._asset];
 			this._asset.gotoAndStop(STATE_STATIC);

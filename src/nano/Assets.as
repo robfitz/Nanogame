@@ -44,11 +44,36 @@ package nano
 		/////////////////////////////////////////
 		//            WORLD OBJECTS            //
 		/////////////////////////////////////////
-		[Embed(source="assets/objects/professor_ingame.swf", mimeType="application/octet-stream")]
-		public var professor_ingame:Class;
-		
 		[Embed(source="assets/objects/closet.swf", mimeType="application/octet-stream")]
 		public var closet:Class;
+		
+		[Embed(source="assets/objects/cabinet.swf", mimeType="application/octet-stream")]
+		public var cabinet:Class;
+
+		[Embed(source="assets/objects/eyewash.swf", mimeType="application/octet-stream")]
+		public var eyewash:Class;
+		
+		[Embed(source="assets/objects/locker.swf", mimeType="application/octet-stream")]
+		public var locker:Class;
+		
+		[Embed(source="assets/objects/misc_furnace.swf", mimeType="application/octet-stream")]
+		public var misc_furnace:Class;
+		
+		[Embed(source="assets/objects/periodictable.swf", mimeType="application/octet-stream")]
+		public var periodictable:Class;
+		
+		[Embed(source="assets/objects/pictures.swf", mimeType="application/octet-stream")]
+		public var pictures:Class;
+		
+		[Embed(source="assets/objects/shelves.swf", mimeType="application/octet-stream")]
+		public var shelves:Class;
+		
+		//
+		// Objectives
+		//
+		
+		[Embed(source="assets/objects/professor_ingame.swf", mimeType="application/octet-stream")]
+		public var professor_ingame:Class;
 		
 		[Embed(source="assets/objects/stretch_scales.swf", mimeType="application/octet-stream")]
 		public var stretch_scales:Class;
@@ -74,8 +99,8 @@ package nano
 		[Embed(source="assets/cutscene/professor.swf", mimeType="application/octet-stream")]
 		public var professor:Class;
 		
-		[Embed(source="assets/cutscene/stretch_weighstation.swf", mimeType="application/octet-stream")]
-		public var stretch_weighstation:Class;
+		[Embed(source="assets/cutscene/cutscene_weighstation.swf", mimeType="application/octet-stream")]
+		public var cutscene_weighstation:Class;
 		
 		[Embed(source="assets/cutscene/cutscene_vacuum.swf", mimeType="application/octet-stream")]
 		public var cutscene_vacuum:Class;

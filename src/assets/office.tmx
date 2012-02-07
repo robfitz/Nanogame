@@ -27,6 +27,16 @@
    </properties>
   </object>
   <object name="WORLD_CLEANLAB" type="trigger" x="65" y="191" width="92" height="33"/>
+  <object name="shelves" type="objective" x="300" y="18" width="19" height="90">
+   <properties>
+    <property name="static" value="true"/>
+   </properties>
+  </object>
+  <object name="pictures" type="objective" x="345" y="-53" width="74" height="10">
+   <properties>
+    <property name="static" value="true"/>
+   </properties>
+  </object>
  </objectgroup>
  <layer name="foreground" width="20" height="20">
   <properties>
