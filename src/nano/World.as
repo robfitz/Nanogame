@@ -124,8 +124,7 @@ package nano
 		 * Helper function that grabs all the things we need from a TmxLoader
 		 * that has completed it's load
 		 * @param loader TmxLoader that has successfully finished loading
-		 * 
-		 */		
+		 */
 		public function initWorldFromLoader(loader:TmxLoader):void {
 			if(loader.isLoaded) {
 				

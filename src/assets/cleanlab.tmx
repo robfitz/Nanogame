@@ -70,6 +70,7 @@
     <property name="trigger" value="closet"/>
    </properties>
   </object>
+  <object name="WORLD_OFFICE" type="trigger" x="229" y="745" width="84" height="73"/>
  </objectgroup>
  <layer name="foreground" width="30" height="60" visible="0">
   <properties>
