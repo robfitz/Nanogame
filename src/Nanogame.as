@@ -180,7 +180,7 @@ package {
 				startLoop();
 				script.startLevel();
 			});
-			loader.load(new XML(new Assets.instance.main_level()));
+			loader.load(new XML(new Assets.instance.office()));
 		}
 				
 		private function onLevelClick(event:Event):void {

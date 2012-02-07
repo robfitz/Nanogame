@@ -23,8 +23,11 @@ package nano
 		[Embed(source="assets/nanogame.xml", mimeType="application/octet-stream")]
 		public var game_script:Class;
 		
-		[Embed(source="assets/nanogame_map.tmx", mimeType="application/octet-stream")]
-		public var main_level:Class;
+		[Embed(source="assets/office.tmx", mimeType="application/octet-stream")]
+		public var office:Class;
+		
+		[Embed(source="assets/cleanlab.tmx", mimeType="application/octet-stream")]
+		public var cleanlab:Class;
 		
 		/////////////////////////////////////////
 		//               MENUS                 //
