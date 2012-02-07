@@ -12,6 +12,8 @@ package nano.ui
 	
 	public class DialogBox extends Sprite
 	{
+		public const BOX_HEIGHT:int = 221;
+		
 		private var _textfield:TextField;
 		private var format:TextFormat;
 		

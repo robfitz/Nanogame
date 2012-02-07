@@ -8,6 +8,7 @@ package {
 	import flash.display.Sprite;
 	import flash.events.Event;
 	import flash.events.MouseEvent;
+	import flash.events.ProgressEvent;
 	import flash.utils.getTimer;
 	
 	import nano.Assets;
@@ -109,7 +110,11 @@ package {
 			
 			switch(this.state) {
 				case GAMESTATE_LOADING:
-					this.setGameState(GAMESTATE_MENU);
+					if(this.stage.loaderInfo.bytesLoaded != this.stage.loaderInfo.bytesTotal) { 
+						this.stage.loaderInfo.addEventListener(ProgressEvent.PROGRESS, this.onGameLoading);
+					} else {
+						this.setGameState(GAMESTATE_MENU);
+					}
 					break;
 				
 				case GAMESTATE_MENU:
@@ -132,6 +137,16 @@ package {
 				case GAMESTATE_INGAME:
 					this.gameUi.removeChild(this.mainMenu);
 					this.initLevel();
+			}
+		}
+		
+		/**
+		 * Called while the game is loading 
+		 */		
+		private function onGameLoading(event:ProgressEvent):void {
+			trace("progress");
+			if(event.bytesLoaded == event.bytesTotal) {
+				this.setGameState(GAMESTATE_MENU);
 			}
 		}
 		

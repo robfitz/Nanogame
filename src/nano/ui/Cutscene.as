@@ -48,8 +48,7 @@ package nano.ui
 			var masker:Sprite = new Sprite();
 			masker.graphics.beginFill(0xff0000);
 			
-			// set by laruence
-			masker.graphics.drawRect(0, 0, 221, 22);
+			masker.graphics.drawRect(0, 0, 221, 221);
 			this.addChild(masker);
 			this.mask = masker;
 		}

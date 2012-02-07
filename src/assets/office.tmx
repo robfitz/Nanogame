@@ -1,20 +1,20 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.0" orientation="isometric" width="30" height="60" tilewidth="64" tileheight="32">
+<map version="1.0" orientation="isometric" width="20" height="20" tilewidth="64" tileheight="32">
  <tileset firstgid="1" name="floortiles_002" tilewidth="64" tileheight="32">
   <image source="floor/floortiles_002.png" width="128" height="32"/>
  </tileset>
  <tileset firstgid="3" name="walls_correct-measurements_002" tilewidth="80" tileheight="200">
   <image source="walls/walls_correct-measurements_002.png" width="800" height="200"/>
  </tileset>
- <layer name="background" width="30" height="60">
+ <layer name="background" width="20" height="20">
   <properties>
    <property name="order" value="1"/>
   </properties>
   <data encoding="base64" compression="zlib">
-   eJzt1MEKgCAQRVEtpIQ+uk/3bdoM4WJEDbsXHrM84MIQ5rZrybkG8950vfOWcHFxcXFxcXEXdrOuXW/3rcu8wahwcXt0yo26z3DXco+PuPbvHmHWhouLizvTJSIi+ksFIQgaRA==
+   eJxjYBgFtADMQMyKB5NoVgMjkMaHSQGso+aNmjeA5iEDaphBS/NGAX4AAFQ7BSA=
   </data>
  </layer>
- <objectgroup name="objects" width="30" height="60">
+ <objectgroup name="objects" width="20" height="20">
   <properties>
    <property name="order" value="2"/>
   </properties>
@@ -59,24 +59,20 @@
     <property name="trigger" value="stretch_evaporater"/>
    </properties>
   </object>
-  <object type="trigger" x="210" y="1022" width="115" height="150">
-   <properties>
-    <property name="trigger" value="airlock1"/>
-   </properties>
-  </object>
-  <object name="closet" type="objective" x="195" y="1245" width="29" height="70">
+  <object name="spawn" x="292" y="420" width="23" height="25"/>
+  <object name="professor_ingame" type="objective" x="241" y="193" width="109" height="61">
    <properties>
     <property name="hull" value="true"/>
-    <property name="trigger" value="closet"/>
+    <property name="trigger" value="professor_ingame"/>
    </properties>
   </object>
  </objectgroup>
- <layer name="foreground" width="30" height="60" visible="0">
+ <layer name="foreground" width="20" height="20">
   <properties>
    <property name="order" value="3"/>
   </properties>
   <data encoding="base64" compression="zlib">
-   eJztzbEJADAMA0G1ydQePQukicFF4B7U6hK9tJLicrlcLpfL5bb+r9uzZg3ec7lcLleSJEnSlx35khFh
+   eJxjYBgFQx1wMjA0jJo3at5wMW8UDB0AAI2dBNI=
   </data>
  </layer>
 </map>

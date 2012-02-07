@@ -3,6 +3,7 @@ package nano.ui
 	import flash.display.Graphics;
 	import flash.display.Sprite;
 	import flash.text.TextField;
+	import flash.text.TextFormat;
 	
 	/**
 	 * Simple buttons for nanogame 
@@ -21,6 +22,7 @@ package nano.ui
 		public function set label(val:String):void {
 			_label = val;
 			this.textfield.text = _label;
+			this.textfield.setTextFormat(new TextFormat("Lucida Grande", 18, 0x000000));
 			this.render();
 		}
 		
@@ -29,13 +31,17 @@ package nano.ui
 		}
 		
 		public function get buttonHeight():Number {
-			return this.textfield.textHeight + 20;
+			return this.textfield.textHeight + 23;
 		}
 		
 		public function Button(label:String)
 		{
 			super();
+			this.mouseChildren = false;
+			this.buttonMode = true;
+			this.useHandCursor = true;
 			this.textfield = new TextField();
+			this.textfield.selectable = false;
 			this.addChild(this.textfield);
 			this.label = label;
 		}
@@ -48,8 +54,9 @@ package nano.ui
 			var w:int = this.textfield.textWidth;
 			var h:int = this.textfield.textHeight;
 			
-			g.beginFill(0xff0000, 1);
-			g.drawRect(0, 0, w + 20, h + 20);
+			g.lineStyle(2, 0x60d1d1, 1);
+			g.beginFill(0xb8d1d1, 1);
+			g.drawRoundRect(0, 0, w + 20, h + 23, 8);
 		}
 	}
 }

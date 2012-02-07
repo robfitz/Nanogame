@@ -34,9 +34,9 @@
 				Before it solidifies we need to remove any air bubbles and shape it into a thin layer. Better hurry up!
 			</line>
 			<line>
-				Find the vacuum chamber
-			</line>
-		</dialog>
+		        Find the vacuum chamber
+		    </line>
+		</dialog>		
 	</objective>
 		
 	<objective description="Vacuum the PDMS">

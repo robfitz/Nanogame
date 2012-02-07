@@ -125,8 +125,9 @@ package nano.level
 		 * 
 		 */		
 		protected function scriptFinished():void {
+			trace("TODO: Show victory screen here");
 			this.dispatchEvent(new Event(Event.COMPLETE));
-		}
+			}
 		
 		/**
 		 * Shows a section of dialog text 

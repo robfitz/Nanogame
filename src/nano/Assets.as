@@ -41,6 +41,9 @@ package nano
 		/////////////////////////////////////////
 		//            WORLD OBJECTS            //
 		/////////////////////////////////////////
+		[Embed(source="assets/objects/professor_ingame.swf", mimeType="application/octet-stream")]
+		public var professor_ingame:Class;
+		
 		[Embed(source="assets/objects/closet.swf", mimeType="application/octet-stream")]
 		public var closet:Class;
 		
