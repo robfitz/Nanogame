@@ -81,6 +81,7 @@ package nano
 			this._hostContainer = hostContainer;
 			var stage:Stage = this._hostContainer.stage;
 			this.view = new IsoView();
+			this.view.showBorder = false;
 			this.view.setSize(stage.stageWidth, stage.stageHeight);
 			
 			// init in all our map data

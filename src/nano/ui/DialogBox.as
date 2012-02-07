@@ -12,7 +12,7 @@ package nano.ui
 	
 	public class DialogBox extends Sprite
 	{
-		public const BOX_HEIGHT:int = 221;
+		public const BOX_HEIGHT:int = 222;
 		
 		private var _textfield:TextField;
 		private var format:TextFormat;
@@ -128,7 +128,8 @@ package nano.ui
 			this._textfield.height = height - 40;
 			
 			if(this.cutscene) {
-				this.cutscene.y = top;
+				this.cutscene.x = 2;
+				this.cutscene.y = top + 2;
 			}
 		}
 	}

@@ -48,7 +48,7 @@ package nano.ui
 			var masker:Sprite = new Sprite();
 			masker.graphics.beginFill(0xff0000);
 			
-			masker.graphics.drawRect(0, 0, 221, 221);
+			masker.graphics.drawRect(0, 0, 218, 218);
 			this.addChild(masker);
 			this.mask = masker;
 		}
