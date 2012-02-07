@@ -103,7 +103,7 @@ package nano.ui
 			}
 			
 			var width:int = this.stage.stageWidth;
-			var height:int = this.stage.stageHeight * .4;
+			var height:int = BOX_HEIGHT;
 			var top:int = this.stage.stageHeight - height;
 			
 			this.nextButton.x = width - this.nextButton.buttonWidth - 20;
@@ -114,12 +114,12 @@ package nano.ui
 			
 			// draw background
 			g.beginFill(0xffffff);
-			g.lineStyle(2, 0xdce4e4);
+			g.lineStyle(4, 0xdce4e4);
 			g.drawRect(0, top, width, height);
 			
-			// borders
-			
-			// dividers
+			// cutscene background
+			g.beginFill(0x333333);
+			g.drawRect(0, top, height, height);
 			
 			// position text field
 			this._textfield.x = 240;
