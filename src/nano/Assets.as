@@ -108,6 +108,9 @@ package nano
 		[Embed(source="assets/objects/solar_atomiclayer.swf", mimeType="application/octet-stream")]
 		public var solar_atomiclayer:Class;
 		
+		[Embed(source="assets/objects/solar_spinhood.swf", mimeType="application/octet-stream")]
+		public var solar_spinhood:Class;
+		
 		/////////////////////////////////////////
 		//              CUTSCENES              //
 		/////////////////////////////////////////
@@ -131,6 +134,24 @@ package nano
 		
 		[Embed(source="assets/cutscene/cutscene_photolithography.swf", mimeType="application/octet-stream")]
 		public var cutscene_photolithography:Class;
+		
+		[Embed(source="assets/cutscene/cutscene_sputter1.swf", mimeType="application/octet-stream")]
+		public var cutscene_sputter1:Class;
+		
+		[Embed(source="assets/cutscene/cutscene_ultrasoniccleaner.swf", mimeType="application/octet-stream")]
+		public var cutscene_ultrasoniccleaner:Class;
+		
+		[Embed(source="assets/cutscene/cutscene_sputter2.swf", mimeType="application/octet-stream")]
+		public var cutscene_sputter2:Class;
+		
+		[Embed(source="assets/cutscene/cutscene_bath.swf", mimeType="application/octet-stream")]
+		public var cutscene_bath:Class;
+		
+		[Embed(source="assets/cutscene/cutscene_atomiclayer.swf", mimeType="application/octet-stream")]
+		public var cutscene_atomiclayer:Class;
+		
+		[Embed(source="assets/cutscene/cutscene_solarspin.swf", mimeType="application/octet-stream")]
+		public var cutscene_solarspin:Class;
 		
 		/////////////////////////////////////////
 		//                TILES                //

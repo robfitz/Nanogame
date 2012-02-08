@@ -37,11 +37,12 @@ package nano.ui
 			
 			// attach the scene
 			var loader:AssetLoader;
+			trace(Assets.instance[this.cutsceneName]);
 			loader = new AssetLoader(Assets.instance[this.cutsceneName]);
 			loader.addEventListener(Event.COMPLETE, function(event:Event):void {
 				asset = (event.target as AssetLoader).asset;
 				addChild(asset);
-			}, false, 0, true);
+			});
 			
 			this.addEventListener(Event.ADDED, onChildAdded);
 

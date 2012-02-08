@@ -81,10 +81,10 @@
     <property name="hull" value="true"/>
    </properties>
   </object>
-  <object name="solar_ultrasoniccleaner" type="objective" x="406" y="417" width="57" height="63">
+  <object name="solar_spinhood" type="objective" x="403" y="334" width="57" height="63">
    <properties>
     <property name="hull" value="true"/>
-    <property name="trigger" value="solar_ultrasoniccleaner"/>
+    <property name="trigger" value="solar_spinhood"/>
    </properties>
   </object>
   <object name="solar_bath" type="objective" x="405" y="215" width="57" height="63">
@@ -97,6 +97,12 @@
    <properties>
     <property name="hull" value="true"/>
     <property name="trigger" value="solar_atomiclayer"/>
+   </properties>
+  </object>
+  <object name="solar_ultrasoniccleaner" type="objective" x="399" y="445" width="57" height="63">
+   <properties>
+    <property name="hull" value="true"/>
+    <property name="trigger" value="solar_ultrasoniccleaner"/>
    </properties>
   </object>
  </objectgroup>
