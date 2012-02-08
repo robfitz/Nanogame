@@ -1,0 +1,139 @@
+<level name="Solar Cell Virtual Experiment" startin="WORLD_OFFICE">	
+    <objective>
+        <dialog type="intro">
+			<line cutscene="professor" cue="talk">
+			    Lets make a device that absorbs sunlight to produce electricity – a solar cell.
+			</line>
+			<line cutscene="professor" cue="talk">
+			    Most solar cells are made of high purity crystalline silicon. Their brittle structure limits where they can be used. They’re also expensive and not very eco friendly to make.
+			</line>
+			<line cutscene="professor" cue="talk">
+			    Let’s start by making a piece of glass that can conduct electricity.
+			</line>
+			<line cutscene="professor" cue="talk">
+			    Find the sputter coater machine.
+			</line>
+		</dialog>
+
+		<goal target="solar_sputter" />
+
+		<dialog type="outro">
+			<line cutscene="professor" cue="talk">
+				The sputter coater will deposit a thin layer of conductive oxide onto our piece of glass
+			</line>
+			<line cutscene="professor" cue="talk">
+				Fluorinated tin oxide, goes into the top and the glass underneath.
+			</line>
+			<line cutscene="professor" cue="talk">
+				A strong current causes the oxide to release ions that diffuse onto the substrate.
+			</line>
+			<line cutscene="professor" cue="talk">
+				Your glass substrate now has super-thin 200nm layer of conducting metal.
+			</line>
+			<line cutscene="professor" cue="talk">
+				Now clean the substrate in the ultrasonic bath.
+			</line>
+		</dialog>		
+	</objective>
+	
+	<objective>
+	    <goal target="solar_ultrasoniccleaner" />
+	    
+	    <dialog type="outro">
+	        <line cutscene="professor" cue="talk">
+	             That's it!
+	        </line>
+	        <line cutscene="professor" cue="talk">
+	            First add the cleaning fluid. The bath then generates high frequency sound waves that create tiny bubbles in the liquid and helps to remove any dust or grease.
+	        </line>
+	        <line>
+	            Now back to the sputter coater to add a second layer. 
+            </line>
+        </dialog>
+    </objective>
+    
+    <objective>
+        <goal target="solar_sputter" />
+
+		<dialog type="outro">
+		    <line cutscene="professor" cue="talk">
+		        This time we’re adding zinc and the glass is put in a protective case so only a small circular area is exposed.
+		    </line>
+		    <line cutscene="professor" cue="talk">
+		        Nicely done. 
+		    </line>
+		    <line cutscene="professor" cue="talk">
+		        Your substrate now has a circle of zinc just 100 nm thick. This is a seed layer we can use to grow nano-wires!
+		    </line>
+		    <line cutscene="professor" cue="talk">
+		        Find the heating bath.
+		    </line>
+		</dialog>
+	</objective>
+	
+	<objective>
+	    <goal target="solar_bath" />
+	    
+	    <dialog type="outro">
+            <line cutscene="professor" cue="talk">
+    	        Placing the substrate in a special solution and heating it to 92 degrees triggers a remarkable chemical reaction. 
+    	    </line>
+    	    <line cutscene="professor" cue="talk">
+    	        Zinc nanowires, just 30nm wide, grow like blades of grass.
+    	    </line>
+    	    <line cutscene="professor" cue="talk">
+    	        Now find the Atomic Layer Deposition machine and coat the wires in titanium oxide.
+            </line>
+        </dialog>
+	</objective>
+	
+	<objective>
+	    <goal target="solar_atomiclayer" />
+	    
+	    <dialog type="outro">
+	        <line cutscene="professor" cue="talk">
+	            That’s it. 
+	        </line>
+	        <line cutscene="professor" cue="talk">
+	            A chemical gas flows into the reaction chamber and collects on the substrate. 
+	        </line>
+	        <line cutscene="professor" cue="talk">
+	            The chamber is cleared, then a second gas is added. This reacts with the first chemical to form a layer just one molecule thick, 0.1nm!
+	        </line>
+	        <line cutscene="professor" cue="talk">
+	            The cycle is repeated until our zinc nano-wires are coated with a 20nm layer of titanium oxide. This makes them highly conductive.
+	        </line>
+	        <line cutscene="professor" cue="talk">
+                Now for the secret ingredient. The substrate is placed in a chemical dye until single layer of dye molecules coats the nano-wires.
+	        </line>
+	        <line cutscene="professor" cue="talk">
+                The dye is a ‘photovoltaic’ material. When it’s hit by sunlight it will eject electrons into the nano-wires. 
+	        </line>
+	        <line cutscene="professor" cue="talk">
+                All we need now is a material called an electrolyte that can pass electrons to the dye and complete the circuit in our solar cell.
+	        </line>
+	        <line cutscene="professor" cue="talk">
+                Use the spin coater in the sealed workbench to add the electrolyte.
+            </line>
+	    </dialog>
+	</objective>
+	
+	<objective>
+	    <goal target="stretch_spincoater" />
+	    
+	    <dialog type="outro">
+	        <line cutscene="professor" cue="talk">
+	            The electrolyte material will turn from a liquid to a solid quickly. You need to drop it as near to the centre as possible so it spreads through the forest of nano-wires evenly.
+	        </line>
+	        <line cutscene="professor" cue="talk">
+                Your solar cell is complete. Its ready to be wired up and tested. Well done!
+	        </line>
+	        <line cutscene="professor" cue="talk">
+	            This type of cell is called a Dye Sensitized Solar Cell. 
+	        </line>
+	        <line cutscene="professor" cue="talk">
+	            In the future this technology could allow us to make extremely thin and inexpensive solar panels that could cover the walls and windows of buildings or even be layered onto our clothes!
+	        </line>
+	    </dialog>
+	</objective>
+</level>

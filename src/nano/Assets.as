@@ -20,7 +20,7 @@ package nano
 		/////////////////////////////////////////
 		//          THE SCRIPT, LOL            //
 		/////////////////////////////////////////
-		[Embed(source="assets/nanogame.xml", mimeType="application/octet-stream")]
+		[Embed(source="assets/nanogame-solar.xml", mimeType="application/octet-stream")]
 		public var game_script:Class;
 		
 		[Embed(source="assets/office.tmx", mimeType="application/octet-stream")]
@@ -95,6 +95,18 @@ package nano
 		
 		[Embed(source="assets/objects/stretch_photolithography.swf", mimeType="application/octet-stream")]
 		public var stretch_photolithography:Class;
+		
+		[Embed(source="assets/objects/solar_sputter.swf", mimeType="application/octet-stream")]
+		public var solar_sputter:Class;
+		
+		[Embed(source="assets/objects/solar_ultrasoniccleaner.swf", mimeType="application/octet-stream")]
+		public var solar_ultrasoniccleaner:Class;
+		
+		[Embed(source="assets/objects/solar_bath.swf", mimeType="application/octet-stream")]
+		public var solar_bath:Class;
+		
+		[Embed(source="assets/objects/solar_atomiclayer.swf", mimeType="application/octet-stream")]
+		public var solar_atomiclayer:Class;
 		
 		/////////////////////////////////////////
 		//              CUTSCENES              //
