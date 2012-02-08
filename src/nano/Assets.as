@@ -47,6 +47,9 @@ package nano
 		[Embed(source="assets/objects/closet.swf", mimeType="application/octet-stream")]
 		public var closet:Class;
 		
+		[Embed(source="assets/objects/bench.swf", mimeType="application/octet-stream")]
+		public var bench:Class;
+		
 		[Embed(source="assets/objects/cabinet.swf", mimeType="application/octet-stream")]
 		public var cabinet:Class;
 

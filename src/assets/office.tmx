@@ -37,8 +37,44 @@
     <property name="static" value="true"/>
    </properties>
   </object>
+  <object name="cabinet" type="objective" x="34" y="240" width="31" height="53">
+   <properties>
+    <property name="hull" value="true"/>
+    <property name="static" value="true"/>
+   </properties>
+  </object>
+  <object name="locker" type="objective" x="257" y="225" width="31" height="30">
+   <properties>
+    <property name="hull" value="true"/>
+    <property name="static" value="true"/>
+   </properties>
+  </object>
+  <object name="closet" type="objective" x="35" y="322" width="36" height="60">
+   <properties>
+    <property name="hull" value="true"/>
+    <property name="trigger" value="closet"/>
+   </properties>
+  </object>
+  <object name="locker" type="objective" x="184" y="226" width="31" height="30">
+   <properties>
+    <property name="hull" value="true"/>
+    <property name="static" value="true"/>
+   </properties>
+  </object>
+  <object name="locker" type="objective" x="220" y="226" width="31" height="30">
+   <properties>
+    <property name="hull" value="true"/>
+    <property name="static" value="true"/>
+   </properties>
+  </object>
+  <object name="bench" type="objective" x="574" y="224" width="33" height="62">
+   <properties>
+    <property name="hull" value="true"/>
+    <property name="static" value="true"/>
+   </properties>
+  </object>
  </objectgroup>
- <layer name="foreground" width="20" height="20">
+ <layer name="foreground" width="20" height="20" visible="0">
   <properties>
    <property name="order" value="3"/>
   </properties>
