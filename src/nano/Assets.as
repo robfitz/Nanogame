@@ -117,6 +117,9 @@ package nano
 		[Embed(source="assets/cutscene/cutscene_evaporator.swf", mimeType="application/octet-stream")]
 		public var cutscene_evaporator:Class;
 		
+		[Embed(source="assets/cutscene/cutscene_photolithography.swf", mimeType="application/octet-stream")]
+		public var cutscene_photolithography:Class;
+		
 		/////////////////////////////////////////
 		//                TILES                //
 		/////////////////////////////////////////

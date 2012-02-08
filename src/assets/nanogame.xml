@@ -123,7 +123,7 @@
 		<goal target="stretch_photolithography" reward="stretchy_circuit" />
 		
 		<dialog type="outro">
-			<line>
+			<line cutscene="cutscene_photolithography" cue="one">
 				The photolithography machine will blast our new layer of PDMS with UV light. The circuit slides into the bottom and above it we need to position a ‘shadow mask’ – a glass slide that is mostly clear apart from a few tiny dark areas.
 			</line>
 			<line>
@@ -132,13 +132,13 @@
 			<line>
 				Good! 
 			</line>
-			<line>
+			<line cutscene="cutscene_photolithography" cue="two">
 				Now when we turn on the UV light, the top layer of liquid PDMS is exposed and begins to cure into to a rubbery texture. 
 			</line>
 			<line>
 				The areas covered by the dark areas of the mask are shielded from the UV light and the PDMS remains in its liquid state. We can wash these bits away to leave a few tiny sections of the gold circuit accessible to connect wires to. 
 			</line>
-			<line>
+			<line cutscene="cutscene_photolithography" cue="three">
 				Our stretchable circuit is ready to use!  
 			</line>
 		</dialog>

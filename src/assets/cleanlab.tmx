@@ -26,31 +26,31 @@
     <property name="trigger" value="stretch_printer"/>
    </properties>
   </object>
-  <object name="stretch_photolithography" type="objective" x="105" y="437" width="65" height="62">
+  <object name="stretch_photolithography" type="objective" x="70" y="188" width="65" height="62">
    <properties>
     <property name="hull" value="true"/>
     <property name="trigger" value="stretch_photolithography"/>
    </properties>
   </object>
-  <object name="stretch_vacuum" type="objective" x="95" y="175" width="42" height="88">
+  <object name="stretch_vacuum" type="objective" x="97" y="613" width="42" height="88">
    <properties>
     <property name="hull" value="true"/>
     <property name="trigger" value="stretch_vacuum"/>
    </properties>
   </object>
-  <object name="stretch_spincoater" type="objective" x="243" y="118" width="90" height="44">
+  <object name="stretch_spincoater" type="objective" x="259" y="84" width="90" height="44">
    <properties>
     <property name="hull" value="true"/>
     <property name="trigger" value="stretch_spincoater"/>
    </properties>
   </object>
-  <object name="stretch_evaporater" type="objective" x="144" y="118" width="78" height="47">
+  <object name="stretch_evaporater" type="objective" x="99" y="84" width="78" height="47">
    <properties>
     <property name="hull" value="true"/>
     <property name="trigger" value="stretch_evaporater"/>
    </properties>
   </object>
-  <object name="stretch_scales" type="objective" x="356" y="117" width="83" height="38">
+  <object name="stretch_scales" type="objective" x="365" y="88" width="83" height="38">
    <properties>
     <property name="hull" value="true"/>
     <property name="trigger" value="stretch_scales"/>
