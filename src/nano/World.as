@@ -91,9 +91,13 @@ package nano
 			var cleanlabData:TmxLoader = new TmxLoader();
 			cleanlabData.load(new XML(new Assets.instance.cleanlab()));
 			
+			var wetData:TmxLoader = new TmxLoader();
+			wetData.load(new XML(new Assets.instance.wetlab()));
+			
 			this.maps = {
 				WORLD_OFFICE: officeData,
-				WORLD_CLEANLAB: cleanlabData
+				WORLD_CLEANLAB: cleanlabData,
+				WORLD_WETLAB: wetData
 			};
 		}
 		

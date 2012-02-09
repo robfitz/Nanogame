@@ -1,28 +1,34 @@
-<level name="Cancer Treatment Virtual Experiment" startin="WORLD_OFFICE">    
+<level name="Cancer Treatment Virtual Experiment" startin="WORLD_WETLAB">
     <objective>
         <dialog type="intro">
             <line cutscene="professor" cue="talk">
-				Lets start by making a stretchable electronic circuit. 
+                Now lets make a new medical treatment for cancer.
 			</line>
 			<line cutscene="professor" cue="talk">
-				Creating a circuit that can be stretched or flexed would allow us to put electronic systems into the fabric of clothes or even inside the human body. 
+                Nanoscale particles can be engineered to carry drugs to the area of the body they’re needed most.
 			</line>
             <line cutscene="professor" cue="talk">
-                Goto to Clean Lab through the Blue Airlock. 
+                Nanoparticles of gold are perfect for this.
+            </line>
+            <line cutscene="professor" cue="talk">
+                Find the weighing scales.
             </line>
         </dialog>
         
-        <goal target="airlock" moveto="WORLD_CLEANLAB" wait="1000" />
+        <goal target="cancer_scales" />
         
         <dialog type="outro">
 			<line cutscene="professor" cue="talk">
-				Welcome to the Clean Lab!
+				Great.
 			</line>
 			<line cutscene="professor" cue="talk">
-				The secret is start with a versatile stretchy substance you can build your circuit on. A chemical called PDMS is ideal.
+                Now weigh out 0.1g of chloroauric acid powder and mix it with distilled water to form a solution. 
 			</line>
 			<line cutscene="professor" cue="talk">
-				Find the weighing scales and weigh out XXg of PDMS
+                And then do the same with 0.5g of sodium citrate.
+			</line>
+			<line cutscene="professor" cue="talk">
+                Now take the two solutions to the Hotplate Stirrer for mixing.
 			</line>
 		</dialog>
     </objective>

@@ -78,13 +78,19 @@
     <property name="trigger" value="airlock"/>
    </properties>
   </object>
+  <object name="door" type="objective" x="385" y="533" width="63" height="11">
+   <properties>
+    <property name="hull" value="true"/>
+    <property name="trigger" value="door"/>
+   </properties>
+  </object>
  </objectgroup>
- <layer name="foreground" width="20" height="20" visible="0">
+ <layer name="foreground" width="20" height="20">
   <properties>
    <property name="order" value="3"/>
   </properties>
   <data encoding="base64" compression="zlib">
-   eJxjYBicgIuBoWHUvFHzCJgBx9yDwD2j5tHHPC4iMbXdx4HEpjS9DRcAAJOdCC0=
+   eJxjYBicgIuBoWHUvFHzCJgBx9yDwD2j5tHHPC4iMTXdB9KPbCal6W24AAArRAi5
   </data>
  </layer>
 </map>

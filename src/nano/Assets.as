@@ -20,7 +20,7 @@ package nano
 		/////////////////////////////////////////
 		//          THE SCRIPT, LOL            //
 		/////////////////////////////////////////
-		[Embed(source="assets/nanogame.xml", mimeType="application/octet-stream")]
+		[Embed(source="assets/nanogame-cancer.xml", mimeType="application/octet-stream")]
 		public var game_script:Class;
 		
 		[Embed(source="assets/office.tmx", mimeType="application/octet-stream")]
@@ -28,6 +28,9 @@ package nano
 		
 		[Embed(source="assets/cleanlab.tmx", mimeType="application/octet-stream")]
 		public var cleanlab:Class;
+		
+		[Embed(source="assets/wetlab.tmx", mimeType="application/octet-stream")]
+		public var wetlab:Class;
 		
 		/////////////////////////////////////////
 		//               MENUS                 //
@@ -71,12 +74,27 @@ package nano
 		[Embed(source="assets/objects/shelves.swf", mimeType="application/octet-stream")]
 		public var shelves:Class;
 		
+		[Embed(source="assets/objects/NL_stm.swf", mimeType="application/octet-stream")]
+		public var NL_stm:Class;
+		
+		[Embed(source="assets/objects/NL_afm.swf", mimeType="application/octet-stream")]
+		public var NL_afm:Class;
+
+		[Embed(source="assets/objects/NL_SEM.swf", mimeType="application/octet-stream")]
+		public var NL_SEM:Class;
+		
+		[Embed(source="assets/objects/NL_TEM.swf", mimeType="application/octet-stream")]
+		public var NL_TEM:Class;
+		
 		//
 		// Objectives
 		//
 		
 		[Embed(source="assets/objects/airlock.swf", mimeType="application/octet-stream")]
 		public var airlock:Class;
+		
+		[Embed(source="assets/objects/door.swf", mimeType="application/octet-stream")]
+		public var door:Class;
 		
 		[Embed(source="assets/objects/professor_ingame.swf", mimeType="application/octet-stream")]
 		public var professor_ingame:Class;
@@ -113,6 +131,15 @@ package nano
 		
 		[Embed(source="assets/objects/solar_spinhood.swf", mimeType="application/octet-stream")]
 		public var solar_spinhood:Class;
+		
+		[Embed(source="assets/objects/cancer_scales.swf", mimeType="application/octet-stream")]
+		public var cancer_scales:Class;
+		
+		[Embed(source="assets/objects/cancer_stirbar.swf", mimeType="application/octet-stream")]
+		public var cancer_stirbar:Class;
+		
+		[Embed(source="assets/objects/cancer_dynamiclight.swf", mimeType="application/octet-stream")]
+		public var cancer_dynamiclight:Class;
 		
 		/////////////////////////////////////////
 		//              CUTSCENES              //
