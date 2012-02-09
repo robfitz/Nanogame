@@ -27,7 +27,7 @@ package
 		{
 			super();
 			
-			var gameXml:XML = new XML(new Assets.instance.game_script);
+			var gameXml:XML;
 			
 			var script:Script = new Script(gameXml);
 			

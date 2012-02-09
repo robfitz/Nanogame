@@ -20,8 +20,14 @@ package nano
 		/////////////////////////////////////////
 		//          THE SCRIPT, LOL            //
 		/////////////////////////////////////////
+		[Embed(source="assets/nanogame-stretch.xml", mimeType="application/octet-stream")]
+		public var script_stretch:Class;
+		
+		[Embed(source="assets/nanogame-solar.xml", mimeType="application/octet-stream")]
+		public var script_solar:Class;
+		
 		[Embed(source="assets/nanogame-cancer.xml", mimeType="application/octet-stream")]
-		public var game_script:Class;
+		public var script_cancer:Class;
 		
 		[Embed(source="assets/office.tmx", mimeType="application/octet-stream")]
 		public var office:Class;
@@ -35,7 +41,7 @@ package nano
 		/////////////////////////////////////////
 		//               MENUS                 //
 		/////////////////////////////////////////
-		[Embed(source="assets/menu.swf", symbol="main_menu")]
+		[Embed(source="assets/menu.swf", mimeType="application/octet-stream")]
 		public var main_menu:Class;
 		
 		/////////////////////////////////////////

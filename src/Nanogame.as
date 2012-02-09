@@ -11,6 +11,7 @@ package {
 	import flash.events.ProgressEvent;
 	import flash.utils.getTimer;
 	
+	import nano.AssetLoader;
 	import nano.Assets;
 	import nano.CollisionLayer;
 	import nano.TmxLoader;
@@ -50,10 +51,13 @@ package {
 		private var world:World;
 		
 		/** The main menu */
-		private var mainMenu:Sprite;
+		private var mainMenu:MovieClip;
 		
 		/** Holds all the UI that rests on top of the world */
 		private var gameUi:Sprite;
+		
+		/** Name of the current level being played */
+		private var currentLevel:String;
 		
 		public function Nanogame()
 		{
@@ -112,6 +116,9 @@ package {
 				case GAMESTATE_LOADING:
 					if(this.stage.loaderInfo.bytesLoaded != this.stage.loaderInfo.bytesTotal) { 
 						this.stage.loaderInfo.addEventListener(ProgressEvent.PROGRESS, this.onGameLoading);
+						this.stage.loaderInfo.addEventListener(Event.COMPLETE, function(event:Event):void {
+							trace('yeah');
+						});
 					} else {
 						this.setGameState(GAMESTATE_MENU);
 					}
@@ -126,17 +133,24 @@ package {
 					}
 					
 					if(! this.mainMenu) {
-						// hookup the main menu
-						this.mainMenu = new Assets.instance.main_menu();
-						this.mainMenu['level1'].addEventListener(MouseEvent.CLICK, onLevelClick);
+						var loader:AssetLoader = new AssetLoader(Assets.instance.main_menu);
+						loader.addEventListener(Event.COMPLETE, function(event:Event):void {
+							mainMenu = (event.target as AssetLoader).asset;
+							gameUi.addChild(mainMenu);
+							gameUi.visible = true;
+							mainMenu['level1'].addEventListener(MouseEvent.CLICK, onLevelClick);
+							mainMenu['level2'].addEventListener(MouseEvent.CLICK, onLevelClick);
+							mainMenu['level3'].addEventListener(MouseEvent.CLICK, onLevelClick);
+						});
+					} else {
+						this.gameUi.addChild(this.mainMenu);
+						this.gameUi.visible = true;
 					}
-					this.gameUi.addChild(this.mainMenu);
-					this.gameUi.visible = true;
 					break;
 				
 				case GAMESTATE_INGAME:
 					this.gameUi.removeChild(this.mainMenu);
-					this.initLevel();
+					this.initLevel(this.currentLevel);
 			}
 		}
 		
@@ -154,12 +168,12 @@ package {
 		 * Loads and preps a level for play 
 		 * TODO :: Load different levels
 		 */		
-		private function initLevel():void {
+		private function initLevel(scriptName:String):void {
 			// create out world
 			this.addChildAt(this.world.view, 0);
 			
 			// load the current script
-			this.script = new Script(new XML(new Assets.instance.game_script));
+			this.script = new Script(new XML(new Assets.instance[scriptName]));
 			this.script.addEventListener(Event.COMPLETE, onScriptComplete);
 			this.script.world = world;
 			
@@ -176,6 +190,18 @@ package {
 		}
 				
 		private function onLevelClick(event:Event):void {
+			switch(event.target.name) {
+				case "level1":
+					this.currentLevel = "script_stretch";
+					break;
+				case "level2":
+					this.currentLevel = "script_solar";
+					break;
+				case "level3":
+					this.currentLevel = "script_cancer";
+					break;
+			}
+			
 			this.setGameState(GAMESTATE_INGAME);
 		}
 		

@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<map version="1.0" orientation="isometric" width="16" height="24" tilewidth="64" tileheight="32">
+ <tileset firstgid="1" name="floors_002" tilewidth="64" tileheight="32">
+  <image source="floor/floors_002.png" width="192" height="32"/>
+ </tileset>
+ <tileset firstgid="4" name="walls_003" tilewidth="80" tileheight="200">
+  <image source="walls/walls_003.png" width="800" height="200"/>
+ </tileset>
+ <layer name="background" width="16" height="24">
+  <properties>
+   <property name="order" value="1"/>
+  </properties>
+  <data encoding="base64" compression="zlib">
+   eJxjYGBgYAFiNgIYBtDFgHobmIA0ORhq3qj+Uf2j+kf1j+onQz+lAACxjA4x
+  </data>
+ </layer>
+ <objectgroup name="objects" width="16" height="24">
+  <object name="spawn" type="trigger" x="334" y="69" width="34" height="37">
+   <properties>
+    <property name="trigger" value="spawn"/>
+   </properties>
+  </object>
+  <object name="cancer_scales" type="objective" x="433" y="375" width="33" height="63">
+   <properties>
+    <property name="hull" value="true"/>
+    <property name="trigger" value="cancer_scales"/>
+   </properties>
+  </object>
+  <object name="cancer_stirbar" type="objective" x="35" y="95" width="35" height="63">
+   <properties>
+    <property name="hull" value="true"/>
+    <property name="trigger" value="cancer_stirbar"/>
+   </properties>
+  </object>
+  <object name="cancer_dynamiclight" type="objective" x="31" y="192" width="61" height="63">
+   <properties>
+    <property name="hull" value="true"/>
+    <property name="trigger" value="cancer_dynamiclight"/>
+   </properties>
+  </object>
+  <object name="NL_stm" type="objective" x="368" y="662" width="91" height="58">
+   <properties>
+    <property name="hull" value="true"/>
+    <property name="trigger" value="NL_stm"/>
+   </properties>
+  </object>
+  <object name="NL_afm" type="objective" x="159" y="33" width="65" height="56">
+   <properties>
+    <property name="hull" value="true"/>
+    <property name="trigger" value="NL_afm"/>
+   </properties>
+  </object>
+  <object name="NL_SEM" type="objective" x="34" y="553" width="62" height="143">
+   <properties>
+    <property name="hull" value="true"/>
+    <property name="trigger" value="NL_SEM"/>
+   </properties>
+  </object>
+  <object name="NL_TEM" type="objective" x="34" y="353" width="62" height="115">
+   <properties>
+    <property name="hull" value="true"/>
+    <property name="trigger" value="NL_TEM"/>
+   </properties>
+  </object>
+  <object name="door" type="objective" x="318" y="26" width="65" height="9">
+   <properties>
+    <property name="hull" value="true"/>
+    <property name="trigger" value="door"/>
+   </properties>
+  </object>
+ </objectgroup>
+ <layer name="foreground" width="16" height="24" visible="0">
+  <properties>
+   <property name="order" value="3"/>
+  </properties>
+  <data encoding="base64" compression="zlib">
+   eJxjYBgYwMXA0DCqf1T/qP5R/SNdPxcZmJsSy5EAAG7uC+A=
+  </data>
+ </layer>
+</map>
