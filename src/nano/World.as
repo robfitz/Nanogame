@@ -196,11 +196,6 @@ package nano
 			if(this.player) {
 				this.player.update(dt);
 				this.view.centerOnIso(this.player);
-				
-				// world transitions
-				if(this._collisions.justHit && this.maps.hasOwnProperty(this._collisions.justHit.name)) {
-					this.goto(this._collisions.justHit.name);
-				}
 			}
 		}
 		

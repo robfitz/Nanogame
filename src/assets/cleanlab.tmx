@@ -18,7 +18,7 @@
   <properties>
    <property name="order" value="2"/>
   </properties>
-  <object name="spawn" type="trigger" x="320" y="746" width="34" height="37">
+  <object name="spawn" type="trigger" x="319" y="825" width="34" height="37">
    <properties>
     <property name="trigger" value="spawn"/>
    </properties>
@@ -59,7 +59,7 @@
     <property name="trigger" value="stretch_scales"/>
    </properties>
   </object>
-  <object name="WORLD_OFFICE" type="trigger" x="290" y="799" width="92" height="33"/>
+  <object name="WORLD_OFFICE" type="trigger" x="290" y="897" width="92" height="33"/>
   <object name="solar_sputter" type="objective" x="191" y="112" width="65" height="31">
    <properties>
     <property name="hull" value="true"/>

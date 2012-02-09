@@ -20,7 +20,7 @@ package nano
 		/////////////////////////////////////////
 		//          THE SCRIPT, LOL            //
 		/////////////////////////////////////////
-		[Embed(source="assets/nanogame-solar.xml", mimeType="application/octet-stream")]
+		[Embed(source="assets/nanogame.xml", mimeType="application/octet-stream")]
 		public var game_script:Class;
 		
 		[Embed(source="assets/office.tmx", mimeType="application/octet-stream")]
@@ -74,6 +74,9 @@ package nano
 		//
 		// Objectives
 		//
+		
+		[Embed(source="assets/objects/airlock.swf", mimeType="application/octet-stream")]
+		public var airlock:Class;
 		
 		[Embed(source="assets/objects/professor_ingame.swf", mimeType="application/octet-stream")]
 		public var professor_ingame:Class;

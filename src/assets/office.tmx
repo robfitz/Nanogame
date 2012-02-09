@@ -26,7 +26,6 @@
     <property name="trigger" value="spawn"/>
    </properties>
   </object>
-  <object name="WORLD_CLEANLAB" type="trigger" x="65" y="191" width="92" height="33"/>
   <object name="shelves" type="objective" x="300" y="18" width="19" height="90">
    <properties>
     <property name="static" value="true"/>
@@ -71,6 +70,12 @@
    <properties>
     <property name="hull" value="true"/>
     <property name="static" value="true"/>
+   </properties>
+  </object>
+  <object name="airlock" type="objective" x="67" y="193" width="90" height="16">
+   <properties>
+    <property name="hull" value="true"/>
+    <property name="trigger" value="airlock"/>
    </properties>
   </object>
  </objectgroup>

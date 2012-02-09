@@ -2,7 +2,9 @@ package nano.level
 {
 	import flash.events.Event;
 	import flash.events.EventDispatcher;
+	import flash.events.TimerEvent;
 	import flash.net.SecureSocket;
+	import flash.utils.Timer;
 	
 	import nano.World;
 	import nano.ui.DialogBox;
@@ -54,6 +56,9 @@ package nano.level
 			return this.objectives[this._currentObjective] as Objective;
 		}
 		
+		/** Countdown to the current completed objective being completed. Does that make sense? */
+		private var countdown:Timer;
+		
 		/**
 		 * Default contructor. 
 		 * @param scriptXml Optional script xml
@@ -104,7 +109,13 @@ package nano.level
 					&& trigger == this.world.currentTarget.objectName) {
 					
 					this.world.currentTarget.activate();
-					this.completeObjective();
+					if(this.currentObjective.goalHoldTime) {
+						this.countdown = new Timer(this.currentObjective.goalHoldTime, 1);
+						this.countdown.start();
+						this.countdown.addEventListener(TimerEvent.TIMER_COMPLETE, this.completeObjective);
+					} else {
+						this.completeObjective();
+					}
 				}
 			}
 		}
@@ -112,7 +123,18 @@ package nano.level
 		/**
 		 * Called when the script has determined the current goal has been completed 
 		 */		
-		protected function completeObjective():void {
+		protected function completeObjective(event:TimerEvent = null):void {
+			if(this.countdown) {
+				this.removeEventListener(TimerEvent.TIMER_COMPLETE, this.completeObjective);
+			}
+			
+			this.countdown = null;
+			
+			// need to move? 
+			if(this.currentObjective.goalMoveTo) {
+				this.world.goto(this.currentObjective.goalMoveTo);
+			}
+			
 			// Need an outro ?
 			if(this.currentObjective.outro) {
 				this.showDialog(this.currentObjective.outro);
