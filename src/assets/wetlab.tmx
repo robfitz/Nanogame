@@ -20,10 +20,10 @@
     <property name="trigger" value="spawn"/>
    </properties>
   </object>
-  <object name="cancer_scales" type="objective" x="433" y="375" width="33" height="63">
+  <object name="cancer_dialysis" type="objective" x="433" y="361" width="33" height="63">
    <properties>
     <property name="hull" value="true"/>
-    <property name="trigger" value="cancer_scales"/>
+    <property name="trigger" value="cancer_dialysis"/>
    </properties>
   </object>
   <object name="cancer_stirbar" type="objective" x="35" y="95" width="35" height="63">
@@ -66,6 +66,12 @@
    <properties>
     <property name="hull" value="true"/>
     <property name="trigger" value="door"/>
+   </properties>
+  </object>
+  <object name="cancer_scales" type="objective" x="431" y="256" width="33" height="63">
+   <properties>
+    <property name="hull" value="true"/>
+    <property name="trigger" value="cancer_scales"/>
    </properties>
   </object>
  </objectgroup>

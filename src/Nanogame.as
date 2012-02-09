@@ -61,10 +61,13 @@ package {
 		
 		public function Nanogame()
 		{
-			this.world = new World(this);
 			this.gameUi = new Sprite();
 			this.addChild(this.gameUi);
 			this.setGameState(GAMESTATE_LOADING);
+			
+			this.graphics.beginFill(0x555555);
+			this.graphics.drawRect(0, 0, this.stage.stageWidth, this.stage.stageHeight);
+			this.graphics.endFill();
 		}
 		
 		/**
@@ -170,6 +173,7 @@ package {
 		 */		
 		private function initLevel(scriptName:String):void {
 			// create out world
+			this.world = new World(this);
 			this.addChildAt(this.world.view, 0);
 			
 			// load the current script

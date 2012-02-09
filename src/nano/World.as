@@ -7,6 +7,7 @@ package nano
 	import as3isolib.geom.IsoMath;
 	import as3isolib.geom.Pt;
 	import as3isolib.graphics.SolidColorFill;
+	import as3isolib.graphics.Stroke;
 	
 	import eDpLib.events.ProxyEvent;
 	
@@ -140,6 +141,8 @@ package nano
 			this.grid = new IsoGrid();
 			this.grid.setGridSize(loader.map.width, loader.map.height, 0);
 			this.grid.cellSize = 32;
+			this.grid.showOrigin = false;
+			this.grid.gridlines = new Stroke(1, 0x0, 0);
 			this.gridScene = new IsoScene();
 			this.gridScene.addChild(this.grid);
 			

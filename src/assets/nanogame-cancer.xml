@@ -11,6 +11,9 @@
                 Nanoparticles of gold are perfect for this.
             </line>
             <line cutscene="professor" cue="talk">
+                The first step is to mix two chemical solutions to create tiny gold particles.
+            </line>
+            <line cutscene="professor" cue="talk">
                 Find the weighing scales.
             </line>
         </dialog>
@@ -21,15 +24,106 @@
 			<line cutscene="professor" cue="talk">
 				Great.
 			</line>
-			<line cutscene="professor" cue="talk">
+			<line cutscene="cutscene_cancer_weighstation" cue="one">
                 Now weigh out 0.1g of chloroauric acid powder and mix it with distilled water to form a solution. 
 			</line>
-			<line cutscene="professor" cue="talk">
+			<line cutscene="cutscene_cancer_weighstation" cue="two">
                 And then do the same with 0.5g of sodium citrate.
 			</line>
 			<line cutscene="professor" cue="talk">
                 Now take the two solutions to the Hotplate Stirrer for mixing.
 			</line>
 		</dialog>
+    </objective>
+    
+    <objective>
+        <goal target="cancer_stirbar" />
+        
+        <dialog type="outro">
+            <line cutscene="cutscene_cancer_stirbar" cue="one">
+                Heat the chloroauric acid, add a magnetic stir bar and then pour in the sodium citrate.
+			</line>
+			<line cutscene="cutscene_cancer_stirbar" cue="two">
+                The sodium citrate reduces gold ions in the acid into gold atoms.
+			</line>
+            <line cutscene="cutscene_cancer_stirbar" cue="three">
+                The mixture turns red as the gold atoms cluster into nanoparticles.
+            </line>
+            <line cutscene="professor" cue="talk">
+                The next step is to measure your gold particles with the Dynamic Light Scattering machine.
+            </line>
+        </dialog>
+    </objective>
+    
+    <objective>
+        <goal target="cancer_dynamiclight" />
+        
+        <dialog type="outro">
+            <line cutscene="professor" cue="talk">
+                That’s it. Put a sample of the solution into the machine.
+			</line>
+			<line cutscene="cutscene_cancer_dynamiclight" cue="one">
+                A laser blasts light into the sample and the machine records the light scattered by particles in the solution and calculates their size. 
+			</line>
+            <line cutscene="cutscene_cancer_dynamiclight" cue="two">
+                Your particles are 50nm in diameter. That’s perfect. Particles this size will be able to enter a cancerous cell.
+            </line>
+            <line cutscene="professor" cue="talk">
+                Now head back to the stir bar to prepare an anti-cancer drug.
+            </line>
+        </dialog>
+    </objective>
+    
+    <objective>
+        <goal target="cancer_stirbar" />
+        
+        <dialog type="outro">
+            <line cutscene="professor" cue="talk">
+                Add an anti-cancer drug called doxorubicin. 
+			</line>
+			<line cutscene="cutscene_cancer_stirbar_2" cue="one">
+                Then add chitosan - a liquid containing long polymer molecules, and give the solution a good stir.
+			</line>
+            <line cutscene="cutscene_cancer_stirbar_2" cue="two">
+                Next add a ‘crosslinker’ chemical. This causes the polymer molecules to link together, wrapping up gold nanoparticles and the anti-cancer drug into small packages. 
+            </line>
+            <line cutscene="cutscene_cancer_stirbar_2" cue="three">
+                Excellent work!
+            </line>
+            <line cutscene="professor" cue="talk">
+                Now you need to purify the solution. Find the dialysis cassette.
+            </line>
+        </dialog>
+    </objective>
+    
+    <objective>
+        <goal target="cancer_dialysis" />
+        
+        <dialog type="outro">
+            <line cutscene="cutscene_cancer_dialysisbar" cue="one">
+                Inject the solution into the membrane bag inside the cassette and then place it in some distilled water.  
+			</line>
+			<line>
+                The excess drug and crosslinker molecules are small enough to pass through the membrane leaving just the larger gold-drug-polymer particles inside.  This purifies the solution!
+			</line>
+            <line cutscene="cutscene_cancer_dialysisbar" cue="two">
+                Now we just need to add a final outer layer to the nanoparticles.
+            </line>
+            <line cutscene="cutscene_cancer_dialysisbar" cue="three">
+                These linker molecules bind to the outside of the nanoparticle and enable us to add the final ingredient – an antibody. 
+            </line>
+            <line cutscene="professor" cue="talk">
+                Well done! You’ve made a new type of cancer treatment.
+            </line>
+            <line cutscene="professor" cue="talk">
+                Once injected into the body the nanoparticles will be small enough to go undetected by the body’s own defence mechanisms. The antibody you added will bind with receptors on a cancer cell and the particle will be taken inside the cell where the drug will be released.
+            </line>
+            <line cutscene="professor" cue="talk">
+                The gold particles are also part of the treatment. When the patient is exposed to X-rays the gold particles will ionize the water in the cancer cell creating high-energy molecules that will kill the cell. 
+            </line>
+            <line cutscene="professor" cue="talk">
+                Nanoparticle treatments like this are currently being tested and offer huge potential in the fight against cancer.
+            </line>            
+        </dialog>
     </objective>
 </level>

@@ -147,6 +147,9 @@ package nano
 		[Embed(source="assets/objects/cancer_dynamiclight.swf", mimeType="application/octet-stream")]
 		public var cancer_dynamiclight:Class;
 		
+		[Embed(source="assets/objects/cancer_dialysis.swf", mimeType="application/octet-stream")]
+		public var cancer_dialysis:Class;
+		
 		/////////////////////////////////////////
 		//              CUTSCENES              //
 		/////////////////////////////////////////
@@ -188,6 +191,21 @@ package nano
 		
 		[Embed(source="assets/cutscene/cutscene_solarspin.swf", mimeType="application/octet-stream")]
 		public var cutscene_solarspin:Class;
+		
+		[Embed(source="assets/cutscene/cutscene_cancer_weighstation.swf", mimeType="application/octet-stream")]
+		public var cutscene_cancer_weighstation:Class;
+		
+		[Embed(source="assets/cutscene/cutscene_cancer_stirbar.swf", mimeType="application/octet-stream")]
+		public var cutscene_cancer_stirbar:Class;
+		
+		[Embed(source="assets/cutscene/cutscene_cancer_dynamiclight.swf", mimeType="application/octet-stream")]
+		public var cutscene_cancer_dynamiclight:Class;
+		
+		[Embed(source="assets/cutscene/cutscene_cancer_stirbar_2.swf", mimeType="application/octet-stream")]
+		public var cutscene_cancer_stirbar_2:Class;
+		
+		[Embed(source="assets/cutscene/cutscene_cancer_dialysisbar.swf", mimeType="application/octet-stream")]
+		public var cutscene_cancer_dialysisbar:Class;
 		
 		/////////////////////////////////////////
 		//                TILES                //
