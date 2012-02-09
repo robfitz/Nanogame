@@ -1,0 +1,29 @@
+<level name="Cancer Treatment Virtual Experiment" startin="WORLD_OFFICE">    
+    <objective>
+        <dialog type="intro">
+            <line cutscene="professor" cue="talk">
+				Lets start by making a stretchable electronic circuit. 
+			</line>
+			<line cutscene="professor" cue="talk">
+				Creating a circuit that can be stretched or flexed would allow us to put electronic systems into the fabric of clothes or even inside the human body. 
+			</line>
+            <line cutscene="professor" cue="talk">
+                Goto to Clean Lab through the Blue Airlock. 
+            </line>
+        </dialog>
+        
+        <goal target="airlock" moveto="WORLD_CLEANLAB" wait="1000" />
+        
+        <dialog type="outro">
+			<line cutscene="professor" cue="talk">
+				Welcome to the Clean Lab!
+			</line>
+			<line cutscene="professor" cue="talk">
+				The secret is start with a versatile stretchy substance you can build your circuit on. A chemical called PDMS is ideal.
+			</line>
+			<line cutscene="professor" cue="talk">
+				Find the weighing scales and weigh out XXg of PDMS
+			</line>
+		</dialog>
+    </objective>
+</level>
