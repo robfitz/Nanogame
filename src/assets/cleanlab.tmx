@@ -59,14 +59,13 @@
     <property name="trigger" value="stretch_scales"/>
    </properties>
   </object>
-  <object name="WORLD_OFFICE" type="trigger" x="290" y="897" width="92" height="33"/>
   <object name="solar_sputter" type="objective" x="191" y="112" width="65" height="31">
    <properties>
     <property name="hull" value="true"/>
     <property name="trigger" value="solar_sputter"/>
    </properties>
   </object>
-  <object x="47" y="65" width="457" height="54">
+  <object x="47" y="61" width="457" height="54">
    <properties>
     <property name="hull" value="true"/>
    </properties>
@@ -103,6 +102,22 @@
    <properties>
     <property name="hull" value="true"/>
     <property name="trigger" value="solar_ultrasoniccleaner"/>
+   </properties>
+  </object>
+  <object x="48" y="731" width="246" height="196">
+   <properties>
+    <property name="hull" value="true"/>
+   </properties>
+  </object>
+  <object x="380" y="733" width="104" height="198">
+   <properties>
+    <property name="hull" value="true"/>
+   </properties>
+  </object>
+  <object name="airlock" type="objective" x="293" y="912" width="90" height="16">
+   <properties>
+    <property name="hull" value="true"/>
+    <property name="trigger" value="airlock"/>
    </properties>
   </object>
  </objectgroup>

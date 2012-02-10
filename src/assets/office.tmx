@@ -84,8 +84,48 @@
     <property name="trigger" value="door"/>
    </properties>
   </object>
+  <object x="32" y="507" width="323" height="59">
+   <properties>
+    <property name="hull" value="true"/>
+   </properties>
+  </object>
+  <object x="476" y="284" width="134" height="267">
+   <properties>
+    <property name="hull" value="true"/>
+   </properties>
+  </object>
+  <object x="349" y="539" width="137" height="34">
+   <properties>
+    <property name="hull" value="true"/>
+   </properties>
+  </object>
+  <object x="602" y="23" width="33" height="270">
+   <properties>
+    <property name="hull" value="true"/>
+   </properties>
+  </object>
+  <object x="5" y="218" width="35" height="306">
+   <properties>
+    <property name="hull" value="true"/>
+   </properties>
+  </object>
+  <object x="153" y="17" width="202" height="209">
+   <properties>
+    <property name="hull" value="true"/>
+   </properties>
+  </object>
+  <object x="346" y="0" width="271" height="32">
+   <properties>
+    <property name="hull" value="true"/>
+   </properties>
+  </object>
+  <object x="26" y="182" width="46" height="46">
+   <properties>
+    <property name="hull" value="true"/>
+   </properties>
+  </object>
  </objectgroup>
- <layer name="foreground" width="20" height="20">
+ <layer name="foreground" width="20" height="20" visible="0">
   <properties>
    <property name="order" value="3"/>
   </properties>

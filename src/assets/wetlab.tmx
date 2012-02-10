@@ -74,6 +74,27 @@
     <property name="trigger" value="cancer_scales"/>
    </properties>
   </object>
+  <object x="5" y="5" width="49" height="735">
+   <properties>
+    <property name="hull" value="true"/>
+   </properties>
+  </object>
+  <object x="20" y="724" width="477" height="41">
+   <properties>
+    <property name="hull" value="true"/>
+   </properties>
+  </object>
+  <object x="524" y="791"/>
+  <object x="472" y="0" width="47" height="746">
+   <properties>
+    <property name="hull" value="true"/>
+   </properties>
+  </object>
+  <object x="11" y="0" width="486" height="30">
+   <properties>
+    <property name="hull" value="true"/>
+   </properties>
+  </object>
  </objectgroup>
  <layer name="foreground" width="16" height="24" visible="0">
   <properties>
