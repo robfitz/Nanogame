@@ -8,13 +8,23 @@
 			    Most solar cells are made of high purity crystalline silicon. Their brittle structure limits where they can be used. They’re also expensive and not very eco friendly to make.
 			</line>
 			<line cutscene="professor" cue="talk">
+                Goto to Clean Lab through the Blue Airlock. 
+            </line>
+        </dialog>
+        
+		<goal target="airlock" moveto="WORLD_CLEANLAB" wait="1000" />
+		
+		<dialog type="outro">
+			<line cutscene="professor" cue="talk">
 			    Let’s start by making a piece of glass that can conduct electricity.
 			</line>
 			<line cutscene="professor" cue="talk">
 			    Find the sputter coater machine.
 			</line>
 		</dialog>
-
+    </objective>
+    
+    <objective>
 		<goal target="solar_sputter" />
 
 		<dialog type="outro">
