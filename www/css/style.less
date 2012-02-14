@@ -3,6 +3,7 @@
  * Build using Less CSS. 
  * Based on HTML Boilderplat CSS
  */
+@import "mixins";
 
 /* =============================================================================
    HTML5 display definitions
@@ -225,12 +226,20 @@ td { vertical-align: top; }
 /*_____________________________________ Header */
 #page_header {
 	position: relative;
-	height: 85px;
+	height: 88px;
 	margin-top: 80px;
 }
 
 #page_header .page_title {
+	background: #464F51;
+	width: 333px;
+	.border-radius(4px);
+	
+	color: #fff;
 	text-align: center;
+	text-transform: uppercase;
+	margin: 0 auto;
+	line-height: 88px;
 }
 
 #page_header .arrow {
