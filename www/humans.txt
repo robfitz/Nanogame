@@ -1,0 +1,20 @@
+/* the humans responsible & colophon */
+/* humanstxt.org */
+
+
+/* TEAM */
+    Master of Disaster: Devin Hunt
+    Site: http://hailpixel.com
+    Twitter: @hailpixel
+    Location: Fundon, UK
+
+    Laurence of Arabia: Laurence Honderick
+    Site: http://dashedline.com/
+    Location: Fundon, UK
+
+/* THANKS */
+  Names: Laurenc 
+
+/* SITE */
+  Standards: HTML5, CSS3
+  Components: Modernizr, jQuery
