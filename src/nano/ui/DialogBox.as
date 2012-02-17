@@ -138,13 +138,6 @@ package nano.ui
 				this.professor.x = 2;
 				this.professor.y = top + 2;
 			}
-			
-			if(this.cutscene) {
-				g.beginFill(0x333333);
-				g.lineStyle();
-				g.drawRect(0, 0, 760, 346);
-				g.endFill();
-			}
 		}
 	}
 }
