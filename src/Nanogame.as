@@ -54,7 +54,7 @@ package {
 		private var mainMenu:MovieClip;
 		
 		/** Holds all the UI that rests on top of the world */
-		private var gameUi:Sprite;
+		private var gameUi:Sprite; 
 		
 		/** Name of the current level being played */
 		private var currentLevel:String;

@@ -26,6 +26,7 @@ package nano.ui
 		
 		// our cutscenes
 		private var cutscene:Cutscene;
+		private var professor:Cutscene;
 		
 		public function DialogBox()
 		{
@@ -36,11 +37,14 @@ package nano.ui
 			this._textfield = new TextField();
 			this._textfield.wordWrap = true;
 			this._textfield.selectable = false;
+			this.addChild(this._textfield);
 			
 			this.nextButton = new Button("Next..");
 			this.addChild(this.nextButton);
 			
-			this.addChild(this._textfield);
+			this.professor = new Cutscene("professor");
+			this.addChild(this.professor);
+			
 			this.render();
 			
 			this.addEventListener(MouseEvent.CLICK, function(event:MouseEvent):void {
@@ -87,6 +91,12 @@ package nano.ui
 						this.cutscene.cue(line.cue);
 					}
 					
+				} else {
+					// professor, so something cool to fill the gap!
+					if(this.cutscene && this.contains(this.cutscene)) {
+						this.removeChild(this.cutscene);
+					}
+					this.professor.cue("talk");
 				}
 				
 				this.currentLine ++;
@@ -127,9 +137,9 @@ package nano.ui
 			this._textfield.width = width - 240 - 20;
 			this._textfield.height = height - 40;
 			
-			if(this.cutscene) {
-				this.cutscene.x = 2;
-				this.cutscene.y = top + 2;
+			if(this.professor) {
+				this.professor.x = 2;
+				this.professor.y = top + 2;
 			}
 		}
 	}
