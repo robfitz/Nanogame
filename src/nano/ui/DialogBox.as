@@ -4,6 +4,7 @@ package nano.ui
 	import flash.display.Sprite;
 	import flash.events.Event;
 	import flash.events.MouseEvent;
+	import flash.geom.Rectangle;
 	import flash.text.TextField;
 	import flash.text.TextFormat;
 	
@@ -82,7 +83,7 @@ package nano.ui
 							this.removeChild(this.cutscene);
 						}
 						
-						this.cutscene = new Cutscene(line.cutscene, 346, 346);
+						this.cutscene = new Cutscene(line.cutscene, new Rectangle(0, 0, 760, 346));
 						this.addChild(this.cutscene);
 						this.cutscene.cue(line.cue);
 						this.render();
@@ -139,7 +140,6 @@ package nano.ui
 			}
 			
 			if(this.cutscene) {
-				this.cutscene.x = 207;
 				g.beginFill(0x333333);
 				g.lineStyle();
 				g.drawRect(0, 0, 760, 346);

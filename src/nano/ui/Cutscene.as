@@ -3,6 +3,7 @@ package nano.ui
 	import flash.display.MovieClip;
 	import flash.display.Sprite;
 	import flash.events.Event;
+	import flash.geom.Rectangle;
 	
 	import nano.AssetLoader;
 	import nano.Assets;
@@ -17,6 +18,7 @@ package nano.ui
 		
 		public var cutsceneName:String;
 		public var asset:MovieClip;
+		public var maskRect:Rectangle;
 		
 		/** Frame that needs to be cued once a valid asset is loaded */
 		private var toCue:String;
@@ -25,11 +27,16 @@ package nano.ui
 		 * Create a new cutscene 
 		 * @param assetClass Defaults to the professor
 		 */		
-		public function Cutscene(cutsceneName:String, width:int=218, height:int=218, bgColor:uint = 0x333333)
+		public function Cutscene(cutsceneName:String, maskRect:Rectangle = null, scale:Number = 1, bgColor:uint = 0x333333)
 		{
 			super();
 			
 			this.cutsceneName = cutsceneName;
+			
+			this.maskRect = maskRect;
+			if(! this.maskRect) {
+				this.maskRect = new Rectangle(0, 0, 218, 218);
+			}
 			
 			// attach the scene
 			var loader:AssetLoader;
@@ -41,18 +48,18 @@ package nano.ui
 			});
 			
 			this.addEventListener(Event.ADDED, onChildAdded);
-			
-			// bg color
-			this.graphics.beginFill(bgColor);
-			this.graphics.drawRect(0, 0, width, height);
-			this.graphics.endFill();
 
 			// mask
 			var masker:Sprite = new Sprite();
 			masker.graphics.beginFill(0xff0000);
-			masker.graphics.drawRect(0, 0, width, height);
+			masker.graphics.drawRect(0, 0, this.maskRect.width, this.maskRect.height);
 			this.addChild(masker);
 			this.mask = masker;
+			
+			// bg color
+			this.graphics.beginFill(bgColor);
+			this.graphics.drawRect(0, 0, this.maskRect.width, this.maskRect.height);
+			this.graphics.endFill();
 		}
 		
 		/**
