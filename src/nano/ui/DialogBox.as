@@ -82,7 +82,7 @@ package nano.ui
 							this.removeChild(this.cutscene);
 						}
 						
-						this.cutscene = new Cutscene(line.cutscene);
+						this.cutscene = new Cutscene(line.cutscene, 346, 346);
 						this.addChild(this.cutscene);
 						this.cutscene.cue(line.cue);
 						this.render();
@@ -127,10 +127,6 @@ package nano.ui
 			g.lineStyle(4, 0xdce4e4);
 			g.drawRect(0, top, width, height);
 			
-			// cutscene background
-			g.beginFill(0x333333);
-			g.drawRect(0, top, height, height);
-			
 			// position text field
 			this._textfield.x = 240;
 			this._textfield.y = top + 20;
@@ -140,6 +136,14 @@ package nano.ui
 			if(this.professor) {
 				this.professor.x = 2;
 				this.professor.y = top + 2;
+			}
+			
+			if(this.cutscene) {
+				this.cutscene.x = 207;
+				g.beginFill(0x333333);
+				g.lineStyle();
+				g.drawRect(0, 0, 760, 346);
+				g.endFill();
 			}
 		}
 	}

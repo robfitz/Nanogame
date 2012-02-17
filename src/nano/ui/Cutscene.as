@@ -25,7 +25,7 @@ package nano.ui
 		 * Create a new cutscene 
 		 * @param assetClass Defaults to the professor
 		 */		
-		public function Cutscene(cutsceneName:String, width:int=218, height:int=218)
+		public function Cutscene(cutsceneName:String, width:int=218, height:int=218, bgColor:uint = 0x333333)
 		{
 			super();
 			
@@ -41,10 +41,15 @@ package nano.ui
 			});
 			
 			this.addEventListener(Event.ADDED, onChildAdded);
+			
+			// bg color
+			this.graphics.beginFill(bgColor);
+			this.graphics.drawRect(0, 0, width, height);
+			this.graphics.endFill();
 
+			// mask
 			var masker:Sprite = new Sprite();
 			masker.graphics.beginFill(0xff0000);
-			
 			masker.graphics.drawRect(0, 0, width, height);
 			this.addChild(masker);
 			this.mask = masker;
