@@ -13,7 +13,10 @@ package nano.ui
 	
 	public class DialogBox extends Sprite
 	{
-		public const BOX_HEIGHT:int = 222;
+		public static const BOX_HEIGHT:int = 222;
+		
+		public static const CUTSCENE_WIDTH:int = 760;
+		public static const CUTSCENE_HEIGHT:int = 346;
 		
 		private var _textfield:TextField;
 		private var format:TextFormat;
@@ -83,7 +86,7 @@ package nano.ui
 							this.removeChild(this.cutscene);
 						}
 						
-						this.cutscene = new Cutscene(line.cutscene, new Rectangle(0, 0, 760, 346));
+						this.cutscene = new Cutscene(line.cutscene, new Rectangle(0, 0, CUTSCENE_WIDTH, CUTSCENE_HEIGHT));
 						this.addChild(this.cutscene);
 						this.cutscene.cue(line.cue);
 						this.render();
