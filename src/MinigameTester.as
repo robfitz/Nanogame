@@ -24,6 +24,8 @@ package
 
 			this.now = flash.utils.getTimer();
 			this.addEventListener(Event.ENTER_FRAME, this.loopdeloop);
+			
+			this.game.state = Minigame.STATE_PLAY;
 		}
 		
 		public function loopdeloop(event:Event):void {
