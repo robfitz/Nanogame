@@ -224,6 +224,19 @@ package nano
 			"floor/floors_002.png" : image_floors
 		};
 		
+		/////////////////////////////////////////
+		//         MINIGAME - CANCER           //
+		/////////////////////////////////////////
+		[Embed(source="assets/minigame/cancer-arm.png")]
+		public var minigameCancerArm:Class;
+		
+		[Embed(source="assets/minigame/cancer-clipboard.png")]
+		public var minigameCancerClipboard:Class;
+		
+		[Embed(source="assets/minigame/cancer-background.png")]
+		public var minigameCancerBackground:Class;
+		
+		
 		/**
 		 * Don't call this! 
 		 */		

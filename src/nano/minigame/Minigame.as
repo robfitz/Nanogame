@@ -20,13 +20,13 @@ package nano.minigame
 	{
 		
 		/** State: Game is ready to play. */		
-		public static const STATE_READY = "ready";
+		public static const STATE_READY:String = "ready";
 		/** State: Game is currently being played and simulated */
-		public static const STATE_PLAY= "play";
+		public static const STATE_PLAY:String = "play";
 		/** Player has failed, game is ready to be reset to READY */
-		public static const STATE_FAIL = "fail";
+		public static const STATE_FAIL:String = "fail";
 		/** Player has won the game, game is ready to be reset to READY */
-		public static const STATE_SUCCESS = "success";
+		public static const STATE_SUCCESS:String = "success";
 		
 		/**
 		 * The state of the minigame 
@@ -36,7 +36,7 @@ package nano.minigame
 			return this._state;
 		}
 		public function set state(val:String):void {
-			var oldState = this._state;
+			var oldState:String = this._state;
 			this._state = val;
 			
 			switch(this._state) {
