@@ -236,6 +236,8 @@ package nano
 		[Embed(source="assets/minigame/cancer-background.png")]
 		public var minigameCancerBackground:Class;
 		
+		[Embed(source="assets/minigame/spin-spinhood.swf")]
+		public var minigameSpinBackground:Class;
 		
 		/**
 		 * Don't call this! 

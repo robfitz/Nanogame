@@ -6,6 +6,7 @@ package
 	
 	import nano.minigame.CancerMinigame;
 	import nano.minigame.Minigame;
+	import nano.minigame.SpinMinigame;
 	
 	[SWF(width='760', height='346')]
 	public class MinigameTester extends Sprite
@@ -19,7 +20,7 @@ package
 		{
 			super();
 			
-			this.game = new CancerMinigame();
+			this.game = new SpinMinigame();
 			this.addChild(this.game);
 
 			this.now = flash.utils.getTimer();
