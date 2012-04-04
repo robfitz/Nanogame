@@ -1,11 +1,13 @@
 package nano.minigame
 {
 	import flash.display.Bitmap;
+	import flash.display.MovieClip;
 	import flash.display.Sprite;
 	import flash.events.Event;
 	import flash.events.MouseEvent;
 	import flash.geom.Point;
 	
+	import nano.AssetLoader;
 	import nano.Assets;
 	
 	/**
@@ -27,7 +29,7 @@ package nano.minigame
 		private static const ARM_OFFSET_Y:Number = 348;
 		
 		private var arm:Bitmap;
-		private var clipboard:Bitmap;
+		private var clipboard:MovieClip;
 		private var background:Bitmap;
 		
 		private var armVelocity:Number = 200;
@@ -48,18 +50,22 @@ package nano.minigame
 		private function buildAssets():void {
 			this.background = new Assets.instance.minigameCancerBackground();
 			this.arm = new Assets.instance.minigameCancerArm();
-			this.clipboard = new Assets.instance.minigameCancerClipboard();
 			
 			this.addChild(this.background);
 			this.addChild(this.arm);
-			this.addChild(this.clipboard);
+			
+			var _this:CancerMinigame = this;
+			var clipboardLoader:AssetLoader = new AssetLoader(Assets.instance.minigameCancerClipboard);
+			clipboardLoader.addEventListener(Event.COMPLETE, function(event:Event):void {
+				clipboard = (event.target).asset;
+				clipboard.x = 470;
+				clipboard.y = 70;
+				_this.addChild(clipboard);
+			});
 			
 			// initial setups
 			this.arm.x = 20;
 			this.arm.y = -220;
-			
-			this.clipboard.x = 470;
-			this.clipboard.y = 70;
 			
 			// events
 			this.mouseChildren = false;
@@ -140,12 +146,25 @@ package nano.minigame
 			
 			super.state = val;
 			
-			trace("New state is " + this.state);
-			trace("Current target at " + this.currentTarget.position);
-			
 			switch(this.state) {
-				
+				case CM_RESET_DROP:
+					if(oldState == CM_STATE_DROP_SUCCESS) {
+						this.targetIndex ++;
+						if(this.targetIndex == this.targets.length) {
+							this.state = Minigame.STATE_SUCCESS;
+						} else {
+							this.updateGoal();
+						}
+					}
+					break;
 			}
+		}
+		
+		/**
+		 * Update the visual state of the goal
+		 */		
+		private function updateGoal():void {
+			
 		}
 		
 		private function onMatteClick(event:Event):void {

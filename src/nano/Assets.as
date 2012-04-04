@@ -230,7 +230,7 @@ package nano
 		[Embed(source="assets/minigame/cancer-arm.png")]
 		public var minigameCancerArm:Class;
 		
-		[Embed(source="assets/minigame/cancer-clipboard.png")]
+		[Embed(source="assets/minigame/cancer-clipboard.swf", mimeType="application/octet-stream")]
 		public var minigameCancerClipboard:Class;
 		
 		[Embed(source="assets/minigame/cancer-background.png")]
