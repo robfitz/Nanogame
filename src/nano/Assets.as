@@ -238,6 +238,9 @@ package nano
 		
 		[Embed(source="assets/minigame/spin-spinhood.swf")]
 		public var minigameSpinBackground:Class;
+
+		[Embed(source="assets/minigame/spin-dropper.png")]
+		public var minigameSpinDropper:Class;
 		
 		/**
 		 * Don't call this! 
