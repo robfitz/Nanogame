@@ -1,7 +1,9 @@
 package nano.minigame
 {
 	import flash.display.Bitmap;
+	import flash.display.Graphics;
 	import flash.display.MovieClip;
+	import flash.display.Sprite;
 	import flash.events.MouseEvent;
 	
 	import nano.Assets;
@@ -17,18 +19,23 @@ package nano.minigame
 		
 		public static const SP_STATE_DROPGROW:String = "dropgrow";
 		public static const SP_STATE_DROPFALL:String = "dropfall";
+		public static const SP_STATE_SPLASH:String = "splash";
 		
 		public static const DROP_GROWTH_RATE:Number = 50;
 		public static const DROP_MAX_SIZE:Number = 100;
 		public static const GOAL_SIZE:Number = 250;
+		public static const GOAL_THRESHOLD:Number = 235;
 		
 		private var background:MovieClip;
 		private var dropper:Bitmap;
-		private var drop:Bitmap;
+		private var drop:Sprite;
+		private var matte:Sprite;
 		
 		private var dropSize:Number = 0;
 		private var targetSize:Number = 0;
 		private var currentTargetSize:Number = 0;
+		
+		private var dropVelocity:Number = 0;
 		
 		public function SpinMinigame()
 		{
@@ -39,21 +46,32 @@ package nano.minigame
 		private function buildAssets():void {
 			this.background = new Assets.instance.minigameSpinBackground();
 			this.dropper = new Assets.instance.minigameSpinDropper();
-			this.drop = new Assets.instance.minigameSpinDrop();
+			this.drop = new Sprite();
+			var dropImg:Bitmap = new Assets.instance.minigameSpinDrop();
+			this.drop.addChild(dropImg);
+			this.matte = new Sprite();
 			
 			this.addChild(this.background);
 			this.addChild(this.drop);
 			this.addChild(this.dropper);
-			
+			this.addChild(this.matte);
 			
 			// Initial positions
-			this.dropper.x = 760 / 2 - (this.dropper.width / 2) - 10;
+			this.background.y = 44;
+			this.background.x = 12;
+			
+			this.dropper.x = 760 / 2 - (this.dropper.width / 2);
 			this.dropper.y = -140;
 			
-			this.drop.x = 760 / 2 - (this.drop.width / 2) - 10;
+			dropImg.y = 0;
+			dropImg.x = -dropImg.width / 2;
+			dropImg.smoothing = true;
+			
+			this.drop.x = 760 / 2;
 			this.drop.y = 60;
-			this.drop.scaleY = .1;
 			this.drop.scaleX = .1;
+			this.drop.scaleY = .1;
+			this.drop.visible = false;
 			
 			// Mouse Event
 			this.mouseEnabled = true;
@@ -74,7 +92,21 @@ package nano.minigame
 		override public function set state(val:String):void {
 			var oldState:String = val;
 			super.state = val;
-			trace(this.state);
+			
+			switch(this.state) {
+				case STATE_PLAY:
+					this.drop.visible = false;
+					break;
+				case SP_STATE_DROPGROW:
+					this.drop.visible = true;
+					break;
+				case SP_STATE_SPLASH:
+					this.drop.visible = false;
+					this.drop.y = 60;
+					this.dropSize = 0;
+					this.state = Minigame.STATE_PLAY;
+					break;
+			}
 		}
 		
 		/**
@@ -83,6 +115,23 @@ package nano.minigame
 		 */		
 		override public function update(dt:Number):void {
 			super.update(dt);
+			
+			if(this.targetSize > 0 && this.currentTargetSize != this.targetSize) {
+				this.currentTargetSize += (this.targetSize - this.currentTargetSize) / 5;
+				
+				if(this.isClose(this.currentTargetSize, this.targetSize)) {
+					this.currentTargetSize = this.targetSize;
+					
+					// Check to see if we're done growing visually, and if we should continue, win, or fail
+					if(this.currentTargetSize > GOAL_SIZE) {
+						this.state = Minigame.STATE_FAIL;
+						trace("FAIL");
+					} else if(this.currentTargetSize > GOAL_THRESHOLD) {
+						this.state = Minigame.STATE_SUCCESS;
+						trace("SUCCESS");
+					}
+				}
+			}
 			
 			if(this.state == SP_STATE_DROPGROW) {
 				this.dropSize += DROP_GROWTH_RATE * dt;
@@ -93,7 +142,14 @@ package nano.minigame
 				}
 			}
 			else if(this.state == SP_STATE_DROPFALL) {
-				// do falling stuff here
+				this.dropVelocity += 250 * dt;
+				this.drop.y += this.dropVelocity * dt;
+				
+				if(this.drop.y >= 200 - this.drop.height) {
+					this.drop.y = 200 - this.drop.height;
+					this.targetSize += this.dropSize;
+					this.state = SP_STATE_SPLASH;
+				}
 			}
 		}
 		
@@ -102,6 +158,21 @@ package nano.minigame
 		 */		
 		override public function render():void {
 			
+			// the wierd division at the end is a size adustment. We want the max sie of the circle
+			// to be 166 when it's perfectly sized
+			var dropScale:Number = Math.max(.1, this.dropSize / DROP_MAX_SIZE) * .5; 
+			this.drop.scaleX = dropScale;
+			this.drop.scaleY = dropScale;
+			
+			if(this.currentTargetSize > 0) {
+				var g:Graphics = this.matte.graphics;
+				var radius:Number = this.currentTargetSize * (166 / GOAL_SIZE);
+				
+				g.clear();
+				g.beginFill(0xff00ff, .8);
+				g.drawEllipse(760 / 2 - radius / 2, 200 - (radius * .5) / 2, radius, radius * .5);
+				g.endFill();
+			}
 		}
 		
 		private function onMouseDown(event:MouseEvent):void {

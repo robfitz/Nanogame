@@ -182,9 +182,5 @@ package nano.minigame
 				}
 			}
 		}
-		
-		private function isClose(a:Number, b:Number, radius:Number = 2):Boolean {
-			return Math.abs(a - b) <= radius;
-		}
 	}
 }
