@@ -22,7 +22,7 @@ package nano.minigame
 		public static const CM_STATE_DROP_FAIL:String = "drop fail";
 		public static const CM_RESET_DROP:String = "reset drop";
 		
-		private static const TARGET_RADIUS:Number = 20;
+		private static const TARGET_RADIUS:Number = 40;
 		
 		/** Offset to the 'tip' of the syringe */
 		private static const ARM_OFFSET_X:Number = 239;
@@ -58,8 +58,8 @@ package nano.minigame
 			var clipboardLoader:AssetLoader = new AssetLoader(Assets.instance.minigameCancerClipboard);
 			clipboardLoader.addEventListener(Event.COMPLETE, function(event:Event):void {
 				clipboard = (event.target).asset;
-				clipboard.x = 470;
-				clipboard.y = 70;
+				clipboard.x = 650;
+				clipboard.y = 220;
 				_this.addChild(clipboard);
 			});
 			
@@ -74,10 +74,11 @@ package nano.minigame
 			
 			// targets
 			this.targets = [
-				{ position: new Point(107, 192) },
-				{ position: new Point(226, 243) },
-				{ position: new Point(331, 225) },
-				{ position: new Point(436, 225) }
+				{ position: new Point(107, 192), speed: 200 },
+				{ position: new Point(226, 243), speed: 225 },
+				{ position: new Point(331, 225), speed: 250 },
+				{ position: new Point(226, 243), speed: 275 },
+				{ position: new Point(436, 225), speed: 300 }
 			];
 			
 			// DEBUG DRAWING
@@ -150,11 +151,15 @@ package nano.minigame
 				case CM_RESET_DROP:
 					if(oldState == CM_STATE_DROP_SUCCESS) {
 						this.targetIndex ++;
+						
 						if(this.targetIndex == this.targets.length) {
 							this.state = Minigame.STATE_SUCCESS;
 						} else {
 							this.updateGoal();
 						}
+					} else if(oldState == CM_STATE_DROP_FAIL) {
+						this.clipboard.gotoAndPlay("fail");
+						this.targetIndex = 0;
 					}
 					break;
 			}
@@ -164,7 +169,8 @@ package nano.minigame
 		 * Update the visual state of the goal
 		 */		
 		private function updateGoal():void {
-			
+			this.clipboard.gotoAndPlay("goal" + (this.targetIndex + 1));
+			this.armVelocity = (this.armVelocity < 0 ? -1 : 1) * this.currentTarget.speed;
 		}
 		
 		private function onMatteClick(event:Event):void {

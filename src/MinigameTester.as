@@ -20,7 +20,7 @@ package
 		{
 			super();
 			
-			this.game = new SpinMinigame();
+			this.game = new CancerMinigame();
 			this.addChild(this.game);
 
 			this.now = flash.utils.getTimer();

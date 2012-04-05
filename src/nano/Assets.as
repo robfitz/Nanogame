@@ -227,6 +227,13 @@ package nano
 		/////////////////////////////////////////
 		//         MINIGAME - CANCER           //
 		/////////////////////////////////////////
+		
+		[Embed(source="assets/minigame/check.swf")]
+		public var minigameCheck:Class;
+		
+		[Embed(source="assets/minigame/minus.swf")]
+		public var minigameMinus:Class;
+		
 		[Embed(source="assets/minigame/cancer-arm.png")]
 		public var minigameCancerArm:Class;
 		
