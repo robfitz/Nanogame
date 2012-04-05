@@ -20,7 +20,7 @@ package
 		{
 			super();
 			
-			this.game = new CancerMinigame();
+			this.game = new SpinMinigame();
 			this.addChild(this.game);
 
 			this.now = flash.utils.getTimer();
@@ -49,7 +49,7 @@ package
 		 * Render game object that need to be blitted to the screen
 		 */		
 		public function render():void {
-			
+			this.game.render();
 		}
 	}
 }

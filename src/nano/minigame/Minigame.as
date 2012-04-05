@@ -69,6 +69,13 @@ package nano.minigame
 		}
 		
 		/**
+		 * Draw procedural assets
+		 */
+		public function render():void {
+			// nothing
+		}
+		
+		/**
 		 * Called when the game moved into the "PLAY" state
 		 */
 		protected function startMinigame():void {

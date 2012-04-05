@@ -249,6 +249,9 @@ package nano
 		[Embed(source="assets/minigame/spin-dropper.png")]
 		public var minigameSpinDropper:Class;
 		
+		[Embed(source="assets/minigame/spin-drop.png")]
+		public var minigameSpinDrop:Class;
+		
 		/**
 		 * Don't call this! 
 		 */		
