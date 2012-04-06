@@ -1,8 +1,11 @@
 package nano.minigame
 {
+	import flash.display.MovieClip;
 	import flash.display.Sprite;
 	import flash.events.Event;
 	
+	import nano.AssetLoader;
+	import nano.Assets;
 	import nano.ui.DialogBox;
 	
 	/**
@@ -18,6 +21,9 @@ package nano.minigame
 	
 	public class Minigame extends Sprite
 	{
+		
+		private var failAlert:MovieClip;
+		private var winAlert:MovieClip;
 		
 		/** State: Game is ready to play. */		
 		public static const STATE_READY:String = "ready";
@@ -45,6 +51,13 @@ package nano.minigame
 					break;
 				case STATE_SUCCESS:
 					this.dispatchEvent(new Event(Event.COMPLETE));
+					this.winAlert.visible = true;
+					this.winAlert.play();
+					break;
+				
+				case STATE_FAIL:
+					this.failAlert.visible = true;
+					this.failAlert.play();
 					break;
 			}
 		}
@@ -58,6 +71,30 @@ package nano.minigame
 			gameMask.graphics.beginFill(0x0);
 			gameMask.graphics.drawRect(0, 0, DialogBox.CUTSCENE_WIDTH, DialogBox.CUTSCENE_HEIGHT);
 			this.mask = gameMask;
+			
+			this.buildAssets();
+		}
+		
+		protected function buildAssets():void {
+			// Setup success and fail animations
+			var _this:Minigame = this;
+			var failLoader:AssetLoader = new AssetLoader(Assets.instance.minigameMinus);
+			failLoader.addEventListener(Event.COMPLETE, function(event:Event):void {
+				_this.failAlert = (event.target).asset;
+				_this.failAlert.stop();
+				_this.failAlert.visible = false;
+				_this.failAlert.x = 340;
+				_this.addChild(_this.failAlert);
+			});
+			
+			var winLoader:AssetLoader = new AssetLoader(Assets.instance.minigameCheck);
+			winLoader.addEventListener(Event.COMPLETE, function(event:Event):void {
+				_this.winAlert = (event.target).asset;
+				_this.winAlert.stop();
+				_this.winAlert.visible = false;
+				_this.winAlert.x = 340;
+				_this.addChild(_this.winAlert);
+			});
 		}
 		
 		/**

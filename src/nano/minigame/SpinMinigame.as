@@ -4,8 +4,10 @@ package nano.minigame
 	import flash.display.Graphics;
 	import flash.display.MovieClip;
 	import flash.display.Sprite;
+	import flash.events.Event;
 	import flash.events.MouseEvent;
 	
+	import nano.AssetLoader;
 	import nano.Assets;
 	
 	/**
@@ -23,8 +25,8 @@ package nano.minigame
 		
 		public static const DROP_GROWTH_RATE:Number = 50;
 		public static const DROP_MAX_SIZE:Number = 100;
-		public static const GOAL_SIZE:Number = 250;
-		public static const GOAL_THRESHOLD:Number = 235;
+		public static const GOAL_SIZE:Number = 260;
+		public static const GOAL_THRESHOLD:Number = 245;
 		
 		private var background:MovieClip;
 		private var dropper:Bitmap;
@@ -43,7 +45,7 @@ package nano.minigame
 			this.buildAssets();
 		}
 		
-		private function buildAssets():void {
+		override protected function buildAssets():void {
 			this.background = new Assets.instance.minigameSpinBackground();
 			this.dropper = new Assets.instance.minigameSpinDropper();
 			this.drop = new Sprite();
@@ -57,8 +59,8 @@ package nano.minigame
 			this.addChild(this.matte);
 			
 			// Initial positions
-			this.background.y = 44;
-			this.background.x = 12;
+			this.background.y = 43;
+			this.background.x = 11;
 			
 			this.dropper.x = 760 / 2 - (this.dropper.width / 2);
 			this.dropper.y = -140;
@@ -78,6 +80,9 @@ package nano.minigame
 			this.mouseChildren = false;
 			this.addEventListener(MouseEvent.MOUSE_DOWN, this.onMouseDown);
 			this.addEventListener(MouseEvent.MOUSE_UP, this.onMouseUp);
+			
+			// SUPERMAN!
+			super.buildAssets();
 		}
 		
 		override protected function startMinigame():void {
@@ -106,6 +111,14 @@ package nano.minigame
 					this.dropSize = 0;
 					this.state = Minigame.STATE_PLAY;
 					break;
+				case Minigame.STATE_FAIL:
+					this.dropSize = 0;
+					this.targetSize = 0;
+					this.currentTargetSize = 0;
+					this.drop.y = 60;
+					this.matte.graphics.clear();
+					this.state = Minigame.STATE_PLAY;
+					break;
 			}
 		}
 		
@@ -119,16 +132,16 @@ package nano.minigame
 			if(this.targetSize > 0 && this.currentTargetSize != this.targetSize) {
 				this.currentTargetSize += (this.targetSize - this.currentTargetSize) / 5;
 				
+				if(this.currentTargetSize > GOAL_SIZE) {
+					this.state = Minigame.STATE_FAIL;
+				}
+				
 				if(this.isClose(this.currentTargetSize, this.targetSize)) {
 					this.currentTargetSize = this.targetSize;
 					
 					// Check to see if we're done growing visually, and if we should continue, win, or fail
-					if(this.currentTargetSize > GOAL_SIZE) {
-						this.state = Minigame.STATE_FAIL;
-						trace("FAIL");
-					} else if(this.currentTargetSize > GOAL_THRESHOLD) {
+					if(this.currentTargetSize <= GOAL_SIZE && this.currentTargetSize > GOAL_THRESHOLD) {
 						this.state = Minigame.STATE_SUCCESS;
-						trace("SUCCESS");
 					}
 				}
 			}
@@ -166,11 +179,14 @@ package nano.minigame
 			
 			if(this.currentTargetSize > 0) {
 				var g:Graphics = this.matte.graphics;
-				var radius:Number = this.currentTargetSize * (166 / GOAL_SIZE);
+				var radius:Number = this.currentTargetSize * (165 / GOAL_SIZE);
+				var jigglex:Number = Math.random() - .5;
+				var jiggley:Number = Math.random() - .5;
 				
 				g.clear();
-				g.beginFill(0xff00ff, .8);
-				g.drawEllipse(760 / 2 - radius / 2, 200 - (radius * .5) / 2, radius, radius * .5);
+				g.beginFill(0xDCE9EA, .8);
+				g.lineStyle(1, 0x23B5C4, .6);
+				g.drawEllipse(760 / 2 - radius / 2 + jigglex, 200 - (radius * .5) / 2 + jiggley, radius, radius * .5);
 				g.endFill();
 			}
 		}
