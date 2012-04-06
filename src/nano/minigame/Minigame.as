@@ -78,13 +78,14 @@ package nano.minigame
 		protected function buildAssets():void {
 			// Setup success and fail animations
 			var _this:Minigame = this;
+			
 			var failLoader:AssetLoader = new AssetLoader(Assets.instance.minigameMinus);
 			failLoader.addEventListener(Event.COMPLETE, function(event:Event):void {
 				_this.failAlert = (event.target).asset;
 				_this.failAlert.stop();
 				_this.failAlert.visible = false;
-				_this.failAlert.x = 340;
-				_this.addChild(_this.failAlert);
+				_this.failAlert.x = 320;
+				_this.addChildAt(_this.failAlert, _this.numChildren);
 			});
 			
 			var winLoader:AssetLoader = new AssetLoader(Assets.instance.minigameCheck);
@@ -92,8 +93,8 @@ package nano.minigame
 				_this.winAlert = (event.target).asset;
 				_this.winAlert.stop();
 				_this.winAlert.visible = false;
-				_this.winAlert.x = 340;
-				_this.addChild(_this.winAlert);
+				_this.winAlert.x = 320;
+				_this.addChildAt(_this.winAlert, _this.numChildren);
 			});
 		}
 		

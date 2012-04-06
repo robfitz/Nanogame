@@ -44,10 +44,9 @@ package nano.minigame
 		public function CancerMinigame()
 		{
 			super();
-			this.buildAssets();
 		}
 		
-		private function buildAssets():void {
+		override protected function buildAssets():void {
 			this.background = new Assets.instance.minigameCancerBackground();
 			this.arm = new Assets.instance.minigameCancerArm();
 			
@@ -60,7 +59,7 @@ package nano.minigame
 				clipboard = (event.target).asset;
 				clipboard.x = 650;
 				clipboard.y = 220;
-				_this.addChild(clipboard);
+				_this.addChildAt(clipboard, 2);
 			});
 			
 			// initial setups
@@ -82,11 +81,14 @@ package nano.minigame
 			];
 			
 			// DEBUG DRAWING
-			var matte:Sprite = new Sprite();
-			matte.graphics.beginFill(0xff00ff);
-			for each(var traget:Object in this.targets) {
-				matte.graphics.drawCircle(traget.position.x, traget.position.y, 10);
-			}
+//			var matte:Sprite = new Sprite();
+//			matte.graphics.beginFill(0xff00ff);
+//			for each(var traget:Object in this.targets) {
+//				matte.graphics.drawCircle(traget.position.x, traget.position.y, 10);
+//			}
+			
+			//SUPER MAN
+			super.buildAssets();
 		}
 		
 		override public function update(dt:Number):void {
