@@ -5,6 +5,7 @@ package
 	import flash.utils.getTimer;
 	
 	import nano.minigame.CancerMinigame;
+	import nano.minigame.CircuitMinigame;
 	import nano.minigame.Minigame;
 	import nano.minigame.SpinMinigame;
 	
@@ -20,7 +21,7 @@ package
 		{
 			super();
 			
-			this.game = new CancerMinigame();
+			this.game = new CircuitMinigame();
 			this.addChild(this.game);
 
 			this.now = flash.utils.getTimer();
