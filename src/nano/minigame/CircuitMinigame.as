@@ -19,7 +19,8 @@ package nano.minigame
 		
 		public static const CM_STATE_DRAG:String = "drag";
 		
-		private static const MOUSE_LAG:Number = 2;
+		private static const MOUSE_LAG:Number = .5;
+		private static const WIN_DIST:Number = 10;
 		
 		private var background:Bitmap;
 		private var theMask:Sprite;
@@ -65,6 +66,19 @@ package nano.minigame
 		
 		override public function set state(val:String):void {
 			super.state = val;
+			
+			switch(this.state) {
+				case Minigame.STATE_PLAY:
+					
+					// check for win case
+					var xd:Number = (this.theMask.x - this.maskGuide.x) * (this.theMask.x - this.maskGuide.x);
+					var yd:Number = (this.theMask.y - this.maskGuide.y) * (this.theMask.y - this.maskGuide.y);
+					
+					if(xd + yd < WIN_DIST) {
+						this.state = Minigame.STATE_SUCCESS;
+					}
+					break;
+			}
 		}
 		
 		override public function update(dt:Number):void {
