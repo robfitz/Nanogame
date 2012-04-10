@@ -19,7 +19,7 @@ package nano.minigame
 		
 		public static const CM_STATE_DRAG:String = "drag";
 		
-		private static const MOUSE_LAG:Number = .5;
+		private static const MOUSE_LAG:Number = .6;
 		private static const WIN_DIST:Number = 10;
 		
 		private var background:Bitmap;
@@ -30,6 +30,7 @@ package nano.minigame
 		
 		private var maskStart:Point;
 		private var mouseStart:Point;
+		private var lastMouse:Point;
 		
 		public function CircuitMinigame()
 		{
@@ -70,11 +71,10 @@ package nano.minigame
 			switch(this.state) {
 				case Minigame.STATE_PLAY:
 					
-					// check for win case
+					// check for win case on drop
 					var xd:Number = (this.theMask.x - this.maskGuide.x) * (this.theMask.x - this.maskGuide.x);
 					var yd:Number = (this.theMask.y - this.maskGuide.y) * (this.theMask.y - this.maskGuide.y);
-					
-					if(xd + yd < WIN_DIST) {
+					if(xd + yd < WIN_DIST && Math.abs(this.theMask.rotation) < 1) {
 						this.state = Minigame.STATE_SUCCESS;
 					}
 					break;
@@ -85,8 +85,20 @@ package nano.minigame
 			super.update(dt);
 			
 			if(this.state == CM_STATE_DRAG) {
-				this.theMask.x = this.maskStart.x + (this.mouseX - this.mouseStart.x) / MOUSE_LAG;
-				this.theMask.y = this.maskStart.y + (this.mouseY - this.mouseStart.y) / MOUSE_LAG;
+				var mouse:Point = new Point(this.mouseX, this.mouseY);
+				this.theMask.x = this.maskStart.x + (mouse.x - this.mouseStart.x) / MOUSE_LAG;
+				this.theMask.y = this.maskStart.y + (mouse.y - this.mouseStart.y) / MOUSE_LAG;
+				
+				var spin:Number = 0;
+				var dist:Number = (mouse.subtract(this.lastMouse)).length;
+				if(this.mouseY < this.theMask.y) {
+					spin = this.mouseX < this.theMask.x ? -1 : 1;
+				} else {
+					spin = this.mouseX < this.theMask.x ? 1 : -1;
+				}
+				
+				this.theMask.rotation = Math.min(10, Math.max(-10, this.theMask.rotation + spin * dist / 3));
+				this.lastMouse = mouse;
 			}
 		}
 		
@@ -95,6 +107,7 @@ package nano.minigame
 				this.state = CM_STATE_DRAG;
 				this.maskStart = new Point(this.theMask.x, this.theMask.y);
 				this.mouseStart = new Point(this.mouseX, this.mouseY);
+				this.lastMouse = this.mouseStart.clone();
 			}
 		}
 		
