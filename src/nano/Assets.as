@@ -252,6 +252,18 @@ package nano
 		[Embed(source="assets/minigame/spin-drop.png")]
 		public var minigameSpinDrop:Class;
 		
+		[Embed(source="assets/minigame/cir-foreground.png")]
+		public var minigameCirForground:Class;
+		
+		[Embed(source="assets/minigame/cir-assets.swf", symbol="Circuit")]
+		public var minigameCirCircuit:Class;
+		
+		[Embed(source="assets/minigame/cir-assets.swf", symbol="Mask")]
+		public var minigameCirMask:Class;
+		
+		[Embed(source="assets/minigame/cir-assets.swf", symbol="Guide")]
+		public var minigameCirGuide:Class;
+		
 		/**
 		 * Don't call this! 
 		 */		
