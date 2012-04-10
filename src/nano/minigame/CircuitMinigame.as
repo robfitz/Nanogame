@@ -4,6 +4,7 @@ package nano.minigame
 	import flash.display.MovieClip;
 	import flash.display.Sprite;
 	import flash.events.MouseEvent;
+	import flash.geom.Point;
 	
 	import nano.Assets;
 	
@@ -18,11 +19,16 @@ package nano.minigame
 		
 		public static const CM_STATE_DRAG:String = "drag";
 		
+		private static const MOUSE_LAG:Number = 2;
+		
 		private var background:Bitmap;
 		private var theMask:Sprite;
 		private var maskGuide:Sprite;
 		private var electrodes:Sprite;
 		private var foreground:Bitmap;
+		
+		private var maskStart:Point;
+		private var mouseStart:Point;
 		
 		public function CircuitMinigame()
 		{
@@ -63,11 +69,18 @@ package nano.minigame
 		
 		override public function update(dt:Number):void {
 			super.update(dt);
+			
+			if(this.state == CM_STATE_DRAG) {
+				this.theMask.x = this.maskStart.x + (this.mouseX - this.mouseStart.x) / MOUSE_LAG;
+				this.theMask.y = this.maskStart.y + (this.mouseY - this.mouseStart.y) / MOUSE_LAG;
+			}
 		}
 		
 		private function onMouseDown(event:MouseEvent):void {
 			if(this.state == Minigame.STATE_PLAY) {
 				this.state = CM_STATE_DRAG;
+				this.maskStart = new Point(this.theMask.x, this.theMask.y);
+				this.mouseStart = new Point(this.mouseX, this.mouseY);
 			}
 		}
 		
