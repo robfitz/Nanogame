@@ -4,9 +4,11 @@ package nano.ui
 	import flash.display.Sprite;
 	import flash.events.Event;
 	import flash.events.MouseEvent;
+	import flash.events.TimerEvent;
 	import flash.geom.Rectangle;
 	import flash.text.TextField;
 	import flash.text.TextFormat;
+	import flash.utils.Timer;
 	
 	import nano.Assets;
 	import nano.level.Dialog;
@@ -36,6 +38,7 @@ package nano.ui
 		private var professor:Cutscene;
 		
 		private var isPlayingGame:Boolean = false;
+		private var minigameEndTimer:Timer;
 		
 		public function DialogBox()
 		{
@@ -94,6 +97,7 @@ package nano.ui
 						this.minigame = this.getMinigame(line.cutscene);
 						this.addChild(this.minigame);
 						this.minigame.addEventListener(Event.COMPLETE, this.onMinigameWin);
+						this.minigame.state = Minigame.STATE_PLAY;
 						this.isPlayingGame = true;
 					} 
 					else if(! this.cutscene || this.cutscene.cutsceneName != line.cutscene) {
@@ -176,7 +180,17 @@ package nano.ui
 		 * 
 		 */		
 		private function onMinigameWin(event:Event):void {
-			trace("YOU WIN");
+			this.minigameEndTimer = new Timer(500, 1);
+			this.minigameEndTimer.start();
+			this.minigameEndTimer.addEventListener(TimerEvent.TIMER_COMPLETE, this.closeMinigame);
+		}
+		
+		private function closeMinigame(event:TimerEvent):void {
+			this.isPlayingGame = false;
+			this.removeChild(this.minigame);
+			this.minigame.removeEventListener(Event.COMPLETE, this.onMinigameWin);
+			this.minigame = null;
+			this.next();
 		}
 		
 		/**
