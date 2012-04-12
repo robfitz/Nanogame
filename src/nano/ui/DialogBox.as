@@ -13,6 +13,7 @@ package nano.ui
 	import nano.Assets;
 	import nano.level.Dialog;
 	import nano.minigame.CancerMinigame;
+	import nano.minigame.CircuitMinigame;
 	import nano.minigame.Minigame;
 	import nano.minigame.SpinMinigame;
 	
@@ -206,6 +207,8 @@ package nano.ui
 					return new CancerMinigame();
 				case "minigameSolar":
 					return new SpinMinigame();
+				case "minigameCircuit":
+					return new CircuitMinigame();
 			}
 			return null;
 		}

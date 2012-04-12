@@ -39,6 +39,11 @@ package nano.minigame
 		}
 		
 		override protected function buildAssets():void {
+			// background
+			this.graphics.beginFill(0x333333);
+			this.graphics.drawRect(0, 0, 760, 400);
+			this.graphics.endFill();
+			
 			this.electrodes = new Assets.instance.minigameCirCircuit();
 			this.theMask = new Assets.instance.minigameCirMask()
 			this.maskGuide = new Assets.instance.minigameCirGuide();
