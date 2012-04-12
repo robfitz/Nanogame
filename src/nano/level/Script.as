@@ -118,6 +118,10 @@ package nano.level
 					}
 				}
 			}
+			
+			if(this.dialogUi) {
+				this.dialogUi.update(dt);
+			}
 		}
 		
 		/**

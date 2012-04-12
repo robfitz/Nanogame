@@ -10,6 +10,8 @@ package nano.ui
 	
 	import nano.Assets;
 	import nano.level.Dialog;
+	import nano.minigame.CancerMinigame;
+	import nano.minigame.Minigame;
 	
 	public class DialogBox extends Sprite
 	{
@@ -30,7 +32,10 @@ package nano.ui
 		
 		// our cutscenes
 		private var cutscene:Cutscene;
+		private var minigame:Minigame;
 		private var professor:Cutscene;
+		
+		private var isPlayingGame:Boolean = false;
 		
 		public function DialogBox()
 		{
@@ -72,6 +77,10 @@ package nano.ui
 		 * @return True if there are still more lines to show
 		 */		
 		public function next():void {
+			if(this.isPlayingGame) {
+				return;
+			}
+			
 			if(this.currentLine < this.currentDialog.lines.length) {
 				var line:Object = this.currentDialog.lines[this.currentLine];
 				
@@ -80,7 +89,14 @@ package nano.ui
 				
 				if(line.cutscene) {
 					
-					if(! this.cutscene || this.cutscene.cutsceneName != line.cutscene) {
+					if(line.type == "game") {
+						// Special interactive cutscnene. Load it up.
+						this.minigame = this.getMinigame(line.cutscene);
+						this.addChild(this.minigame);
+						this.minigame.addEventListener(Event.COMPLETE, this.onMinigameWin);
+						this.isPlayingGame = true;
+					} 
+					else if(! this.cutscene || this.cutscene.cutsceneName != line.cutscene) {
 						// Remove old cutscene and create the new one
 						if(this.cutscene && this.contains(this.cutscene)) {
 							this.removeChild(this.cutscene);
@@ -108,6 +124,17 @@ package nano.ui
 				// signal that the dialog is done
 				this.dispatchEvent(new Event(Event.COMPLETE));
 				this.visible = false;
+			}
+		}
+		
+		public function update(dt:Number):void {
+			if(this.minigame) {
+				this.minigame.update(dt);
+				// the reason this is here, and not in the render() method below
+				// is that render method wasn't designed to be hooked into the 
+				// real render stack.. shouldn't be a problem though cause if your
+				// reading this and not me, well, good luck buddy. 
+				this.minigame.render();
 			}
 		}
 		
@@ -141,6 +168,30 @@ package nano.ui
 				this.professor.x = 2;
 				this.professor.y = top + 2;
 			}
+		}
+		
+		/**
+		 * Called when a player wins a minigame! 
+		 * @param event
+		 * 
+		 */		
+		private function onMinigameWin(event:Event):void {
+			trace("YOU WIN");
+		}
+		
+		/**
+		 * Creates and returns minigames 
+		 * @param classKey
+		 * @return A minigame
+		 * 
+		 */		
+		private function getMinigame(classKey:String):Minigame {
+			switch(classKey) {
+				case "minigameCancer":
+					return new CancerMinigame();
+					break
+			}
+			return null;
 		}
 	}
 }

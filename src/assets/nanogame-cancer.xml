@@ -21,6 +21,10 @@
         <goal target="cancer_scales" />
         
         <dialog type="outro">
+            <line cutscene="minigameCancer" type="game">
+                To make a dose of our cancer-fighting nano-medicine, we need to mix the solutions below in the correct order. Click to mix the solutions.
+            </line>
+            
 			<line>
 				Great.
 			</line>
@@ -113,8 +117,14 @@
                 These linker molecules bind to the outside of the nanoparticle and enable us to add the final ingredient – an antibody. 
             </line>
             <line>
-                Well done! You’ve made a new type of cancer treatment.
+                Now you do it!
             </line>
+            
+            
+            
+            
+            
+            
             <line>
                 Once injected into the body the nanoparticles will be small enough to go undetected by the body’s own defence mechanisms. The antibody you added will bind with receptors on a cancer cell and the particle will be taken inside the cell where the drug will be released.
             </line>
