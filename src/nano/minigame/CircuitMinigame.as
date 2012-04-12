@@ -91,12 +91,14 @@ package nano.minigame
 				var mouse:Point = new Point(this.mouseX, this.mouseY);
 				this.theMask.x = this.maskStart.x + (mouse.x - this.mouseStart.x) / MOUSE_LAG;
 				this.theMask.y = this.maskStart.y + (mouse.y - this.mouseStart.y) / MOUSE_LAG;
-				
+				 
 				var spin:Number = 0;
 				var mouseDiff:Point = mouse.subtract(this.lastMouse);
 				var centerToMouse:Point = mouse.subtract(new Point(this.theMask.x, this.theMask.y));
 				var angle:Number = Math.atan2(mouse.y - theMask.y, mouse.x - theMask.x);
 				
+				// Somewhat good feeling but totally fake body motion:
+				// 1) Figure out what quadrant the mouse is in
 				var quadrant:int;
 				if(angle < 0) {
 					quadrant = (angle + 2 * Math.PI) / (Math.PI / 2);
@@ -105,8 +107,10 @@ package nano.minigame
 				}				
 				var quadrantMultiplier:Number = quadrant % 2 == 1 ? 1 : -1;
 				
+				// 2) Figure out if the pointer is moving towards or away from the center of mass, and then choose the multiplier 
 				var dirMultiplier:Number = centerToMouse.x * mouseDiff.x + centerToMouse.y * mouseDiff.y > 0 ? 1 : -1;
 				
+				// 3) Spin is determined by multiplying the two 
 				spin = quadrantMultiplier * dirMultiplier; 
 				
 				this.theMask.rotation = Math.min(5, Math.max(-5, this.theMask.rotation + spin * mouseDiff.length / 3));
