@@ -1,13 +1,13 @@
 <level name="Solar Cell Virtual Experiment" startin="WORLD_OFFICE">	
     <objective>
         <dialog type="intro">
-			<line cutscene="professor" cue="talk">
+			<line>
 			    Lets make a device that absorbs sunlight to produce electricity – a solar cell.
 			</line>
-			<line cutscene="professor" cue="talk">
+			<line>
 			    Most solar cells are made of high purity crystalline silicon. Their brittle structure limits where they can be used. They’re also expensive and not very eco friendly to make.
 			</line>
-			<line cutscene="professor" cue="talk">
+			<line>
                 Goto to Clean Lab through the Blue Airlock. 
             </line>
         </dialog>
@@ -15,10 +15,10 @@
 		<goal target="airlock" moveto="WORLD_CLEANLAB" wait="1000" />
 		
 		<dialog type="outro">
-			<line cutscene="professor" cue="talk">
+			<line>
 			    Let’s start by making a piece of glass that can conduct electricity.
 			</line>
-			<line cutscene="professor" cue="talk">
+			<line>
 			    Find the sputter coater machine.
 			</line>
 		</dialog>
@@ -28,7 +28,7 @@
 		<goal target="solar_sputter" />
 
 		<dialog type="outro">
-			<line cutscene="professor" cue="talk">
+			<line>
 				The sputter coater will deposit a thin layer of conductive oxide onto our piece of glass
 			</line>
 			<line cutscene="cutscene_sputter1" cue="one">
@@ -40,7 +40,7 @@
 			<line cutscene="cutscene_sputter1" cue="three">
 				Your glass substrate now has super-thin 200nm layer of conducting metal.
 			</line>
-			<line cutscene="professor" cue="talk">
+			<line>
 				Now clean the substrate in the ultrasonic bath.
 			</line>
 		</dialog>		
@@ -50,13 +50,13 @@
 	    <goal target="solar_ultrasoniccleaner" />
 	    
 	    <dialog type="outro">
-	        <line cutscene="professor" cue="talk">
+	        <line>
 	             That's it!
 	        </line>
 	        <line cutscene="cutscene_ultrasoniccleaner" cue="one">
 	            First add the cleaning fluid. The bath then generates high frequency sound waves that create tiny bubbles in the liquid and helps to remove any dust or grease.
 	        </line>
-	        <line cutscene="professor" cue="talk">
+	        <line>
 	            Now back to the sputter coater to add a second layer. 
             </line>
         </dialog>
@@ -72,7 +72,7 @@
 		    <line cutscene="cutscene_sputter2" cue="two">
 		        Nicely done. Your substrate now has a circle of zinc just 100 nm thick. This is a seed layer we can use to grow nano-wires!
 		    </line>
-		    <line cutscene="professor" cue="talk">
+		    <line>
 		        Find the heating bath.
 		    </line>
 		</dialog>
@@ -88,7 +88,7 @@
     	    <line cutscene="cutscene_bath" cue="two">
     	        Zinc nanowires, just 30nm wide, grow like blades of grass.
     	    </line>
-    	    <line cutscene="professor" cue="talk">
+    	    <line>
     	        Now find the Atomic Layer Deposition machine and coat the wires in titanium oxide.
             </line>
         </dialog>
@@ -98,7 +98,7 @@
 	    <goal target="solar_atomiclayer" />
 	    
 	    <dialog type="outro">
-	        <line cutscene="professor" cue="talk">
+	        <line>
 	            That’s it. 
 	        </line>
 	        <line cutscene="cutscene_atomiclayer" cue="one">
@@ -116,10 +116,10 @@
 	        <line>
                 The dye is a ‘photovoltaic’ material. When it’s hit by sunlight it will eject electrons into the nano-wires. 
 	        </line>
-	        <line cutscene="professor" cue="talk">
+	        <line>
                 All we need now is a material called an electrolyte that can pass electrons to the dye and complete the circuit in our solar cell.
 	        </line>
-	        <line cutscene="professor" cue="talk">
+	        <line>
                 Use the spin coater in the sealed workbench to add the electrolyte.
             </line>
 	    </dialog>
@@ -135,10 +135,10 @@
 	        <line cutscene="cutscene_solarspin" cue="two">
                 Your solar cell is complete. Its ready to be wired up and tested. Well done!
 	        </line>
-	        <line cutscene="professor" cue="talk">
+	        <line>
 	            This type of cell is called a Dye Sensitized Solar Cell. 
 	        </line>
-	        <line cutscene="professor" cue="talk">
+	        <line>
 	            In the future this technology could allow us to make extremely thin and inexpensive solar panels that could cover the walls and windows of buildings or even be layered onto our clothes!
 	        </line>
 	    </dialog>
