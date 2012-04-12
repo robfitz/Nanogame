@@ -5,6 +5,7 @@ package nano.minigame
 	import flash.display.Sprite;
 	import flash.events.MouseEvent;
 	import flash.geom.Point;
+	import flash.ui.Mouse;
 	
 	import nano.Assets;
 	
@@ -38,20 +39,22 @@ package nano.minigame
 		}
 		
 		override protected function buildAssets():void {
-			//this.electrodes = new Assets.instance.minigameCirCircuit();
+			this.electrodes = new Assets.instance.minigameCirCircuit();
 			this.theMask = new Assets.instance.minigameCirMask()
 			this.maskGuide = new Assets.instance.minigameCirGuide();
 			this.foreground = new Assets.instance.minigameCirForground();
 			
-			//this.addChild(this.electrodes);
+			this.addChild(this.electrodes);
 			this.addChild(this.theMask);
 			this.addChild(this.maskGuide);
 			this.addChild(this.foreground);
 			
 			// Initial Position
-			this.theMask.y = 180;
-			this.theMask.x = 300;
-			
+			this.electrodes.x = 278;
+			this.electrodes.y = -120;
+			this.theMask.y = 220;
+			this.theMask.x = 250;
+			this.theMask.rotation = -6;
 			this.maskGuide.y = 180;
 			this.maskGuide.x = 380;
 			
@@ -90,14 +93,23 @@ package nano.minigame
 				this.theMask.y = this.maskStart.y + (mouse.y - this.mouseStart.y) / MOUSE_LAG;
 				
 				var spin:Number = 0;
-				var dist:Number = (mouse.subtract(this.lastMouse)).length;
-				if(this.mouseY < this.theMask.y) {
-					spin = this.mouseX < this.theMask.x ? -1 : 1;
-				} else {
-					spin = this.mouseX < this.theMask.x ? 1 : -1;
-				}
+				var mouseDiff:Point = mouse.subtract(this.lastMouse);
+				var centerToMouse:Point = mouse.subtract(new Point(this.theMask.x, this.theMask.y));
+				var angle:Number = Math.atan2(mouse.y - theMask.y, mouse.x - theMask.x);
 				
-				this.theMask.rotation = Math.min(10, Math.max(-10, this.theMask.rotation + spin * dist / 3));
+				var quadrant:int;
+				if(angle < 0) {
+					quadrant = (angle + 2 * Math.PI) / (Math.PI / 2);
+				} else {
+					quadrant = angle / (Math.PI / 2);
+				}				
+				var quadrantMultiplier:Number = quadrant % 2 == 1 ? 1 : -1;
+				
+				var dirMultiplier:Number = centerToMouse.x * mouseDiff.x + centerToMouse.y * mouseDiff.y > 0 ? 1 : -1;
+				
+				spin = quadrantMultiplier * dirMultiplier; 
+				
+				this.theMask.rotation = Math.min(5, Math.max(-5, this.theMask.rotation + spin * mouseDiff.length / 3));
 				this.lastMouse = mouse;
 			}
 		}
