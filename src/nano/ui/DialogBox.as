@@ -14,6 +14,7 @@ package nano.ui
 	import nano.level.Dialog;
 	import nano.minigame.CancerMinigame;
 	import nano.minigame.Minigame;
+	import nano.minigame.SpinMinigame;
 	
 	public class DialogBox extends Sprite
 	{
@@ -203,7 +204,8 @@ package nano.ui
 			switch(classKey) {
 				case "minigameCancer":
 					return new CancerMinigame();
-					break
+				case "minigameSolar":
+					return new SpinMinigame();
 			}
 			return null;
 		}

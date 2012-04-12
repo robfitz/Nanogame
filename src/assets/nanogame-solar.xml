@@ -132,6 +132,9 @@
 	        <line cutscene="cutscene_solarspin" cue="one">
 	            The electrolyte material will turn from a liquid to a solid quickly. You need to drop it as near to the centre as possible so it spreads through the forest of nano-wires evenly.
 	        </line>
+	        <line cutscene="minigameSolar" type="game">
+	            Now you do it! Click and hold to drop solution onto the spinning disk. Make it the same size as the red target.
+	        </line>
 	        <line cutscene="cutscene_solarspin" cue="two">
                 Your solar cell is complete. Its ready to be wired up and tested. Well done!
 	        </line>

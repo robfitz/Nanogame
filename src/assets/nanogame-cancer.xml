@@ -104,7 +104,7 @@
                 Inject the solution into the membrane bag inside the cassette and then place it in some distilled water.  
 			</line>
 			<line cutscene="cutscene_cancer_dialysisbar" cue="one">
-                The excess drug and crosslinker molecules are small enough to pass through the membrane leaving just the larger gold-drug-polymer particles inside.  This purifies the solution!
+                The excess drug and cross-linker molecules are small enough to pass through the membrane leaving just the larger gold-drug-polymer particles inside.  This purifies the solution!
 			</line>
             <line cutscene="cutscene_cancer_dialysisbar" cue="two">
                 Now we just need to add a final outer layer to the nanoparticles.
@@ -116,10 +116,10 @@
                 Now you do it!
             </line>
             <line cutscene="minigameCancer" type="game">
-                To make a dose of our cancer-fighting nano-medicine, we need to mix the solutions below in the correct order.  Click to mix the solutions
+                To make a dose of our cancer-fighting nano-medicine, we need to mix the solutions below in the correct order. Click to mix the solutions
             </line>
             <line>
-                Once injected into the body the nanoparticles will be small enough to go undetected by the body’s own defence mechanisms. The antibody you added will bind with receptors on a cancer cell and the particle will be taken inside the cell where the drug will be released.
+                Once injected into the body the nanoparticles will be small enough to go undetected by the body’s own defense mechanisms. The antibody you added will bind with receptors on a cancer cell and the particle will be taken inside the cell where the drug will be released.
             </line>
             <line>
                 The gold particles are also part of the treatment. When the patient is exposed to X-rays the gold particles will ionize the water in the cancer cell creating high-energy molecules that will kill the cell. 
