@@ -2,13 +2,13 @@
     
     <objective>
         <dialog type="intro">
-            <line cutscene="professor" cue="talk">
+            <line>
 				Lets start by making a stretchable electronic circuit. 
 			</line>
-			<line cutscene="professor" cue="talk">
+			<line>
 				Creating a circuit that can be stretched or flexed would allow us to put electronic systems into the fabric of clothes or even inside the human body. 
 			</line>
-            <line cutscene="professor" cue="talk">
+            <line>
                 Goto to Clean Lab through the Blue Airlock. 
             </line>
         </dialog>
@@ -16,13 +16,13 @@
         <goal target="airlock" moveto="WORLD_CLEANLAB" wait="1000" />
         
         <dialog type="outro">
-			<line cutscene="professor" cue="talk">
+			<line>
 				Welcome to the Clean Lab!
 			</line>
-			<line cutscene="professor" cue="talk">
+			<line>
 				The secret is start with a versatile stretchy substance you can build your circuit on. A chemical called PDMS is ideal.
 			</line>
-			<line cutscene="professor" cue="talk">
+			<line>
                 Find the weighing scales and weigh out 5 grams of PDMS. 
 			</line>
 		</dialog>
@@ -33,7 +33,7 @@
 		<goal target="stretch_scales" reward="curing_pdms" />
 
 		<dialog type="outro">
-			<line cutscene="professor" cue="talk">
+			<line>
 				Well done!
 			</line>
 			<line cutscene="cutscene_weighstation" cue="one">
@@ -45,10 +45,10 @@
 			<line cutscene="cutscene_weighstation" cue="three">
 				The PDMS is now beginning to transform from a liquid into a rubbery substance. 
 			</line>
-			<line cutscene="professor" cue="talk">
+			<line>
 				Before it solidifies we need to remove any air bubbles and shape it into a thin layer. Better hurry up!
 			</line>
-			<line cutscene="professor" cue="talk">
+			<line>
 		        Find the vacuum chamber
 		    </line>
 		</dialog>		
@@ -62,7 +62,7 @@
 			<line cutscene="cutscene_vacuum" cue="one">
 				That’s it. The vacuum removes the air bubbles.
 			</line>
-			<line cutscene="professor" cue="talk">
+			<line>
 				Now we need to spin the PDMS into a thin layer. The spin coater is the tool for that.
 			</line>
 		</dialog>
@@ -77,7 +77,7 @@
 			<line cutscene="cutscene_spincoater" cue="two">
 				0.2 millimetres thick! That’s perfect.
 			</line>
-			<line cutscene="professor" cue="talk">
+			<line>
 				Now we need to add our conducting circuit. For that we need to make a mask. Find the lab’s mask cutter.
 			</line>
 		</dialog>
@@ -90,7 +90,7 @@
 			<line cutscene="cutscene_maskcutter" cue="one">
                 To make the mask the mask cutter cuts holes out of a thin sheet. The pattern of holes is the shape of our circuit. 
 			</line>
-			<line cutscene="professor" cue="talk">
+			<line>
                 Now we can use the mask to add a conducting metal to the PDMS with the evaporator machine. 
 			</line>
 		</dialog>
@@ -109,7 +109,7 @@
 			<line cutscene="cutscene_evaporator" cue="three">
                 Now you have a perfect circuit of gold electrodes on a rubbery base layer. 
 			</line>
-			<line cutscene="professor" cue="talk">
+			<line>
                 But just as normal electric wires need to be covered by a layer of insulation, before we can use our stretchable circuit we need to cover the exposed electrodes with a protective layer of PDMS.
 			</line>
 			<line>
@@ -122,7 +122,7 @@
 		<goal target="stretch_scales" reward="coated electrodes" />
 		
 		<dialog type="outro">
-			<line cutscene="professor" cue="talk">
+			<line>
                 In this batch of PDMS we need a special ingredient called a photo-initiator that will trigger the curing process when exposed to UV light. 
 			</line>
 			<line>
