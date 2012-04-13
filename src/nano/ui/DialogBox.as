@@ -125,8 +125,10 @@ package nano.ui
 					if(this.cutscene && this.contains(this.cutscene)) {
 						this.removeChild(this.cutscene);
 					}
-					this.professor.cue("talk");
 				}
+				
+				// professor always talks
+				this.professor.cue("talk");
 				
 				this.currentLineIndex ++;
 			} else {
