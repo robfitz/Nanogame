@@ -30,7 +30,10 @@ package nano.ui
 		private var moreButton:Sprite;
 		
 		private var currentDialog:Dialog;
-		private var currentLine:int = 0;
+		private var currentLineIndex:int = 0;
+		
+		private var displayChar:uint = 0;
+		private var displayText:String;
 		
 		private var nextButton:Button;
 		
@@ -72,10 +75,9 @@ package nano.ui
 		public function display(dialog:Dialog):void {
 			this.visible = true;
 			this.currentDialog = dialog;
-			this.currentLine = 0;
+			this.currentLineIndex = 0;
 			next();
 		}
-		
 		
 		/**
 		 * Shows the next line of text
@@ -86,11 +88,12 @@ package nano.ui
 				return;
 			}
 			
-			if(this.currentLine < this.currentDialog.lines.length) {
-				var line:Object = this.currentDialog.lines[this.currentLine];
+			if(this.currentLineIndex < this.currentDialog.lines.length) {
+				var line:Object = this.currentDialog.lines[this.currentLineIndex];
 				
-				this._textfield.text = line.text;
-				this._textfield.setTextFormat(this.format);
+				this._textfield.text = "";
+				this.displayChar = 0;
+				this.displayText = line.text;
 				
 				if(line.cutscene) {
 					
@@ -125,7 +128,7 @@ package nano.ui
 					this.professor.cue("talk");
 				}
 				
-				this.currentLine ++;
+				this.currentLineIndex ++;
 			} else {
 				// signal that the dialog is done
 				this.dispatchEvent(new Event(Event.COMPLETE));
@@ -141,6 +144,12 @@ package nano.ui
 				// real render stack.. shouldn't be a problem though cause if your
 				// reading this and not me, well, good luck buddy. 
 				this.minigame.render();
+			}
+			
+			if(this.displayText && this.displayChar < this.displayText.length) {
+				this.displayChar = Math.min(this.displayChar + 2, this.displayText.length);
+				this._textfield.text = this.displayText.substr(0, this.displayChar);
+				this._textfield.setTextFormat(this.format);
 			}
 		}
 		
