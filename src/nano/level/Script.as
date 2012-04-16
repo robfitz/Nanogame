@@ -7,6 +7,7 @@ package nano.level
 	import flash.utils.Timer;
 	
 	import nano.World;
+	import nano.scene.GameObject;
 	import nano.ui.DialogBox;
 
 	/**
@@ -21,6 +22,8 @@ package nano.level
 		public var name:String;
 		
 		public var startMap:String;
+		
+		private var lastWorldTarget:GameObject;
 		
 		private var _dialogUi:DialogBox;
 		public function get dialogUi():DialogBox
@@ -108,7 +111,9 @@ package nano.level
 					&& this.world.currentTarget
 					&& trigger == this.world.currentTarget.objectName) {
 					
-					this.world.currentTarget.activate();
+					this.lastWorldTarget = this.world.currentTarget;
+					this.lastWorldTarget.activate();
+					
 					if(this.currentObjective.goalHoldTime) {
 						this.countdown = new Timer(this.currentObjective.goalHoldTime, 1);
 						this.countdown.start();
@@ -171,6 +176,10 @@ package nano.level
 			if(this.world.currentTarget) {
 				this.world.currentTarget.static();
 				this.world.currentTarget = null;
+			}
+			
+			if(this.lastWorldTarget) {
+				this.lastWorldTarget.reset();
 			}
 			
 			if(this._currentObjective >= this.objectives.length) {
