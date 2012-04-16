@@ -55,6 +55,9 @@ package nano
 		[Embed(source="assets/nextbutton.swf", mimeType="application/octet-stream")]
 		public var nextbutton:Class;
 		
+		[Embed(source="assets/winScreen.swf", mimeType="application/octet-stream")]
+		public var winScreen:Class;
+		
 		/////////////////////////////////////////
 		//             CHARACTERS              //
 		/////////////////////////////////////////

@@ -159,9 +159,9 @@ package nano.level
 		 * 
 		 */		
 		protected function scriptFinished():void {
-			trace("TODO: Show victory screen here");
+			
 			this.dispatchEvent(new Event(Event.COMPLETE));
-			}
+		}
 		
 		/**
 		 * Shows a section of dialog text 
@@ -188,9 +188,8 @@ package nano.level
 				this.scriptFinished();
 			} else {
 				this.world.start();
+				this.world.objects.getChildByTrigger(this.currentObjective.goalTarget).signal();
 			}
-			
-			this.world.objects.getChildByTrigger(this.currentObjective.goalTarget).signal();
 		}
 	}
 }

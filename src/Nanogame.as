@@ -33,6 +33,7 @@ package {
 		public const GAMESTATE_MENU:String = "gamestate menu";
 		public const GAMESTATE_INTRO:String = "gamestate intro";
 		public const GAMESTATE_INGAME:String = "gamestate ingame";
+		public const GAMESTATE_VICTORY:String = "gamestate victory";
 		
 		private var _state:String;
 		public function get state():String {
@@ -67,6 +68,9 @@ package {
 		 * creating scripts. We store their reference at top level, just for convience.
 		 * Ugly, but it works */
 		private var wipe:MovieClip;
+		
+		/** You won, have a screen that sez so! */
+		private var winScreen:MovieClip;
 		
 		/** Name of the current level being played */
 		private var currentLevel:String;
@@ -191,6 +195,29 @@ package {
 				case GAMESTATE_INGAME:
 					this.gameUi.removeChild(this.mainMenu);
 					this.initLevel(this.currentLevel);
+					break;
+			
+				case GAMESTATE_VICTORY:
+					this.stopLoop();
+					
+					if(! this.winScreen) {
+						var winScreenLoader:AssetLoader = new AssetLoader(Assets.instance.winScreen);
+						winScreenLoader.addEventListener(Event.COMPLETE, function(event:Event):void {
+							winScreen = event.target.asset as MovieClip;
+							winScreen['doneCallback'] = winScreenCallback;
+							gameUi.addChild(winScreen);
+							
+							// adjustments
+							winScreen.x = 380;
+							winScreen.y = 260;
+							
+							winScreen.gotoAndPlay(1);
+						});
+					} else {
+						this.gameUi.addChild(winScreen);
+						this.winScreen.gotoAndPlay(1);
+					}
+					break;
 			}
 		}
 		
@@ -263,6 +290,11 @@ package {
 			(event.target as Script).removeEventListener(Event.COMPLETE, onScriptComplete);
 			this.script.world = null;
 			this.script = null;
+			this.setGameState(GAMESTATE_VICTORY);
+		}
+		
+		private function winScreenCallback():void {
+			this.gameUi.removeChild(this.winScreen);
 			this.setGameState(GAMESTATE_MENU);
 		}
 	}
