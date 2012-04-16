@@ -9,6 +9,7 @@ package nano.scene
 	import flash.display.MovieClip;
 	import flash.events.Event;
 	import flash.events.MouseEvent;
+	import flash.ui.GameInput;
 	
 	import nano.AssetLoader;
 	
@@ -51,6 +52,15 @@ package nano.scene
 			});
 			
 			this.addChild(sprite);
+		}
+		
+		public function getChildByTrigger(trigger:String):GameObject {
+			for each(var obj:GameObject in this.displayListChildren) {
+				if(obj.objectData.trigger == trigger) {
+					return obj;
+				}
+			}
+			return null;
 		}
 		
 		public function onObjectClick(event:ProxyEvent):void {

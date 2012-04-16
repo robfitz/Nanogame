@@ -189,6 +189,8 @@ package nano.level
 			} else {
 				this.world.start();
 			}
+			
+			this.world.objects.getChildByTrigger(this.currentObjective.goalTarget).signal();
 		}
 	}
 }

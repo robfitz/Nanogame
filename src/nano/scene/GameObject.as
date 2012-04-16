@@ -21,6 +21,7 @@ package nano.scene
 		public static const STATE_HOVER:String = "hover";
 		public static const STATE_ONCLICK:String = "onclick";
 		public static const STATE_RESET:String = "reset";
+		public static const STATE_SIGNAL:String = "signal";
 		
 		public var objectName:String;
 		public var objectType:String;
@@ -98,6 +99,10 @@ package nano.scene
 		
 		public function static():void {
 			this.state = STATE_STATIC;
+		}
+		
+		public function signal():void {
+			this.state = STATE_SIGNAL;
 		}
 	}
 }
