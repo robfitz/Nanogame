@@ -1,5 +1,7 @@
 package nano
 {
+	import flash.display.MovieClip;
+
 	/**
 	 * Singleton to help organize assets.
 	 * This is sucky, need to make it a little more flexable 
@@ -43,6 +45,9 @@ package nano
 		/////////////////////////////////////////
 		[Embed(source="assets/menu.swf", mimeType="application/octet-stream")]
 		public var main_menu:Class;
+		
+		[Embed(source="assets/cutscene/wipe_full.swf", mimeType="application/octet-stream")]
+		public var fullscreen_wipe:Class;
 		
 		/////////////////////////////////////////
 		//             CHARACTERS              //

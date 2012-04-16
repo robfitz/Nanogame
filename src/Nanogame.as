@@ -54,7 +54,12 @@ package {
 		private var mainMenu:MovieClip;
 		
 		/** Holds all the UI that rests on top of the world */
-		private var gameUi:Sprite; 
+		private var gameUi:Sprite;
+		
+		/** Wipes are a wierd UI element that we use at odd times, mainly inbetween
+		 * creating scripts. We store their reference at top level, just for convience.
+		 * Ugly, but it works */
+		private var wipe:MovieClip;
 		
 		/** Name of the current level being played */
 		private var currentLevel:String;
@@ -68,6 +73,14 @@ package {
 			this.graphics.beginFill(0x555555);
 			this.graphics.drawRect(0, 0, this.stage.stageWidth, this.stage.stageHeight);
 			this.graphics.endFill();
+			
+			// Wipe Instances
+			var fullWipeLoader:AssetLoader = new AssetLoader(Assets.instance.fullscreen_wipe);
+			var _this:Nanogame = this;
+			fullWipeLoader.addEventListener(Event.COMPLETE, function(event:Event):void {
+				_this.wipe = event.target.asset;
+				_this.wipe.gotoAndStop(1);
+			});
 		}
 		
 		/**
@@ -186,7 +199,9 @@ package {
 			dialogUi.visible = false;
 			this.gameUi.addChild(dialogUi);
 			this.script.dialogUi = dialogUi;
+			this.script.dialogUi.wipe = this.wipe;
 			this.script.dialogUi.render();
+			this.script.dialogUi.doWipe();
 			
 			// kick off the game
 			startLoop();

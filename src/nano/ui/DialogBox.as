@@ -1,6 +1,7 @@
 package nano.ui
 {
 	import flash.display.Graphics;
+	import flash.display.MovieClip;
 	import flash.display.Sprite;
 	import flash.events.Event;
 	import flash.events.MouseEvent;
@@ -10,6 +11,7 @@ package nano.ui
 	import flash.text.TextFormat;
 	import flash.utils.Timer;
 	
+	import nano.AssetLoader;
 	import nano.Assets;
 	import nano.level.Dialog;
 	import nano.minigame.CancerMinigame;
@@ -41,6 +43,9 @@ package nano.ui
 		private var cutscene:Cutscene;
 		private var minigame:Minigame;
 		private var professor:Cutscene;
+		
+		// special wipe cutscene is created once the game in init
+		public var wipe:MovieClip;
 		
 		private var isPlayingGame:Boolean = false;
 		private var minigameEndTimer:Timer;
@@ -77,6 +82,28 @@ package nano.ui
 			this.currentDialog = dialog;
 			this.currentLineIndex = 0;
 			next();
+		}
+		
+		/**
+		 * Plays a fullscreen wipe 
+		 * 
+		 */		
+		public function doWipe():void {
+			if(this.wipe && ! this.contains(this.wipe)) {
+				this.addChild(this.wipe);
+				this.wipe.gotoAndPlay(1);
+				
+				var wipeTimer:Timer = new Timer(600, 1);
+				wipeTimer.addEventListener(TimerEvent.TIMER_COMPLETE, this.wipeEnd);
+				wipeTimer.start();
+			}
+		}
+		
+		private function wipeEnd(event:Event):void {
+			(event.target as Timer).removeEventListener(TimerEvent.TIMER_COMPLETE, this.wipeEnd);
+			if(this.contains(this.wipe)) {
+				this.removeChild(this.wipe);
+			}
 		}
 		
 		/**

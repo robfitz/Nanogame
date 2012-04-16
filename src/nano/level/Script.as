@@ -134,7 +134,7 @@ package nano.level
 		 */		
 		protected function completeObjective(event:TimerEvent = null):void {
 			if(this.countdown) {
-				this.removeEventListener(TimerEvent.TIMER_COMPLETE, this.completeObjective);
+				this.countdown.removeEventListener(TimerEvent.TIMER_COMPLETE, this.completeObjective);
 			}
 			
 			this.countdown = null;
@@ -142,6 +142,7 @@ package nano.level
 			// need to move? 
 			if(this.currentObjective.goalMoveTo) {
 				this.world.goto(this.currentObjective.goalMoveTo);
+				this.dialogUi.doWipe();
 			}
 			
 			// Need an outro ?
