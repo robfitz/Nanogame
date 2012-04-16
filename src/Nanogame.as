@@ -31,6 +31,7 @@ package {
 		// Master states of the game
 		public const GAMESTATE_LOADING:String = "gamestate loading";
 		public const GAMESTATE_MENU:String = "gamestate menu";
+		public const GAMESTATE_INTRO:String = "gamestate intro";
 		public const GAMESTATE_INGAME:String = "gamestate ingame";
 		
 		private var _state:String;
@@ -52,6 +53,12 @@ package {
 		
 		/** The main menu */
 		private var mainMenu:MovieClip;
+		
+		/** The intro */
+		private var intro:MovieClip;
+		
+		/** We show the intro once, on the first level start. */
+		private var introPlayed:Boolean = false;
 		
 		/** Holds all the UI that rests on top of the world */
 		private var gameUi:Sprite;
@@ -164,6 +171,23 @@ package {
 					}
 					break;
 				
+				case GAMESTATE_INTRO:
+					
+					if(! this.intro) {
+						var introLoader:AssetLoader = new AssetLoader(Assets.instance.intro);
+						introLoader.addEventListener(Event.COMPLETE, function(event:Event):void {
+							intro = (event.target as AssetLoader).asset;
+							
+							// bad assets position fix
+							intro.x = 380;
+							
+							intro['onFinishCallback'] = introCallback;
+							gameUi.addChild(intro);
+							gameUi.visible = true;
+						});
+					}
+					break;
+				
 				case GAMESTATE_INGAME:
 					this.gameUi.removeChild(this.mainMenu);
 					this.initLevel(this.currentLevel);
@@ -221,6 +245,17 @@ package {
 					break;
 			}
 			
+			if(this.introPlayed) {
+				this.setGameState(GAMESTATE_INGAME);
+			} else {
+				this.setGameState(GAMESTATE_INTRO);
+			}
+			
+		}
+		
+		private function introCallback():void {
+			this.introPlayed = true;
+			this.gameUi.removeChild(this.intro);
 			this.setGameState(GAMESTATE_INGAME);
 		}
 		

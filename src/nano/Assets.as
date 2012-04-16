@@ -46,8 +46,14 @@ package nano
 		[Embed(source="assets/menu.swf", mimeType="application/octet-stream")]
 		public var main_menu:Class;
 		
+		[Embed(source="assets/intro.swf", mimeType="application/octet-stream")]
+		public var intro:Class;
+		
 		[Embed(source="assets/cutscene/wipe_full.swf", mimeType="application/octet-stream")]
 		public var fullscreen_wipe:Class;
+		
+		[Embed(source="assets/nextbutton.swf", mimeType="application/octet-stream")]
+		public var nextbutton:Class;
 		
 		/////////////////////////////////////////
 		//             CHARACTERS              //

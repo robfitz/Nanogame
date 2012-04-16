@@ -37,7 +37,7 @@ package nano.ui
 		private var displayChar:uint = 0;
 		private var displayText:String;
 		
-		private var nextButton:Button;
+		private var nextButton:MovieClip;
 		
 		// our cutscenes
 		private var cutscene:Cutscene;
@@ -61,8 +61,13 @@ package nano.ui
 			this._textfield.selectable = false;
 			this.addChild(this._textfield);
 			
-			this.nextButton = new Button("Next..");
-			this.addChild(this.nextButton);
+			var _this:DialogBox = this;
+			var buttonLoader:AssetLoader = new AssetLoader(Assets.instance.nextbutton);
+			buttonLoader.addEventListener(Event.COMPLETE, function(event:Event):void {
+				_this.nextButton = event.target.asset;
+				_this.addChild(_this.nextButton);
+				_this.render();
+			});
 			
 			this.professor = new Cutscene("professor");
 			this.addChild(this.professor);
@@ -191,8 +196,10 @@ package nano.ui
 			var height:int = BOX_HEIGHT;
 			var top:int = this.stage.stageHeight - height;
 			
-			this.nextButton.x = width - this.nextButton.buttonWidth - 20;
-			this.nextButton.y = top - this.nextButton.buttonHeight / 2;
+			if(this.nextButton) {
+				this.nextButton.x = width - this.nextButton.width - 10;
+				this.nextButton.y = top + 140;
+			}
 			
 			var g:Graphics = this.graphics;
 			g.clear();
