@@ -278,6 +278,10 @@ package nano
 		[Embed(source="assets/minigame/cir-assets.swf", symbol="Guide")]
 		public var minigameCirGuide:Class;
 		
+		/////////////////////////////////////////
+		//               AUDIO                 //
+		/////////////////////////////////////////
+		
 		/**
 		 * Don't call this! 
 		 */		
