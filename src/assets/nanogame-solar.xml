@@ -1,4 +1,4 @@
-<level name="Solar Cell Virtual Experiment" startin="WORLD_OFFICE">	
+<level name="Solar Cell Virtual Experiment" startin="WORLD_OFFICE" music="musicSolar">	
     <objective>
         <dialog type="intro">
 			<line>

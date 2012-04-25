@@ -1,4 +1,4 @@
-<level name="Cancer Treatment Virtual Experiment" startin="WORLD_WETLAB">
+<level name="Cancer Treatment Virtual Experiment" startin="WORLD_WETLAB" music="musicCancer">
     <objective>
         <dialog type="intro">
             <line>
