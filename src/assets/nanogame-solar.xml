@@ -107,10 +107,10 @@
 	        <line cutscene="cutscene_atomiclayer" cue="two">
 	            The chamber is cleared, then a second gas is added. This reacts with the first chemical to form a layer just one molecule thick, 0.1nm!
 	        </line>
-	        <line>
+	        <line cutscene="cutscene_atomiclayer" cue="three">
 	            The cycle is repeated until our zinc nano-wires are coated with a 20nm layer of titanium oxide. This makes them highly conductive.
 	        </line>
-	        <line cutscene="cutscene_atomiclayer" cue="three">
+	        <line>
                 Now for the secret ingredient. The substrate is placed in a chemical dye until single layer of dye molecules coats the nano-wires.
 	        </line>
 	        <line>

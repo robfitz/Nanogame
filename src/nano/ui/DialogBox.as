@@ -149,6 +149,9 @@ package nano.ui
 						this.render();
 					} else {
 						// Cutscene is the right cutscene, cue up the right part
+						if(! this.contains(this.cutscene)) {
+							this.addChild(this.cutscene);
+						}
 						this.cutscene.cue(line.cue);
 					}
 					
