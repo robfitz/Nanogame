@@ -16,6 +16,7 @@ package {
 	import nano.CollisionLayer;
 	import nano.TmxLoader;
 	import nano.World;
+	import nano.audio.SoundManager;
 	import nano.level.Script;
 	import nano.ui.DialogBox;
 	
@@ -49,6 +50,9 @@ package {
 		/** Controlling script for the current world */
 		private var script:Script;
 		
+		/** Audio Mananger for the game */
+		private var soundManager:SoundManager;
+		
 		/** The isometric world our main character lives in */
 		private var world:World;
 		
@@ -77,6 +81,7 @@ package {
 		
 		public function Nanogame()
 		{
+			this.soundManager = new SoundManager();
 			this.gameUi = new Sprite();
 			this.addChild(this.gameUi);
 			this.setGameState(GAMESTATE_LOADING);
@@ -153,6 +158,7 @@ package {
 				
 				case GAMESTATE_MENU:
 					this.stopLoop();
+					this.soundManager.cueBackgroundMusic("musicMenu");
 					
 					if(this.world && this.contains(this.world.view)) {
 						this.removeChild(this.world.view);

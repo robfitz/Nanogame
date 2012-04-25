@@ -281,6 +281,8 @@ package nano
 		/////////////////////////////////////////
 		//               AUDIO                 //
 		/////////////////////////////////////////
+		[Embed(source="assets/audio/menu.mp3")]
+		public var musicMenu:Class;
 		
 		/**
 		 * Don't call this! 
