@@ -284,6 +284,15 @@ package nano
 		[Embed(source="assets/audio/menu.mp3")]
 		public var musicMenu:Class;
 		
+		[Embed(source="assets/audio/cancer.mp3")]
+		public var musicCancer:Class;
+		
+		[Embed(source="assets/audio/solar.mp3")]
+		public var musicSolar:Class;
+		
+		[Embed(source="assets/audio/stretch.mp3")]
+		public var musicStretch:Class;
+		
 		/**
 		 * Don't call this! 
 		 */		

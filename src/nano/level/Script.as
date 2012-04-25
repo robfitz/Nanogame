@@ -23,6 +23,8 @@ package nano.level
 		
 		public var startMap:String;
 		
+		public var musicName:String;
+		
 		private var lastWorldTarget:GameObject;
 		
 		private var _dialogUi:DialogBox;
@@ -80,6 +82,7 @@ package nano.level
 		public function initFromXml(xml:XML):void {
 			this.name = xml.@name;
 			this.startMap = xml.@startin;
+			this.musicName = xml.@music;
 			for each(var obj:XML in xml.children()) {
 				if(obj.name() == 'objective') {
 					this.objectives.push(new Objective(obj));

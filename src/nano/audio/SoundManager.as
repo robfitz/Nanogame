@@ -21,8 +21,13 @@ package nano.audio
 		}
 		
 		public function cueBackgroundMusic(clipName:String):void {
+			if(this.channel) {
+				this.channel.stop();
+				this.channel = null;
+			}
 			var sound:Sound = new Assets.instance[clipName]() as Sound;
-			this.channel = sound.play();
+			// fakey loops
+			this.channel = sound.play(0, int.MAX_VALUE);
 		}
 		
 		public function stopMusic():void {

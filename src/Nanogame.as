@@ -263,6 +263,10 @@ package {
 			// kick off the game
 			startLoop();
 			script.startLevel();
+			
+			if(script.musicName) {
+				this.soundManager.cueBackgroundMusic(script.musicName);
+			}
 		}
 				
 		private function onLevelClick(event:Event):void {

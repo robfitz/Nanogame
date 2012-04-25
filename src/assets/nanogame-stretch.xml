@@ -1,4 +1,4 @@
-<level name="Stretchable Electronics Virtual Experiment" startin="WORLD_OFFICE">
+<level name="Stretchable Electronics Virtual Experiment" startin="WORLD_OFFICE" music="musicStretch">
     
     <objective>
         <dialog type="intro">
