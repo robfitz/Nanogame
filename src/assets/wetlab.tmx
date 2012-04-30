@@ -32,7 +32,7 @@
     <property name="trigger" value="cancer_stirbar"/>
    </properties>
   </object>
-  <object name="cancer_dynamiclight" type="objective" x="188" y="35" width="61" height="63">
+  <object name="cancer_dynamiclight" type="objective" x="188" y="42" width="61" height="63">
    <properties>
     <property name="hull" value="true"/>
     <property name="trigger" value="cancer_dynamiclight"/>

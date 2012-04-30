@@ -23,13 +23,13 @@
     <property name="trigger" value="spawn"/>
    </properties>
   </object>
-  <object name="stretch_printer" type="objective" x="78" y="390" width="38" height="70">
+  <object name="stretch_printer" type="objective" x="76" y="438" width="38" height="70">
    <properties>
     <property name="hull" value="true"/>
     <property name="trigger" value="stretch_printer"/>
    </properties>
   </object>
-  <object name="stretch_photolithography" type="objective" x="67" y="285" width="65" height="62">
+  <object name="stretch_photolithography" type="objective" x="73" y="315" width="65" height="62">
    <properties>
     <property name="hull" value="true"/>
     <property name="trigger" value="stretch_photolithography"/>
@@ -47,7 +47,7 @@
     <property name="trigger" value="stretch_spincoater"/>
    </properties>
   </object>
-  <object name="stretch_evaporater" type="objective" x="100" y="82" width="78" height="47">
+  <object name="stretch_evaporater" type="objective" x="79" y="84" width="78" height="47">
    <properties>
     <property name="hull" value="true"/>
     <property name="trigger" value="stretch_evaporater"/>
@@ -59,7 +59,7 @@
     <property name="trigger" value="stretch_scales"/>
    </properties>
   </object>
-  <object name="solar_sputter" type="objective" x="191" y="112" width="65" height="31">
+  <object name="solar_sputter" type="objective" x="181" y="102" width="65" height="31">
    <properties>
     <property name="hull" value="true"/>
     <property name="trigger" value="solar_sputter"/>
@@ -120,7 +120,7 @@
     <property name="trigger" value="airlock"/>
    </properties>
   </object>
-  <object name="misc_furnace" type="objective" x="78" y="176" width="38" height="70">
+  <object name="misc_furnace" type="objective" x="79" y="200" width="38" height="70">
    <properties>
     <property name="hull" value="true"/>
     <property name="trigger" value="misc_furnace"/>
