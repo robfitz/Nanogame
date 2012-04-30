@@ -20,19 +20,19 @@
     <property name="trigger" value="spawn"/>
    </properties>
   </object>
-  <object name="cancer_dialysis" type="objective" x="433" y="361" width="33" height="63">
+  <object name="cancer_dialysis" type="objective" x="432" y="306" width="33" height="63">
    <properties>
     <property name="hull" value="true"/>
     <property name="trigger" value="cancer_dialysis"/>
    </properties>
   </object>
-  <object name="cancer_stirbar" type="objective" x="35" y="95" width="35" height="63">
+  <object name="cancer_stirbar" type="objective" x="76" y="53" width="61" height="46">
    <properties>
     <property name="hull" value="true"/>
     <property name="trigger" value="cancer_stirbar"/>
    </properties>
   </object>
-  <object name="cancer_dynamiclight" type="objective" x="31" y="192" width="61" height="63">
+  <object name="cancer_dynamiclight" type="objective" x="188" y="35" width="61" height="63">
    <properties>
     <property name="hull" value="true"/>
     <property name="trigger" value="cancer_dynamiclight"/>
@@ -44,19 +44,19 @@
     <property name="trigger" value="NL_stm"/>
    </properties>
   </object>
-  <object name="NL_afm" type="objective" x="159" y="33" width="65" height="56">
+  <object name="NL_afm" type="objective" x="36" y="193" width="58" height="69">
    <properties>
     <property name="hull" value="true"/>
     <property name="trigger" value="NL_afm"/>
    </properties>
   </object>
-  <object name="NL_SEM" type="objective" x="34" y="553" width="62" height="143">
+  <object name="NL_SEM" type="objective" x="50" y="557" width="62" height="143">
    <properties>
     <property name="hull" value="true"/>
     <property name="trigger" value="NL_SEM"/>
    </properties>
   </object>
-  <object name="NL_TEM" type="objective" x="34" y="353" width="62" height="115">
+  <object name="NL_TEM" type="objective" x="34" y="343" width="62" height="115">
    <properties>
     <property name="hull" value="true"/>
     <property name="trigger" value="NL_TEM"/>
@@ -68,7 +68,7 @@
     <property name="trigger" value="door"/>
    </properties>
   </object>
-  <object name="cancer_scales" type="objective" x="431" y="256" width="33" height="63">
+  <object name="cancer_scales" type="objective" x="431" y="188" width="33" height="63">
    <properties>
     <property name="hull" value="true"/>
     <property name="trigger" value="cancer_scales"/>
