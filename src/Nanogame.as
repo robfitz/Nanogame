@@ -178,7 +178,13 @@ package {
 					} else {
 						this.gameUi.addChild(this.mainMenu);
 						this.gameUi.visible = true;
+						if(mainMenu['level1'] && mainMenu['level2'] && mainMenu['level3']) {
+							mainMenu['level1'].gotoAndStop(1);
+							mainMenu['level2'].gotoAndStop(1);
+							mainMenu['level3'].gotoAndStop(1);
+						}
 					}
+					
 					break;
 				
 				case GAMESTATE_INTRO:
