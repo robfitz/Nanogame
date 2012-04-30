@@ -4,11 +4,13 @@ package {
 	import as3isolib.graphics.Stroke;
 	
 	import flash.display.Bitmap;
+	import flash.display.GradientType;
 	import flash.display.MovieClip;
 	import flash.display.Sprite;
 	import flash.events.Event;
 	import flash.events.MouseEvent;
 	import flash.events.ProgressEvent;
+	import flash.geom.Matrix;
 	import flash.utils.getTimer;
 	
 	import nano.AssetLoader;
@@ -86,7 +88,9 @@ package {
 			this.addChild(this.gameUi);
 			this.setGameState(GAMESTATE_LOADING);
 			
-			this.graphics.beginFill(0x555555);
+			var mat:Matrix = new Matrix();
+			mat.createGradientBox(760, 570, Math.PI / 2);
+			this.graphics.beginGradientFill(GradientType.LINEAR, [0xffffff, 0x6BD6E1], null, null, mat);
 			this.graphics.drawRect(0, 0, this.stage.stageWidth, this.stage.stageHeight);
 			this.graphics.endFill();
 			
