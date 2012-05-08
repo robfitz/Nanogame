@@ -35,16 +35,6 @@ body {
 	background-color: #E9F1F0;
 }
 
-/*
- * Remove text-shadow in selection highlight: h5bp.com/i
- * These selection declarations have to be separate
- * Also: hot pink! (or customize the background color to match your design)
- */
-
-::-moz-selection { background: #fe57a1; color: #fff; text-shadow: none; }
-::selection { background: #fe57a1; color: #fff; text-shadow: none; }
-
-
 /* =============================================================================
    Links
    ========================================================================== */
@@ -231,7 +221,8 @@ td { vertical-align: top; }
 #page_header {
 	position: relative;
 	height: 88px;
-	margin-top: 80px;
+	margin-top: 40px;
+	margin-bottom: 40px;
 }
 
 #page_header .page_title {
@@ -294,8 +285,10 @@ td { vertical-align: top; }
 			background-position: 0px -432px;
 		}
 	}
-	
-	
+}
+
+.topic-header {
+  text-align: center;
 }
 
 /*_____________________________________ Footer */
@@ -309,12 +302,35 @@ td { vertical-align: top; }
 
 /*_____________________________________ Page - Timeline */
 .timeline {
-	margin-right: 120px;
-	background: transparent url("../img/timeline-border.png") repeat-y top left;
-	
-	li {
-		
-	}
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  
+  li {
+    margin: 20px 0;
+    
+    .blurb {
+      padding-left: 20px;
+      float: left;
+      width: 320px;
+    }
+
+    figure {
+      width: 400px;
+      height: 300px;
+      float: right;
+    }
+  }
+  
+  li:nth-child(2n) {
+    .blurb {
+      float: right;
+    }
+    
+    .figure {
+      float: left;
+    }
+  }
 }
 
 .navigator {
