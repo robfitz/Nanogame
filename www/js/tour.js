@@ -62,9 +62,12 @@
     },
     
     moveTo: function(x, y) {
+      var normX = Math.min(0, Math.max(-(this.mapWidth - 760), x)),
+          normY = Math.min(0, Math.max(-(this.mapHeight - 540), y));
+      
       this.el.css({
-        left: x,
-        top: y
+        left: normX,
+        top: normY
       });
     }
   }
