@@ -9,7 +9,7 @@
 				Creating a circuit that can be stretched or flexed would allow us to put electronic systems into the fabric of clothes or even inside the human body. 
 			</line>
             <line>
-                Goto to Clean Lab through the Blue Airlock. 
+                Go to the Clean Lab through the Blue Airlock. 
             </line>
         </dialog>
         
@@ -20,10 +20,10 @@
 				Welcome to the Clean Lab!
 			</line>
 			<line>
-				The secret is start with a versatile stretchy substance you can build your circuit on. A chemical called PDMS is ideal.
+				The secret is to start with a versatile stretchy substance you can build your circuit on. A chemical called PDMS is ideal.
 			</line>
 			<line>
-                Find the weighing scales and weigh out 5 grams of PDMS. 
+        Find the weighing scales and weigh out 5 grams of PDMS. 
 			</line>
 		</dialog>
     </objective>
@@ -60,7 +60,7 @@
 
 		<dialog type="outro">
 			<line cutscene="cutscene_vacuum" cue="one">
-				That’s it. The vacuum removes the air bubbles.
+				That’s it. The vacuum is vital - it removes the air bubbles.
 			</line>
 			<line>
 				Now we need to spin the PDMS into a thin layer. The spin coater is the tool for that.
@@ -145,13 +145,13 @@
                 Drag the blue mask with your mouse to carefully position it in the red target area.
 			</line>
 			<line cutscene="cutscene_photolithography" cue="two">
-                Good job! Now when we turn on the UV light, the top layer of liquid PDMS is exposed and begins to cure into to a rubbery texture. 
+                Good job! Now when we turn on the UV light, the top layer of liquid PDMS is exposed and begins to cure into a rubbery texture. 
 			</line>
 			<line>
                 The areas covered by the dark areas of the mask are shielded from the UV light and the PDMS remains in its liquid state. We can wash these bits away to leave a few tiny sections of the gold circuit accessible to connect wires to. 
 			</line>
 			<line cutscene="cutscene_photolithography" cue="three">
-                Your stretchable circuit is ready to use!  
+                Your stretchable circuit is now ready to use - with this technology we hope to make intelligent clothes, squishy computers or bionic limbs.
 			</line>
 		</dialog>
 	</objective>

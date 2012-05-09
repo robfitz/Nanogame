@@ -2,7 +2,7 @@
     <objective>
         <dialog type="intro">
             <line>
-                Now lets make a new medical treatment for cancer.
+                Now let's make a new medical treatment for cancer.
 			</line>
 			<line>
                 Nanoscale particles can be engineered to carry drugs to the area of the body they’re needed most.
@@ -119,10 +119,10 @@
                 To make a dose of our cancer-fighting nano-medicine, we need to mix the solutions below in the correct order. Click to mix the solutions
             </line>
             <line>
-                Once injected into the body the nanoparticles will be small enough to go undetected by the body’s own defense mechanisms. The antibody you added will bind with receptors on a cancer cell and the particle will be taken inside the cell where the drug will be released.
+                Once injected into a person the nanoparticles will be small enough to go undetected by their body’s own defence mechanisms. The antibody you added will bind with receptors on a cancer cell and the particle will be smuggled into the cancer.
             </line>
             <line>
-                The gold particles are also part of the treatment. When the patient is exposed to X-rays the gold particles will ionize the water in the cancer cell creating high-energy molecules that will kill the cell. 
+                The gold particles are also part of the treatment. When the patient is exposed to X-rays the gold particles will ionise the water inside the cancer cell, creating high-energy molecules that will kill the cell! 
             </line>
             <line>
                 Nanoparticle treatments like this are currently being tested and offer huge potential in the fight against cancer.

@@ -8,7 +8,7 @@
 			    Most solar cells are made of high purity crystalline silicon. Their brittle structure limits where they can be used. They’re also expensive and not very eco friendly to make.
 			</line>
 			<line>
-                Goto to Clean Lab through the Blue Airlock. 
+                Go to to Clean Lab through the Blue Airlock. 
             </line>
         </dialog>
         
@@ -38,7 +38,7 @@
 				A strong current causes the oxide to release ions that diffuse onto the substrate.
 			</line>
 			<line cutscene="cutscene_sputter1" cue="three">
-				Your glass substrate now has super-thin 200nm layer of conducting metal.
+				Your glass substrate now has a super-thin 200nm layer of conducting metal.
 			</line>
 			<line>
 				Now clean the substrate in the ultrasonic bath.
@@ -111,7 +111,7 @@
 	            The cycle is repeated until our zinc nano-wires are coated with a 20nm layer of titanium oxide. This makes them highly conductive.
 	        </line>
 	        <line>
-                Now for the secret ingredient. The substrate is placed in a chemical dye until single layer of dye molecules coats the nano-wires.
+                Now for the secret ingredient. The substrate is placed in a chemical dye until a single layer of dye molecules coats the nano-wires.
 	        </line>
 	        <line>
                 The dye is a ‘photovoltaic’ material. When it’s hit by sunlight it will eject electrons into the nano-wires. 
@@ -136,7 +136,7 @@
 	            Now you do it! Click and hold to drop solution onto the spinning disk. Make it the same size as the red target.
 	        </line>
 	        <line cutscene="cutscene_solarspin" cue="two">
-                Your solar cell is complete. Its ready to be wired up and tested. Well done!
+                Your solar cell is complete. It's ready to be wired up and tested. Well done!
 	        </line>
 	        <line>
 	            This type of cell is called a Dye Sensitized Solar Cell. 
