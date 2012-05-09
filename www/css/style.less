@@ -309,7 +309,7 @@ td { vertical-align: top; }
   padding: 0;
   
   li {
-    margin: 20px 0;
+    margin: 40px 0;
     
     .blurb {
       padding-left: 20px;
@@ -340,6 +340,31 @@ td { vertical-align: top; }
 }
 
 /*_____________________________________ Page - Tour */
+
+#tour-map {
+  width: 760px;
+  height: 560px;
+  overflow: hidden;
+  background: white;
+  margin-bottom: 40px;
+  position: relative;
+  
+  .map {
+    overflow: hidden;
+    position: absolute;
+    width: 2624px;
+    height: 1612px;
+    cursor: move;
+    
+    .tile {
+      position:absolute;
+      width: 250px;
+      height: 250px;
+      background-position: top left;
+      background-repeat: no-repeat;
+    }
+  }
+}
 
 
 ////////////////////

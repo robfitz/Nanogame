@@ -1,0 +1,53 @@
+<!doctype html>
+<!--[if lt IE 7]> <html class="no-js lt-ie9 lt-ie8 lt-ie7" lang="en"> <![endif]-->
+<!--[if IE 7]>    <html class="no-js lt-ie9 lt-ie8" lang="en"> <![endif]-->
+<!--[if IE 8]>    <html class="no-js lt-ie9" lang="en"> <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en"> <!--<![endif]-->
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <title>Nangame | The Game</title>
+    <meta name="description" content="The Cambridge Nanogame">
+
+    <meta name="viewport" content="width=device-width">
+    <link rel="stylesheet" href="css/style.css">
+
+    <script src="js/libs/modernizr-2.5.2.min.js"></script>
+</head>
+<body>
+    <!--[if lt IE 7]><p class=chromeframe>Your browser is <em>ancient!</em> <a href="http://browsehappy.com/">Upgrade to a different browser</a> or <a href="http://www.google.com/chromeframe/?redirect=true">install Google Chrome Frame</a> to experience this site.</p><![endif]-->
+    
+    <div id="page">
+        <header id="page_header">
+            <h1 class="page_title">
+                <a href="/">Nano Game</a>
+            </h1>
+            <nav>
+                <a href="history.html" class="arrow history left">History <small>of</small> Nano</a>
+                <a href="index.html" class="arrow game right">Play <small>the</small> Game</a>
+            </nav>
+        </header>
+        
+        <div role="main" id="main">
+            <header class="topic-header clearfix">
+                <h1>Tour the Nanolab</h1>
+            </header>
+                
+            <figure id="tour-map" class="full-page">
+              <div class="map">
+                
+              </div>
+            </figure>
+        </div>
+        
+        <footer>
+            Copyright Cambridge University
+        </footer>
+    </div>
+    <script src="js/libs/jquery-1.7.1.min.js"></script>
+    <script src="js/tour.js"></script>
+    <script>
+      window.tourMap = new TourMap("#tour-map .map");
+    </script>
+</body>
+</html>
