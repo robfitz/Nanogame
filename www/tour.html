@@ -44,10 +44,19 @@
             Copyright Cambridge University
         </footer>
     </div>
+    
+    <div id="info-bubble">
+      <div class="content">
+        <h1 id="name">Default Name</h1>
+        <p id="description">Default Text</p>
+      </div>
+    </div>
+    
     <script src="js/libs/jquery-1.7.1.min.js"></script>
+    <script src="js/tour-data.js"></script>
     <script src="js/tour.js"></script>
     <script>
-      window.tourMap = new TourMap("#tour-map .map");
+      window.tourMap = new TourMap("#tour-map .map", "#info-bubble");
     </script>
 </body>
 </html>

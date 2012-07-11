@@ -4,20 +4,43 @@
 
 (function() {
   var root = this;
+  
+  /**
+   * Distance between two points
+   */
+  function dist(x1, y1, x2, y2) {
+    return Math.sqrt((x1 - x2) * (x1 - x2) + (y1 - y2) * (y1 - y2));
+  }
 
-  var TourMap = root.TourMap = function(elSelector) {
+  var TourMap = root.TourMap = function(elSelector, bubbleSelector) {
     this.el = $(elSelector);
-    
+    this.bubbleEl = $(bubbleSelector);
+    this.data = window.tourData;
+    this.containerOffset = $('#tour-map').offset();
     this.generateMap();
     this.initialize();
   };
   
   TourMap.prototype = {
+    // constants
+    DISTANCE_THRESHOLD: 100,
+    
+    // map state
     mapWidth: 2624,
     mapHeight: 1612,
     tileWidth: 250,
     tileHeight: 250,
     imgPrefix: "img/map/map_tile_",
+    mapX: 0,
+    mapY: 0,
+    
+    // normalized mouse state
+    mouseX: 0,
+    mouseY: 0,
+    
+    // info bubble state
+    infoState: "hidden",    // The state of the info popup
+    currentInfo: null,      // Object of the current active info, if any
     
     generateMap: function() {
       var tilesWide = Math.ceil(this.mapWidth / this.tileWidth),
@@ -38,37 +61,106 @@
     },
     
     initialize: function() {
-      this.moveTo(- this.mapWidth / 2, - this.mapHeight / 2);
+      this.moveMapTo(- this.mapWidth / 2, - this.mapHeight / 2);
       
       var _this = this;
       
+      // Mouse move events
+      $(window).mousemove(function(event) {
+        _this.mouseMove(event);
+      });
+      
+      // Start UI updating
+      setInterval(function() { 
+        _this.update(); 
+      }, 33);
+      
+      // Our drag behavior
       this.el.mousedown(function(event) {
-        
-        var onMouseDrag = function(event) {
-          var x = event.pageX - _this.mouseStartX + _this.startPos.left,
-              y = event.pageY - _this.mouseStartY + _this.startPos.top;
-          _this.moveTo(x, y)
-        };
-        
-        $(window).mousemove(onMouseDrag).mouseup(function(event) {
-          $(window).unbind('mousemove', onMouseDrag);
-        });
-        
+        _this.isMouseDown = true;
         _this.startPos = _this.el.position();
         _this.mouseStartX = event.pageX;
         _this.mouseStartY = event.pageY;
         
+        $(window).mouseup(function(event) {
+          _this.isMouseDown = false;
+        });
       });
     },
     
-    moveTo: function(x, y) {
-      var normX = Math.min(0, Math.max(-(this.mapWidth - 760), x)),
-          normY = Math.min(0, Math.max(-(this.mapHeight - 540), y));
-      
+    /**
+     * Our UI update function, delegating the display of the
+     * info bubble
+     */
+    update: function() {
+      // Update the map
       this.el.css({
-        left: normX,
-        top: normY
+        left: this.mapX,
+        top: this.mapY,
       });
+      
+      // Update the info buble
+      var closestInfo = null;
+      var closestDist = 999999;
+      
+      for(var i in this.data) {
+        var info = this.data[i],
+            d = dist(info.x, info.y, this.mouseX, this.mouseY),
+            inBounds;
+        
+        inBounds = info.x > -this.mapX && 
+          info.x < -this.mapX + 760 && 
+          info.y > -this.mapY &&
+          info.y < -this.mapY + 540;
+        
+        if(inBounds && d < closestDist && d < this.DISTANCE_THRESHOLD) {
+          closestInfo = info;
+        }
+      }
+      
+      if(this.currentInfo != closestInfo) {
+        this.currentInfo = closestInfo;
+        if(this.currentInfo) {
+          this.updateBubble(this.currentInfo)
+          this.bubbleEl.show();
+        } else {
+          this.bubbleEl.hide();
+        }
+      }
+      
+      if(this.currentInfo) {
+        this.bubbleEl.css({
+          left: this.mapX + this.currentInfo.x + this.containerOffset.left,
+          top: this.mapY + this.currentInfo.y + this.containerOffset.top,
+        })
+      }
+    },
+    
+    /**
+     * Our move mosue function serves to purposes:
+     * 1) To update mouse state for the UI
+     * 2) Handle drag motions
+     */
+    mouseMove: function(event) {
+      if(this.isMouseDown) {
+        var x = event.pageX - this.mouseStartX + this.startPos.left,
+            y = event.pageY - this.mouseStartY + this.startPos.top;
+        this.moveMapTo(x, y);
+      }
+      
+      var offset = this.el.offset();
+      this.mouseX = event.pageX - offset.left;
+      this.mouseY = event.pageY - offset.top;
+    },
+    
+    updateBubble: function(info) {
+      this.bubbleEl.find('#name').html(info.name);
+      this.bubbleEl.find('#description').html(info.description);
+    },
+    
+    moveMapTo: function(x, y) {
+      this.mapX = Math.min(0, Math.max(-(this.mapWidth - 760), x)),
+      this.mapY = Math.min(0, Math.max(-(this.mapHeight - 540), y));
     }
   }
   

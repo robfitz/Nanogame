@@ -294,6 +294,7 @@ td { vertical-align: top; }
 /*_____________________________________ Footer */
 
 #main {
+  position: relative;
 	background: #E6E7DD;
 	border-top: 10px solid #464F51;
 	border-bottom: 10px solid #464F51;
@@ -411,7 +412,6 @@ td { vertical-align: top; }
   }
 }
 
-
 /*_____________________________________ Page - Tour */
 
 #tour-map {
@@ -435,6 +435,40 @@ td { vertical-align: top; }
       height: 250px;
       background-position: top left;
       background-repeat: no-repeat;
+    }
+  }
+}
+
+#info-bubble {
+  position: absolute;
+  left: 0;
+  top: 0;
+  
+  .content {
+    width: 274px;
+    position: absolute;
+    bottom: 60px;
+    left: -150px;
+    padding: 10px 10px;
+    
+    background: #E6E7DD;
+    border-top: 10px solid #464F51;
+  	border-bottom: 10px solid #464F51;
+  	border-left: 3px solid #464F51;
+  	border-right: 3px solid #464F51;
+  	.box-shadow(0px 5px 10px rgba(0, 0, 0, .6));
+  	.border-radius(4px);
+    
+    h1 {
+      font-size: 18px;
+      margin: 0;
+      line-height: 18px;
+    }
+    
+    p {
+      font-size: 12px;
+      line-height: 18px;
+      margin: 9px 0 0;
     }
   }
 }
