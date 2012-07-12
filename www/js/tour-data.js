@@ -3,43 +3,43 @@ window.tourData = [
     x: 212,
     y: 1254,
     name: "Scanning Electron Microscope",
-    description: "The SEM scans a finely focused beam of electrons across the surface of a sample. The beam interacts with atoms at the surface of the sample generating signals that are detected to reconstruct an image. The resolution of an SEM is typically 5nm (that’s around 40 times more detail than an ordinary optical microscope). It provides images with good depth of field and useful information about the chemical composition, structure, magnetic and electrical characteristics of the sample."
+    description: "The SEM uses electron-sample interactions to image materials at the micro- and nanoscale. By firing a focused beam of electrons at a sample, information can be obtained about the texture, chemical composition, crystalline structure of the materials by sensing the energy exchanges between electron and sample. The spatial resolution of an SEM is typically a few nm and the best microscopes can reveal sample details less than 1 nm in size (around 250 times the magnification limit of a good optical microscope)."
   },
   {
     x: 490,
     y: 1110,
     name: "Transmission Electron Microscope",
-    description: "The TEM works by transmitting a focused beam of electrons through a sample. Parts of the sample are transparent to the electrons other parts deflect electrons. When the beam emerges it holds information about the sample's structure and is recorded by a sensor to reconstruct an image. The latest high-resolution transmission electron microscopes (HRTEM) have a resolution below 0.05nm and can determine the position of atoms within materials. A disadvantage of the TEM is that samples need to be extremely thin, typically around 100nm."
+    description: "The TEM works by transmitting a focused beam of high-energy electrons through an ultra thin sample. By sensing the way the beam interacts with the sample (from energy exchanges and electron scattering), information about the sample's structural and chemical morphology is obtained down to the atomic level. The latest high-resolution transmission electron microscopes (HRTEM) have a spatial resolution below 0.05nm."
   },
   {
     x: 666,
     y: 1008,
     name: "Atomic Force Microscope",
-    description: "The AFM scans the surface of a sample with an extremely sharp tip - a bit like an old record player needle but much, much smaller, just 10nm in diameter at its point. As the tip moves above the surface of the sample it is repelled by or attracted by intermolecular interactions between the atoms in the tip and the surface. The magnitude of deflection is monitored and used to generate a 3D image of the surface of the sample."
+    description: "The AFM scans the surface of a sample with an extremely sharp tip - a bit like an old record player needle but much, much smaller: just 10nm in diameter at its point. As the tip moves over the surface of the sample it is repelled by or attracted by intermolecular interactions between the atoms in the tip and the surface. The magnitude of deflection is monitored by lasers and used to generate a 3D image of the surface of the sample."
   },
   {
     x: 496,
     y: 1386,
     name: "Scanning Tunnelling Microscope",
-    description: "The STM scans a sharp tip above the surface of a sample. When the tip is brought very close to the surface, a voltage difference applied between the tip and the surface allows electrons to exploit a quantum mechanical property called 'tunnelling' and travel through the vacuum between them. As the tip scans above the surface the varying tunnelling current is monitored and used to reconstruct an image. The STM has around 0.1nm lateral resolution and 0.01nm depth resolution and can be used to image, and even manipulate, individual atoms."
+    description: "The STM scans a sharp tip above the surface of a sample. When the tip is brought very close to the surface, a voltage difference applied between the tip and the surface allows electrons to exploit a quantum mechanical property called 'tunneling' and travel through the vacuum between them. As the tip scans over the surface the tunneling current is monitored (and often kept constant) and the tip’s vertical movement is used to reconstruct an image. The STM has around 0.1nm lateral resolution and 0.01nm depth resolution and can be used to image, and even manipulate, individual atoms."
   },
   {
     x: 2088,
     y: 542,
     name: "Ultrasonic cleaner",
-    description: "The ultrasonic cleaning bath generates high frequency sound waves that create tiny bubbles in the liquid, which help to remove any traces of dust, dirt or fingerprints."
+    description: "The ultrasonic cleaning bath generates high frequency sound waves that create tiny bubbles in the liquid. These help to remove any traces of dust, dirt or fingerprint residues."
   },
   {
     x: 2204,
     y: 236,
     name: "Sputter Coater",
-    description: "The sputter coater is used to deposit a thin film of a desired material onto a surface. The internal chamber is filled with a ‘sputtering gas’ such as argon. A current is then applied to a metal ‘target’ generating a plasma that results in the target metal ejecting atoms that gather on the sample surface in a thin layer."
+    description: "The sputter coater is used to deposit a thin film of a desired material onto a surface, typically metals such as gold. The internal chamber is filled with a ‘sputtering gas’ such as argon. Metal atoms are ejected from the solid target due to bombardment of the target by energetic ionized argon. These ejected atoms coat the sample surface with a thin layer."
   },
   {
     x: 2346,
     y: 424,
     name: "Heating bath",
-    description: "The heating bath is a standard piece of laboratory equipment used to allow a chemical reaction to occur at a raised temperature. Water in an open metal container can be used to maintain temperatures up to 100 °C."
+    description: "The water bath is a standard piece of laboratory equipment used to allow controllable chemical reactions to occur. Reaction vessels are placed in water which is maintained at a constant temperature (up to 100 °C)."
   },
   {
     x: 1930,
@@ -54,22 +54,28 @@ window.tourData = [
     description: "The spin coater is used to apply a uniform thin film to a surface. A solution is placed on the surface, which is then rotated at speed causing the fluid to spread out until the desired thickness is reached. Spin coating can be used to create thin films less than 10 nm thick."
   },
   {
+    x: 2216,
+    y: 460,
+    name: "Spin Coater",
+    description: "The spin coater is used to apply a uniform thin film to a surface. A solution is placed on the surface, which is then rotated at speed causing the fluid to spread out until the desired thickness is reached. Spin coating can be used to create thin films less than 10 nm thick. If the solution used is dangerous, the procedure is carried out within a sealed workbench."
+  },
+  {
     x: 2116,
     y: 176,
-    name: "Evaporator",
-    description: "The evaporator offers another method to add a thin layer of a specific material to a surface. Within the vacuum chamber inside the machine a metal pellet, such as gold, can be melted. Gold atoms emitted from the pellet then rise to coat the sample surface."
+    name: "Thermal Evaporator",
+    description: "Evaporation is a common method for thin film deposition. A sample is loaded into the top of a vacuum chamber. Once the pressure is low a metal pellet placed at the bottom of the chamber (such as gold) is heated until it melts and evaporates, releasing vaporized particles into the chamber. These travel up through the chamber and condense on the sample surface. "
   },
   {
     x: 1666,
     y: 400,
-    name: "Solar simulator",
-    description: "The solar simulator is used to test how solar cells or other light sensitive materials or devices respond to light. It contains a lamp that approximates sunlight and provides useful information about how device responds to particular wavelengths of light."
+    name: "Solar Simulator",
+    description: "The solar simulator is used to test how solar cells or other light sensitive materials or devices respond to light. It contains a lamp that mimics the wavelengths and energy of sunlight and provides useful information about how device responds to particular wavelengths of light."
   },
   {
     x: 1068,
     y: 1116,
     name: "Focused Ion Beam",
-    description: "The FIB scans a focussed beam of Gallium ions across a sample. Interactions between the ions and atoms in the sample generate electrons that are detected to reconstruct an image of the sample surface. The FIB is also used as a tool to cut away or deposit material at a specific area as small as a few square microns."
+    description: "The FIB scans a highly energetic beam of ions (normally gallium) across a sample. The ions strike the sample surface, the energy of which cause species such as secondary ions and electrons to be released by sputtering. These electrons can be detected and used for imaging. If the ion beam has high enough energy, a large quantity of material can be sputtered from the surface and the beam can be used for precision milling of patterns on the sample. "
   },
   {
     x: 2458,
@@ -86,20 +92,20 @@ window.tourData = [
   {
     x: 1544,
     y: 440,
-    name: "Vacuum desiccator",
-    description: "A desiccator is a sealable container that can be used to protect materials from water in the atmosphere. The vacuum desiccator is fitted with a valve to allow a vacuum to be applied."
+    name: "Vacuum Desiccator",
+    description: "A desiccator is a sealable container with a low humidity. The vacuum desiccator is fitted with a valve to allow a vacuum to be applied."
   },
   {
     x: 1794,
     y: 340,
-    name: "Cutting plotter",
+    name: "Cutting Plotter",
     description: "The cutting plotter is a bit like computer printer fitted with a small blade. It is used to cut pre-designed patterns or shapes into a piece of material such as paper, plastic or vinyl."
   },
   {
     x: 1908,
     y: 304,
-    name: "Photolithography machine",
-    description: "The photolithography machine is used to engrave or deposit material onto a sample in fine detail. Light is used to 'print' a pattern through a photomask onto a light sensitive chemical on the sample. Chemical treatments then remove or add material in the desired pattern. Tiny patterns at the scale of just a few tens of nanometres can be created."
+    name: "Photolithography Machine",
+    description: "The photolithography machine is used to engrave or deposit material onto a sample in fine detail. Light is used to 'print' a pattern through a photomask onto a light sensitive chemical film on the sample. Chemical treatments then remove or add material in the desired pattern. Tiny patterns at the scale of just a few tens of nanometres can be created."
   },
   {
     x: 804,
@@ -111,13 +117,13 @@ window.tourData = [
     x: 920,
     y: 1042,
     name: "Dynamic Light Scattering Machine",
-    description: "The DLS machine is used to measure the size of molecules and particles in a fluid. Particles in a fluid move with 'Brownian motion' with smaller particles moving more rapidly. To record the speed of this motion a laser blasts light into the sample and the scattered light is recorded. Variations in the scattered light intensity reveal the speed of the motion and the particle size."
+    description: "The DLS machine is used to measure the size of polymers in solution and diameter of particles in a suspension. Particles in a suspension move with 'Brownian motion'. To record the speed of this motion a laser beam is shone through the sample and the scattered light is recorded. Variations in the scattered light intensity reveal the speed of the motion and the effective particle diameter."
   },
   {
     x: 692,
     y: 1358,
     name: "Dialysis Cassette",
-    description: "Dialysis is a process used to separate large and small particles in a liquid. A solution of different sized molecules is injected into a porous bag in the centre of the dialysis cassette. The cassette is then placed in pure water, or a different solution. Small particles pass through the pores of the bag leaving the larger particles inside."
+    description: "Dialysis is a process used to separate out large and small molecules in a solution by making use of their different rates of diffusion through a semipermeable membrane. A solution of different sized molecules is injected into a porous bag in the centre of the dialysis cassette. The cassette is then placed in pure water, or a different solution. Particles smaller than the pore size pass through the walls of the bag, particles larger than the pore size remain in the bag. "
   },
   {
     x: 1150,
@@ -129,6 +135,6 @@ window.tourData = [
     x: 1390,
     y: 744,
     name: "Airlock",
-    description: "After suiting up anyone entering the cleanroom must pass through an airlock doorway containing an ‘air shower’. Nozzles blast air from different directions to blow off any excess dust."
+    description: "After suiting up anyone entering the cleanroom must pass through an airlock doorway containing an 'air shower'. Nozzles blast air from different directions to blow off any excess dust."
   }
 ];
