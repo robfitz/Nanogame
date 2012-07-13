@@ -88,7 +88,7 @@ sub { bottom: -0.25em; }
    ========================================================================== */
 
 ul, ol { margin: 1em 0; padding: 0 0 0 40px; }
-dd { margin: 0 0 0 40px; }
+dd { margin: 0px; }
 nav ul, nav ol { list-style: none; list-style-image: none; margin: 0; padding: 0; }
 
 
@@ -217,6 +217,14 @@ td { vertical-align: top; }
   margin: 0 -10px;
 }
 
+#main {
+  position: relative;
+	background: #E6E7DD;
+	border-top: 10px solid #464F51;
+	border-bottom: 10px solid #464F51;
+	.box-shadow(0px 2px 20px rgba(0, 0, 0, .2));
+}
+
 /*_____________________________________ Header */
 #page_header {
 	position: relative;
@@ -237,7 +245,7 @@ td { vertical-align: top; }
 	a {
 		display: block;
 		width: 292px;
-		height: 48px;
+		height: 54px;
 		background: transparent url("../img/sprites.png") 0px -576px;
 		
 	}
@@ -293,12 +301,45 @@ td { vertical-align: top; }
 
 /*_____________________________________ Footer */
 
-#main {
-  position: relative;
-	background: #E6E7DD;
-	border-top: 10px solid #464F51;
-	border-bottom: 10px solid #464F51;
-	.box-shadow(0px 2px 20px rgba(0, 0, 0, .2));
+.credit_title {
+  text-align: center;
+  margin: 100px 0 20px 0;
+}
+
+.credits {
+  line-height: 24px;
+  margin: 0;
+  
+  dt {
+    font-size: 10px;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    color: #666;
+  }
+  
+  [class*="span"] {
+    float: left;
+    text-align: center;
+    margin: 20px 0;
+  }
+  
+  .span3 {
+    width: 740px;
+  }
+  
+  .span1 {
+    width: 246px;
+  }
+  
+}
+
+.logos {
+  text-align: center;
+  margin-bottom: 40px;
+  img {
+    display: inline-block;
+    margin: 0px 10px;  
+  }
 }
 
 /*_____________________________________ Page - Game */
@@ -472,6 +513,8 @@ td { vertical-align: top; }
     }
   }
 }
+
+
 
 
 ////////////////////
