@@ -11,3 +11,4 @@ bin-debug
 .project
 .settings/*
 *~
+bin-release/
