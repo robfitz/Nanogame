@@ -39,9 +39,8 @@ body {
    Links
    ========================================================================== */
 
-a { color: #00e; }
-a:visited { color: #551a8b; }
-a:hover { color: #06e; }
+a { color: #06e; text-decoration: none; }
+a:hover { color: #06e; text-decoration: underline; }
 a:focus { outline: thin dotted; }
 
 /* Improve readability when focused and hovered in all browsers: h5bp.com/h */
@@ -224,10 +223,12 @@ td { vertical-align: top; }
 	border-bottom: 10px solid #464F51;
 	.box-shadow(0px 2px 20px rgba(0, 0, 0, .2));
 	
-	& > p {
+	& > p, & > h2 {
 	  margin-left: 20px;
 	  margin-right: 20px; 
 	}
+
+
 }
 
 /*_____________________________________ Header */
@@ -519,7 +520,24 @@ td { vertical-align: top; }
   }
 }
 
+/*_____________________________________ Page - Credits */
+.credit-disclaimer h2 {
+  margin: 0 20px;
+  text-align: center;
+}
 
+.credit-disclaimer p {
+  margin: 20px;
+}
+
+#main-footer {
+  margin: 20px;
+  text-align: center;
+
+  a {
+    margin: 0 10px;
+  }
+}
 
 
 ////////////////////
