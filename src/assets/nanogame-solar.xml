@@ -1,27 +1,27 @@
 <level name="Solar Cell Virtual Experiment" startin="WORLD_OFFICE" music="musicSolar">	
     <objective>
         <dialog type="intro">
-			<line>
-			    Lets make a device that absorbs sunlight to produce electricity – a solar cell.
-			</line>
-			<line>
-			    Most solar cells are made of high purity crystalline silicon. Their brittle structure limits where they can be used. They’re also expensive and not very eco friendly to make.
-			</line>
-			<line>
-                Go to to Clean Lab through the Blue Airlock. 
-            </line>
-        </dialog>
+					<line>
+					    Lets make a device that absorbs sunlight to produce electricity – a solar cell.
+					</line>
+					<line>
+					    Most solar cells are made of high purity crystalline silicon. Their brittle structure limits where they can be used. They’re also expensive and not very eco friendly to make.
+					</line>
+					<line>
+		          Go to to Clean Lab through the Blue Airlock. 
+		      </line>
+  		</dialog>
         
-		<goal target="airlock" moveto="WORLD_CLEANLAB" wait="1000" />
+			<goal target="airlock" moveto="WORLD_CLEANLAB" wait="1000" />
 		
-		<dialog type="outro">
-			<line>
-			    Let’s start by making a piece of glass that can conduct electricity.
-			</line>
-			<line>
-			    Find the sputter coater machine.
-			</line>
-		</dialog>
+			<dialog type="outro">
+				<line>
+				    Let’s start by making a piece of glass that can conduct electricity.
+				</line>
+				<line>
+				    Find the sputter coater machine.
+				</line>
+			</dialog>
     </objective>
     
     <objective>

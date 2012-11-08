@@ -65,7 +65,7 @@ package {
 		private var intro:MovieClip;
 		
 		/** We show the intro once, on the first level start. */
-		private var introPlayed:Boolean = false;
+		private var introPlayed:Boolean = true;
 		
 		/** Holds all the UI that rests on top of the world */
 		private var gameUi:Sprite;

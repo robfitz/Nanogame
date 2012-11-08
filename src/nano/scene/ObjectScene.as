@@ -9,7 +9,6 @@ package nano.scene
 	import flash.display.MovieClip;
 	import flash.events.Event;
 	import flash.events.MouseEvent;
-	import flash.ui.GameInput;
 	
 	import nano.AssetLoader;
 	

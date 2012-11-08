@@ -64,6 +64,12 @@ package nano
 		[Embed(source="assets/character/avatar_suited.swf", symbol="asset")]
 		public var player_suited:Class;
 		
+		[Embed(source="assets/character/avatar.swf", symbol="asset")]
+		public var player_default:Class;
+		
+		[Embed(source="assets/character/avatar_labcoat.swf", symbol="asset")]
+		public var player_labcoat:Class;
+		
 		/////////////////////////////////////////
 		//            WORLD OBJECTS            //
 		/////////////////////////////////////////

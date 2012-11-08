@@ -40,6 +40,9 @@ package nano
 		/** Map map map map */
 		private var maps:Object;
 		
+		/** Different players for each map */
+		private var players:Object;
+		
 		private var _currentMap:String;
 		
 		public var isUpdating:Boolean = true;
@@ -100,6 +103,12 @@ package nano
 				WORLD_CLEANLAB: cleanlabData,
 				WORLD_WETLAB: wetData
 			};
+			
+			this.players = {
+				WORLD_OFFICE: new Assets.instance.player_default(),
+				WORLD_CLEANLAB: new Assets.instance.player_suited(),
+				WORLD_WETLAB: new Assets.instance.player_labcoat()
+			};
 		}
 		
 		/**
@@ -110,6 +119,7 @@ package nano
 			if(this._currentMap == mapName) {
 				return;
 			}
+			this._currentMap = mapName;
 			
 			// reset the current map
 			if(this.player) {
@@ -126,7 +136,7 @@ package nano
 			}
 			this.view.removeAllScenes();
 			
-			this.initWorldFromLoader(this.maps[mapName]);
+			this.initWorldFromLoader(this.maps[this._currentMap]);
 		}
 		
 		/**
@@ -154,10 +164,7 @@ package nano
 			//this.view.addScene(scenes['foreground']);
 			
 			// Create and add in our character at this time
-			if(! this.player) {
-				var img:* = new Assets.instance.player_suited;
-				this.player = new Character(this, new Assets.instance.player_suited);
-			}
+			this.player = new Character(this, this.players[this._currentMap]);
 			
 			// add player
 			this.objects.addChild(this.player);

@@ -3,7 +3,6 @@ package nano.level
 	import flash.events.Event;
 	import flash.events.EventDispatcher;
 	import flash.events.TimerEvent;
-	import flash.net.SecureSocket;
 	import flash.utils.Timer;
 	
 	import nano.World;
