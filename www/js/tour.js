@@ -61,7 +61,7 @@
     },
     
     initialize: function() {
-      this.moveMapTo(- this.mapWidth / 2, - this.mapHeight / 2);
+      this.moveMapTo(-1200, -300);
       
       var _this = this;
       
@@ -159,8 +159,11 @@
     },
     
     moveMapTo: function(x, y) {
-      this.mapX = Math.min(0, Math.max(-(this.mapWidth - 760), x)),
-      this.mapY = Math.min(0, Math.max(-(this.mapHeight - 540), y));
+      var viewWidth = this.el.parent().width();
+      var viewHeight = this.el.parent().height();
+      this.mapX = Math.min(0, Math.max(-(this.mapWidth - viewWidth), x)),
+      this.mapY = Math.min(0, Math.max(-(this.mapHeight - viewHeight), y));
+      console.log(this.mapX, this.mapY);
     }
   }
   

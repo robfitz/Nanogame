@@ -29,7 +29,7 @@
 
 		<dialog type="outro">
 			<line>
-				The sputter coater will deposit a thin layer of conductive oxide onto our piece of glass
+				The sputter coater will deposit a thin layer of conductive oxide onto our piece of glass.
 			</line>
 			<line cutscene="cutscene_sputter1" cue="one">
 				Fluorinated tin oxide, goes into the top and the glass underneath.
@@ -82,14 +82,14 @@
 	    <goal target="solar_bath" />
 	    
 	    <dialog type="outro">
-            <line cutscene="cutscene_bath" cue="one">
-    	        Placing the substrate in a special solution and heating it to 92 degrees triggers a remarkable chemical reaction. 
+          <line cutscene="cutscene_bath" cue="one">
+						Placing the substrate in a special solution and heating it to 92 degrees centigrade triggers a remarkable chemical reaction. 
     	    </line>
     	    <line cutscene="cutscene_bath" cue="two">
     	        Zinc nanowires, just 30nm wide, grow like blades of grass.
     	    </line>
     	    <line>
-    	        Now find the Atomic Layer Deposition machine and coat the wires in titanium oxide.
+    	        Now find the Atomic Layer Deposition machine and coat the wires in titanium dioxide.
             </line>
         </dialog>
 	</objective>

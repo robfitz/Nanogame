@@ -8,7 +8,7 @@
                 Nanoscale particles can be engineered to carry drugs to the area of the body they’re needed most.
 			</line>
             <line>
-                Nanoparticles of gold are perfect for this.
+                We’re going to make tiny packages that destroy cancer cells using nanoparticles of gold, an anti-cancer drug and an antibody protein that recognizes cancer cells.
             </line>
             <line>
                 The first step is to mix two chemical solutions to create tiny gold particles.
@@ -25,7 +25,7 @@
 				Great.
 			</line>
 			<line cutscene="cutscene_cancer_weighstation" cue="one">
-                Now weigh out 0.1g of chloroauric acid powder and mix it with distilled water to form a solution. 
+                Now weigh out 0.1g of chloroauric acid powder (gold salt) and mix it with distilled water to form a solution. And then do the same with 0.1g of sodium citrate. 
 			</line>
 			<line cutscene="cutscene_cancer_weighstation" cue="two">
                 And then do the same with 0.5g of sodium citrate.
@@ -41,13 +41,13 @@
         
         <dialog type="outro">
             <line cutscene="cutscene_cancer_stirbar" cue="one">
-                Heat the chloroauric acid, add a magnetic stir bar and then pour in the sodium citrate.
+                Heat the chloroauric acid solution, add a magnetic stir bar and then pour in the sodium citrate solution.
 			</line>
 			<line cutscene="cutscene_cancer_stirbar" cue="two">
-                The sodium citrate reduces gold ions in the acid into gold atoms.
+                The sodium citrate reduces gold ions into gold atoms.
 			</line>
             <line cutscene="cutscene_cancer_stirbar" cue="three">
-                The mixture turns red as the gold atoms cluster into nanoparticles.
+                The mixture turns red as the gold atoms cluster into nanoparticles. 
             </line>
             <line>
                 The next step is to measure your gold particles with the Dynamic Light Scattering machine.
@@ -66,10 +66,10 @@
                 A laser blasts light into the sample and the machine records the light scattered by particles in the solution and calculates their size. 
 			</line>
             <line cutscene="cutscene_cancer_dynamiclight" cue="two">
-                Your particles are 50nm in diameter. That’s perfect. Particles this size will be able to enter a cancerous cell.
+                Your particles are 50nm in diameter. That’s perfect. Particles this size will be able to enter a cancer cell.
             </line>
             <line>
-                Now head back to the stir bar to prepare an anti-cancer drug.
+                Now head back to the hotplate stirrer to prepare an anti-cancer nanomedicine.
             </line>
         </dialog>
     </objective>
@@ -79,16 +79,16 @@
         
         <dialog type="outro">
             <line>
-                Add an anti-cancer drug called doxorubicin. 
+                First we need to add an anti-cancer drug.
 			</line>
 			<line cutscene="cutscene_cancer_stirbar_2" cue="one">
-                Then add chitosan - a liquid containing long polymer molecules, and give the solution a good stir.
+                The drug is called doxorubicin.
 			</line>
             <line cutscene="cutscene_cancer_stirbar_2" cue="two">
-                Next add a ‘crosslinker’ chemical. This causes the polymer molecules to link together, wrapping up gold nanoparticles and the anti-cancer drug into small packages. 
+                Then add chitosan - a liquid containing long polymer molecules, and give the solution a good stir.
             </line>
             <line cutscene="cutscene_cancer_stirbar_2" cue="three">
-                Excellent work!
+                The polymer molecules have linked together, wrapping up gold nanoparticles and the anti-cancer drug into small packages.
             </line>
             <line>
                 Now you need to purify the solution. Find the dialysis cassette.
@@ -104,10 +104,10 @@
                 Inject the solution into the membrane bag inside the cassette and then place it in some distilled water.  
 			</line>
 			<line cutscene="cutscene_cancer_dialysisbar" cue="one">
-                The excess drug and cross-linker molecules are small enough to pass through the membrane leaving just the larger gold-drug-polymer particles inside.  This purifies the solution!
+                The excess drug is small enough to pass through the membrane leaving just the larger gold-drug-polymer particles inside. This purifies the solution!
 			</line>
             <line cutscene="cutscene_cancer_dialysisbar" cue="two">
-                Now we just need to add a final outer layer to the nanoparticles.
+                Now we just need to add a final outer layer to the nanoparticles – an antibody, a protein that recognizes cancer cell.
             </line>
             <line cutscene="cutscene_cancer_dialysisbar" cue="three">
                 These linker molecules bind to the outside of the nanoparticle and enable us to add the final ingredient – an antibody. 
@@ -116,17 +116,20 @@
                 Now you do it!
             </line>
             <line cutscene="minigameCancer" type="game">
-                To make a dose of our cancer-fighting nano-medicine, we need to mix the solutions below in the correct order. Click to mix the solutions
+                To make a dose of our cancer fighting nanomedicine, we need to mix the solutions in the correct order. Click to mix the different solutions. 
             </line>
             <line>
-                Once injected into a person the nanoparticles will be small enough to go undetected by their body’s own defence mechanisms. The antibody you added will bind with receptors on a cancer cell and the particle will be smuggled into the cancer.
+                Once injected into the body the nanomedicine is small enough to go undetected by the body’s defence mechanisms. The antibody you added binds with receptors on a cancer cell and the nanomedicine is smuggled inside.
             </line>
             <line>
-                The gold particles are also part of the treatment. When the patient is exposed to X-rays the gold particles will ionise the water inside the cancer cell, creating high-energy molecules that will kill the cell! 
+                Enzymes in the cancer cell degrade the polymer capsule and release the drug and gold nanoparticles. The drug then damages the DNA of the cancer cell. 
+            </line>
+            <line>
+                When the patient is exposed to near-infrared light, the gold nanoparticles absorb the energy and convert it into heat, which also helps kill the cancer cell.
             </line>
             <line>
                 Nanoparticle treatments like this are currently being tested and offer huge potential in the fight against cancer.
-            </line>            
+            </line>
         </dialog>
     </objective>
 </level>

@@ -330,7 +330,7 @@ td {
    Author: Devin Hunt
    ========================================================================== */
 /*_____________________________________ Basic Structure */
-#page {
+.wrapper {
   width: 740px;
   margin: 0 auto;
 }
@@ -346,10 +346,32 @@ td {
   -moz-box-shadow: 0px 2px 20px rgba(0, 0, 0, 0.2);
   box-shadow: 0px 2px 20px rgba(0, 0, 0, 0.2);
 }
-#main  > p,
-#main  > h2 {
+#main > p,
+#main > h2 {
   margin-left: 20px;
   margin-right: 20px;
+}
+.page-top,
+.page-bottom {
+  position: relative;
+  background: #E6E7DD;
+  -webkit-box-shadow: 0px 2px 20px rgba(0, 0, 0, 0.2);
+  -moz-box-shadow: 0px 2px 20px rgba(0, 0, 0, 0.2);
+  box-shadow: 0px 2px 20px rgba(0, 0, 0, 0.2);
+  padding: 1px 0;
+}
+.page-top > p,
+.page-bottom > p,
+.page-top > h2,
+.page-bottom > h2 {
+  margin-left: 20px;
+  margin-right: 20px;
+}
+.page-top {
+  border-top: 10px solid #464F51;
+}
+.page-bottom {
+  border-bottom: 10px solid #464F51;
 }
 /*_____________________________________ Header */
 #page_header {
@@ -586,12 +608,14 @@ td {
 }
 /*_____________________________________ Page - Tour */
 #tour-map {
-  width: 760px;
-  height: 540px;
+  width: 90%;
+  min-width: 780px;
+  height: 700px;
+  margin: 0 auto;
   overflow: hidden;
   background: white;
-  margin-bottom: 40px;
   position: relative;
+  border: 1px solid #ccc;
 }
 #tour-map .map {
   overflow: hidden;

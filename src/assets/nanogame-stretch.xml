@@ -17,7 +17,7 @@
         
         <dialog type="outro">
 			<line>
-				Welcome to the Clean Lab!
+				Welcome to the Clean Lab!  In here the air is filtered to remove dust and other particles that could contaminate your work.
 			</line>
 			<line>
 				The secret is to start with a versatile stretchy substance you can build your circuit on. A chemical called PDMS is ideal.
@@ -148,10 +148,10 @@
                 Good job! Now when we turn on the UV light, the top layer of liquid PDMS is exposed and begins to cure into a rubbery texture. 
 			</line>
 			<line>
-                The areas covered by the dark areas of the mask are shielded from the UV light and the PDMS remains in its liquid state. We can wash these bits away to leave a few tiny sections of the gold circuit accessible to connect wires to. 
+				The areas covered by the dark areas of the mask are shielded from the UV light and the PDMS remains in its liquid state. We can wash these bits away to leave a few tiny sections of the gold circuit accessible to connect wires to. 
 			</line>
 			<line cutscene="cutscene_photolithography" cue="three">
-                Your stretchable circuit is now ready to use - with this technology we hope to make intelligent clothes, squishy computers or bionic limbs.
+				Your stretchable circuit is now ready to use - with this technology we hope to make bionic limbs, stretchable mobile phones and wearable computers .
 			</line>
 		</dialog>
 	</objective>
