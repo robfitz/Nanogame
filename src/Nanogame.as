@@ -28,6 +28,7 @@ package {
 	 */
 
 	[SWF(width='760', height='570')]
+	[Frame(factoryClass="Preloader")]
 	public class Nanogame extends Sprite
 	{
 		
@@ -83,10 +84,13 @@ package {
 		
 		public function Nanogame()
 		{
+			super();
+		}
+		
+		public function startup(): void {
 			this.soundManager = new SoundManager();
 			this.gameUi = new Sprite();
 			this.addChild(this.gameUi);
-			this.setGameState(GAMESTATE_LOADING);
 			
 			var mat:Matrix = new Matrix();
 			mat.createGradientBox(760, 570, Math.PI / 2);
@@ -101,6 +105,8 @@ package {
 				_this.wipe = event.target.asset;
 				_this.wipe.gotoAndStop(1);
 			});
+			
+			this.setGameState(GAMESTATE_MENU);
 		}
 		
 		/**
@@ -150,13 +156,6 @@ package {
 			
 			switch(this.state) {
 				case GAMESTATE_LOADING:
-					if(this.stage.loaderInfo.bytesLoaded != this.stage.loaderInfo.bytesTotal) { 
-						this.stage.loaderInfo.addEventListener(ProgressEvent.PROGRESS, this.onGameLoading);
-						this.stage.loaderInfo.addEventListener(Event.COMPLETE, function(event:Event):void {
-						});
-					} else {
-						this.setGameState(GAMESTATE_MENU);
-					}
 					break;
 				
 				case GAMESTATE_MENU:
