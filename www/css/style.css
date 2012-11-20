@@ -564,6 +564,12 @@ td {
 .timeline #item8 .foreground {
   background-image: url(../img/timeline/fig8.png);
 }
+.timeline #item8andAHalf .background {
+  background-image: url(../img/timeline/fig8.5-back.png);
+}
+.timeline #item8andAHalf .foreground {
+  background-image: url(../img/timeline/fig8.5.png);
+}
 .timeline #item9 .background {
   background-image: url(../img/timeline/fig9-back.png);
 }
@@ -620,8 +626,8 @@ td {
 #tour-map .map {
   overflow: hidden;
   position: absolute;
-  width: 2900px;
-  height: 1800px;
+  width: 2624px;
+  height: 1612px;
   cursor: move;
 }
 #tour-map .map .tile {
