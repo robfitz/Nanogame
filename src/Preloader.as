@@ -2,6 +2,8 @@ package
 {
 	import flash.display.DisplayObject;
 	import flash.display.MovieClip;
+	import flash.display.StageAlign;
+	import flash.display.StageScaleMode;
 	import flash.errors.IOError;
 	import flash.events.Event;
 	import flash.events.IOErrorEvent;
@@ -10,47 +12,49 @@ package
 	
 	public class Preloader extends MovieClip
 	{
-		
-		private var splashScreenMovie:Class;
+		[Embed(source="assets/loading.swf", symbol="asset")]		
+		private var loadingScreenKlass:Class;
+		private var loadingScreen:MovieClip;
 		
 		public function Preloader()
 		{
-			super();
-			
+			this.stop();
+			stage.scaleMode = StageScaleMode.NO_SCALE;
+			stage.align = StageAlign.TOP_LEFT;
 			this.addEventListener(Event.ENTER_FRAME, this.checkFrame);
-			this.loaderInfo.addEventListener(ProgressEvent.PROGRESS, this.progress);
-			this.loaderInfo.addEventListener(IOErrorEvent.IO_ERROR, this.ioError);
-		}
-		
-		private function ioError(e:IOError):void {
-			trace(e.text);
-		}
-		
-		private function progress(e:ProgressEvent):void {
-			trace(e.bytesLoaded / e.bytesTotal); 
+			
+			this.loadingScreen = new this.loadingScreenKlass();
+			this.loadingScreen.gotoAndStop(1);
+			this.loadingScreen.x = -120;
+			this.loadingScreen.y = -130;
+			this.addChild(this.loadingScreen);
 		}
 		
 		private function checkFrame(e:Event):void {
-			if(currentFrame == totalFrames) {
+			var progress:int = root.loaderInfo.bytesLoaded / root.loaderInfo.bytesTotal * 100;
+
+			if(this.framesLoaded == this.totalFrames) {
 				stop();
+				nextFrame();
 				loadingFinished();
+			} else {
+				this.loadingScreen.gotoAndStop(progress);
 			}
 		}
 		
 		private function loadingFinished():void {
-			trace("We're Loaded!");
 			this.removeEventListener(Event.ENTER_FRAME, this.checkFrame);
-			this.loaderInfo.removeEventListener(ProgressEvent.PROGRESS, this.progress);
-			this.loaderInfo.removeEventListener(IOErrorEvent.IO_ERROR, this.ioError);
 			startup();
 		}
 		
 		private function startup():void {
 			trace("Booting up");
 			var mainClass:Class = getDefinitionByName("Nanogame") as Class;
-			var game:Nanogame = new mainClass() as Nanogame;
-			addChild(game);			
-			game.startup();
+			var game:DisplayObject = new mainClass() as DisplayObject;
+			addChild(game);
+			this.removeChild(this.loadingScreen);
+			this.loadingScreen = null;
+			(game as Object).startup();
 		}
 	}
 }
