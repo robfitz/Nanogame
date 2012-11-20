@@ -620,8 +620,8 @@ td {
 #tour-map .map {
   overflow: hidden;
   position: absolute;
-  width: 2624px;
-  height: 1612px;
+  width: 2900px;
+  height: 1800px;
   cursor: move;
 }
 #tour-map .map .tile {

@@ -26,8 +26,8 @@
     DISTANCE_THRESHOLD: 100,
     
     // map state
-    mapWidth: 2624,
-    mapHeight: 1612,
+    mapWidth: 2900,
+    mapHeight: 1800,
     tileWidth: 250,
     tileHeight: 250,
     imgPrefix: "img/map/map_tile_",
@@ -107,11 +107,14 @@
         var info = this.data[i],
             d = dist(info.x, info.y, this.mouseX, this.mouseY),
             inBounds;
+
+        var viewWidth = this.el.parent().width();
+        var viewHeight = this.el.parent().height();
         
         inBounds = info.x > -this.mapX && 
-          info.x < -this.mapX + 760 && 
+          info.x < -this.mapX + viewWidth && 
           info.y > -this.mapY &&
-          info.y < -this.mapY + 540;
+          info.y < -this.mapY + viewHeight;
         
         if(inBounds && d < closestDist && d < this.DISTANCE_THRESHOLD) {
           closestInfo = info;
