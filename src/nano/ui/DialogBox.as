@@ -38,6 +38,7 @@ package nano.ui
 		private var displayText:String;
 		
 		private var nextButton:MovieClip;
+		private var backButton:MovieClip;
 		
 		// our cutscenes
 		private var cutscene:Cutscene;
@@ -62,11 +63,25 @@ package nano.ui
 			this.addChild(this._textfield);
 			
 			var _this:DialogBox = this;
-			var buttonLoader:AssetLoader = new AssetLoader(Assets.instance.nextbutton);
-			buttonLoader.addEventListener(Event.COMPLETE, function(event:Event):void {
+			var nextButtonLoader:AssetLoader = new AssetLoader(Assets.instance.nextbutton);
+			nextButtonLoader.addEventListener(Event.COMPLETE, function(event:Event):void {
 				_this.nextButton = event.target.asset;
 				_this.addChild(_this.nextButton);
 				_this.render();
+				
+				_this.nextButton.mouseEnabled = true;
+				_this.nextButton.useHandCursor = true;
+			});
+			
+			var backButtonLoader:AssetLoader = new AssetLoader(Assets.instance.backbutton);
+			backButtonLoader.addEventListener(Event.COMPLETE, function(event:Event):void {
+				_this.backButton = event.target.asset;
+				_this.addChild(_this.backButton);
+				_this.render();
+				
+				_this.backButton.addEventListener(MouseEvent.CLICK, _this.onBackClick);
+				_this.backButton.mouseEnabled = true;
+				_this.backButton.useHandCursor = true;
 			});
 			
 			this.professor = new Cutscene("professor");
@@ -122,55 +137,82 @@ package nano.ui
 			
 			if(this.currentLineIndex < this.currentDialog.lines.length) {
 				var line:Object = this.currentDialog.lines[this.currentLineIndex];
-				
-				this._textfield.text = "";
-				this.displayChar = 0;
-				this.displayText = line.text;
-				
-				if(line.cutscene) {
-					
-					if(line.type == "game") {
-						// Special interactive cutscnene. Load it up.
-						this.minigame = this.getMinigame(line.cutscene);
-						this.addChild(this.minigame);
-						this.minigame.addEventListener(Event.COMPLETE, this.onMinigameWin);
-						this.minigame.state = Minigame.STATE_PLAY;
-						this.isPlayingGame = true;
-					} 
-					else if(! this.cutscene || this.cutscene.cutsceneName != line.cutscene) {
-						// Remove old cutscene and create the new one
-						if(this.cutscene && this.contains(this.cutscene)) {
-							this.removeChild(this.cutscene);
-						}
-						
-						this.cutscene = new Cutscene(line.cutscene, new Rectangle(0, 0, CUTSCENE_WIDTH, CUTSCENE_HEIGHT));
-						this.addChild(this.cutscene);
-						this.cutscene.cue(line.cue);
-						this.render();
-					} else {
-						// Cutscene is the right cutscene, cue up the right part
-						if(! this.contains(this.cutscene)) {
-							this.addChild(this.cutscene);
-						}
-						this.cutscene.cue(line.cue);
-					}
-					
-				} else {
-					// professor, so something cool to fill the gap!
-					if(this.cutscene && this.contains(this.cutscene)) {
-						this.removeChild(this.cutscene);
-					}
-				}
-				
-				// professor always talks
-				this.professor.cue("talk");
-				
+				this.displayLine(line);
 				this.currentLineIndex ++;
+				this.render();
 			} else {
 				// signal that the dialog is done
 				this.dispatchEvent(new Event(Event.COMPLETE));
 				this.visible = false;
 			}
+		}
+		
+		/**
+		 * Role the text from the dialog backwards. This can only be done if the 
+		 * a) there is a previous line
+		 * b) the previous dialog line was not a minigame
+		 */
+		public function prev():void {
+			if(this.isPlayingGame) {
+				return;
+			}
+			
+			if(this.currentLineIndex - 1 > 0) {
+				var line:Object = this.currentDialog.lines[this.currentLineIndex - 2];
+				
+				if(line.type != "game") {
+					this.displayLine(line);
+					this.currentLineIndex --;
+					this.render();
+				}
+			}
+		}
+		
+		private function displayLine(line:Object):void {
+			if(line.cutscene) {
+				if(line.type == "game") {
+					// Special interactive cutscnene. Load it up.
+					this.minigame = this.getMinigame(line.cutscene);
+					this.addChild(this.minigame);
+					this.minigame.addEventListener(Event.COMPLETE, this.onMinigameWin);
+					this.minigame.state = Minigame.STATE_PLAY;
+					this.isPlayingGame = true;
+				} 
+				else if(! this.cutscene || this.cutscene.cutsceneName != line.cutscene) {
+					// Remove old cutscene and create the new one
+					if(this.cutscene && this.contains(this.cutscene)) {
+						this.removeChild(this.cutscene);
+					}
+					
+					this.cutscene = new Cutscene(line.cutscene, new Rectangle(0, 0, CUTSCENE_WIDTH, CUTSCENE_HEIGHT));
+					this.addChild(this.cutscene);
+					this.cutscene.cue(line.cue);
+				} else {
+					// Cutscene is the right cutscene, cue up the right part
+					if(! this.contains(this.cutscene)) {
+						this.addChild(this.cutscene);
+					}
+					this.cutscene.cue(line.cue);
+				}
+				
+			} else {
+				// professor, so something cool to fill the gap!
+				if(this.cutscene && this.contains(this.cutscene)) {
+					this.removeChild(this.cutscene);
+				}
+			}
+			
+			this._textfield.text = "";
+			this.displayChar = 0;
+			this.displayText = line.text;
+			
+			// professor always talks
+			this.professor.cue("talk");
+		}
+		
+		public function onBackClick(event:MouseEvent):void {
+			event.stopPropagation();
+			prev();
 		}
 		
 		public function update(dt:Number):void {
@@ -202,6 +244,28 @@ package nano.ui
 			if(this.nextButton) {
 				this.nextButton.x = width - this.nextButton.width - 10;
 				this.nextButton.y = top + 140;
+			}
+			
+			if(this.backButton) {
+				this.backButton.x = width - this.backButton.width - 100;
+				this.backButton.y = top + 140;
+				
+				
+				// We need to make sure we're not CURRENTLY in a game, or were JUST in a game.
+				var currentType = null;
+				var previousType = null;
+				if(this.currentLineIndex - 1 < this.currentDialog.lines.length && this.currentLineIndex - 1 >= 0) {
+					currentType = this.currentDialog.lines[this.currentLineIndex - 1].type;
+				}
+				if(this.currentLineIndex - 2 < this.currentDialog.lines.length && this.currentLineIndex - 2 >= 0) {
+					previousType = this.currentDialog.lines[this.currentLineIndex - 2].type;
+				}
+				
+				if(this.currentLineIndex < 2 || currentType == "game" || previousType == "game") {
+					this.backButton.visible = false
+				} else {
+					this.backButton.visible = true;
+				}
 			}
 			
 			var g:Graphics = this.graphics;
