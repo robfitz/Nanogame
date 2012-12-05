@@ -25,13 +25,10 @@
 				Great.
 			</line>
 			<line cutscene="cutscene_cancer_weighstation" cue="one">
-                Now weigh out 0.1g of chloroauric acid powder (gold salt) and mix it with distilled water to form a solution. And then do the same with 0.1g of sodium citrate. 
+                Now weigh out 0.1g of chloroauric acid powder (gold salt) and mix it with distilled water to form a solution. And then do the same with 0.1g of sodium citrate.
 			</line>
 			<line cutscene="cutscene_cancer_weighstation" cue="two">
-                And then do the same with 0.5g of sodium citrate.
-			</line>
-			<line>
-                Now take the two solutions to the Hotplate Stirrer for mixing.
+                Take the two solutions to the Hotplate Stirrer for mixing.
 			</line>
 		</dialog>
     </objective>
@@ -44,7 +41,7 @@
                 Heat the chloroauric acid solution, add a magnetic stir bar and then pour in the sodium citrate solution.
 			</line>
 			<line cutscene="cutscene_cancer_stirbar" cue="two">
-                The sodium citrate reduces gold ions into gold atoms.
+                The sodium citrate reduces gold ions into gold atoms. 
 			</line>
             <line cutscene="cutscene_cancer_stirbar" cue="three">
                 The mixture turns red as the gold atoms cluster into nanoparticles. 
@@ -109,14 +106,11 @@
             <line cutscene="cutscene_cancer_dialysisbar" cue="two">
                 Now we just need to add a final outer layer to the nanoparticles – an antibody, a protein that recognizes cancer cell.
             </line>
-            <line cutscene="cutscene_cancer_dialysisbar" cue="three">
-                These linker molecules bind to the outside of the nanoparticle and enable us to add the final ingredient – an antibody. 
-            </line>
             <line>
-                Now you do it!
+                Now you do it! To make a dose of our cancer fighting nanomedicine, we need to mix the solutions in the correct order.
             </line>
             <line cutscene="minigameCancer" type="game">
-                To make a dose of our cancer fighting nanomedicine, we need to mix the solutions in the correct order. Click to mix the different solutions. 
+                Click on the lab bench when the pipette is above the correct piece of equipment.
             </line>
             <line>
                 Once injected into the body the nanomedicine is small enough to go undetected by the body’s defence mechanisms. The antibody you added binds with receptors on a cancer cell and the nanomedicine is smuggled inside.

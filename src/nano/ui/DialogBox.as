@@ -252,8 +252,8 @@ package nano.ui
 				
 				
 				// We need to make sure we're not CURRENTLY in a game, or were JUST in a game.
-				var currentType = null;
-				var previousType = null;
+				var currentType:String = null;
+				var previousType:String = null;
 				if(this.currentLineIndex - 1 < this.currentDialog.lines.length && this.currentLineIndex - 1 >= 0) {
 					currentType = this.currentDialog.lines[this.currentLineIndex - 1].type;
 				}
