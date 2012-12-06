@@ -82,7 +82,7 @@
                 The drug is called doxorubicin.
 			</line>
             <line cutscene="cutscene_cancer_stirbar_2" cue="two">
-                Then add chitosan - a liquid containing long polymer molecules, and give the solution a good stir.
+                Then add chitosan solution - a liquid containing long polymer molecules, and give the solution a good stir.
             </line>
             <line cutscene="cutscene_cancer_stirbar_2" cue="three">
                 The polymer molecules have linked together, wrapping up gold nanoparticles and the anti-cancer drug into small packages.
